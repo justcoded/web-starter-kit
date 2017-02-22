@@ -15,7 +15,7 @@
     "markup",
     "jc"
   ],
-  "author": "Juctcoded",
+  "author": "Justcoded",
   "license": "MIT",
   "homepage": "https://bitbucket.org/justcoded/npm_jcn_markup_starter",
   "devDependencies": {
@@ -32,8 +32,11 @@
     "gulp-cssnano": "^2.1.0",
     "gulp-debug": "^2.1.2",
     "gulp-group-css-media-queries": "^1.1.0",
+    "gulp-htmlhint": "^0.3.1",
     "gulp-imagemin": "^3.0.1",
+    "gulp-jshint": "^2.0.4",
     "gulp-newer": "^1.1.0",
+    "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-rimraf": "^0.2.0",
     "gulp-sass": "^3.1.0",
@@ -41,6 +44,8 @@
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
+    "htmlhint-stylish": "^1.0.3",
+    "jshint": "^2.9.4",
     "node-notifier": "^4.4.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

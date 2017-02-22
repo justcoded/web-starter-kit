@@ -12,7 +12,8 @@
     buffer = require('vinyl-buffer'),
     sourcemaps = require('gulp-sourcemaps'),
     uglify = require('gulp-uglify'),
-    notifier = require("node-notifier"),
+    notifier = require('node-notifier'),
+    notify = require('gulp-notify'),
     gutil = require('gulp-util'),
     cssnano = require('gulp-cssnano'),
     debug = require('gulp-debug'),
@@ -25,8 +26,10 @@
     rename = require('gulp-rename'),
     fs = require('fs'),
     filesExist = require('files-exist'),
-    cssimport = require("gulp-cssimport"),
-    browserSync = require('browser-sync').create();
+    cssimport = require('gulp-cssimport'),
+    browserSync = require('browser-sync').create(),
+    htmlhint = require('gulp-htmlhint'),
+    jshint = require('gulp-jshint');
 
   var Paths = {
     build: 'build',
@@ -40,6 +43,28 @@
     buildCss: 'css',
     production: 'production'
   }
+
+  /**
+   * JS hint
+   */
+  gulp.task('hintJs', function() {
+    gulp.src(`./${Paths.src}/${Paths.srcJS}/**/*.js`)
+      .pipe(htmlhint())
+      .pipe(jshint.reporter('htmlhint-stylish'))
+  });
+
+  /**
+   * HTML hint
+   */
+  gulp.task('hintHtml', function() {
+    gulp.src(`./*.html`)
+      .pipe(htmlhint())
+      .pipe(htmlhint.reporter('htmlhint-stylish'))
+      .pipe(htmlhint.failReporter({ suppress: true }))
+      .on('error', notify.onError((error) => {
+        return 'Ooops: ' + error.message;
+      }));
+  });
 
   /**
    * Build custom js
@@ -62,7 +87,7 @@
    */
   gulp.task('buildJsVendors', function() {
     var jsVendors = require(`./${Paths.src}/vendor_entries/vendor.js`);
-      gulp.src(filesExist(jsVendors))
+    gulp.src(filesExist(jsVendors))
       .pipe(concat('vendor.min.js'))
       .pipe(uglify())
       .pipe(gulp.dest(`./${Paths.build}/${Paths.buildJS}`));
@@ -142,13 +167,14 @@
    * Watch for file changes
    */
   gulp.task('watch', function() {
-    gulp.watch(`./${Paths.src}/${Paths.srcJS}/**/*`, ['buildCustomJS']);
+    gulp.watch(`./${Paths.src}/${Paths.srcJS}/**/*`, ['buildCustomJS', 'hintJs']);
     watch(`./${Paths.src}/${Paths.scss}/**/*`, function() {
       gulp.run('buildSass');
     });
     watch(`./${Paths.src}/${Paths.srcImages}/**/*`, function() {
       gulp.run('imageMin');
     });
+    gulp.watch(`./*.html`, ['hintHtml']);
     gulp.watch([`./${Paths.build}/**/*`, './*.html']).on('change', browserSync.reload);
   });
 
