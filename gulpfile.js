@@ -79,8 +79,8 @@
       }))
       .pipe(jshint.reporter())
       .pipe(jshint.reporter('fail'))
-      .on('error', notify.onError((error) => {
-        return 'Ooops: ' + error.message;
+      .on('error', notify.onError({
+        title: 'JS'
       }));
   });
 
@@ -92,8 +92,8 @@
       .pipe(htmlhint())
       .pipe(htmlhint.reporter('htmlhint-stylish'))
       .pipe(htmlhint.failReporter({ suppress: true }))
-      .on('error', notify.onError((error) => {
-        return 'Ooops: ' + error.message;
+      .on('error', notify.onError({
+        title: 'HTML'
       }));
   });
 
