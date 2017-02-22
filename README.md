@@ -2,7 +2,7 @@
 
 ### Install build
 
-* `npm install` install all modules listed as dependencies in `package.json` and automatically run `bower install` install packages as dependencies in `bower.json`.
+* `npm install` installs all modules listed as dependencies in `package.json` and automatically run `bower install` install packages as dependencies in `bower.json`.
 
 ### Gulp complex commands:
 * `gulp` create build **with** localhost server and browsersync;
