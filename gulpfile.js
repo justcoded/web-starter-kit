@@ -225,6 +225,15 @@
         baseDir: "./",
         directory: listDirectory
       },
+      snippetOptions: {
+          // Provide a custom Regex for inserting the snippet.
+          rule: {
+              match: /$/i,
+              fn: function(snippet, match) {
+                  return snippet + match;
+              }
+          }
+      },
       port: 8080
     });
   });
