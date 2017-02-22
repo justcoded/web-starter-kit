@@ -24,6 +24,8 @@
     pngquant = require('imagemin-pngquant'),
     rename = require('gulp-rename'),
     fs = require('fs'),
+    filesExist = require('files-exist'),
+    cssimport = require("gulp-cssimport"),
     browserSync = require('browser-sync').create();
 
   var Paths = {
@@ -59,7 +61,8 @@
    * Build js vendor (concatenate vendor array)
    */
   gulp.task('buildJsVendors', function() {
-    gulp.src(require(`./${Paths.src}/vendor_entries/vendor.js`))
+    var jsVendors = require(`./${Paths.src}/vendor_entries/vendor.js`);
+      gulp.src(filesExist(jsVendors))
       .pipe(concat('vendor.min.js'))
       .pipe(uglify())
       .pipe(gulp.dest(`./${Paths.build}/${Paths.buildJS}`));
@@ -106,6 +109,7 @@
       .pipe(sass().on('error', function(err) {
         showError.apply(this, ['Sass compile error (vendor)', err]);
       }))
+      .pipe(cssimport())
       .pipe(rename('vendor.min.css'))
       .pipe(cssnano({ safe: true }))
       .pipe(gulp.dest(`./${Paths.build}/${Paths.buildCss}`));
@@ -171,7 +175,7 @@
   /**
    * Creating production folder without unnecessary files
    */
-  gulp.task('production', ['buildCustomJS', 'buildSassProduction', 'cleanProduction'], function() {
+  gulp.task('production', ['buildCustomJS', 'buildSassProduction', 'buildStylesVendors', 'cleanProduction'], function() {
     return gulp.src(['./**/*',
         `!${Paths.src}/`,
         `!${Paths.src}/**/*`,
