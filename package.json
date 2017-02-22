@@ -17,6 +17,9 @@
   ],
   "author": "JustCoded",
   "license": "MIT",
+   "bugs": {
+    "url": "https://github.com/justcoded/web-starter-kit/issues"
+  },
   "homepage": "https://github.com/justcoded/web-starter-kit",
   "devDependencies": {
     "babel-preset-es2015": "^6.5.0",
