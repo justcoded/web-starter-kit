@@ -292,7 +292,7 @@
     var fileName = file.history.toString().split('/').pop();
     console.log(`${file.event}: ${fileName}`);
 
-    var filePathFromSrc = path.relative(path.resolve(src), file.base);
+    var filePathFromSrc = path.relative(path.resolve(src), file.path);
     var destFilePath = path.resolve(dest, filePathFromSrc);
 
     del.sync(destFilePath);
