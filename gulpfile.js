@@ -288,15 +288,15 @@
    * @param  {String} src      Name of the source folder
    * @param  {String} dest     Name of the destination folder
    */
-   function deleteFile(file, src, dest) {
-     var fileName = file.history.toString().split('/').pop();
-     console.log(`${file.event}: ${fileName}`);
+  function deleteFile(file, src, dest) {
+    var fileName = file.history.toString().split('/').pop();
+    console.log(`${file.event}: ${fileName}`);
 
-     var filePathFromSrc = path.relative(path.resolve(src), file.path);
-     var destFilePath = path.resolve(dest, filePathFromSrc);
+    var filePathFromSrc = path.relative(path.resolve(src), file.base);
+    var destFilePath = path.resolve(dest, filePathFromSrc);
 
-     del.sync(destFilePath);
-   }
+    del.sync(destFilePath);
+  }
 
   /**
    * Show error in console
