@@ -28,6 +28,8 @@
 
   var gulp = require('gulp'),
     sass = require('gulp-sass'),
+    del = require('del'),
+    path = require('path'),
     gcmq = require('gulp-group-css-media-queries'),
     autoprefixer = require('gulp-autoprefixer'),
     watch = require('gulp-watch'),
@@ -140,8 +142,6 @@
       .pipe(browserSync.stream());
   });
 
-
-
   /**
    * Build production styles for application from SASS
    */
@@ -175,7 +175,7 @@
    * Images minification
    */
   gulp.task('imageMin', function() {
-    gulp.src(`./${Paths.src}/${Paths.srcImages}/**/*`)
+    return gulp.src(`./${Paths.src}/${Paths.srcImages}/**/*`)
       .pipe(newer(`${Paths.build}/${Paths.buildImages}/`))
       .pipe(imagemin({
         optimizationLevel: 5,
@@ -199,11 +199,13 @@
    */
   gulp.task('watch', function() {
     gulp.watch(`./${Paths.src}/${Paths.srcJS}/**/*`, ['buildCustomJS', 'hintJs']);
-    watch(`./${Paths.src}/${Paths.scss}/**/*`, function() {
-      gulp.run('buildSass');
-    });
-    watch(`./${Paths.src}/${Paths.srcImages}/**/*`, function() {
-      gulp.run('imageMin');
+    gulp.watch(`${Paths.src}/${Paths.scss}/**/*`, ['buildSass']);
+    watch(`${Paths.src}/${Paths.srcImages}/**/*`, function(file) {
+      if(file.event === 'unlink') {
+        deleteFile(file, 'src', 'build');
+      } else {
+        gulp.start('imageMin');
+      }
     });
     gulp.watch(`./*.html`, ['hintHtml']);
     gulp.watch([`./${Paths.build}/**/*`, './*.html']).on('change', browserSync.reload);
@@ -278,6 +280,23 @@
     gulp.src([`./${Paths.src}/${Paths.fonts}/**/*`])
       .pipe(gulp.dest(`./${Paths.build}/${Paths.fonts}/`));
   });
+
+  /**
+   * Remove image(s) from build folder if corresponding
+   * images were deleted from source folder
+   * @param  {Object} event    Event object
+   * @param  {String} src      Name of the source folder
+   * @param  {String} dest     Name of the destination folder
+   */
+  function deleteFile(file, src, dest) {
+    var fileName = file.history.toString().split('/').pop();
+    console.log(`${file.event}: ${fileName}`);
+
+    var filePathFromSrc = path.relative(path.resolve(src), file.path);
+    var destFilePath = path.resolve(dest, filePathFromSrc);
+
+    del.sync(destFilePath);
+  }
 
   /**
    * Show error in console

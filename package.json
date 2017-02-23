@@ -17,7 +17,7 @@
   ],
   "author": "JustCoded",
   "license": "MIT",
-   "bugs": {
+  "bugs": {
     "url": "https://github.com/justcoded/web-starter-kit/issues"
   },
   "homepage": "https://github.com/justcoded/web-starter-kit",
@@ -53,9 +53,13 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "dependencies": {
     "bower": "^1.7.2",
-    "del": "^2.2.0",
-    "imagemin-pngquant": "^5.0.0"
+    "del": "^2.2.2",
+    "imagemin-pngquant": "^5.0.0",
+    "path": "^0.12.7"
   }
 }
