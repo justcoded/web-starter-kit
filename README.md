@@ -10,7 +10,7 @@
 
 ### SCSS
 * All custom **scss** files locate in `src/scss/` folder;
-* Entry point for all scss is `src/scss/app.scss` you can **import** all your *.scss* files from here;
+* Entry point for all scss is `src/scss/style.scss` you can **import** all your *.scss* files from here;
 * You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the gulp.
 
 ### JS
