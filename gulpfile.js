@@ -110,7 +110,7 @@
       .bundle().on('error', function(err) {
         showError.apply(this, ['JS error', err])
       })
-      .pipe(source('app.min.js'))
+      .pipe(source('app.js'))
       .pipe(gulp.dest(`./${Paths.build}/${Paths.buildJS}`))
       .pipe(browserSync.stream());
   });
