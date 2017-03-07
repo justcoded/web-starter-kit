@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/justcoded/npm_jcn_markup_starter"
+    "url": "git+https://github.com/justcoded/web-starter-kit"
   },
   "keywords": [
     "starter",

@@ -1,9 +1,9 @@
 {
   "name": "markup-starter-jc",
   "version": "0.1.0",
-  "homepage": "git+https://bitbucket.org/justcoded/npm_jcn_markup_starter",
+  "homepage": "git+https://github.com/justcoded/web-starter-kit",
   "authors": [
-    "Justcoded"
+    "JustCoded"
   ],
   "description": "Starter kit for markup projects",
   "main": "",
@@ -22,6 +22,6 @@
   "dependencies": {
     "jquery": "~2.2.4",
     "normalize-css": "~3.0.3",
-    "include-media": "~1.4.2"
+    "include-media": "~1.4.9"
   }
 }
