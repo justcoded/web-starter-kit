@@ -59,7 +59,7 @@
     jshint = require('gulp-jshint');
 
   var Paths = {
-    build: 'build',
+    build: 'assets',
     src: 'src',
     buildImages: 'images',
     srcImages: 'images',
@@ -202,7 +202,7 @@
     gulp.watch(`${Paths.src}/${Paths.scss}/**/*`, ['buildSass']);
     watch(`${Paths.src}/${Paths.srcImages}/**/*`, function(file) {
       if(file.event === 'unlink') {
-        deleteFile(file, 'src', 'build');
+        deleteFile(file, 'src', 'assets');
       } else {
         gulp.start('imageMin');
       }
