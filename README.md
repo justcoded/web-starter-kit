@@ -1,33 +1,71 @@
-# Project Skeleton
+# [![Web Starter Kit](https://cloud.githubusercontent.com/assets/25930200/23856381/20707b74-0802-11e7-8578-5e4e91bb463e.png)](https://github.com/justcoded/web-starter-kit/releases/latest)
 
-### Install project
+>  A modern NPM/Gulp web starter kit for projects
 
-* `npm install` installs all modules listed as dependencies in `package.json` and automatically run `bower install` install packages as dependencies in `bower.json`.
+![node](http://img.shields.io/badge/node-4.0.x-blue.svg) ![npm](http://img.shields.io/badge/npm-2.13.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) ![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg) ![license](http://img.shields.io/badge/license-MIT-blue.svg) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](/LICENSE) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
 
-### Gulp complex commands:
-* `gulp` create assets **with** localhost server and browsersync;
-* `gulp dev` create assets **without** localhost server and browsersync.
 
-### SCSS
-* All custom **scss** files locate in `src/scss/` folder;
-* Entry point for all scss is `src/scss/style.scss` you can **import** all your *.scss* files from here;
-* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the gulp.
+## Overview
 
-### JS
-* All custom **javascript** files locate in `js/` folder;
-* Entry point for javascript is `src/js/app.js` you can **import** all you *.js* files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
-* All javascript is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
+Web Starter Kit is an opinionated boilerplate for web development. Tools for building a great experience across many devices. A solid starting point for both professionals and newcomers to the industry.
 
-### Images
-* All **images** placed in `src/images/` folder will be automatically **optimized** and put in `assets/images/` folder;
-* To **clear** `assets/images/` folder use `gulp imageClean` task.
+### Features
 
-### Vendor
-* All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
-* After installing the extension you must **include its files**:
-  * **js files** must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**;
-  * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
+| Feature                                | Summary                                                                                                                                                                                                                                                     |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Responsive boilerplate | A responsive boilerplate optimized for the multi-screen web. Powered by [Material Design Lite](http://getmdl.io).  You're free to use either this or a completely clean-slate  via [basic.html](https://github.com/google/web-starter-kit/blob/master/app/basic.html).                          |
+| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more. (Run `gulp serve` or `gulp` for production)                                                                                                      |
+| Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean. (Run `gulp` to create an optimised version of your project to `/dist`)                                                                                                |
+| Code Linting               | JavaScript code linting is done using [ESLint](http://eslint.org) - a pluggable linter tool for identifying and reporting on patterns in JavaScript. Web Starter Kit uses ESLint with [eslint-config-google](https://github.com/google/eslint-config-google), which tries to follow the Google JavaScript style guide.                                                                                                |
+| ES2015 via Babel 6.0                   | Optional ES2015 support using [Babel](https://babeljs.io/). To enable ES2015 support remove the line `"only": "gulpfile.babel.js",` in the [.babelrc](.babelrc) file. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
+| Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate                                                                                                                                                                            |
+| Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension. (Run `gulp serve` and edit your files)                                                                                                                           |
+| Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io). (Run `gulp serve` and open up the IP provided on other devices on your network)                       |
+| Offline support                     | Thanks to our baked in [Service Worker](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) [pre-caching](https://github.com/google/web-starter-kit/blob/master/gulpfile.babel.js#L226), sites deploying `dist` to a HTTPS domain will enjoy offline support. This is made possible by [sw-precache](https://github.com/GoogleChrome/sw-precache/).                                                                                                                                              |
+| PageSpeed Insights                     | Web performance metrics showing how well your site performs on mobile and desktop (Run `gulp pagespeed`)                                                                                                                                                    |
 
-### Production
-* `gulp production` task creates the `production/` folder in the root of the project with **assets files only**;
-* It will **help you** to **create clear** instances of code for the **production** or **further implementation**.
+## Quickstart
+
+[Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit or clone this repository and build on what is included in the `assets` directory.
+
+You can start from `index.html` - the default starting point, with template text.
+
+Be sure to look over the [installation docs](docs/install.md) to verify your environment is prepared to run Web Starter Kit.
+Once you have verified that your system can run WSK, check out the [commands](docs/commands.md) available to get started.
+
+## Browser Support
+
+At present, we officially aim to support the last two versions of the following browsers:
+
+* Chrome
+* Edge
+* Firefox
+* Safari
+* Internet Explorer 11+
+
+This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
+
+## Troubleshooting
+
+If you find yourself running into issues during installation or running the tools, please check our [Troubleshooting](https://github.com/justcoded/web-starter-kit/wiki/Troubleshooting) guide and then open an [issue](https://github.com/justcoded/web-starter-kit/issues). We would be happy to discuss how they can be solved.
+
+## A Boilerplate-only Option
+
+If you would prefer not to use any of our tooling, delete the following files from the project: `package.json`. You can now safely use the boilerplate with an alternative build-system or no build-system at all if you choose.
+
+## Docs and Recipes
+
+* [File Appendix](https://github.com/google/web-starter-kit/blob/master/docs/file-appendix.md) - What do the different files here do?
+* [Using Material Design Lite's Sass](https://github.com/google/web-starter-kit/blob/master/docs/mdl-sass.md) - how to get MDL's Sass working with WSK
+* [Deployment guides](https://github.com/google/web-starter-kit/blob/master/docs/deploy.md) - available for Firebase, Google App Engine and other services.
+* [Gulp recipes](https://github.com/gulpjs/gulp/tree/master/docs/recipes) - the official Gulp recipes directory includes a comprehensive list of guides for different workflows you can add to your project.
+
+## Contributing
+
+Contributions, questions and comments are all welcome and encouraged. For code contributions to Web Starter Kit, please see our [Contribution guide](CONTRIBUTING.md) before submitting a pull request. [Website](https://github.com/justcoded/web-starter-kit) related issues should be filed on the [Web Fundamentals](https://github.com/justcoded/web-starter-kit/issues) issue tracker.
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2017 JustCoded

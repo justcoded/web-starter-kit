@@ -1,5 +1,5 @@
 {
-  "name": "markup-starter-jc",
+  "name": "web-starter-jc",
   "version": "0.8.0",
   "description": "Starter kit for markup projects",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "keywords": [
     "starter",
     "markup",
+    "JustCoded"
     "jc"
   ],
   "author": "JustCoded",
