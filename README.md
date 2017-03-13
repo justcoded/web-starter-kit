@@ -2,7 +2,7 @@
 
 >  A modern NPM/Gulp web starter kit for projects
 
-![node](http://img.shields.io/badge/node-4.0.x-blue.svg) ![npm](http://img.shields.io/badge/npm-2.13.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) ![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg) ![license](http://img.shields.io/badge/license-MIT-blue.svg) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](/LICENSE) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
+![node](http://img.shields.io/badge/node-4.0.x-blue.svg) ![npm](http://img.shields.io/badge/npm-2.13.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
 
 
 ## Overview
@@ -55,10 +55,12 @@ If you would prefer not to use any of our tooling, delete the following files fr
 
 ## Docs and Recipes
 
-* [File Appendix](https://github.com/google/web-starter-kit/blob/master/docs/file-appendix.md) - What do the different files here do?
-* [Using Material Design Lite's Sass](https://github.com/google/web-starter-kit/blob/master/docs/mdl-sass.md) - how to get MDL's Sass working with WSK
-* [Deployment guides](https://github.com/google/web-starter-kit/blob/master/docs/deploy.md) - available for Firebase, Google App Engine and other services.
-* [Gulp recipes](https://github.com/gulpjs/gulp/tree/master/docs/recipes) - the official Gulp recipes directory includes a comprehensive list of guides for different workflows you can add to your project.
+* [Commands](https://github.com/justcoded/master/docs/commands.md) - Main commands of the WSK.
+* [Using Sass](https://github.com/justcoded/master/docs/sass.md) - how to get Sass working with WSK
+* [Deploy guides](https://github.com/justcoded/master/docs/deploy.md) - available for Browsersync, imports and other services.
+* [Install build](https://github.com/justcoded/master/docs/install.md) - how to install build.
+* [Project structure](https://github.com/justcoded/master/docs/structure.md) - basic structure of project build.
+* [JS guides](https://github.com/justcoded/master/docs/js.md) - Guide for using JavaScript in build.
 
 ## Contributing
 
