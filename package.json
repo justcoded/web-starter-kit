@@ -1,11 +1,8 @@
 {
   "name": "markup-starter-jc",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Starter kit for markup projects",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "bower install"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/justcoded/web-starter-kit"
@@ -51,15 +48,17 @@
     "jshint": "^2.9.4",
     "node-notifier": "^4.4.0",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "del": "^2.2.2",
+    "imagemin-pngquant": "^5.0.0",
+    "path": "^0.12.7"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "bower": "^1.7.2",
-    "del": "^2.2.2",
-    "imagemin-pngquant": "^5.0.0",
-    "path": "^0.12.7"
+    "jquery": "~2.2.4",
+    "normalize.css": "~3.0.3",
+    "include-media": "~1.4.9"
   }
 }

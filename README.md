@@ -23,7 +23,7 @@
 * To **clear** `assets/images/` folder use `gulp imageClean` task.
 
 ### Vendor
-* All **extensions** must be installed by the [Bower](http://bower.io/#install-packages);
+* All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include its files**:
   * **js files** must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**;
   * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
