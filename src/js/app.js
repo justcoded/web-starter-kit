@@ -1,6 +1,7 @@
 import HP from './modules/helpers';
 
 (function ($) {
+   'use strict';
 
   // When DOM is ready
   $(function () {

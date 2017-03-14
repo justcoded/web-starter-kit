@@ -44,7 +44,6 @@
     gutil = require('gulp-util'),
     cssnano = require('gulp-cssnano'),
     debug = require('gulp-debug'),
-    connect = require('gulp-connect'),
     rimraf = require('gulp-rimraf'),
     browserify = require('browserify'),
     babelify = require('babelify'),
