@@ -103,7 +103,7 @@
   /**
    * Build custom js
    */
-  gulp.task('buildCustomJS', () => {
+  gulp.task('buildCustomJS', function() {
     //remove sourcemap for production
     let enableDebug = this.seq.slice(-1)[0] === 'production';
 
