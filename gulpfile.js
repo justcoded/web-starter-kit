@@ -114,7 +114,7 @@
       .transform('babelify', {
         presets: ['es2015']
       })
-      .bundle().on('error', (err) => {
+      .bundle().on('error', function(err) {
         showError.apply(this, ['JS error', err])
       })
       .pipe(source('app.js'))
@@ -137,13 +137,13 @@
   /**
    * Build styles for application from SASS
    */
-  gulp.task('buildSass', () => {
+  gulp.task('buildSass', function() {
     gulp.src(`./${Paths.src}/${Paths.scss}/style.scss`)
       .pipe(rename('style.min.css'))
       .pipe(sourcemaps.init({
         loadMaps: true
       }))
-      .pipe(sass().on('error', (err) => {
+      .pipe(sass().on('error', function(err) {
         showError.apply(this, ['Sass compile error', err]);
       }))
       .pipe(autoprefixer('last 4 versions'))
@@ -155,9 +155,9 @@
   /**
    * Build production styles for application from SASS
    */
-  gulp.task('buildSassProduction', () => {
+  gulp.task('buildSassProduction', function() {
     gulp.src(`./${Paths.src}/${Paths.scss}/style.scss`)
-      .pipe(sass().on('error', (err) => {
+      .pipe(sass().on('error', function(err) {
         showError.apply(this, ['Sass compile error', err]);
       }))
       .pipe(rename('style.min.css'))
@@ -174,7 +174,7 @@
    */
   gulp.task('buildStylesVendors', () => {
     gulp.src(`./${Paths.src}/vendor_entries/vendor.scss`)
-      .pipe(sass().on('error', (err) => {
+      .pipe(sass().on('error', function(err) {
         showError.apply(this, ['Sass compile error (vendor)', err]);
       }))
       .pipe(cssimport())
