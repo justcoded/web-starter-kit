@@ -23,10 +23,10 @@
  *
  */
 
-(function() {
+(() => {
   'use strict';
 
-  var gulp = require('gulp'),
+  const gulp = require('gulp'),
     sass = require('gulp-sass'),
     del = require('del'),
     path = require('path'),
@@ -57,7 +57,7 @@
     htmlhint = require('gulp-htmlhint'),
     jshint = require('gulp-jshint');
 
-  var Paths = {
+  const Paths = {
     build: 'assets',
     src: 'src',
     buildImages: 'images',
@@ -73,7 +73,7 @@
   /**
    * JS hint
    */
-  gulp.task('hintJs', function() {
+  gulp.task('hintJs', () => {
     gulp.src(`./${Paths.src}/${Paths.srcJS}/**/*.js`)
       .pipe(jshint({
         'esversion': 6
@@ -88,11 +88,13 @@
   /**
    * HTML hint
    */
-  gulp.task('hintHtml', function() {
+  gulp.task('hintHtml', () => {
     gulp.src(`./*.html`)
       .pipe(htmlhint())
       .pipe(htmlhint.reporter('htmlhint-stylish'))
-      .pipe(htmlhint.failReporter({ suppress: true }))
+      .pipe(htmlhint.failReporter({
+        suppress: true }
+      ))
       .on('error', notify.onError({
         title: 'HTML'
       }));
@@ -101,12 +103,18 @@
   /**
    * Build custom js
    */
-  gulp.task('buildCustomJS', function() {
+  gulp.task('buildCustomJS', () => {
     //remove sourcemap for production
-    var enableDebug = this.seq.slice(-1)[0] === 'production';
-    return browserify({ entries: `./${Paths.src}/${Paths.srcJS}/app.js`, debug: !enableDebug })
-      .transform('babelify', { presets: ['es2015'] })
-      .bundle().on('error', function(err) {
+    let enableDebug = this.seq.slice(-1)[0] === 'production';
+
+    return browserify({
+        entries: `./${Paths.src}/${Paths.srcJS}/app.js`,
+        debug: !enableDebug
+      })
+      .transform('babelify', {
+        presets: ['es2015']
+      })
+      .bundle().on('error', (err) => {
         showError.apply(this, ['JS error', err])
       })
       .pipe(source('app.js'))
@@ -117,8 +125,9 @@
   /**
    * Build js vendor (concatenate vendor array)
    */
-  gulp.task('buildJsVendors', function() {
-    var jsVendors = require(`./${Paths.src}/vendor_entries/vendor.js`);
+  gulp.task('buildJsVendors', () => {
+    let jsVendors = require(`./${Paths.src}/vendor_entries/vendor.js`);
+
     gulp.src(filesExist(jsVendors))
       .pipe(concat('vendor.min.js'))
       .pipe(uglify())
@@ -128,11 +137,13 @@
   /**
    * Build styles for application from SASS
    */
-  gulp.task('buildSass', function() {
+  gulp.task('buildSass', () => {
     gulp.src(`./${Paths.src}/${Paths.scss}/style.scss`)
       .pipe(rename('style.min.css'))
-      .pipe(sourcemaps.init({ loadMaps: true }))
-      .pipe(sass().on('error', function(err) {
+      .pipe(sourcemaps.init({
+        loadMaps: true
+      }))
+      .pipe(sass().on('error', (err) => {
         showError.apply(this, ['Sass compile error', err]);
       }))
       .pipe(autoprefixer('last 4 versions'))
@@ -144,14 +155,16 @@
   /**
    * Build production styles for application from SASS
    */
-  gulp.task('buildSassProduction', function() {
+  gulp.task('buildSassProduction', () => {
     gulp.src(`./${Paths.src}/${Paths.scss}/style.scss`)
-      .pipe(sass().on('error', function(err) {
+      .pipe(sass().on('error', (err) => {
         showError.apply(this, ['Sass compile error', err]);
       }))
       .pipe(rename('style.min.css'))
       .pipe(gcmq())
-      .pipe(cssnano({ safe: true }))
+      .pipe(cssnano({
+        safe: true
+      }))
       .pipe(autoprefixer('last 4 versions'))
       .pipe(gulp.dest(`./${Paths.build}/${Paths.buildCss}`));
   });
@@ -159,27 +172,31 @@
   /**
    * Build styles for vendor from SASS
    */
-  gulp.task('buildStylesVendors', function() {
+  gulp.task('buildStylesVendors', () => {
     gulp.src(`./${Paths.src}/vendor_entries/vendor.scss`)
-      .pipe(sass().on('error', function(err) {
+      .pipe(sass().on('error', (err) => {
         showError.apply(this, ['Sass compile error (vendor)', err]);
       }))
       .pipe(cssimport())
       .pipe(rename('vendor.min.css'))
-      .pipe(cssnano({ safe: true }))
+      .pipe(cssnano({
+        safe: true
+      }))
       .pipe(gulp.dest(`./${Paths.build}/${Paths.buildCss}`));
   });
 
   /**
    * Images minification
    */
-  gulp.task('imageMin', function() {
-    return gulp.src(`./${Paths.src}/${Paths.srcImages}/**/*`)
+  gulp.task('imageMin', () => {
+    gulp.src(`./${Paths.src}/${Paths.srcImages}/**/*`)
       .pipe(newer(`${Paths.build}/${Paths.buildImages}/`))
       .pipe(imagemin({
         optimizationLevel: 5,
         progressive: true,
-        svgoPlugins: [{ removeViewBox: false }],
+        svgoPlugins: [{
+          removeViewBox: false
+        }],
         use: [pngquant()]
       }))
       .pipe(gulp.dest(`${Paths.build}/${Paths.buildImages}/`))
@@ -189,17 +206,17 @@
   /**
    * Clean image build directory
    */
-  gulp.task('imageClean', function() {
+  gulp.task('imageClean', () => {
     gulp.src(`${Paths.build}/${Paths.buildImages}/`).pipe(rimraf());
   });
 
   /**
    * Watch for file changes
    */
-  gulp.task('watch', function() {
+  gulp.task('watch', () => {
     gulp.watch(`./${Paths.src}/${Paths.srcJS}/**/*`, ['buildCustomJS', 'hintJs']);
     gulp.watch(`${Paths.src}/${Paths.scss}/**/*`, ['buildSass']);
-    watch(`${Paths.src}/${Paths.srcImages}/**/*`, function(file) {
+    watch(`${Paths.src}/${Paths.srcImages}/**/*`, (file) => {
       if(file.event === 'unlink') {
         deleteFile(file, 'src', 'assets');
       } else {
@@ -215,12 +232,9 @@
    */
 
   //if index.html exist - open it, else show  folder
-  var listDirectory = true;
-  if (fs.existsSync('index.html')) {
-    listDirectory = false
-  }
+  let listDirectory = fs.existsSync('index.html') ? false : true;
 
-  gulp.task('browserSyncServer', function() {
+  gulp.task('browserSyncServer', () => {
     browserSync.init({
       server: {
         baseDir: "./",
@@ -230,9 +244,7 @@
           // Provide a custom Regex for inserting the snippet.
           rule: {
               match: /$/i,
-              fn: function(snippet, match) {
-                  return snippet + match;
-              }
+              fn: (snippet, match) => snippet + match
           }
       },
       port: 8080
@@ -242,40 +254,43 @@
   /**
    * Creating production folder without unnecessary files
    */
-  gulp.task('production', ['buildCustomJS', 'buildSassProduction', 'buildStylesVendors', 'cleanProduction', 'hintHtml', 'hintJs'], function() {
-    return gulp.src(['./**/*',
-        `!${Paths.src}/`,
-        `!${Paths.src}/**/*`,
-        '!bower/',
-        '!bower/**/*',
-        '!node_modules/**/*',
-        '!node_modules/',
-        `!${Paths.build}/${Paths.buildCss}/**.map`,
-        `!${Paths.build}/${Paths.srcImages}/info.txt`,
-        '!.bowerrc',
-        '!bower.json',
-        '!.gitignore',
-        '!gulpfile.js',
-        '!LICENSE',
-        '!package.json',
-        `!${Paths.production}`,
-        '!README.md'
-      ])
+  gulp.task('production', ['buildCustomJS', 'buildSassProduction', 'buildStylesVendors', 'cleanProduction', 'hintHtml', 'hintJs'], () => {
+    gulp.src([
+      './**/*',
+      `!${Paths.src}/`,
+      `!${Paths.src}/**/*`,
+      '!bower/',
+      '!bower/**/*',
+      '!node_modules/**/*',
+      '!node_modules/',
+      `!${Paths.build}/${Paths.buildCss}/**.map`,
+      `!${Paths.build}/${Paths.srcImages}/info.txt`,
+      '!.bowerrc',
+      '!bower.json',
+      '!.gitignore',
+      '!gulpfile.js',
+      '!LICENSE',
+      '!package.json',
+      `!${Paths.production}`,
+      '!README.md'
+    ])
       .pipe(gulp.dest(`./${Paths.production}`));
   });
 
   /**
    * Clean production folder
    */
-  gulp.task('cleanProduction', function() {
-    return gulp.src(`./${Paths.production}/`, { read: false })
+  gulp.task('cleanProduction', () => {
+    gulp.src(`./${Paths.production}/`, {
+      read: false
+    })
       .pipe(rimraf());
   });
 
   /**
    * Copy custom fonts to the build folder
    */
-  gulp.task('copyFonts', function() {
+  gulp.task('copyFonts', () => {
     gulp.src([`./${Paths.src}/${Paths.fonts}/**/*`])
       .pipe(gulp.dest(`./${Paths.build}/${Paths.fonts}/`));
   });
@@ -288,11 +303,11 @@
    * @param  {String} dest     Name of the destination folder
    */
   function deleteFile(file, src, dest) {
-    var fileName = file.history.toString().split('/').pop();
+    let fileName = file.history.toString().split('/').pop();
     console.log(`${file.event}: ${fileName}`);
 
-    var filePathFromSrc = path.relative(path.resolve(src), file.path);
-    var destFilePath = path.resolve(dest, filePathFromSrc);
+    let filePathFromSrc = path.relative(path.resolve(src), file.path);
+    let destFilePath = path.resolve(dest, filePathFromSrc);
 
     del.sync(destFilePath);
   }
@@ -308,7 +323,24 @@
     this.emit("end");
   }
   // Default Gulp Task
-  gulp.task('default', ['buildCustomJS', 'buildSass', 'buildJsVendors', 'buildStylesVendors', 'copyFonts', 'imageMin', 'browserSyncServer', 'watch']);
-  gulp.task('dev', ['buildCustomJS', 'buildSass', 'buildJsVendors', 'buildStylesVendors', 'copyFonts', 'imageMin', 'watch']);
+  gulp.task('default', [
+    'buildCustomJS',
+    'buildSass',
+    'buildJsVendors',
+    'buildStylesVendors',
+    'copyFonts',
+    'imageMin',
+    'browserSyncServer',
+    'watch'
+  ]);
+  gulp.task('dev', [
+    'buildCustomJS',
+    'buildSass',
+    'buildJsVendors',
+    'buildStylesVendors',
+    'copyFonts',
+    'imageMin',
+    'watch'
+  ]);
 
 }());
