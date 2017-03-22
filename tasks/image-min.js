@@ -6,8 +6,7 @@
 const gulp = require('gulp'),
       newer = require('gulp-newer'),
       imagemin = require('gulp-imagemin'),
-      pngquant = require('imagemin-pngquant'),
-      browserSync = require('browser-sync').create();
+      pngquant = require('imagemin-pngquant');
 
 module.exports = function(options) {
 
@@ -26,8 +25,7 @@ module.exports = function(options) {
           pngquant()
         ]
       }))
-      .pipe(gulp.dest(`assets/images/`))
-      .pipe(browserSync.stream());
+      .pipe(gulp.dest(`assets/images/`));
   };
 
 };
