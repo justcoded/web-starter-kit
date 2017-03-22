@@ -18,7 +18,7 @@ If you want to use our WSK , you need to know something about the structure.
 In `package.json` you can find all the dependencies.
 In `src` folder you can find all sources for the project (images, sass , javascript files).
 
-`src` folder structure
+## `src` folder structure
 
 ```
 ├── images
