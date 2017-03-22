@@ -8,8 +8,8 @@ const gulp = require('gulp');
 module.exports = function(options) {
 
   return () => {
-    return gulp.src(['./src/fonts/**/*'])
-      .pipe(gulp.dest('./assets/fonts/'));
+    return gulp.src(`./${options.src}/fonts/**/*`)
+      .pipe(gulp.dest(`./${options.dest}/fonts/`));
   };
 
 };

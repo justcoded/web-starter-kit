@@ -65,24 +65,33 @@
   /**
    * Hint JS
    */
-  requireTask(`${cfg.task.jsHint}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.jsHint}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src
+  });
 
   /**
    * Build custom js
    */
-  requireTask(`${cfg.task.buildJs}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildCustomJs}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
     checkProduction: true
   });
 
   /**
    * Build js vendor (concatenate vendors array)
    */
-  requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build
+  });
 
   /**
    * Build styles for application from SASS
    */
   requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
     self: self,
     showError: showError
   });
@@ -91,33 +100,48 @@
    * Build production styles for application from SASS
    */
   requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
     showError: showError
   });
 
   /**
    * Build styles for vendor from SASS
    */
-  requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build
+  });
 
   /**
    * Minify images
    */
-  requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build
+  });
 
   /**
    * Clean image build directory
    */
-  requireTask(`${cfg.task.imageClean}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.imageClean}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.build
+  });
 
   /**
    * Clean production folder
    */
-  requireTask(`${cfg.task.cleanProd}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.cleanProd}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.prod
+  });
 
   /**
    * Copy custom fonts to the build folder
    */
-  requireTask(`${cfg.task.copyFonts}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.copyFonts}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build
+  });
 
   /**
    * Start browserSync server
@@ -130,15 +154,17 @@
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
+    browserSync: browserSync,
+    deleteFile: deleteFile,
     tasks: {
-      buildCustomJs: `${cfg.task.buildJs}`,
+      buildCustomJs: `${cfg.task.buildCustomJs}`,
       buildSass: `${cfg.task.buildSass}`,
       jsHint: `${cfg.task.jsHint}`,
       htmlHint: `${cfg.task.htmlHint}`,
       imageMin: `${cfg.task.imageMin}`
-    },
-    browserSync: browserSync,
-    deleteFile: deleteFile
+    }
   });
 
   /**
@@ -146,7 +172,7 @@
    */
   gulp.task('production',
     [
-      `${cfg.task.buildJs}`,
+      `${cfg.task.buildCustomJs}`,
       `${cfg.task.buildSassProd}`,
       `${cfg.task.buildStylesVendors}`,
       `${cfg.task.cleanProd}`,
@@ -182,7 +208,7 @@
    * Default Gulp task
    */
   gulp.task('default', [
-    `${cfg.task.buildJs}`,
+    `${cfg.task.buildCustomJs}`,
     `${cfg.task.buildSass}`,
     `${cfg.task.buildJsVendors}`,
     `${cfg.task.buildStylesVendors}`,
@@ -196,7 +222,7 @@
    * Dev Gulp task without usage of browserSync
    */
   gulp.task('dev', [
-    `${cfg.task.buildJs}`,
+    `${cfg.task.buildCustomJs}`,
     `${cfg.task.buildSass}`,
     `${cfg.task.buildJsVendors}`,
     `${cfg.task.buildStylesVendors}`,

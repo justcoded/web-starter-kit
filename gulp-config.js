@@ -8,7 +8,7 @@ module.exports = {
   task: {
     htmlHint: 'html-hint',
     jsHint: 'js-hint',
-    buildJs: 'build-custom-js',
+    buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
     buildSassProd: 'build-sass-production',

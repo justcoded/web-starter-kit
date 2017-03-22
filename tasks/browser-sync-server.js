@@ -9,7 +9,7 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return () => {
-    // if index.html exist - open it, else show folder
+    // If index.html exist - open it, else show folder
     let listDirectory = fs.existsSync('index.html') ? false : true;
 
     options.browserSync.init({

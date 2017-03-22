@@ -10,7 +10,7 @@ const gulp     = require('gulp'),
 module.exports = function(options) {
 
   return () => {
-    return gulp.src('./production/', {
+    return gulp.src(`./${options.prod}/`, {
         read: false
       })
       .pipe(rimraf());
