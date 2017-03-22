@@ -24,6 +24,7 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ├── images
 ├── js
    ├── modules
+   ├── app.js
 ├── scss
    ├── base
       ├── _forms.scss
@@ -37,12 +38,16 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── components
    ├── style.scss
 ├── vendor_entries
+	├── vendor.js
+	├── vendor.scss
 ├── gulpfile.js
 ├── index.html
 └── package.json
 
 ```
 
+Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` foder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `style.scss` file .
 
+Use `vendor_entries` to include plugins to your project.
 
 
