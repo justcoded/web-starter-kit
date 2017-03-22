@@ -23,11 +23,11 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ```
 ├── images
 ├── js
- ├── modules
+   ├── modules
 ├── scss
- ├── base
- ├── components
- ├── style.scss
+   ├── base
+   ├── components
+   ├── style.scss
 ├── vendor_entries
 ├── gulpfile.js
 ├── index.html
