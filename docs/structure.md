@@ -1,23 +1,39 @@
-## Your folder structure for `src/`:
+## Your folder structure for WSK:
+	
+If you want to use our WSK , you need to know something about the structure.
 
+	
 ```
-├── docs
-└── src
+├── src
 ├── tasks
-└── .eslintrc
-├── .gitattributes
-└── .gitignore
-├── .travis.yml
-└── CONTRIBUTING.md
 ├── LICENSE
-└── README.md
+├── README.md
 ├── gulpfile.js
-└── index.html
-├── package.json	
+├── index.html
+└── package.json
 
 ```
 
+`Tasks` - folder for gulpfile tasks.
+In `package.json` you can find all the dependencies.
+In `src` folder you can find all sources for the project (images, sass , javascript files).
 
+`src` folder structure
+
+```
+├── images
+├── js
+	├── modules
+├── scss
+	├── base
+	├── components
+	├── style.scss
+├── vendor_entries
+├── gulpfile.js
+├── index.html
+└── package.json
+
+```
 
 
 
