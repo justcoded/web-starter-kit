@@ -3,10 +3,10 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
-      sass = require('gulp-sass'),
-      rename = require('gulp-rename'),
-      cssnano = require('gulp-cssnano'),
+const gulp      = require('gulp'),
+      sass      = require('gulp-sass'),
+      rename    = require('gulp-rename'),
+      cssnano   = require('gulp-cssnano'),
       cssimport = require('gulp-cssimport');
 
 module.exports = function(options) {

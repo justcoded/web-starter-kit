@@ -3,10 +3,10 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
+const gulp       = require('gulp'),
       filesExist = require('files-exist'),
-      uglify = require('gulp-uglify'),
-      concat = require('gulp-concat');
+      uglify     = require('gulp-uglify'),
+      concat     = require('gulp-concat');
 
 module.exports = function(options) {
 

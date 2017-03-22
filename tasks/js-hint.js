@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
+const gulp   = require('gulp'),
       jshint = require('gulp-jshint'),
       notify = require('gulp-notify');
 

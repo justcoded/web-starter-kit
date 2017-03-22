@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
+const gulp  = require('gulp'),
       watch = require('gulp-watch');
 
 module.exports = function(options) {

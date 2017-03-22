@@ -4,7 +4,7 @@
 'use strict';
 
 const gulp = require('gulp'),
-  rimraf = require('gulp-rimraf');
+  rimraf   = require('gulp-rimraf');
 
 module.exports = function(options) {
 

@@ -3,12 +3,12 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
-      sass = require('gulp-sass'),
-      rename = require('gulp-rename'),
+const gulp         = require('gulp'),
+      sass         = require('gulp-sass'),
+      rename       = require('gulp-rename'),
       autoprefixer = require('gulp-autoprefixer'),
-      gcmq = require('gulp-group-css-media-queries'),
-      cssnano = require('gulp-cssnano');
+      gcmq         = require('gulp-group-css-media-queries'),
+      cssnano      = require('gulp-cssnano');
 
 module.exports = function(options) {
 

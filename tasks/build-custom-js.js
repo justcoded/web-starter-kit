@@ -3,10 +3,10 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
+const gulp       = require('gulp'),
       browserify = require('browserify'),
-      babelify = require('babelify'),
-      source = require('vinyl-source-stream');
+      babelify   = require('babelify'),
+      source     = require('vinyl-source-stream');
 
 module.exports = function(options) {
 

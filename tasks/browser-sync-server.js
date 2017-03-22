@@ -4,7 +4,7 @@
 'use strict';
 
 const gulp = require('gulp'),
-      fs = require('fs');
+      fs   = require('fs');
 
 module.exports = function(options) {
 

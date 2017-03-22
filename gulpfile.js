@@ -26,12 +26,12 @@
 (() => {
   'use strict';
 
-  const gulp = require('gulp'),
-    self = this,
-    del = require('del'),
-    path = require('path'),
-    notifier = require('node-notifier'),
-    gutil = require('gulp-util'),
+  const gulp    = require('gulp'),
+    self        = this,
+    del         = require('del'),
+    path        = require('path'),
+    notifier    = require('node-notifier'),
+    gutil       = require('gulp-util'),
     browserSync = require('browser-sync').create();
 
   /**

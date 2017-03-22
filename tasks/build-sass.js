@@ -3,12 +3,12 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
-      sass = require('gulp-sass'),
-      rename = require('gulp-rename'),
-      sourcemaps = require('gulp-sourcemaps'),
-      gutil = require('gulp-util'),
-      notifier = require('node-notifier'),
+const gulp         = require('gulp'),
+      sass         = require('gulp-sass'),
+      rename       = require('gulp-rename'),
+      sourcemaps   = require('gulp-sourcemaps'),
+      gutil        = require('gulp-util'),
+      notifier     = require('node-notifier'),
       autoprefixer = require('gulp-autoprefixer');
 
 module.exports = function(options) {

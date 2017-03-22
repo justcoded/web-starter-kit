@@ -3,8 +3,8 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
-      newer = require('gulp-newer'),
+const gulp     = require('gulp'),
+      newer    = require('gulp-newer'),
       imagemin = require('gulp-imagemin'),
       pngquant = require('imagemin-pngquant');
 
