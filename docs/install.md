@@ -1,19 +1,19 @@
 # Install
 
-**tl;dr**: [Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
+[Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
 
 -
 
 To take advantage of Web Starter Kit you need to:
 
-1. Get a copy of the code.
-2. Install the dependencies if you don't already have them.
-3. Modify the application to your liking.
-4. Deploy your production code.
+1. Download the code.
+2. Install all necessary dependencies if you don't already have them.
+3. Modify the application as you wish.
+4. Make the production of your code.
 
 ## Getting the code
 
-[Download](https://github.com/justcoded/web-starter-kit/releases/latest) and extract WSK to where you want to work.
+[Download](https://github.com/justcoded/web-starter-kit/releases/latest) and extract WSK to the place where you want to work.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ To take advantage of Web Starter Kit you need to:
 
 Bring up a terminal and type `node --version`.
 Node should respond with a version at or above 4.0.x.
-If you require Node, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
+If you need to install Node, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
 
 ### [Gulp](http://gulpjs.com)
 
@@ -46,6 +46,5 @@ $ npm install
 
 That's it! You should now have everything needed to use the Web Starter Kit.
 
--
 
 You may also want to get used to some of the [commands](commands.md) available.
