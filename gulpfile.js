@@ -28,47 +28,18 @@
 
   const gulp = require('gulp'),
     self = this,
-    sass = require('gulp-sass'),
     del = require('del'),
     path = require('path'),
-    gcmq = require('gulp-group-css-media-queries'),
-    autoprefixer = require('gulp-autoprefixer'),
-    watch = require('gulp-watch'),
-    newer = require('gulp-newer'),
-    concat = require('gulp-concat'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
-    sourcemaps = require('gulp-sourcemaps'),
-    uglify = require('gulp-uglify'),
     notifier = require('node-notifier'),
-    notify = require('gulp-notify'),
     gutil = require('gulp-util'),
-    cssnano = require('gulp-cssnano'),
-    debug = require('gulp-debug'),
-    rimraf = require('gulp-rimraf'),
-    browserify = require('browserify'),
-    babelify = require('babelify'),
-    imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'),
-    rename = require('gulp-rename'),
-    fs = require('fs'),
-    filesExist = require('files-exist'),
-    cssimport = require('gulp-cssimport'),
     browserSync = require('browser-sync').create();
 
-  const Paths = {
-    build: 'assets',
-    src: 'src',
-    buildImages: 'images',
-    srcImages: 'images',
-    srcJS: 'js',
-    fonts: 'fonts',
-    scss: 'scss',
-    buildJS: 'js',
-    buildCss: 'css',
-    production: 'production'
-  }
-
+  /**
+   * Require gulp task from file
+   * @param  {string} taskName    Task name
+   * @param  {String} path        Path to task file
+   * @param  {Object} options     Options for task
+   */
   function requireTask(taskName, path, options) {
     let settings = options || {};
 
@@ -76,7 +47,7 @@
 
     gulp.task(taskName, function(callback) {
       if(settings.checkProduction) {
-        settings.enableDebug = this.seq.slice(-1)[0] === 'production';
+        settings.isProduction = this.seq.slice(-1)[0] === 'production';
       }
 
       let task = require(path).call(this, settings);
@@ -111,13 +82,16 @@
    * Build styles for application from SASS
    */
   requireTask('build-sass', './tasks/build-sass.js', {
-    self: self
+    self: self,
+    showError: showError
   });
 
   /**
    * Build production styles for application from SASS
    */
-  requireTask('build-sass-production', './tasks/build-sass-production.js');
+  requireTask('build-sass-production', './tasks/build-sass-production.js', {
+    showError: showError
+  });
 
   /**
    * Build styles for vendor from SASS
@@ -147,47 +121,23 @@
   /**
    * Start browserSync server
    */
-  gulp.task('browserSyncServer', function() {
-    // if index.html exist - open it, else show folder
-    let listDirectory = fs.existsSync('index.html') ? false : true;
-
-    browserSync.init({
-      server: {
-        baseDir: "./",
-        directory: listDirectory
-      },
-      snippetOptions: {
-          // Provide a custom Regex for inserting the snippet.
-          rule: {
-              match: /$/i,
-              fn: function(snippet, match) {
-                  return snippet + match;
-              }
-          }
-      },
-      port: 8080
-    });
+  requireTask('browser-sync-server', './tasks/browser-sync-server.js', {
+    browserSync: browserSync
   });
 
   /**
    * Watch for file changes
    */
-  gulp.task('watch', () => {
-    gulp.watch(`./src/js/**/*`, ['build-custom-js', 'js-hint']);
-
-    gulp.watch(`src/scss/**/*`, ['build-sass']);
-
-    watch(`src/images/**/*`, (file) => {
-      if(file.event === 'unlink') {
-        deleteFile(file, 'src', 'assets');
-      } else {
-        gulp.start('image-min');
-      }
-    });
-
-    gulp.watch(`./*.html`, ['html-hint']);
-
-    gulp.watch([`./assets/**/*`, './*.html']).on('change', browserSync.reload);
+  requireTask('watch', './tasks/watch.js', {
+    tasks: {
+      buildCustomJs: 'build-custom-js',
+      buildSass: 'build-sass',
+      jsHint: 'js-hint',
+      htmlHint: 'html-hint',
+      imageMin: 'image-min'
+    },
+    browserSync: browserSync,
+    deleteFile: deleteFile
   });
 
   /**
@@ -205,26 +155,53 @@
     () => {
       gulp.src([
         './**/*',
-        `!${Paths.src}/`,
-        `!${Paths.src}/**/*`,
+        'src/',
+        'src/**/*',
         '!bower/',
         '!bower/**/*',
         '!node_modules/**/*',
         '!node_modules/',
-        `!${Paths.build}/${Paths.buildCss}/**.map`,
-        `!${Paths.build}/${Paths.srcImages}/info.txt`,
+        '!assets/css/**.map',
+        '!assets/images/info.txt',
         '!.bowerrc',
         '!bower.json',
         '!.gitignore',
         '!gulpfile.js',
         '!LICENSE',
         '!package.json',
-        `!${Paths.production}`,
+        '!production',
         '!README.md'
       ])
-      .pipe(gulp.dest(`./${Paths.production}`));
+      .pipe(gulp.dest('./production'));
     }
   );
+
+  /**
+   * Default Gulp task
+   */
+  gulp.task('default', [
+    'build-custom-js',
+    'build-sass',
+    'build-js-vendors',
+    'build-styles-vendors',
+    'copy-fonts',
+    'image-min',
+    'browser-sync-server',
+    'watch'
+  ]);
+
+  /**
+   * Dev Gulp task without usage of browserSync
+   */
+  gulp.task('dev', [
+    'build-custom-js',
+    'build-sass',
+    'build-js-vendors',
+    'build-styles-vendors',
+    'copy-fonts',
+    'image-min',
+    'watch'
+  ]);
 
   /**
    * Remove image(s) from build folder if corresponding
@@ -253,32 +230,4 @@
     notifier.notify({ title: preffix, message: err.message });
     this.emit('end');
   }
-
-  /**
-   * Default Gulp task
-   */
-  gulp.task('default', [
-    'build-custom-js',
-    'build-sass',
-    'build-js-vendors',
-    'build-styles-vendors',
-    'copy-fonts',
-    'image-min',
-    'browserSyncServer',
-    'watch'
-  ]);
-
-  /**
-   * Dev Gulp task without usage of browserSync
-   */
-  gulp.task('dev', [
-    'build-custom-js',
-    'build-sass',
-    'build-js-vendors',
-    'build-styles-vendors',
-    'copy-fonts',
-    'image-min',
-    'watch'
-  ]);
-
 }());

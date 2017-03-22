@@ -13,9 +13,10 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return gulp.src(`./src/scss/style.scss`)
+    return gulp.src('./src/scss/style.scss')
       .pipe(sass().on('error', function(err) {
-        showError.apply(this, ['Sass compile error', err]);
+        let self = this;
+        options.showError.apply(self, ['Sass compile error', err]);
       }))
       .pipe(rename('style.min.css'))
       .pipe(gcmq())
@@ -23,7 +24,7 @@ module.exports = function(options) {
         safe: true
       }))
       .pipe(autoprefixer('last 4 versions'))
-      .pipe(gulp.dest(`./assets/css`));
+      .pipe(gulp.dest('./assets/css'));
   };
 
 };

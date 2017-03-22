@@ -12,7 +12,7 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return gulp.src(`./src/vendor_entries/vendor.scss`)
+    return gulp.src('./src/vendor_entries/vendor.scss')
       .pipe(sass().on('error', function(err) {
         showError.apply(this, ['Sass compile error (vendor)', err]);
       }))
@@ -21,7 +21,7 @@ module.exports = function(options) {
       .pipe(cssnano({
         safe: true
       }))
-      .pipe(gulp.dest(`./assets/css`));
+      .pipe(gulp.dest('./assets/css'));
   };
 
 };
