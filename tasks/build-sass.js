@@ -14,7 +14,7 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return gulp.src(`./src/scss/style.scss`)
+    return gulp.src('./src/scss/style.scss')
       .pipe(rename('style.min.css'))
       .pipe(sourcemaps.init({
         loadMaps: true
@@ -25,7 +25,7 @@ module.exports = function(options) {
       }))
       .pipe(autoprefixer('last 4 versions'))
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(`./assets/css`));
+      .pipe(gulp.dest('./assets/css'));
   };
 
 };

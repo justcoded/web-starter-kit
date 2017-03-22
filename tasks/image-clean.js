@@ -9,7 +9,7 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return () => {
-    return gulp.src(`assets/images/`)
+    return gulp.src('assets/images/')
       .pipe(rimraf());
   };
 

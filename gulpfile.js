@@ -30,23 +30,16 @@
     self = this,
     del = require('del'),
     path = require('path'),
-    watch = require('gulp-watch'),
     notifier = require('node-notifier'),
+    gutil = require('gulp-util'),
     browserSync = require('browser-sync').create();
 
-  const Paths = {
-    build: 'assets',
-    src: 'src',
-    buildImages: 'images',
-    srcImages: 'images',
-    srcJS: 'js',
-    fonts: 'fonts',
-    scss: 'scss',
-    buildJS: 'js',
-    buildCss: 'css',
-    production: 'production'
-  }
-
+  /**
+   * Require gulp task from file
+   * @param  {string} taskName    Task name
+   * @param  {String} path        Path to task file
+   * @param  {Object} options     Options for task
+   */
   function requireTask(taskName, path, options) {
     let settings = options || {};
 
@@ -135,22 +128,16 @@
   /**
    * Watch for file changes
    */
-  gulp.task('watch', () => {
-    gulp.watch(`./src/js/**/*`, ['build-custom-js', 'js-hint']);
-
-    gulp.watch(`src/scss/**/*`, ['build-sass']);
-
-    watch(`src/images/**/*`, (file) => {
-      if(file.event === 'unlink') {
-        deleteFile(file, 'src', 'assets');
-      } else {
-        gulp.start('image-min');
-      }
-    });
-
-    gulp.watch(`./*.html`, ['html-hint']);
-
-    gulp.watch([`./assets/**/*`, './*.html']).on('change', browserSync.reload);
+  requireTask('watch', './tasks/watch.js', {
+    tasks: {
+      buildCustomJs: 'build-custom-js',
+      buildSass: 'build-sass',
+      jsHint: 'js-hint',
+      htmlHint: 'html-hint',
+      imageMin: 'image-min'
+    },
+    browserSync: browserSync,
+    deleteFile: deleteFile
   });
 
   /**
@@ -168,24 +155,24 @@
     () => {
       gulp.src([
         './**/*',
-        `!${Paths.src}/`,
-        `!${Paths.src}/**/*`,
+        'src/',
+        'src/**/*',
         '!bower/',
         '!bower/**/*',
         '!node_modules/**/*',
         '!node_modules/',
-        `!${Paths.build}/${Paths.buildCss}/**.map`,
-        `!${Paths.build}/${Paths.srcImages}/info.txt`,
+        '!assets/css/**.map',
+        '!assets/images/info.txt',
         '!.bowerrc',
         '!bower.json',
         '!.gitignore',
         '!gulpfile.js',
         '!LICENSE',
         '!package.json',
-        `!${Paths.production}`,
+        '!production',
         '!README.md'
       ])
-      .pipe(gulp.dest(`./${Paths.production}`));
+      .pipe(gulp.dest('./production'));
     }
   );
 

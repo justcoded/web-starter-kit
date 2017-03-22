@@ -11,8 +11,8 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return () => {
-    return gulp.src(`./src/images/**/*`)
-      .pipe(newer(`assets/images/`))
+    return gulp.src('./src/images/**/*')
+      .pipe(newer('assets/images/'))
       .pipe(imagemin({
         optimizationLevel: 5,
         progressive: true,
@@ -25,7 +25,7 @@ module.exports = function(options) {
           pngquant()
         ]
       }))
-      .pipe(gulp.dest(`assets/images/`));
+      .pipe(gulp.dest('assets/images/'));
   };
 
 };

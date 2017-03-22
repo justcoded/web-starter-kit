@@ -11,12 +11,12 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return () => {
-    let jsVendors = require(`../src/vendor_entries/vendor.js`);
+    let jsVendors = require('../src/vendor_entries/vendor.js');
 
     return gulp.src(filesExist(jsVendors))
       .pipe(concat('vendor.min.js'))
       .pipe(uglify())
-      .pipe(gulp.dest(`./assets/js`));
+      .pipe(gulp.dest('./assets/js'));
   };
 
 };

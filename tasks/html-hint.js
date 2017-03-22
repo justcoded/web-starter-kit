@@ -10,7 +10,7 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return () => {
-    return gulp.src(`./*.html`)
+    return gulp.src('./*.html')
       .pipe(htmlhint())
       .pipe(htmlhint.reporter('htmlhint-stylish'))
       .pipe(htmlhint.failReporter({
