@@ -21,8 +21,7 @@ Web Starter Kit is an opinionated boilerplate for web development. Tools for bui
 | Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate                                                                                                                                                                            |
 | Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension. (Run `gulp` and edit your files)                                                                                                                           |
 | Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io). (Run `gulp` and open up the IP provided on other devices on your network)                       |
-                                                                                                                                                  |
-
+                                                                                                                                     
 ## Quickstart
 
 [Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit or clone this repository and build on what is included in the `assets` directory.
