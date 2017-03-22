@@ -6,7 +6,7 @@
 import HP from './modules/helpers';
 
 ( ($) => {
-   'use strict';
+  'use strict';
 
   // When DOM is ready
   $(() => {
