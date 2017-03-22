@@ -46,8 +46,8 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 
 ```
 
-Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` foder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `style.scss` file .
+Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `style.scss` file .
 
-Use `vendor_entries` to include plugins to your project.
+Use `vendor_entries` to include plugins into your project.
 
 
