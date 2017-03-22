@@ -151,7 +151,7 @@
       `${cfg.task.buildStylesVendors}`,
       `${cfg.task.cleanProd}`,
       `${cfg.task.htmlHint}`,
-      `${cfg.task.jsHint}`,
+      `${cfg.task.jsHint}`
     ], 
     () => {
       gulp.src([
@@ -171,7 +171,8 @@
         '!LICENSE',
         '!package.json',
         `!${cfg.folder.prod}`,
-        '!README.md'
+        '!README.md',
+        '!CONTRIBUTING.md'
       ])
       .pipe(gulp.dest(`./${cfg.folder.prod}`));
     }
