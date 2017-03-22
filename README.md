@@ -55,7 +55,6 @@ If you would prefer not to use any of our tooling, delete the following files fr
 
 * [Commands](https://github.com/justcoded/master/docs/commands.md) - Main commands of the WSK.
 * [Using Sass](https://github.com/justcoded/master/docs/sass.md) - how to get Sass working with WSK
-* [Deploy guides](https://github.com/justcoded/master/docs/deploy.md) - available for Browsersync, imports and other services.
 * [Install build](https://github.com/justcoded/master/docs/install.md) - how to install build.
 * [Project structure](https://github.com/justcoded/master/docs/structure.md) - basic structure of project build.
 * [JS guides](https://github.com/justcoded/master/docs/js.md) - Guide for using JavaScript in build.
