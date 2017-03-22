@@ -26,6 +26,14 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── modules
 ├── scss
    ├── base
+      ├── _forms.scss
+      ├── _functions.scss
+      ├── _helpers.scss
+      ├── _main.scss
+      ├── _mixins.scss
+      ├── _reset.scss
+      ├── _typography.scss
+      ├── _variables.scss
    ├── components
    ├── style.scss
 ├── vendor_entries
