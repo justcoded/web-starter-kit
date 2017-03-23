@@ -3,7 +3,7 @@ module.exports = {
     tasks: 'tasks',
     src: 'src',
     build: 'assets',
-    prod: 'production',
+    prod: 'production'
   },
   task: {
     htmlHint: 'html-hint',
