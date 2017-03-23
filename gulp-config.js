@@ -25,6 +25,8 @@ module.exports = {
   },
   ignore: function() {
     return [
+      `!${this.folder.src}/`,
+      `!${this.folder.src}/**/*`,
       '!bower/',
       '!bower/**/*',
       '!node_modules/**/*',
@@ -42,7 +44,9 @@ module.exports = {
       '!CONTRIBUTING.md',
       '!gulp-config.js',
       '!docs/',
-      '!docs/**/*'
+      '!docs/**/*',
+      '!tasks/',
+      '!tasks/**/*'
     ];
   }
 };
