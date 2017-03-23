@@ -258,4 +258,4 @@
     notifier.notify({ title: preffix, message: err.message });
     this.emit('end');
   }
-}());
+})();
