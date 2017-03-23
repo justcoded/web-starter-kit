@@ -16,7 +16,6 @@ module.exports = function(options) {
 
     watch(`./${options.src}/images/**/*`, (file) => {
       if(file.event === 'unlink') {
-        // TODO Fix bug with images deleting
         options.deleteFile(file, options.src, options.dest);
       } else {
         gulp.start(options.tasks.imageMin);
