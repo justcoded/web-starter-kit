@@ -53,7 +53,7 @@
 
       let task = require(path + taskName + '.js').call(this, settings);
 
-      return task(callback);
+      // return task(callback);
     });
   }
 
