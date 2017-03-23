@@ -131,18 +131,26 @@
   });
 
   /**
+   * Clean build folder
+   */
+  requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.build
+  });
+
+  /**
    * Clean production folder
    */
   requireTask(`${cfg.task.cleanProd}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.prod
   });
 
+
   /**
-   * Copy custom fonts to the build folder
+   * Copy folders to the build folder
    */
-  requireTask(`${cfg.task.copyFonts}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build
+  requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
+    dest: cfg.folder.build,
+    foldersToCopy: cfg.foldersToCopy()
   });
 
   /**
@@ -170,58 +178,62 @@
   });
 
   /**
-   * Creating production folder without unnecessary files
-   */
-  gulp.task('production',
-    [
-      `${cfg.task.buildCustomJs}`,
-      `${cfg.task.buildSassProd}`,
-      `${cfg.task.buildStylesVendors}`,
-      `${cfg.task.cleanProd}`,
-      `${cfg.task.htmlHint}`,
-      `${cfg.task.jsHint}`
-    ], 
-    () => {
-      gulp.src(
-        mergeArrays(
-          [
-            './**/*',
-            `${cfg.folder.src}/`,
-            `${cfg.folder.src}/**/*`
-          ],
-          cfg.ignore()
-        )
-      )
-      .pipe(gulp.dest(`./${cfg.folder.prod}`));
-    }
-  );
-
-  /**
    * Default Gulp task
    */
-  gulp.task('default', [
-    `${cfg.task.buildCustomJs}`,
-    `${cfg.task.buildSass}`,
-    `${cfg.task.buildJsVendors}`,
-    `${cfg.task.buildStylesVendors}`,
-    `${cfg.task.copyFonts}`,
-    `${cfg.task.imageMin}`,
-    `${cfg.task.browserSync}`,
-    `${cfg.task.watch}`
-  ]);
+  gulp.task('default',
+    [
+      // `${cfg.task.cleanBuild}`,
+      `${cfg.task.copyFolders}`,
+      `${cfg.task.buildCustomJs}`,
+      `${cfg.task.buildSass}`,
+      `${cfg.task.buildJsVendors}`,
+      `${cfg.task.buildStylesVendors}`,
+      `${cfg.task.imageMin}`,
+      `${cfg.task.browserSync}`,
+      `${cfg.task.watch}`
+    ]
+  );
 
   /**
    * Dev Gulp task without usage of browserSync
    */
-  gulp.task('dev', [
-    `${cfg.task.buildCustomJs}`,
-    `${cfg.task.buildSass}`,
-    `${cfg.task.buildJsVendors}`,
-    `${cfg.task.buildStylesVendors}`,
-    `${cfg.task.copyFonts}`,
-    `${cfg.task.imageMin}`,
-    `${cfg.task.watch}`
-  ]);
+  gulp.task('dev',
+    [
+      `${cfg.task.cleanBuild}`,
+      `${cfg.task.copyFolders}`,
+      `${cfg.task.buildCustomJs}`,
+      `${cfg.task.buildSass}`,
+      `${cfg.task.buildJsVendors}`,
+      `${cfg.task.buildStylesVendors}`,
+      `${cfg.task.imageMin}`,
+      `${cfg.task.watch}`
+    ]
+  );
+
+  /**
+   * Creating production folder without unnecessary files
+   */
+  gulp.task('production',
+    [
+      `${cfg.task.cleanProd}`,
+      `${cfg.task.buildCustomJs}`,
+      `${cfg.task.buildSassProd}`,
+      `${cfg.task.buildStylesVendors}`,
+      `${cfg.task.htmlHint}`,
+      `${cfg.task.jsHint}`
+    ],
+    function() {
+      return gulp.src(
+          mergeArrays(
+            [
+              './**/*'
+            ],
+            cfg.ignoreProd()
+          )
+        )
+        .pipe(gulp.dest(`./${cfg.folder.prod}`));
+    }
+  );
 
   /**
    * Merge arrays
