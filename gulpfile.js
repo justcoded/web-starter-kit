@@ -92,6 +92,7 @@
   requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    versions: cfg.autoprefixer.versions,
     self: self,
     showError: showError
   });
@@ -102,6 +103,7 @@
   requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    versions: cfg.autoprefixer.versions,
     showError: showError
   });
 
@@ -198,7 +200,10 @@
         '!package.json',
         `!${cfg.folder.prod}`,
         '!README.md',
-        '!CONTRIBUTING.md'
+        '!CONTRIBUTING.md',
+        '!gulp-config.js',
+        '!docs/',
+        '!docs/**/*'
       ])
       .pipe(gulp.dest(`./${cfg.folder.prod}`));
     }

@@ -23,7 +23,7 @@ module.exports = function(options) {
       .pipe(cssnano({
         safe: true
       }))
-      .pipe(autoprefixer('last 4 versions'))
+      .pipe(autoprefixer(options.versions))
       .pipe(gulp.dest(`./${options.dest}/css`));
   };
 

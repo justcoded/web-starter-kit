@@ -19,5 +19,8 @@ module.exports = {
     copyFonts: 'copy-fonts',
     browserSync: 'browser-sync-server',
     watch: 'watch',
+  },
+  autoprefixer: {
+    versions: 'last 4 versions'
   }
 };

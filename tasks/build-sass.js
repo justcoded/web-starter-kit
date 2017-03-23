@@ -23,7 +23,7 @@ module.exports = function(options) {
         let self = this;
         options.showError.apply(self, ['Sass compile error', err]);
       }))
-      .pipe(autoprefixer('last 4 versions'))
+      .pipe(autoprefixer(options.versions))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(`./${options.dest}/css`));
   };
