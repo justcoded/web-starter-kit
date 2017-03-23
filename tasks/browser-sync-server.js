@@ -4,12 +4,12 @@
 'use strict';
 
 const gulp = require('gulp'),
-      fs = require('fs');
+      fs   = require('fs');
 
 module.exports = function(options) {
 
   return () => {
-    // if index.html exist - open it, else show folder
+    // If index.html exist - open it, else show folder
     let listDirectory = fs.existsSync('index.html') ? false : true;
 
     options.browserSync.init({

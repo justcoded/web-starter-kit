@@ -3,13 +3,13 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
-  rimraf = require('gulp-rimraf');
+const gulp   = require('gulp'),
+      rimraf = require('gulp-rimraf');
 
 module.exports = function(options) {
 
   return () => {
-    return gulp.src('assets/images/')
+    return gulp.src(`${options.src}/images/`)
       .pipe(rimraf());
   };
 

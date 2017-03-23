@@ -3,18 +3,18 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
-      sass = require('gulp-sass'),
-      rename = require('gulp-rename'),
-      sourcemaps = require('gulp-sourcemaps'),
-      gutil = require('gulp-util'),
-      notifier = require('node-notifier'),
+const gulp         = require('gulp'),
+      sass         = require('gulp-sass'),
+      rename       = require('gulp-rename'),
+      sourcemaps   = require('gulp-sourcemaps'),
+      gutil        = require('gulp-util'),
+      notifier     = require('node-notifier'),
       autoprefixer = require('gulp-autoprefixer');
 
 module.exports = function(options) {
 
   return function() {
-    return gulp.src('./src/scss/style.scss')
+    return gulp.src(`./${options.src}/scss/style.scss`)
       .pipe(rename('style.min.css'))
       .pipe(sourcemaps.init({
         loadMaps: true
@@ -23,9 +23,9 @@ module.exports = function(options) {
         let self = this;
         options.showError.apply(self, ['Sass compile error', err]);
       }))
-      .pipe(autoprefixer('last 4 versions'))
+      .pipe(autoprefixer(options.versions))
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('./assets/css'));
+      .pipe(gulp.dest(`./${options.dest}/css`));
   };
 
 };

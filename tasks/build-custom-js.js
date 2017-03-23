@@ -3,16 +3,16 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
+const gulp       = require('gulp'),
       browserify = require('browserify'),
-      babelify = require('babelify'),
-      source = require('vinyl-source-stream');
+      babelify   = require('babelify'),
+      source     = require('vinyl-source-stream');
 
 module.exports = function(options) {
 
   return function() {
     return browserify({
-        entries: './src/js/app.js',
+        entries: `./${options.src}/js/app.js`,
         // Remove sourcemap for production
         debug: options.isProduction
       })
@@ -23,7 +23,7 @@ module.exports = function(options) {
         showError.apply(this, ['JS error', err])
       })
       .pipe(source('app.js'))
-      .pipe(gulp.dest('./assets/js'));
+      .pipe(gulp.dest(`./${options.dest}/js`));
   };
 
 };

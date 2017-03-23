@@ -26,13 +26,14 @@
 (() => {
   'use strict';
 
-  const gulp = require('gulp'),
-    self = this,
-    del = require('del'),
-    path = require('path'),
-    notifier = require('node-notifier'),
-    gutil = require('gulp-util'),
-    browserSync = require('browser-sync').create();
+  const cfg         = require('./gulp-config.js'),
+        self        = this,
+        gulp        = require('gulp'),
+        del         = require('del'),
+        path        = require('path'),
+        notifier    = require('node-notifier'),
+        gutil       = require('gulp-util'),
+        browserSync = require('browser-sync').create();
 
   /**
    * Require gulp task from file
@@ -50,7 +51,7 @@
         settings.isProduction = this.seq.slice(-1)[0] === 'production';
       }
 
-      let task = require(path).call(this, settings);
+      let task = require(path + taskName + '.js').call(this, settings);
 
       return task(callback);
     });
@@ -59,29 +60,39 @@
   /**
    * Hint HTML
    */
-  requireTask('html-hint', './tasks/html-hint.js');
+  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
 
   /**
    * Hint JS
    */
-  requireTask('js-hint', './tasks/js-hint.js');
+  requireTask(`${cfg.task.jsHint}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src
+  });
 
   /**
    * Build custom js
    */
-  requireTask('build-custom-js', './tasks/build-custom-js.js', {
+  requireTask(`${cfg.task.buildCustomJs}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
     checkProduction: true
   });
 
   /**
    * Build js vendor (concatenate vendors array)
    */
-  requireTask('build-js-vendors', './tasks/build-js-vendors.js');
+  requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build
+  });
 
   /**
    * Build styles for application from SASS
    */
-  requireTask('build-sass', './tasks/build-sass.js', {
+  requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
+    versions: cfg.autoprefixer.versions,
     self: self,
     showError: showError
   });
@@ -89,55 +100,73 @@
   /**
    * Build production styles for application from SASS
    */
-  requireTask('build-sass-production', './tasks/build-sass-production.js', {
+  requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
+    versions: cfg.autoprefixer.versions,
     showError: showError
   });
 
   /**
    * Build styles for vendor from SASS
    */
-  requireTask('build-styles-vendors', './tasks/build-styles-vendors.js');
+  requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build
+  });
 
   /**
    * Minify images
    */
-  requireTask('image-min', './tasks/image-min.js');
+  requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build
+  });
 
   /**
    * Clean image build directory
    */
-  requireTask('image-clean', './tasks/image-clean.js');
+  requireTask(`${cfg.task.imageClean}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.build
+  });
 
   /**
    * Clean production folder
    */
-  requireTask('clean-production', './tasks/clean-production.js');
+  requireTask(`${cfg.task.cleanProd}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.prod
+  });
 
   /**
    * Copy custom fonts to the build folder
    */
-  requireTask('copy-fonts', './tasks/copy-fonts.js');
+  requireTask(`${cfg.task.copyFonts}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build
+  });
 
   /**
    * Start browserSync server
    */
-  requireTask('browser-sync-server', './tasks/browser-sync-server.js', {
+  requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     browserSync: browserSync
   });
 
   /**
    * Watch for file changes
    */
-  requireTask('watch', './tasks/watch.js', {
-    tasks: {
-      buildCustomJs: 'build-custom-js',
-      buildSass: 'build-sass',
-      jsHint: 'js-hint',
-      htmlHint: 'html-hint',
-      imageMin: 'image-min'
-    },
+  requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
     browserSync: browserSync,
-    deleteFile: deleteFile
+    deleteFile: deleteFile,
+    tasks: {
+      buildCustomJs: `${cfg.task.buildCustomJs}`,
+      buildSass: `${cfg.task.buildSass}`,
+      jsHint: `${cfg.task.jsHint}`,
+      htmlHint: `${cfg.task.htmlHint}`,
+      imageMin: `${cfg.task.imageMin}`
+    }
   });
 
   /**
@@ -145,34 +174,38 @@
    */
   gulp.task('production',
     [
-      'build-custom-js',
-      'build-sass-production',
-      'build-styles-vendors',
-      'cleanProduction',
-      'html-hint',
-      'js-hint'
+      `${cfg.task.buildCustomJs}`,
+      `${cfg.task.buildSassProd}`,
+      `${cfg.task.buildStylesVendors}`,
+      `${cfg.task.cleanProd}`,
+      `${cfg.task.htmlHint}`,
+      `${cfg.task.jsHint}`
     ], 
     () => {
       gulp.src([
         './**/*',
-        'src/',
-        'src/**/*',
+        `${cfg.folder.src}/`,
+        `${cfg.folder.src}/**/*`,
         '!bower/',
         '!bower/**/*',
         '!node_modules/**/*',
         '!node_modules/',
-        '!assets/css/**.map',
-        '!assets/images/info.txt',
+        `!${cfg.folder.build}/css/**.map`,
+        `!${cfg.folder.build}/images/info.txt`,
         '!.bowerrc',
         '!bower.json',
         '!.gitignore',
         '!gulpfile.js',
         '!LICENSE',
         '!package.json',
-        '!production',
-        '!README.md'
+        `!${cfg.folder.prod}`,
+        '!README.md',
+        '!CONTRIBUTING.md',
+        '!gulp-config.js',
+        '!docs/',
+        '!docs/**/*'
       ])
-      .pipe(gulp.dest('./production'));
+      .pipe(gulp.dest(`./${cfg.folder.prod}`));
     }
   );
 
@@ -180,27 +213,27 @@
    * Default Gulp task
    */
   gulp.task('default', [
-    'build-custom-js',
-    'build-sass',
-    'build-js-vendors',
-    'build-styles-vendors',
-    'copy-fonts',
-    'image-min',
-    'browser-sync-server',
-    'watch'
+    `${cfg.task.buildCustomJs}`,
+    `${cfg.task.buildSass}`,
+    `${cfg.task.buildJsVendors}`,
+    `${cfg.task.buildStylesVendors}`,
+    `${cfg.task.copyFonts}`,
+    `${cfg.task.imageMin}`,
+    `${cfg.task.browserSync}`,
+    `${cfg.task.watch}`
   ]);
 
   /**
    * Dev Gulp task without usage of browserSync
    */
   gulp.task('dev', [
-    'build-custom-js',
-    'build-sass',
-    'build-js-vendors',
-    'build-styles-vendors',
-    'copy-fonts',
-    'image-min',
-    'watch'
+    `${cfg.task.buildCustomJs}`,
+    `${cfg.task.buildSass}`,
+    `${cfg.task.buildJsVendors}`,
+    `${cfg.task.buildStylesVendors}`,
+    `${cfg.task.copyFonts}`,
+    `${cfg.task.imageMin}`,
+    `${cfg.task.watch}`
   ]);
 
   /**
@@ -230,4 +263,4 @@
     notifier.notify({ title: preffix, message: err.message });
     this.emit('end');
   }
-}());
+})();
