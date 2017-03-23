@@ -53,7 +53,7 @@
 
       let task = require(path + taskName + '.js').call(this, settings);
 
-      // return task(callback);
+      return task(callback);
     });
   }
 
@@ -182,29 +182,16 @@
       `${cfg.task.jsHint}`
     ], 
     () => {
-      gulp.src([
-        './**/*',
-        `${cfg.folder.src}/`,
-        `${cfg.folder.src}/**/*`,
-        '!bower/',
-        '!bower/**/*',
-        '!node_modules/**/*',
-        '!node_modules/',
-        `!${cfg.folder.build}/css/**.map`,
-        `!${cfg.folder.build}/images/info.txt`,
-        '!.bowerrc',
-        '!bower.json',
-        '!.gitignore',
-        '!gulpfile.js',
-        '!LICENSE',
-        '!package.json',
-        `!${cfg.folder.prod}`,
-        '!README.md',
-        '!CONTRIBUTING.md',
-        '!gulp-config.js',
-        '!docs/',
-        '!docs/**/*'
-      ])
+      gulp.src(
+        mergeArrays(
+          [
+            './**/*',
+            `${cfg.folder.src}/`,
+            `${cfg.folder.src}/**/*`
+          ],
+          cfg.ignore()
+        )
+      )
       .pipe(gulp.dest(`./${cfg.folder.prod}`));
     }
   );
@@ -235,6 +222,15 @@
     `${cfg.task.imageMin}`,
     `${cfg.task.watch}`
   ]);
+
+  /**
+   * Merge arrays
+   * @param  {Array} event    Event object
+   * @param  {Array} src      Name of the source folder
+   */
+  function mergeArrays(array1, array2) {
+    return [...array1, ...array2];
+  }
 
   /**
    * Remove image(s) from build folder if corresponding

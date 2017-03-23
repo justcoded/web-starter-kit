@@ -3,7 +3,7 @@ module.exports = {
     tasks: 'tasks',
     src: 'src',
     build: 'assets',
-    prod: 'production'
+    prod: 'production',
   },
   task: {
     htmlHint: 'html-hint',
@@ -22,5 +22,27 @@ module.exports = {
   },
   autoprefixer: {
     versions: 'last 4 versions'
+  },
+  ignore: function() {
+    return [
+      '!bower/',
+      '!bower/**/*',
+      '!node_modules/**/*',
+      '!node_modules/',
+      `!${this.folder.build}/css/**.map`,
+      `!${this.folder.build}/images/info.txt`,
+      '!.bowerrc',
+      '!bower.json',
+      '!.gitignore',
+      '!gulpfile.js',
+      '!LICENSE',
+      '!package.json',
+      `!${this.folder.prod}`,
+      '!README.md',
+      '!CONTRIBUTING.md',
+      '!gulp-config.js',
+      '!docs/',
+      '!docs/**/*'
+    ];
   }
 };
