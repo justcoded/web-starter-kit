@@ -112,7 +112,8 @@
    */
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
-    dest: cfg.folder.build
+    dest: cfg.folder.build,
+    showError: showError
   });
 
   /**
