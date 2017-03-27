@@ -3,14 +3,14 @@
 // This file will be compiled into app.js and will not be minified.
 // Feel free with using ES6 here.
 
-import HP from './modules/helpers';
+import DE from './modules/helpers';
 
 ( ($) => {
   'use strict';
 
   // When DOM is ready
   $(() => {
-    HP.random(10, 20);
+    DE.dotsEffect();
   });
 
 })(jQuery);
