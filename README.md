@@ -18,6 +18,10 @@ Web Starter Kit is an opinionated boilerplate for web development. Tools for bui
 6. [Structure](#structure)
 7. [JS](#js)
 8. [SCSS](#scss)
+9. [Tasks](#tasks)
+10.[Troubleshooting](#troubleshooting)
+11.[Contributing](#contributing)
+12.[License](#license)
 
 
 ## Browser Support
@@ -149,8 +153,9 @@ If you want to use our WSK , you need to know something about the structure.
 
 	
 ```
-├── src
-├── tasks
+├── assets          #Folder with files after compilling
+├── src             #Folder with sources
+├── tasks           #Folder with tasks for gulpfile
 ├── LICENSE
 ├── README.md
 ├── gulpfile.js
@@ -166,28 +171,29 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ## `src` folder structure
 
 ```
-├── images 		#Folder for images
-├── js 		#Folder for js 
-   ├── modules
-   ├── app.js
-├── scss
-   ├── base
-      ├── _forms.scss
-      ├── _functions.scss
-      ├── _helpers.scss
-      ├── _main.scss
-      ├── _mixins.scss
-      ├── _reset.scss
-      ├── _typography.scss
-      ├── _variables.scss
-   ├── components
-   ├── style.scss
-├── vendor_entries
-	├── vendor.js
-	├── vendor.scss
-├── gulpfile.js
-├── index.html
-└── package.json
+├── images 		                #Folder for storing images
+├── js 			                #Folder for storing js files
+   ├── modules                  #Folder for storing js modules
+   ├── app.js                   #Main js file
+├── scss                        #Folder for storing scss files
+   ├── base                     #Folder for storing base styles
+      ├── _forms.scss           #Global styles for forms
+      ├── _functions.scss       #Global functions
+      ├── _helpers.scss         #Global helpers
+      ├── _main.scss            #Main scss file for base styles
+      ├── _mixins.scss          #Global mixins
+      ├── _reset.scss           #Global reset
+      ├── _typography.scss      #Global styles for text
+      ├── _variables.scss       #Global variables that we can use in our scss files
+   ├── components               #Global Reusable Presentational Components
+   ├── style.scss               #Gain scss file (can be used for importing another files)
+├── vendor_entries              #Folder for vendor entries(plugins)
+	├── vendor.js               #File for plugins js 
+	├── vendor.scss             #File for plugins styles
+├── gulpfile.js                 #Gulpfile config
+├── index.html                  #Main application
+└── package.json                #File with dependencies
+
 
 ```
 
@@ -227,6 +233,25 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 * All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include its files**:
   * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
+
+
+## Tasks
+
+|Task                               | Description                                                                                                                                                                                                                                               |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
+| build-custom-js                         | Compiles all custom js from `src/js`                                                                                                     |
+| build-js-vendors               | Minify and Compiles all vendor js from `src/vendor_entries`)                                                                                                |
+| build-sass-production               | Compiles and minify all custom scss from `src/scss` to `production`   folder                                                                                               |
+| build-sass                   | Compiles and all custom scss from `src/scss` to `assets/css`   folder  |
+| build-styles-vendors                 | Compiles and minify all plugins  scss from `src/vendor_entries` to `production`   folder                                                                                                                                                                            |
+| clean-production                | `production` folder removing                                                                                                                           |
+| copy-fonts           | Need to copy all fonts from sources to build                       |
+| html-hint           | Need to hint html files                    |
+| js-hint           | Need to hint js files                      |
+| image-clean           | Removing images                    |
+| image-min           | We use this to minify images                    |
+| watch           | Task for watching all the changes                   |
 
 
 ## Troubleshooting
