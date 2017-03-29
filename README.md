@@ -17,7 +17,7 @@ Web Starter Kit is an opinionated boilerplate for web development. Tools for bui
 5. [Commands](#commands)
 6. [Structure](#structure)
 7. [JS](#js)
-8. [SASS](#sass)
+8. [SCSS](#scss)
 
 
 ## Browser Support
@@ -33,7 +33,7 @@ At present, we officially aim to support the last two versions of the following 
 This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
 
 
-### Features
+## Features
 
 | Feature                                | Summary                                                                                                                                                                                                                                                     |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -144,7 +144,7 @@ $ gulp production
 
 ## Structure
 
-###Your folder structure for WSK:
+Your folder structure for WSK:
 If you want to use our WSK , you need to know something about the structure.
 
 	
@@ -166,7 +166,7 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ## `src` folder structure
 
 ```
-├── images
+├── images #Folder for images
 ├── js
    ├── modules
    ├── app.js
