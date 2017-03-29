@@ -213,12 +213,6 @@
    * Default Gulp task
    */
   gulp.task('default', [
-    `${cfg.task.buildCustomJs}`,
-    `${cfg.task.buildSass}`,
-    `${cfg.task.buildJsVendors}`,
-    `${cfg.task.buildStylesVendors}`,
-    `${cfg.task.copyFonts}`,
-    `${cfg.task.imageMin}`,
     `${cfg.task.browserSync}`,
     `${cfg.task.watch}`
   ]);
