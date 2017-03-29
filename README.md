@@ -10,12 +10,24 @@
 Web Starter Kit is an opinionated boilerplate for web development. Tools for building a great experience across many devices. A solid starting point for both professionals and newcomers to the industry.
 
 ## Table of Contents
-1. [Install](#Install)
+1. [Browser Support](#browser-support)
+2. [Install](#install)
+3. [Features](#features)
 
 
+## Browser Support
 
+At present, we officially aim to support the last two versions of the following browsers:
 
-# Install
+* Chrome
+* Edge
+* Firefox
+* Safari
+* Internet Explorer 11+
+
+This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
+
+## Install
 
 [Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
 
@@ -87,17 +99,6 @@ You can start from `index.html` - the default starting point, with template text
 Be sure to look over the [installation docs](docs/install.md) to verify your environment is prepared to run Web Starter Kit.
 Once you have verified that your system can run WSK, check out the [commands](docs/commands.md) available to get started.
 
-## Browser Support
-
-At present, we officially aim to support the last two versions of the following browsers:
-
-* Chrome
-* Edge
-* Firefox
-* Safari
-* Internet Explorer 11+
-
-This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
 
 ## Troubleshooting
 
