@@ -11,8 +11,13 @@ Web Starter Kit is an opinionated boilerplate for web development. Tools for bui
 
 ## Table of Contents
 1. [Browser Support](#browser-support)
-2. [Install](#install)
-3. [Features](#features)
+2. [Features](#features)
+3. [Install](#install)
+4. [Quickstart](#quickstart)
+5. [Commands](#commands)
+6. [Structure](#structure)
+7. [JS](#js)
+8. [SASS](#sass)
 
 
 ## Browser Support
@@ -26,6 +31,30 @@ At present, we officially aim to support the last two versions of the following 
 * Internet Explorer 11+
 
 This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
+
+
+### Features
+
+| Feature                                | Summary                                                                                                                                                                                                                                                     |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html`.                          |
+| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more. (Run `gulp` for project compiling)                                                                                                      |
+| Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean. (Run `gulp` to create an optimised version of your project to `/assets`)                                                                                                |
+| Code Hinting               | JavaScript code hinting is done using [JsHint](https://www.npmjs.com/package/gulp-jshint) - a hinter tool for identifying and reporting on patterns in JavaScript.                                                                                                 |
+| ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
+| Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate                                                                                                                                                                            |
+| Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension. (Run `gulp` and edit your files)                                                                                                                           |
+| Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io). (Run `gulp` and open up the IP provided on other devices on your network)                       |
+                                                                                                                                     
+## Quickstart
+
+[Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit or clone this repository and build on what is included in the `assets` directory.
+
+You can start from `index.html` - the default starting point, with template text.
+
+Be sure to look over the [installation docs](docs/install.md) to verify your environment is prepared to run Web Starter Kit.
+Once you have verified that your system can run WSK, check out the [commands](docs/commands.md) available to get started.
+
 
 ## Install
 
@@ -77,27 +106,127 @@ That's it! You should now have everything needed to use the Web Starter Kit.
 
 You may also want to get used to some of the [commands](commands.md) available.
 
-### Features
 
-| Feature                                | Summary                                                                                                                                                                                                                                                     |
-|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html`.                          |
-| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more. (Run `gulp` for project compiling)                                                                                                      |
-| Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean. (Run `gulp` to create an optimised version of your project to `/assets`)                                                                                                |
-| Code Hinting               | JavaScript code hinting is done using [JsHint](https://www.npmjs.com/package/gulp-jshint) - a hinter tool for identifying and reporting on patterns in JavaScript.                                                                                                 |
-| ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
-| Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate                                                                                                                                                                            |
-| Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension. (Run `gulp` and edit your files)                                                                                                                           |
-| Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io). (Run `gulp` and open up the IP provided on other devices on your network)                       |
-                                                                                                                                     
-## Quickstart
 
-[Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit or clone this repository and build on what is included in the `assets` directory.
+##Commands
 
-You can start from `index.html` - the default starting point, with template text.
+There are many commands available to help you build and test sites. Here are a few highlights to get started with.
 
-Be sure to look over the [installation docs](docs/install.md) to verify your environment is prepared to run Web Starter Kit.
-Once you have verified that your system can run WSK, check out the [commands](docs/commands.md) available to get started.
+## Watch For Changes & Automatically Refresh Across Devices
+
+## Build & Optimize
+
+```sh
+$ gulp
+```
+
+Build and optimize the current project, ready for deployment.
+This includes linting as well as image, script, stylesheet and HTML optimization and minification.
+Also, a [browsersync](https://browsersync.io/)
+script will be automatically generated, which will take care of precaching your sites' resources.
+
+
+```sh
+$ gulp dev
+```
+
+Same as 'gulp' command but without starting the local server.
+
+
+## Serve the Fully Built & Optimized Site
+
+```sh
+$ gulp production
+```
+
+`gulp production` task creates the `production/` folder in the root of the project with **assets files only. It will **help you** to **create clear** instances of code for the **production** or **further implementation**.
+
+
+## Structure
+
+###Your folder structure for WSK:
+If you want to use our WSK , you need to know something about the structure.
+
+	
+```
+├── src
+├── tasks
+├── LICENSE
+├── README.md
+├── gulpfile.js
+├── index.html
+└── package.json
+
+```
+
+`Tasks` - folder for gulpfile tasks.
+In `package.json` you can find all the dependencies.
+In `src` folder you can find all sources for the project (images, sass , javascript files).
+
+## `src` folder structure
+
+```
+├── images
+├── js
+   ├── modules
+   ├── app.js
+├── scss
+   ├── base
+      ├── _forms.scss
+      ├── _functions.scss
+      ├── _helpers.scss
+      ├── _main.scss
+      ├── _mixins.scss
+      ├── _reset.scss
+      ├── _typography.scss
+      ├── _variables.scss
+   ├── components
+   ├── style.scss
+├── vendor_entries
+	├── vendor.js
+	├── vendor.scss
+├── gulpfile.js
+├── index.html
+└── package.json
+
+```
+
+Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `style.scss` file .
+
+Use `vendor_entries` to include plugins into your project.
+
+## JS
+
+ In our WSK you can use ES2015(ES6). ES2015 isn't introducing anything other than improvements to the JavaScript language and a few new features. 
+
+ It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language. 
+
+* All custom **javascript** files locate in `js/` folder;
+* Entry point for javascript is `src/js/app.js` you can **import** all you *.js* files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
+* All javascript is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
+* All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
+* After installing the extension you must **include its files**:
+  * **js files** must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**;
+
+
+
+## SCSS
+
+In our WSK you can use [SASS](http://sass-lang.com/). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+
+Sass is a CSS preprocessor—a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain.
+
+So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.  
+
+* All custom **scss** files locate in `src/scss/` folder;
+* Entry point for all scss is `src/scss/style.scss` you can **import** all your *.scss* files from here;
+* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the gulp.
+
+The `src` directory above contains MDL's Sass files and the JavaScript sources for all MDL components.
+
+* All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
+* After installing the extension you must **include its files**:
+  * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
 
 
 ## Troubleshooting
@@ -108,13 +237,6 @@ If you find yourself running into issues during installation or running the tool
 
 If you would prefer not to use any of our tooling, delete the following files from the project: `package.json`. You can now safely use the boilerplate with an alternative build-system or no build-system at all if you choose.
 
-## Docs and Recipes
-
-* [Commands](https://github.com/justcoded/master/docs/commands.md) - Main commands of the WSK.
-* [Using Sass](https://github.com/justcoded/master/docs/sass.md) - how to get Sass working with WSK
-* [Install build](https://github.com/justcoded/master/docs/install.md) - how to install build.
-* [Project structure](https://github.com/justcoded/master/docs/structure.md) - basic structure of project build.
-* [JS guides](https://github.com/justcoded/master/docs/js.md) - Guide for using JavaScript in build.
 
 ## Contributing
 
