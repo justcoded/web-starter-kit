@@ -8,15 +8,16 @@ const gulp  = require('gulp'),
 
 module.exports = function(options) {
   return () => {
-    gulp.watch(
-      `./${options.src}/js/**/*`,
-      [
+    watch(`./${options.src}/js/**/*`, () => {
+      gulp.start([
         options.tasks.buildCustomJs,
         options.tasks.jsHint
-      ]
-    );
+      ]);
+    });
 
-    gulp.watch(`./${options.src}/scss/**/*`, [options.tasks.buildSass]);
+    watch(`./${options.src}/scss/**/*`, () => {
+      gulp.start(options.tasks.buildSass);
+    });
 
     watch(`./${options.src}/images/**/*`, (file) => {
       if(file.event === 'unlink') {
@@ -26,13 +27,11 @@ module.exports = function(options) {
       }
     });
 
-    gulp.watch('./*.html', [options.tasks.htmlHint]);
+    watch('./*.html', () => {
+      gulp.start(options.tasks.htmlHint);
+    });
 
-    gulp.watch(
-      [
-        `./${options.dest}/**/*`,
-        './*.html'
-      ])
+    gulp.watch([`./${options.dest}/**/*`, './*.html'])
       .on('change', options.browserSync.reload);
   };
 

@@ -36,17 +36,19 @@
         browserSync = require('browser-sync').create();
 
   /**
-   * Require gulp task from file
-   * @param  {string} taskName    Task name
-   * @param  {String} path        Path to task file
-   * @param  {Object} options     Options for task
-   */
-  function requireTask(taskName, path, options) {
-    let settings = options || {};
+  * Require gulp task from file
+  * @param  {string} taskName    Task name
+  * @param  {String} path        Path to task file
+  * @param  {Object} options     Options for task
+  * @param  [Array]  dep         Task dependencies
+  */
+  function requireTask(taskName, path, options, dep) {
+    let settings = options || {},
+      dependencies = dep || [];
 
     settings.taskName = taskName;
 
-    gulp.task(taskName, function(callback) {
+    gulp.task(taskName, dependencies, function(callback) {
       if(settings.checkProduction) {
         settings.isProduction = this.seq.slice(-1)[0] === 'production';
       }
@@ -135,7 +137,14 @@
    */
   requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.build
-  });
+  },
+  [
+    `${cfg.task.buildCustomJs}`,
+    `${cfg.task.buildSass}`,
+    `${cfg.task.buildJsVendors}`,
+    `${cfg.task.buildStylesVendors}`,
+    `${cfg.task.imageMin}`
+  ]);
 
   /**
    * Clean production folder
@@ -151,14 +160,25 @@
   requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     foldersToCopy: cfg.foldersToCopy()
-  });
+  },
+  [
+    `${cfg.task.cleanBuild}`
+  ]);
 
   /**
    * Start browserSync server
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     browserSync: browserSync
-  });
+  },
+  [
+    `${cfg.task.buildCustomJs}`,
+    `${cfg.task.buildSass}`,
+    `${cfg.task.buildJsVendors}`,
+    `${cfg.task.buildStylesVendors}`,
+    `${cfg.task.copyFolders}`,
+    `${cfg.task.imageMin}`,
+  ]);
 
   /**
    * Watch for file changes
@@ -182,7 +202,7 @@
    */
   gulp.task('default',
     [
-      // `${cfg.task.cleanBuild}`,
+      `${cfg.task.cleanBuild}`,
       `${cfg.task.copyFolders}`,
       `${cfg.task.buildCustomJs}`,
       `${cfg.task.buildSass}`,
