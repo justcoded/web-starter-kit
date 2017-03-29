@@ -166,8 +166,8 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ## `src` folder structure
 
 ```
-├── images #Folder for images
-├── js
+├── images                  #Folder for images
+├── js  					#Folder for js 
    ├── modules
    ├── app.js
 ├── scss
