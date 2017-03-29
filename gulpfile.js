@@ -139,11 +139,7 @@
     src: cfg.folder.build
   },
   [
-    `${cfg.task.buildCustomJs}`,
-    `${cfg.task.buildSass}`,
-    `${cfg.task.buildJsVendors}`,
-    `${cfg.task.buildStylesVendors}`,
-    `${cfg.task.imageMin}`
+    `${cfg.task.copyFolders}`
   ]);
 
   /**
@@ -160,10 +156,7 @@
   requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     foldersToCopy: cfg.foldersToCopy()
-  },
-  [
-    `${cfg.task.cleanBuild}`
-  ]);
+  });
 
   /**
    * Start browserSync server
