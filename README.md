@@ -9,7 +9,36 @@
 
 Web Starter Kit is an opinionated boilerplate for web development. Tools for building a great experience across many devices. A solid starting point for both professionals and newcomers to the industry.
 
-### Features
+## Table of Contents
+1. [Browser Support](#browser-support)
+2. [Features](#features)
+3. [Install](#install)
+4. [Quickstart](#quickstart)
+5. [Commands](#commands)
+6. [Structure](#structure)
+7. [JS](#js)
+8. [SCSS](#scss)
+9. [Tasks](#tasks)
+10. [Troubleshooting](#troubleshooting)
+11. [A Boilerplate-only Option](#a-boilerplate-only-option)
+12. [Contributing](#contributing)
+13. [License](#license)
+
+
+## Browser Support
+
+At present, we officially aim to support the last two versions of the following browsers:
+
+* Chrome
+* Edge
+* Firefox
+* Safari
+* Internet Explorer 11+
+
+This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
+
+
+## Features
 
 | Feature                                | Summary                                                                                                                                                                                                                                                     |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,17 +60,195 @@ You can start from `index.html` - the default starting point, with template text
 Be sure to look over the [installation docs](docs/install.md) to verify your environment is prepared to run Web Starter Kit.
 Once you have verified that your system can run WSK, check out the [commands](docs/commands.md) available to get started.
 
-## Browser Support
 
-At present, we officially aim to support the last two versions of the following browsers:
+## Install
 
-* Chrome
-* Edge
-* Firefox
-* Safari
-* Internet Explorer 11+
+[Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
 
-This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
+
+To take advantage of Web Starter Kit you need to:
+
+1. Download the code.
+2. Install all necessary dependencies if you don't already have them.
+3. Modify the application as you wish.
+4. Make the production of your code.
+
+## Getting the code
+
+[Download](https://github.com/justcoded/web-starter-kit/releases/latest) and extract WSK to the place where you want to work.
+
+## Prerequisites
+
+### [Node.js](https://nodejs.org)
+
+Bring up a terminal and type `node --version`.
+Node should respond with a version at or above 4.0.x.
+If you need to install Node, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
+
+### [Gulp](http://gulpjs.com)
+
+Bring up a terminal and type `gulp --version`.
+If Gulp is installed it should return a version number at or above 3.9.x.
+If you need to install/upgrade Gulp, open up a terminal and type in the following:
+
+```sh
+$ npm install --global gulp
+```
+
+*This will install Gulp globally. Depending on your user account, you may need to [configure your system](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md) to install packages globally without administrative privileges.*
+
+
+### Local dependencies
+
+Next, install the local dependencies Web Starter Kit requires:
+
+```sh
+$ npm install
+```
+
+That's it! You should now have everything needed to use the Web Starter Kit.
+
+
+You may also want to get used to some of the [commands](commands.md) available.
+
+
+
+##Commands
+
+There are many commands available to help you build and test sites. Here are a few highlights to get started with.
+
+## Watch For Changes & Automatically Refresh Across Devices
+
+## Build & Optimize
+
+```sh
+$ gulp
+```
+
+Build and optimize the current project, ready for deployment.
+This includes linting as well as image, script, stylesheet and HTML optimization and minification.
+Also, a [browsersync](https://browsersync.io/)
+script will be automatically generated, which will take care of precaching your sites' resources.
+
+
+```sh
+$ gulp dev
+```
+
+Same as 'gulp' command but without starting the local server.
+
+
+## Serve the Fully Built & Optimized Site
+
+```sh
+$ gulp production
+```
+
+`gulp production` task creates the `production/` folder in the root of the project with **assets files only. It will **help you** to **create clear** instances of code for the **production** or **further implementation**.
+
+
+## Structure
+
+Your folder structure for WSK:
+If you want to use our WSK , you need to know something about the structure.
+
+```
+├── assets          #Folder with files after compilling
+├── src             #Folder with sources
+├── tasks           #Folder with tasks for gulpfile
+├── LICENSE
+├── README.md
+├── gulpfile.js     #Gulpfile config
+├── index.html      #Main application
+└── package.json    #File with dependencies
+
+```
+
+`Tasks` - folder for gulpfile tasks.
+In `package.json` you can find all the dependencies.
+In `src` folder you can find all sources for the project (images, sass , javascript files).
+
+## `src` folder structure
+
+```
+├── images 		                #Folder for storing images
+├── js                          #Folder for storing js files
+   ├── modules                  #Folder for storing js modules
+   ├── app.js                   #Main js file
+├── scss                        #Folder for storing scss files
+   ├── base                     #Folder for storing base styles
+      ├── _forms.scss           #Global styles for forms
+      ├── _functions.scss       #Global functions
+      ├── _helpers.scss         #Global helpers
+      ├── _main.scss            #Main scss file for base styles
+      ├── _mixins.scss          #Global mixins
+      ├── _reset.scss           #Global reset
+      ├── _typography.scss      #Global styles for text
+      ├── _variables.scss       #Global variables that we can use in our scss files
+   ├── components               #Global Reusable Presentational Components
+   ├── style.scss               #Gain scss file (can be used for importing another files)
+├── vendor_entries              #Folder for vendor entries(plugins)
+	├── vendor.js               #File for plugins js 
+	├── vendor.scss             #File for plugins styles
+
+```
+
+Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `style.scss` file .
+
+Use `vendor_entries` to include plugins into your project.
+
+## JS
+
+ In our WSK you can use ES2015(ES6). ES2015 isn't introducing anything other than improvements to the JavaScript language and a few new features. 
+
+ It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language. 
+
+* All custom **javascript** files locate in `js/` folder;
+* Entry point for javascript is `src/js/app.js` you can **import** all you *.js* files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
+* All javascript is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
+* All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
+* After installing the extension you must **include its files**:
+  * **js files** must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**;
+
+
+
+## SCSS
+
+In our WSK you can use [SASS](http://sass-lang.com/). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+
+Sass is a CSS preprocessor—a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain.
+
+So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.  
+
+* All custom **scss** files locate in `src/scss/` folder;
+* Entry point for all scss is `src/scss/style.scss` you can **import** all your *.scss* files from here;
+* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the gulp.
+
+The `src` directory above contains MDL's Sass files and the JavaScript sources for all MDL components.
+
+* All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
+* After installing the extension you must **include its files**:
+  * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
+
+
+## Tasks
+
+|Task                               | Description                                                                                                                                                                                                                                               |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
+| build-custom-js                         | Compiles all custom js from `src/js`                                                                                                     |
+| build-js-vendors               | minifies and сompiles all vendor js from `src/vendor_entries`)                                                                                                |
+| build-sass-production               | Compiles and minifies all custom scss from `src/scss` to `production`   folder                                                                                               |
+| build-sass                   | Compiles all custom scss from `src/scss` to `assets/css`   folder  |
+| build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder                                                                                                                                                                            |
+| clean-production                | `production` folder removing                                                                                                                           |
+| copy-fonts           | Need to copy all fonts from sources to build                       |
+| html-hint           | Need to hint html files                    |
+| js-hint           | Need to hint js files                      |
+| image-clean           | Removing images                    |
+| image-min           | We use this to minify images                    |
+| watch           | Task for watching all the changes                   |
+
 
 ## Troubleshooting
 
@@ -51,13 +258,6 @@ If you find yourself running into issues during installation or running the tool
 
 If you would prefer not to use any of our tooling, delete the following files from the project: `package.json`. You can now safely use the boilerplate with an alternative build-system or no build-system at all if you choose.
 
-## Docs and Recipes
-
-* [Commands](https://github.com/justcoded/master/docs/commands.md) - Main commands of the WSK.
-* [Using Sass](https://github.com/justcoded/master/docs/sass.md) - how to get Sass working with WSK
-* [Install build](https://github.com/justcoded/master/docs/install.md) - how to install build.
-* [Project structure](https://github.com/justcoded/master/docs/structure.md) - basic structure of project build.
-* [JS guides](https://github.com/justcoded/master/docs/js.md) - Guide for using JavaScript in build.
 
 ## Contributing
 
