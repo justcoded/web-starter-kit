@@ -10,7 +10,7 @@ const gulp     = require('gulp'),
 
 module.exports = function(options) {
 
-  return (cb) => {
+  return () => {
     return gulp.src(`./${options.src}/images/**/*`)
       .pipe(newer(`./${options.dest}/images/`))
       .pipe(imagemin({
