@@ -24,6 +24,7 @@
     "babelify": "^7.3.0",
     "browser-sync": "^2.18.0",
     "browserify": "^14.0.0",
+    "del": "^2.2.2",
     "files-exist": "^1.0.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
@@ -45,13 +46,13 @@
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
     "htmlhint-stylish": "^1.0.3",
+    "imagemin-pngquant": "^5.0.0",
     "jshint": "^2.9.4",
     "node-notifier": "^5.0.2",
+    "path": "^0.12.7",
+    "run-sequence": "^1.2.2",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "del": "^2.2.2",
-    "imagemin-pngquant": "^5.0.0",
-    "path": "^0.12.7"
+    "vinyl-source-stream": "^1.1.0"
   },
   "engines": {
     "node": ">=4.0.0"
