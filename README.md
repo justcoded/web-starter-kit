@@ -151,16 +151,15 @@ $ gulp production
 Your folder structure for WSK:
 If you want to use our WSK , you need to know something about the structure.
 
-	
 ```
 ├── assets          #Folder with files after compilling
 ├── src             #Folder with sources
 ├── tasks           #Folder with tasks for gulpfile
 ├── LICENSE
 ├── README.md
-├── gulpfile.js
-├── index.html
-└── package.json
+├── gulpfile.js     #Gulpfile config
+├── index.html      #Main application
+└── package.json    #File with dependencies
 
 ```
 
@@ -190,9 +189,7 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ├── vendor_entries              #Folder for vendor entries(plugins)
 	├── vendor.js               #File for plugins js 
 	├── vendor.scss             #File for plugins styles
-├── gulpfile.js                 #Gulpfile config
-├── index.html                  #Main application
-└── package.json                #File with dependencies
+
 
 
 ```
@@ -241,10 +238,10 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
 | build-custom-js                         | Compiles all custom js from `src/js`                                                                                                     |
-| build-js-vendors               | Minify and Compiles all vendor js from `src/vendor_entries`)                                                                                                |
-| build-sass-production               | Compiles and minify all custom scss from `src/scss` to `production`   folder                                                                                               |
-| build-sass                   | Compiles and all custom scss from `src/scss` to `assets/css`   folder  |
-| build-styles-vendors                 | Compiles and minify all plugins  scss from `src/vendor_entries` to `production`   folder                                                                                                                                                                            |
+| build-js-vendors               | minifies and сompiles all vendor js from `src/vendor_entries`)                                                                                                |
+| build-sass-production               | Compiles and minifies all custom scss from `src/scss` to `production`   folder                                                                                               |
+| build-sass                   | Compiles all custom scss from `src/scss` to `assets/css`   folder  |
+| build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder                                                                                                                                                                            |
 | clean-production                | `production` folder removing                                                                                                                           |
 | copy-fonts           | Need to copy all fonts from sources to build                       |
 | html-hint           | Need to hint html files                    |
