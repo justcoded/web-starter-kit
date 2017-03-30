@@ -20,7 +20,7 @@ module.exports = function(options) {
         presets: ['es2015']
       })
       .bundle().on('error', function(err) {
-        showError.apply(this, ['JS error', err])
+        options.showError.apply(this, ['JS error', err])
       })
       .pipe(source('app.js'))
       .pipe(gulp.dest(`./${options.dest}/js`));
