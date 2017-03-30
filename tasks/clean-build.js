@@ -4,15 +4,15 @@
 'use strict';
 
 const gulp   = require('gulp'),
-      rimraf = require('gulp-rimraf');
+      del    = require('del');
 
 module.exports = function(options) {
 
   return () => {
-    return gulp.src(`./${options.src}/`, {
-        read: false
-      })
-      .pipe(rimraf());
-    };
-
+    return del([
+      `${options.src}/**/*`,
+      `!${options.src}/images/`,
+      `!${options.src}/images/**`
+    ]);
+  };
 };
