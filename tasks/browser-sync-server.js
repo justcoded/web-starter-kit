@@ -3,8 +3,9 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
-      fs   = require('fs');
+const gulp  = require('gulp'),
+      fs    = require('fs'),
+      watch = require('gulp-watch');
 
 module.exports = function(options) {
 
@@ -26,6 +27,32 @@ module.exports = function(options) {
       },
       port: 8080
     });
+
+    watch(`./${options.src}/js/**/*`, () => {
+      gulp.start([
+        options.tasks.buildCustomJs,
+        options.tasks.jsHint
+      ]);
+    });
+
+    watch(`./${options.src}/scss/**/*`, () => {
+      gulp.start(options.tasks.buildSass);
+    });
+
+    watch(`./${options.src}/images/**/*`, (file) => {
+      if(file.event === 'unlink') {
+        options.deleteFile(file, options.src, options.dest);
+      } else {
+        gulp.start(options.tasks.imageMin);
+      }
+    });
+
+    watch('./*.html', () => {
+      gulp.start(options.tasks.htmlHint);
+    });
+
+    gulp.watch([`./${options.dest}/**/*`, './*.html'])
+      .on('change', options.browserSync.reload);
   };
 
 };

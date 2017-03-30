@@ -137,10 +137,7 @@
    */
   requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.build
-  },
-  [
-    `${cfg.task.copyFolders}`
-  ]);
+  });
 
   /**
    * Clean production folder
@@ -156,22 +153,21 @@
   requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     foldersToCopy: cfg.foldersToCopy()
-  });
-
-  /**
-   * Start browserSync server
-   */
-  requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
-    browserSync: browserSync
   },
   [
     `${cfg.task.buildCustomJs}`,
     `${cfg.task.buildSass}`,
     `${cfg.task.buildJsVendors}`,
     `${cfg.task.buildStylesVendors}`,
-    `${cfg.task.copyFolders}`,
     `${cfg.task.imageMin}`,
   ]);
+
+  /**
+   * Start browserSync server
+   */
+  requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
+    browserSync: browserSync
+  });
 
   /**
    * Watch for file changes
@@ -190,20 +186,20 @@
     }
   });
 
+  gulp.task('copyAfterClean', [`${cfg.task.cleanBuild}`], () => {
+    gulp.start(`${cfg.task.copyFolders}`);
+  });
+
+  gulp.task('startDefault', ['copyAfterClean'], () => {
+    gulp.start(`${cfg.task.browserSync}`);
+  });
+
   /**
    * Default Gulp task
    */
   gulp.task('default',
     [
-      `${cfg.task.cleanBuild}`,
-      `${cfg.task.copyFolders}`,
-      `${cfg.task.buildCustomJs}`,
-      `${cfg.task.buildSass}`,
-      `${cfg.task.buildJsVendors}`,
-      `${cfg.task.buildStylesVendors}`,
-      `${cfg.task.imageMin}`,
-      `${cfg.task.browserSync}`,
-      `${cfg.task.watch}`
+      'startDefault'
     ]
   );
 
@@ -214,11 +210,6 @@
     [
       `${cfg.task.cleanBuild}`,
       `${cfg.task.copyFolders}`,
-      `${cfg.task.buildCustomJs}`,
-      `${cfg.task.buildSass}`,
-      `${cfg.task.buildJsVendors}`,
-      `${cfg.task.buildStylesVendors}`,
-      `${cfg.task.imageMin}`,
       `${cfg.task.watch}`
     ]
   );
