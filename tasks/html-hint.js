@@ -9,16 +9,18 @@ const gulp     = require('gulp'),
 
 module.exports = function(options) {
 
-  return () => {
-    return gulp.src('./*.html')
+  return (cb) => {
+    gulp.src('./*.html')
       .pipe(htmlhint())
       .pipe(htmlhint.reporter('htmlhint-stylish'))
       .pipe(htmlhint.failReporter({
-        suppress: true }
-      ))
+        suppress: true 
+      }))
       .on('error', notify.onError({
         title: 'HTML'
       }));
+
+    cb();
   };
 
 };
