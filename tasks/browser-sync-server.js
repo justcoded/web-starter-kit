@@ -4,8 +4,7 @@
 'use strict';
 
 const gulp  = require('gulp'),
-      fs    = require('fs'),
-      watch = require('gulp-watch');
+      fs    = require('fs');
 
 module.exports = function(options) {
 
