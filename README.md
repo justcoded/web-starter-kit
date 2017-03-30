@@ -172,7 +172,7 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 
 ```
 ├── images 		                #Folder for storing images
-├── js 			                #Folder for storing js files
+├── js                          #Folder for storing js files
    ├── modules                  #Folder for storing js modules
    ├── app.js                   #Main js file
 ├── scss                        #Folder for storing scss files
@@ -190,8 +190,6 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ├── vendor_entries              #Folder for vendor entries(plugins)
 	├── vendor.js               #File for plugins js 
 	├── vendor.scss             #File for plugins styles
-
-
 
 ```
 
