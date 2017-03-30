@@ -33,6 +33,7 @@
         path        = require('path'),
         notifier    = require('node-notifier'),
         gutil       = require('gulp-util'),
+        runSequence = require('run-sequence'),
         browserSync = require('browser-sync').create();
 
   /**
@@ -153,14 +154,20 @@
   requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     foldersToCopy: cfg.foldersToCopy()
-  },
-  [
-    `${cfg.task.buildCustomJs}`,
-    `${cfg.task.buildSass}`,
-    `${cfg.task.buildJsVendors}`,
-    `${cfg.task.buildStylesVendors}`,
-    `${cfg.task.imageMin}`,
-  ]);
+  });
+
+  /**
+   * Copy folders to the production folder
+   */
+  requireTask(`${cfg.task.copyFoldersProduction}`, `./${cfg.folder.tasks}/`, {
+    dest: cfg.folder.prod,
+    foldersToCopy: mergeArrays(
+      [
+        './**/*'
+      ],
+      cfg.ignoreProd()
+    )
+  });
 
   /**
    * Start browserSync server
@@ -186,56 +193,65 @@
     }
   });
 
-  gulp.task('copyAfterClean', [`${cfg.task.cleanBuild}`], () => {
-    gulp.start(`${cfg.task.copyFolders}`);
-  });
-
-  gulp.task('startDefault', ['copyAfterClean'], () => {
-    gulp.start(`${cfg.task.browserSync}`);
-  });
-
   /**
    * Default Gulp task
    */
-  gulp.task('default',
-    [
-      'startDefault'
-    ]
+  gulp.task('default', (callback) => {
+      runSequence(
+        `${cfg.task.cleanBuild}`,
+        [
+          `${cfg.task.buildCustomJs}`,
+          `${cfg.task.buildJsVendors}`,
+          `${cfg.task.buildSass}`,
+          `${cfg.task.buildStylesVendors}`,
+          `${cfg.task.htmlHint}`,
+          `${cfg.task.imageMin}`
+        ],
+        `${cfg.task.copyFolders}`,
+        [
+          `${cfg.task.browserSync}`,
+          `${cfg.task.watch}`
+        ]
+      );
+    }
   );
 
   /**
    * Dev Gulp task without usage of browserSync
    */
-  gulp.task('dev',
-    [
-      `${cfg.task.cleanBuild}`,
-      `${cfg.task.copyFolders}`,
-      `${cfg.task.watch}`
-    ]
+  gulp.task('dev', (callback) => {
+      runSequence(
+        `${cfg.task.cleanBuild}`,
+        [
+          `${cfg.task.buildCustomJs}`,
+          `${cfg.task.buildJsVendors}`,
+          `${cfg.task.buildSass}`,
+          `${cfg.task.buildStylesVendors}`,
+          `${cfg.task.htmlHint}`,
+          `${cfg.task.imageMin}`
+        ],
+        `${cfg.task.copyFolders}`,
+        `${cfg.task.watch}`
+      );
+    }
   );
 
   /**
    * Creating production folder without unnecessary files
    */
-  gulp.task('production',
-    [
-      `${cfg.task.cleanProd}`,
-      `${cfg.task.buildCustomJs}`,
-      `${cfg.task.buildSassProd}`,
-      `${cfg.task.buildStylesVendors}`,
-      `${cfg.task.htmlHint}`,
-      `${cfg.task.jsHint}`
-    ],
-    function() {
-      return gulp.src(
-          mergeArrays(
-            [
-              './**/*'
-            ],
-            cfg.ignoreProd()
-          )
-        )
-        .pipe(gulp.dest(`./${cfg.folder.prod}`));
+  gulp.task('production', (callback) => {
+      runSequence(
+        `${cfg.task.cleanProd}`,
+        [
+          `${cfg.task.buildCustomJs}`,
+          `${cfg.task.buildSassProd}`,
+          `${cfg.task.buildStylesVendors}`,
+          `${cfg.task.cleanProd}`,
+          `${cfg.task.htmlHint}`,
+          `${cfg.task.jsHint}`
+        ],
+        `${cfg.task.copyFoldersProduction}`
+      );
     }
   );
 
