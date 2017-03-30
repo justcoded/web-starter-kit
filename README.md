@@ -20,9 +20,8 @@ Web Starter Kit is an opinionated boilerplate for web development. Tools for bui
 8. [SCSS](#scss)
 9. [Tasks](#tasks)
 10. [Troubleshooting](#troubleshooting)
-11. [A Boilerplate-only Option](#a-boilerplate-only-option)
-12. [Contributing](#contributing)
-13. [License](#license)
+11. [Contributing](#contributing)
+12. [License](#license)
 
 
 ## Browser Support
@@ -253,10 +252,6 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 ## Troubleshooting
 
 If you find yourself running into issues during installation or running the tools, please check our [Troubleshooting](https://github.com/justcoded/web-starter-kit/wiki/Troubleshooting) guide and then open an [issue](https://github.com/justcoded/web-starter-kit/issues). We would be happy to discuss how they can be solved.
-
-## A Boilerplate-only Option
-
-If you would prefer not to use any of our tooling, delete the following files from the project: `package.json`. You can now safely use the boilerplate with an alternative build-system or no build-system at all if you choose.
 
 
 ## Contributing
