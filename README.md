@@ -20,8 +20,9 @@ Web Starter Kit is an opinionated boilerplate for web development. Tools for bui
 8. [SCSS](#scss)
 9. [Tasks](#tasks)
 10. [Troubleshooting](#troubleshooting)
-11. [Contributing](#contributing)
-12. [License](#license)
+11. [A Boilerplate-only Option](#a-boilerplate-only-option)
+12. [Contributing](#contributing)
+13. [License](#license)
 
 
 ## Browser Support
