@@ -9,8 +9,8 @@ const gulp   = require('gulp'),
 
 module.exports = function(options) {
 
-  return () => {
-    return gulp.src(`./${options.src}/js/**/*.js`)
+  return (cb) => {
+    gulp.src(`./${options.src}/js/**/*.js`)
       .pipe(jshint({
         'esversion': 6
       }))
@@ -19,6 +19,8 @@ module.exports = function(options) {
       .on('error', notify.onError({
         title: 'JS'
       }));
+
+    cb();
   };
 
 };

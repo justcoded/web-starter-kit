@@ -37,7 +37,6 @@
         browserSync = require('browser-sync').create();
 
   /**
-<<<<<<< HEAD
   * Require gulp task from file
   * @param  {string} taskName    Task name
   * @param  {String} path        Path to task file
@@ -208,6 +207,7 @@
           `${cfg.task.buildSass}`,
           `${cfg.task.buildStylesVendors}`,
           `${cfg.task.htmlHint}`,
+          `${cfg.task.jsHint}`,
           `${cfg.task.imageMin}`
         ],
         `${cfg.task.copyFolders}`,
