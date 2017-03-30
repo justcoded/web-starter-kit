@@ -47,18 +47,6 @@
   function requireTask(taskName, path, options, dep) {
     let settings = options || {},
       dependencies = dep || [];
-=======
-   * Require gulp task from file
-   * @param  {string} taskName    Task name
-   * @param  {String} path        Path to task file
-   * @param  {Object} options     Options for task
-   * @param  [Array]  dep         Task dependencies
-   */
-  function requireTask(taskName, path, options, dep) {
-    let settings = options || {},
-        dependencies = dep || [];
-
->>>>>>> v1.0.0
 
     settings.taskName = taskName;
 
@@ -189,15 +177,7 @@
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     browserSync: browserSync
-  },
-  [
-    `${cfg.task.buildCustomJs}`,
-    `${cfg.task.buildSass}`,
-    `${cfg.task.buildJsVendors}`,
-    `${cfg.task.buildStylesVendors}`,
-    `${cfg.task.copyFonts}`,
-    `${cfg.task.imageMin}`,
-  ]);
+  });
 
   /**
    * Watch for file changes
@@ -242,7 +222,6 @@
   /**
    * Dev Gulp task without usage of browserSync
    */
-<<<<<<< HEAD
   gulp.task('dev', (callback) => {
       runSequence(
         `${cfg.task.cleanBuild}`,
@@ -259,12 +238,6 @@
       );
     }
   );
-=======
-  gulp.task('default', [
-    `${cfg.task.browserSync}`,
-    `${cfg.task.watch}`
-  ]);
->>>>>>> v1.0.0
 
   /**
    * Creating production folder without unnecessary files
