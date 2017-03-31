@@ -4,8 +4,18 @@
 //* Vendors *//
 @import './node_modules/include-media/dist/include-media';
 
+
+//* Abstracts modules *//
+@import 'abstracts/main';
+
 //* Base modules *//
 @import 'base/main';
+
+//* Layout modules *//
+@import 'layout/main';
+
+//* Pages modules *//
+@import 'pages/main';
 
 //* Components *//
 @import 'components/starter-box';

@@ -42,7 +42,57 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Feature                                | Summary                                                                                                                                                                                                                                                     |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html`.                          |
-| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more. (Run `gulp` for project compiling)                                                                                                      |
+| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more. (Run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
+| Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean. (Run `gulp` to create an optimised version of your project to `/assets`)                                                                                                |
+| Code Hinting               | JavaScript code hinting is done using [JsHint](https://www.npmjs.com/package/gulp-jshint) - a hinter tool for identifying and reporting on patterns in JavaScript.                                                                                                 |
+| ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
+| Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate                                                                                                                                                                            |
+| Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension. (Run `gulp` and edit your files)                                                                                                                           |
+| Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io). (Run `gulp` and open up# [![Web Starter Kit](https://cloud.githubusercontent.com/assets/25930200/23856381/20707b74-0802-11e7-8578-5e4e91bb463e.png)](https://github.com/justcoded/web-starter-kit/releases/latest)
+
+>  A modern Web starter kit for projects
+
+![node](http://img.shields.io/badge/node-4.0.x-blue.svg) ![npm](http://img.shields.io/badge/npm-2.13.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
+
+
+## Overview
+
+Web Starter Kit is an opinionated boilerplate for web development. Tools for building a great experience across many devices. A solid starting point for both professionals and newcomers to the industry.
+
+## Table of Contents
+1. [Browser Support](#browser-support)
+2. [Features](#features)
+3. [Install](#install)
+4. [Quickstart](#quickstart)
+5. [Commands](#commands)
+6. [Structure](#structure)
+7. [JS](#js)
+8. [SCSS](#scss)
+9. [Tasks](#tasks)
+10. [Troubleshooting](#troubleshooting)
+11. [Contributing](#contributing)
+12. [License](#license)
+
+
+## Browser Support
+
+At present, we officially aim to support the last two versions of the following browsers:
+
+* Chrome
+* Edge
+* Firefox
+* Safari
+* Internet Explorer 11+
+
+This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
+
+
+## Features
+
+| Feature                                | Summary                                                                                                                                                                                                                                                     |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html`.                          |
+| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more. (Run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
 | Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean. (Run `gulp` to create an optimised version of your project to `/assets`)                                                                                                |
 | Code Hinting               | JavaScript code hinting is done using [JsHint](https://www.npmjs.com/package/gulp-jshint) - a hinter tool for identifying and reporting on patterns in JavaScript.                                                                                                 |
 | ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
@@ -170,25 +220,28 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ## `src` folder structure
 
 ```
-├── images 		                #Folder for storing images
+├── images                      #Folder for storing images
 ├── js                          #Folder for storing js files
    ├── modules                  #Folder for storing js modules
    ├── app.js                   #Main js file
-├── scss                        #Folder for storing scss files
+├── scss
+   ├── abstracts                #Folder for storing scss files
+      ├── _functions.scss       #Sass functions
+      ├── _helpers.scss         #Sass helpers
+      ├── _mixins.scss          #Sass mixins
+      ├── _variables.scss       #Sass variables that we can use in our scss files
    ├── base                     #Folder for storing base styles
-      ├── _forms.scss           #Global styles for forms
-      ├── _functions.scss       #Global functions
-      ├── _helpers.scss         #Global helpers
-      ├── _main.scss            #Main scss file for base styles
-      ├── _mixins.scss          #Global mixins
-      ├── _reset.scss           #Global reset
-      ├── _typography.scss      #Global styles for text
-      ├── _variables.scss       #Global variables that we can use in our scss files
+      ├── _forms.scss           #Sass styles for forms      
+      ├── _main.scss            #Main scss file for base styles      
+      ├── _reset.scss           #Sass reset
+      ├── _typography.scss      #Sass styles for text      
    ├── components               #Global Reusable Presentational Components
-   ├── style.scss               #Gain scss file (can be used for importing another files)
+   ├── layouts                  #Global layouts
+   ├── pages                    #Global styles for pages
+   ├── style.scss               #Main scss file (can be used for importing another        files)
 ├── vendor_entries              #Folder for vendor entries(plugins)
-	├── vendor.js               #File for plugins js 
-	├── vendor.scss             #File for plugins styles
+  ├── vendor.js                 #File for plugins js 
+  ├── vendor.scss               #File for plugins styles
 
 ```
 
@@ -215,7 +268,7 @@ Use `vendor_entries` to include plugins into your project.
 
 In our WSK you can use [SASS](http://sass-lang.com/). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
 
-Sass is a CSS preprocessor—a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain.
+Sass is a CSS preprocessor—a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
 
 So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.  
 
@@ -262,4 +315,5 @@ Contributions, questions and comments are all welcome and encouraged. For code c
 
 The MIT License (MIT)
 
-Copyright (c) 2017 JustCoded
+Copyright (c) 2017 JustCoded the IP provided on other devices on your network)                       |
+                                                                                                                                     
