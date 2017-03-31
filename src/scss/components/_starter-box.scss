@@ -43,6 +43,7 @@
     height: 10%;
     position: relative;
 
+
     &:after {
       content: '';
       transform: scale(0.5);
@@ -52,8 +53,8 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      height: 6px;
-      width: 6px;
+      height: 9px;
+      width: 9px;
       border-radius: 100%;
       background: #fff;
       overflow: hidden;
@@ -67,5 +68,16 @@
       animation-duration: #{(random(100) + 100) / 100}s;
       animation-delay: #{random(100) / 100}s;
     }
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255,255,255, 0.6);
+  }
+  70% {
+      box-shadow: 0 0 0 15px rgba(255,255,255, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(255,255,255, 0);
   }
 }
