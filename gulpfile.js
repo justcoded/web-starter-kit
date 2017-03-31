@@ -231,6 +231,7 @@
           `${cfg.task.buildSass}`,
           `${cfg.task.buildStylesVendors}`,
           `${cfg.task.htmlHint}`,
+          `${cfg.task.jsHint}`,
           `${cfg.task.imageMin}`
         ],
         `${cfg.task.copyFolders}`,
@@ -244,15 +245,20 @@
    */
   gulp.task('production', (callback) => {
       runSequence(
-        `${cfg.task.cleanProd}`,
+        [
+          `${cfg.task.cleanProd}`,
+          `${cfg.task.cleanBuild}`
+        ],
         [
           `${cfg.task.buildCustomJs}`,
+          `${cfg.task.buildJsVendors}`,
           `${cfg.task.buildSassProd}`,
           `${cfg.task.buildStylesVendors}`,
-          `${cfg.task.cleanProd}`,
           `${cfg.task.htmlHint}`,
-          `${cfg.task.jsHint}`
+          `${cfg.task.jsHint}`,
+          `${cfg.task.imageMin}`
         ],
+        `${cfg.task.copyFolders}`,
         `${cfg.task.copyFoldersProduction}`
       );
     }
