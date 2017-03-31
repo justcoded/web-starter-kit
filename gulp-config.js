@@ -16,14 +16,16 @@ module.exports = {
     imageMin: 'image-min',
     imageClean: 'image-clean',
     cleanProd: 'clean-production',
-    copyFonts: 'copy-fonts',
+    cleanBuild: 'clean-build',
+    copyFolders: 'copy-folders',
+    copyFoldersProduction: 'copy-folders-production',
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
   autoprefixer: {
     versions: 'last 4 versions'
   },
-  ignore: function() {
+  ignoreProd: function() {
     return [
       `!${this.folder.src}/`,
       `!${this.folder.src}/**/*`,
@@ -41,12 +43,26 @@ module.exports = {
       '!package.json',
       `!${this.folder.prod}`,
       '!README.md',
+      '!readme.txt',
       '!CONTRIBUTING.md',
       '!gulp-config.js',
       '!docs/',
       '!docs/**/*',
       '!tasks/',
       '!tasks/**/*'
+    ];
+  },
+  foldersToCopy: function() {
+    return [
+      `./${this.folder.src}/**/*`,
+      `!./${this.folder.src}/images/`,
+      `!./${this.folder.src}/images/**/*`,
+      `!./${this.folder.src}/js/`,
+      `!./${this.folder.src}/js/**/*`,
+      `!./${this.folder.src}/scss/`,
+      `!./${this.folder.src}/scss/**/*`,
+      `!./${this.folder.src}/vendor_entries/`,
+      `!./${this.folder.src}/vendor_entries/**/*`
     ];
   }
 };
