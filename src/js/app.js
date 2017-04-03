@@ -1,10 +1,16 @@
-import HP from './modules/helpers';
+// You can write a call and import your functions in this file.
+//
+// This file will be compiled into app.js and will not be minified.
+// Feel free with using ES6 here.
 
-(function ($) {
+import DE from './modules/helpers';
+
+( ($) => {
+  'use strict';
 
   // When DOM is ready
-  $(function () {
-    HP.random(10, 20);
+  $(() => {
+    DE.dotsEffect();
   });
 
-}(jQuery));
+})(jQuery);

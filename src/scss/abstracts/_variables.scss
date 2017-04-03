@@ -1,4 +1,8 @@
-// Headers
+// Global variables
+//
+// Base font styles for headings and links.
+
+// For headers
 $headings: (
   'sizes': (
     'h1-font-size': 30px,
@@ -14,7 +18,7 @@ $headings: (
   )
 );
 
-// Body
+// Global vars for body typography
 $base: (
   'base-font-sans-serif': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
   'base-font-serif': unquote("'Times New Roman', Times, Baskerville, Georgia, serif"),
@@ -28,7 +32,7 @@ $base: (
   'base-min-width': 320px
 );
 
-// Forms
+// Vars for forms
 $forms: (
   'form-element-padding': unquote("0.4em 0.7em"),
   'form-element-border-color': #999,
@@ -36,7 +40,7 @@ $forms: (
   'placeholder-color': #999
 );
 
-// Breakpoints for include media
+// Breakpoints for include media mixin
 $breakpoints: (
   'phone': 320px,
   'tablet': 768px,
@@ -44,7 +48,7 @@ $breakpoints: (
   'widescreen': 1200px
 );
 
-// Keywords
+// Keywords for include media mixin
 $media-expressions: (
   'screen': 'screen',
   'print': 'print',

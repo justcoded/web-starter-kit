@@ -1,51 +1,64 @@
 {
-  "name": "markup-starter-jc",
-  "version": "0.3.0",
+  "name": "web-starter-jc",
+  "version": "0.9.0",
   "description": "Starter kit for markup projects",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "bower install"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/justcoded/npm_jcn_markup_starter"
+    "url": "git+https://github.com/justcoded/web-starter-kit"
   },
   "keywords": [
     "starter",
     "markup",
+    "JustCoded",
     "jc"
   ],
-  "author": "Juctcoded",
+  "author": "JustCoded",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/justcoded/npm_jcn_markup_starter",
+  "bugs": {
+    "url": "https://github.com/justcoded/web-starter-kit/issues"
+  },
+  "homepage": "https://github.com/justcoded/web-starter-kit",
   "devDependencies": {
-    "babel-preset-es2015": "^6.5.0",
-    "babelify": "^7.2.0",
-    "browser-sync": "^2.13.0",
-    "browserify": "^13.0.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.18.0",
+    "browserify": "^14.0.0",
+    "del": "^2.2.2",
+    "files-exist": "^1.0.2",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-connect": "^2.3.1",
-    "gulp-cssnano": "^2.1.0",
-    "gulp-debug": "^2.1.2",
-    "gulp-group-css-media-queries": "^1.1.0",
-    "gulp-imagemin": "^3.0.1",
-    "gulp-newer": "^1.1.0",
-    "gulp-rimraf": "^0.2.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssimport": "^5.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-debug": "^3.1.0",
+    "gulp-group-css-media-queries": "^1.2.0",
+    "gulp-htmlhint": "^0.3.1",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-newer": "^1.3.0",
+    "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.1",
-    "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.5",
-    "node-notifier": "^4.4.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.11",
+    "htmlhint-stylish": "^1.0.3",
+    "imagemin-pngquant": "^5.0.0",
+    "jshint": "^2.9.4",
+    "node-notifier": "^5.0.2",
+    "path": "^0.12.7",
+    "run-sequence": "^1.2.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "dependencies": {
-    "bower": "^1.7.2",
-    "del": "^2.2.0",
-    "imagemin-pngquant": "^5.0.0"
+    "include-media": "~1.4.9",
+    "jquery": "~2.2.4",
+    "normalize.css": "~5.0.0"
   }
 }

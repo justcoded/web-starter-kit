@@ -1,3 +1,5 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
 # install scripts
 init_wp
 
@@ -24,8 +26,8 @@ node_modules/
 
 # markup
 /build/
+/assets/
 /production/
-bower/
 .sass-cache
 node_modules
 *.map

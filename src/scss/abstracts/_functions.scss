@@ -1,0 +1,141 @@
+// Most Used Functions.
+//
+// You can remove or add your own function in this file.
+
+
+/// colors black & white
+/// @example scss - Usage
+///   .my-class {
+///     background: black(0.15);
+///     color: white(0.9);
+///   }
+@function black($opacity){
+  @return rgba(black, $opacity);
+}
+
+@function white($opacity){
+  @return rgba(white, $opacity);
+}
+
+/// Map deep get
+/// @author Hugo Giraudel
+/// @access public
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Key chain
+/// @return {*} - Desired value
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+/// Update a key deeply nested
+/// @author Hugo Giraudel
+/// @param {Map} $map - Map to update
+/// @param {Arglist} $keys - Keys to access to value to update
+/// @param {*} $value - New value (last member of `$keys`)
+/// @return {Map} - Updated map
+@function map-deep-set($map, $keys.../*, $value */) {
+  $map-list: ($map,);
+  $result: null;
+
+  @if length($keys) == 2 {
+    @return map-merge($map, (nth($keys, 1): nth($keys, -1)));
+  }
+
+  @for $i from 1 through length($keys) - 2 {
+    $map-list: append($map-list, map-get(nth($map-list, -1), nth($keys, $i)));
+  }
+
+  @for $i from length($map-list) through 1 {
+    $result: map-merge(nth($map-list, $i), (nth($keys, $i): if($i == length($map-list), nth($keys, -1), $result)));
+  }
+
+  @return $result;
+}
+
+// a map-set function (not included with Sass)
+@function map-set($map, $key, $value) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
+}
+
+//  Function to create an optimized svg url
+//
+//  Version: 1.0.6
+// @example scss - Usage
+//
+// .btn{
+//   @include background-svg('
+//   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" xml:space="preserve"  preserveAspectRatio="none">  
+//         <polygon fill="#0068f2" points="0,0 81,0 100,50 80,100 0,100 20,50" />
+//   </svg>');
+// }
+//
+@function svg-url($svg){
+    //
+    //  Add missing namespace
+    //
+    @if not str-index($svg,xmlns) {
+        $svg: str-replace($svg, '<svg','<svg xmlns="http://www.w3.org/2000/svg"');
+    }        
+    //    
+    //  Chunk up string in order to avoid 
+    //  "stack level too deep" error
+    //     
+    $encoded:'';
+    $slice: 2000;
+    $index: 0;
+    $loops: ceil(str-length($svg)/$slice);
+    @for $i from 1 through $loops {
+        $chunk: str-slice($svg, $index, $index + $slice - 1); 
+        //
+        //   Encode 
+        //
+        $chunk: str-replace($chunk,'"', "\'");
+        $chunk: str-replace($chunk,'%', '%25');
+        $chunk: str-replace($chunk,'&', '%26');
+        $chunk: str-replace($chunk,'#', '%23');
+        $chunk: str-replace($chunk,'{', '%7B');
+        $chunk: str-replace($chunk,'}', '%7D');
+        $chunk: str-replace($chunk,'<', '%3C');
+        $chunk: str-replace($chunk,'>', '%3E');
+        
+        // 
+        //    The maybe list 
+        //
+        //    Keep size and compile time down
+        //    ... only add on documented fail 
+        // 
+        //  $chunk: str-replace($chunk, '|', '%7C');
+        //  $chunk: str-replace($chunk, '[', '%5B');
+        //  $chunk: str-replace($chunk, ']', '%5D');
+        //  $chunk: str-replace($chunk, '^', '%5E');
+        //  $chunk: str-replace($chunk, '`', '%60');
+        //  $chunk: str-replace($chunk, ';', '%3B');
+        //  $chunk: str-replace($chunk, '?', '%3F');
+        //  $chunk: str-replace($chunk, ':', '%3A');
+        //  $chunk: str-replace($chunk, '@', '%40');
+        //  $chunk: str-replace($chunk, '=', '%3D');
+        
+        $encoded: #{$encoded}#{$chunk};
+        $index: $index + $slice; 
+    }
+    @return url("data:image/svg+xml,#{$encoded}");
+}
+
+//  Background svg mixin
+@mixin background-svg($svg){
+    background-image: svg-url($svg);
+}
+
+//  Helper function to replace characters in a string
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search); 
+    @return if($index, 
+        str-slice($string, 1, $index - 1) + $replace + 
+        str-replace(str-slice($string, $index + 
+        str-length($search)), $search, $replace), 
+        $string); 
+}  

@@ -1,7 +1,5 @@
-@import 'variables';
-@import 'functions';
-@import 'mixins';
-@import 'helpers';
-@import 'reset';
-@import 'typography';
-@import 'forms';
+// This is the main with imports from base folder.
+
+@import 'reset',
+		'typography',
+		'forms';
