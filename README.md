@@ -32,7 +32,7 @@ At present, we officially aim to support the last two versions of the following 
 * Edge
 * Firefox
 * Safari
-* Internet Explorer 11+
+* Internet Explorer
 
 This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
 
@@ -44,7 +44,7 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html`.                          |
 | Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more. (Run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
 | Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean. (Run `gulp` to create an optimised version of your project to `/assets`)                                                                                                |
-| Code Hinting               | JavaScript code hinting is done using [JsHint](https://www.npmjs.com/package/gulp-jshint) - a hinter tool for identifying and reporting on patterns in JavaScript.                                                                                                 |
+| Code Hinting               | JavaScript code hinting is done using [JsHint](https://www.npmjs.com/package/gulp-jshint) - a hinter tool for identifying and reporting on patterns in JavaScript. HTML code hinting is done using [HtmlHint](https://www.npmjs.com/package/gulp-htmlhint)                                                                                                |
 | ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
 | Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate                                                                                                                                                                            |
 | Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension. (Run `gulp` and edit your files)                                                                                                                           |
@@ -143,7 +143,7 @@ Same as 'gulp' command but without starting the local server.
 $ gulp production
 ```
 
-`gulp production` task creates the `production/` folder in the root of the project with **assets files only. It will **help you** to **create clear** instances of code for the **production** or **further implementation**.
+`gulp production` task creates the `production/` folder in the root of the project with **assets files only**. It will **help you** to **create clear** instances of code for the **production** or **further implementation**.
 
 
 ## Structure
@@ -157,7 +157,8 @@ If you want to use our WSK , you need to know something about the structure.
 ├── tasks           #Folder with tasks for gulpfile
 ├── LICENSE
 ├── README.md
-├── gulpfile.js     #Gulpfile config
+├── gulp-config.js  #Config for gulp
+├── gulpfile.js     #File with gulp tasks
 ├── index.html      #Main application
 └── package.json    #File with dependencies
 
@@ -186,9 +187,9 @@ In `src` folder you can find all sources for the project (images, sass , javascr
       ├── _reset.scss           #Sass reset
       ├── _typography.scss      #Sass styles for text      
    ├── components               #Global Reusable Presentational Components
-   ├── layouts                  #Global layouts
+   ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
-   ├── style.scss               #Main scss file (can be used for importing another        files)
+   ├── style.scss               #Main scss file (can be used for importing another files)
 ├── vendor_entries              #Folder for vendor entries(plugins)
   ├── vendor.js                 #File for plugins js 
   ├── vendor.scss               #File for plugins styles
@@ -218,7 +219,7 @@ Use `vendor_entries` to include plugins into your project.
 
 In our WSK you can use [SASS](http://sass-lang.com/). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
 
-Sass is a CSS preprocessor—a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
+Sass is a CSS preprocessor — a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
 
 So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.  
 
@@ -244,7 +245,7 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 | build-sass                   | Compiles all custom scss from `src/scss` to `assets/css`   folder  |
 | build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder                                                                                                                                                                            |
 | clean-production                | `production` folder removing                                                                                                                           |
-| copy-fonts           | Need to copy all fonts from sources to build                       |
+| copy-folders           | Need to copy all folders from sources to assets                       |
 | html-hint           | Need to hint html files                    |
 | js-hint           | Need to hint js files                      |
 | image-clean           | Removing images                    |
@@ -265,5 +266,5 @@ Contributions, questions and comments are all welcome and encouraged. For code c
 
 The MIT License (MIT)
 
-Copyright (c) 2017 JustCoded the IP provided on other devices on your network)                       |
+Copyright (c) 2017 JustCoded the IP provided on other devices on your network
                                                                                                                                      
