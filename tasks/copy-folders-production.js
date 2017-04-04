@@ -1,5 +1,5 @@
 /**
- * Copy custom fonts to the build folder
+ * Copy folders to another folder
  */
 'use strict';
 
