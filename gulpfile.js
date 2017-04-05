@@ -78,6 +78,7 @@
   requireTask(`${cfg.task.buildCustomJs}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    mainJs: cfg.file.mainJs,
     checkProduction: true,
     showError: showError
   });
@@ -87,7 +88,9 @@
    */
   requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
-    dest: cfg.folder.build
+    dest: cfg.folder.build,
+    vendorJs: cfg.file.vendorJs,
+    vendorJsMin: cfg.file.vendorJsMin
   });
 
   /**
@@ -96,6 +99,8 @@
   requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    mainScss: cfg.file.mainScss,
+    mainScssMin: cfg.file.mainScssMin,
     versions: cfg.autoprefixer.versions,
     self: self,
     showError: showError
@@ -107,6 +112,8 @@
   requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    mainScss: cfg.file.mainScss,
+    mainScssMin: cfg.file.mainScssMin,
     versions: cfg.autoprefixer.versions,
     showError: showError
   });
@@ -117,6 +124,8 @@
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    vendorScss: cfg.file.vendorScss,
+    vendorScssMin: cfg.file.vendorScssMin,
     showError: showError
   });
 
@@ -175,6 +184,7 @@
    * Start browserSync server
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
+    mainHtml: cfg.file.mainHtml,
     browserSync: browserSync
   });
 

@@ -5,6 +5,16 @@ module.exports = {
     build: 'assets',
     prod: 'production'
   },
+  file: {
+    mainHtml: 'index.html',
+    mainJs: 'app.js',
+    vendorJs: 'vendor.js',
+    vendorJsMin: 'vendor.min.js',
+    mainScss: 'style.scss',
+    mainScssMin: 'style.min.css',
+    vendorScss: 'vendor.scss',
+    vendorScssMin: 'vendor.min.css',
+  },
   task: {
     htmlHint: 'html-hint',
     jsHint: 'js-hint',
@@ -46,8 +56,6 @@ module.exports = {
       '!readme.txt',
       '!CONTRIBUTING.md',
       '!gulp-config.js',
-      '!docs/',
-      '!docs/**/*',
       '!tasks/',
       '!tasks/**/*'
     ];

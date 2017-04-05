@@ -14,8 +14,8 @@ const gulp         = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return gulp.src(`./${options.src}/scss/style.scss`)
-      .pipe(rename('style.min.css'))
+    return gulp.src(`./${options.src}/scss/${options.mainScss}`)
+      .pipe(rename(options.mainScssMin))
       .pipe(sourcemaps.init({
         loadMaps: true
       }))

@@ -12,12 +12,12 @@ const gulp      = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return gulp.src(`./${options.src}/vendor_entries/vendor.scss`)
+    return gulp.src(`./${options.src}/vendor_entries/${options.vendorScss}`)
       .pipe(sass().on('error', function(err) {
         options.showError.apply(this, ['Sass compile error (vendor)', err]);
       }))
       .pipe(cssimport())
-      .pipe(rename('vendor.min.css'))
+      .pipe(rename(options.vendorScssMin))
       .pipe(cssnano({
         safe: true
       }))

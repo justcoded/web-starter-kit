@@ -9,8 +9,6 @@ html {
 	box-sizing: inherit;
 }
 
-* {max-height: 1000000px;}
-
 body {
   @include font-smoothing(on);
   color: map-get($base, 'base-text-color');
@@ -26,12 +24,12 @@ img {
 }
 
 // google map fix
-.gm-style img {max-width: none}
+.gm-style img {max-width: none;}
 
 // hide tel links on desktop
-@media only screen and (min-width:1025px) {
-    a[href^=tel],a[href^=skype], a[href^=sms] {
-    cursor:default;
-    pointer-events:none;
+@media only screen and (min-width: 1025px) {
+    a[href^="tel"], a[href^="skype"], a[href^="sms"] {
+    cursor: default;
+    pointer-events: none;
   }
 }
