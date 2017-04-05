@@ -10,7 +10,7 @@ module.exports = function(options) {
 
   return () => {
     // If index.html exist - open it, else show folder
-    let listDirectory = fs.existsSync('index.html') ? false : true;
+    let listDirectory = fs.existsSync(options.mainHtml) ? false : true;
 
     options.browserSync.init({
       server: {

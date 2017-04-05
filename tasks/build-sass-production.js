@@ -13,12 +13,12 @@ const gulp         = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return gulp.src(`./${options.src}/scss/style.scss`)
+    return gulp.src(`./${options.src}/scss/${options.mainScss}`)
       .pipe(sass().on('error', function(err) {
         let self = this;
         options.showError.apply(self, ['Sass compile error', err]);
       }))
-      .pipe(rename('style.min.css'))
+      .pipe(rename(options.mainScssMin))
       .pipe(gcmq())
       .pipe(cssnano({
         safe: true

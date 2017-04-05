@@ -5,11 +5,9 @@
 var DE = {
   dotsEffect: function() {
     var $cnt  = $('#home-canvas'),
-        cells = $(createCells());
+        cells = createCells();
 
     $cnt.html(cells);
-
-    $('body').removeClass('load');
 
     function createCells() {
       var width  = 10,

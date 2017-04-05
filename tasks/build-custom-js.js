@@ -12,7 +12,7 @@ module.exports = function(options) {
 
   return function() {
     return browserify({
-        entries: `./${options.src}/js/app.js`,
+        entries: `./${options.src}/js/${options.mainJs}`,
         // Remove sourcemap for production
         debug: options.isProduction
       })

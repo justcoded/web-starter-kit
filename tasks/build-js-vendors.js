@@ -11,10 +11,10 @@ const gulp       = require('gulp'),
 module.exports = function(options) {
 
   return () => {
-    let jsVendors = require(`../${options.src}/vendor_entries/vendor.js`);
+    let jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
 
     return gulp.src(filesExist(jsVendors))
-      .pipe(concat('vendor.min.js'))
+      .pipe(concat(options.vendorJsMin))
       .pipe(uglify())
       .pipe(gulp.dest(`./${options.dest}/js`));
   };
