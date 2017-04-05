@@ -45,7 +45,7 @@
     vertical-align: $valign;
     width: $width1; 
   }
- .#{$child-name2} {
+  .#{$child-name2} {
     display: table-cell;
     vertical-align: $valign;
     width: $width2;
@@ -99,14 +99,14 @@
 /// font-smothing
 /// @include font-smoothing(on);
 /// @include font-smoothing(off);
-@mixin font-smoothing($value:on){
+@mixin font-smoothing($value: on){
   @if $value == on{
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   @else{
-    -webkit-font-smoothing:subpixel-antialiased;
-    -moz-osx-font-smoothing:auto;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
   }
 }
 
@@ -181,7 +181,7 @@
     border-top: $height solid $foreground-color;
 
     @if $direction == up-right {
-      border-left:  $width solid $background-color;
+      border-left: $width solid $background-color;
     } @else if $direction == up-left {
       border-right: $width solid $background-color;
     }
@@ -189,7 +189,7 @@
     border-bottom: $height solid $foreground-color;
 
     @if $direction == down-right {
-      border-left:  $width solid $background-color;
+      border-left: $width solid $background-color;
     } @else if $direction == down-left {
       border-right: $width solid $background-color;
     }
@@ -219,7 +219,7 @@
 //     or @include animate(color width);
 //     or @include animate(color width, 1s, linear);
 //
-$animation-speed: .3s !default;
+$animation-speed: 0.3s !default;
 
 @mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
   $list:();
@@ -246,11 +246,11 @@ $animation-speed: .3s !default;
 ///   }
 
 @mixin placeholder {
-  &::-webkit-input-placeholder {@content}
-  &::-moz-placeholder {opacity: 1; @content}
-  &:-moz-placeholder {@content}
-  &:-ms-input-placeholder {@content}
-  &.placeholder {@content}
+  &::-webkit-input-placeholder {@content;}
+  &::-moz-placeholder {opacity: 1; @content;}
+  &:-moz-placeholder {@content;}
+  &:-ms-input-placeholder {@content;}
+  &.placeholder {@content;}
 }
 
 /// Font-size px to rem calc
