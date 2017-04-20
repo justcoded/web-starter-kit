@@ -56,6 +56,9 @@
   "engines": {
     "node": ">=4.0.0"
   },
+   "scripts": {
+    "test": "gulp"
+  },
   "dependencies": {
     "include-media": "~1.4.9",
     "jquery": "~2.2.4",
