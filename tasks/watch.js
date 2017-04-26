@@ -19,7 +19,7 @@ module.exports = function(options) {
       gulp.start(options.tasks.buildSass);
     });
 
-    watch(`./${options.src}/images/**/*`, (file) => {
+    watch(`./${options.src}/images/**/*`, file => {
       if(file.event === 'unlink') {
         options.deleteFile(file, options.src, options.dest);
       } else {
