@@ -293,7 +293,7 @@
   function deleteFile(file, src, dest) {
     let fileName = file.history.toString().split('/').pop();
     let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
-    console.log(` \u{1b}[32m${fileEventWord}: ${fileName}`);
+    console.log(` \u{1b}[32m${fileEventWord}: ${fileName}\u{1b}[0m`);
 
     let filePathFromSrc = path.relative(path.resolve(src), file.path);
     let destFilePath = path.resolve(dest, filePathFromSrc);
