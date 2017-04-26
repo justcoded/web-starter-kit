@@ -293,12 +293,16 @@
   function deleteFile(file, src, dest) {
     let fileName = file.history.toString().split('/').pop();
     let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
-    console.log(` \u{1b}[32m${fileEventWord}: ${fileName}\u{1b}[0m`);
 
     let filePathFromSrc = path.relative(path.resolve(src), file.path);
     let destFilePath = path.resolve(dest, filePathFromSrc);
 
-    del.sync(destFilePath);
+    try {
+      del.sync(destFilePath);
+      console.log(` \u{1b}[32m${fileEventWord}: ${fileName}\u{1b}[0m`);
+    } catch (error) {
+      console.log(` \u{1b}[31mFile has already deleted\u{1b}[0m`);
+    }
   }
 
   /**
