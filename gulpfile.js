@@ -194,6 +194,7 @@
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    imageExtensions: cfg.imageExtensions,
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
@@ -292,12 +293,17 @@
    */
   function deleteFile(file, src, dest) {
     let fileName = file.history.toString().split('/').pop();
-    console.log(`${file.event}: ${fileName}`);
+    let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
 
     let filePathFromSrc = path.relative(path.resolve(src), file.path);
     let destFilePath = path.resolve(dest, filePathFromSrc);
 
-    del.sync(destFilePath);
+    try {
+      del.sync(destFilePath);
+      console.log(` \u{1b}[32m${fileEventWord}: ${fileName}\u{1b}[0m`);
+    } catch (error) {
+      console.log(` \u{1b}[31mFile has already deleted\u{1b}[0m`);
+    }
   }
 
   /**

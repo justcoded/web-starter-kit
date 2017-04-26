@@ -35,6 +35,7 @@ module.exports = {
   autoprefixer: {
     versions: 'last 4 versions'
   },
+  imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
   ignoreProd: function() {
     return [
       `!${this.folder.src}/`,
