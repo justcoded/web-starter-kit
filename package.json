@@ -2,7 +2,6 @@
   "name": "web-starter-jc",
   "version": "1.0.0",
   "description": "Starter kit for markup projects",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/justcoded/web-starter-kit"
