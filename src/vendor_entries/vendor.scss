@@ -2,4 +2,5 @@
 //
 // Note: You can import SCSS and CSS files as well.
 
-@import '../../node_modules/normalize.css/normalize';
+@import '../scss/abstracts/_bootstrap-variables.scss';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';

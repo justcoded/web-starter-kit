@@ -56,13 +56,13 @@
   "engines": {
     "node": ">=4.0.0"
   },
-   "scripts": {
+  "scripts": {
     "test": "gulp production",
     "start": "gulp"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.3.7",
     "include-media": "~1.4.9",
-    "jquery": "~2.2.4",
-    "normalize.css": "~5.0.0"
+    "jquery": "~2.2.4"
   }
 }
