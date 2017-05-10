@@ -1,11 +1,23 @@
 {
-   "delete": {
-        "dependencies": "jquery, normalize.css"
+  "delete": {
+    "dependencies": [
+      "normalize.css"
+    ],
+    "vendor-scss": [
+      "@import '../../node_modules/normalize.css/normalize';"
+    ]
+  },
+  "add": {
+    "dependencies": {
+      "jquery": "~2.2.4",
+      "bootstrap-sass": "^3.3.7"
     },
-    "add": {
-      "dependencies": {
-           "jquery":"~2.2.4",
-           "bootstrap-sass": "^3.3.7",
-      }
-    }
+    "vendor-js": [
+      "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"
+    ],
+    "vendor-scss": [
+      "@import '../scss/abstracts/_bootstrap-variables.scss';",
+      "@import '../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';"
+    ]
+  }
 }
