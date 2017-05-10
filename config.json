@@ -3,7 +3,7 @@
     "dependencies": [
       "normalize.css"
     ],
-    "vendor-scss": [
+    "vendorScss": [
       "@import '../../node_modules/normalize.css/normalize';"
     ]
   },
@@ -12,10 +12,10 @@
       "jquery": "~2.2.4",
       "bootstrap-sass": "^3.3.7"
     },
-    "vendor-js": [
+    "vendorJs": [
       "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"
     ],
-    "vendor-scss": [
+    "vendorScss": [
       "@import '../scss/abstracts/_bootstrap-variables.scss';",
       "@import '../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';"
     ]
