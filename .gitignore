@@ -9,6 +9,7 @@ init_wp
 .project
 npm-debug.log
 .idea
+.history
 
 # composer
 composer.lock

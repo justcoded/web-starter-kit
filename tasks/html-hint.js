@@ -9,7 +9,7 @@ const gulp     = require('gulp'),
 
 module.exports = function(options) {
 
-  return (cb) => {
+  return cb => {
     gulp.src('./*.html')
       .pipe(htmlhint())
       .pipe(htmlhint.reporter('htmlhint-stylish'))
