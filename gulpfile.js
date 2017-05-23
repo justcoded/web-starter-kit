@@ -41,7 +41,7 @@
   * @param  {string} taskName    Task name
   * @param  {String} path        Path to task file
   * @param  {Object} options     Options for task
-  * @param  [Array]  dep         Task dependencies
+  * @param  {Array}  dep         Task dependencies
   */
   function requireTask(taskName, path, options, dep) {
     let settings = options || {},
@@ -59,6 +59,14 @@
       return task(callback);
     });
   }
+
+  /**
+   * Compile pug
+   */
+  requireTask(`${cfg.task.templates}`, `./${cfg.folder.tasks}/`, {
+    pug: cfg.folder.pug,
+    dest: './'
+  });
 
   /**
    * Hint HTML
@@ -194,15 +202,16 @@
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    pug: cfg.folder.pug,
     imageExtensions: cfg.imageExtensions,
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
-      buildCustomJs: `${cfg.task.buildCustomJs}`,
-      buildSass: `${cfg.task.buildSass}`,
-      jsHint: `${cfg.task.jsHint}`,
-      htmlHint: `${cfg.task.htmlHint}`,
-      imageMin: `${cfg.task.imageMin}`
+      templates: cfg.task.templates,
+      buildCustomJs: cfg.task.buildCustomJs,
+      buildSass: cfg.task.buildSass,
+      jsHint: cfg.task.jsHint,
+      imageMin: cfg.task.imageMin
     }
   });
 
@@ -211,20 +220,20 @@
    */
   gulp.task('default', (callback) => {
       runSequence(
-        `${cfg.task.cleanBuild}`,
+        cfg.task.cleanBuild,
         [
-          `${cfg.task.buildCustomJs}`,
-          `${cfg.task.buildJsVendors}`,
-          `${cfg.task.buildSass}`,
-          `${cfg.task.buildStylesVendors}`,
-          `${cfg.task.htmlHint}`,
-          `${cfg.task.jsHint}`,
-          `${cfg.task.imageMin}`
+          cfg.task.templates,
+          cfg.task.buildCustomJs,
+          cfg.task.buildJsVendors,
+          cfg.task.buildSass,
+          cfg.task.buildStylesVendors,
+          cfg.task.jsHint,
+          cfg.task.imageMin
         ],
-        `${cfg.task.copyFolders}`,
+        cfg.task.copyFolders,
         [
-          `${cfg.task.browserSync}`,
-          `${cfg.task.watch}`
+          cfg.task.browserSync,
+          cfg.task.watch
         ]
       );
     }
@@ -235,18 +244,18 @@
    */
   gulp.task('dev', (callback) => {
       runSequence(
-        `${cfg.task.cleanBuild}`,
+        cfg.task.cleanBuild,
         [
-          `${cfg.task.buildCustomJs}`,
-          `${cfg.task.buildJsVendors}`,
-          `${cfg.task.buildSass}`,
-          `${cfg.task.buildStylesVendors}`,
-          `${cfg.task.htmlHint}`,
-          `${cfg.task.jsHint}`,
-          `${cfg.task.imageMin}`
+          cfg.task.templates,
+          cfg.task.buildCustomJs,
+          cfg.task.buildJsVendors,
+          cfg.task.buildSass,
+          cfg.task.buildStylesVendors,
+          cfg.task.jsHint,
+          cfg.task.imageMin
         ],
-        `${cfg.task.copyFolders}`,
-        `${cfg.task.watch}`
+        cfg.task.copyFolders,
+        cfg.task.watch
       );
     }
   );
@@ -257,20 +266,21 @@
   gulp.task('production', (callback) => {
       runSequence(
         [
-          `${cfg.task.cleanProd}`,
-          `${cfg.task.cleanBuild}`
+          cfg.task.cleanProd,
+          cfg.task.cleanBuild
         ],
         [
-          `${cfg.task.buildCustomJs}`,
-          `${cfg.task.buildJsVendors}`,
-          `${cfg.task.buildSassProd}`,
-          `${cfg.task.buildStylesVendors}`,
-          `${cfg.task.htmlHint}`,
-          `${cfg.task.jsHint}`,
-          `${cfg.task.imageMin}`
+          cfg.task.templates,
+          cfg.task.buildCustomJs,
+          cfg.task.buildJsVendors,
+          cfg.task.buildSassProd,
+          cfg.task.buildStylesVendors,
+          cfg.task.htmlHint,
+          cfg.task.jsHint,
+          cfg.task.imageMin
         ],
-        `${cfg.task.copyFolders}`,
-        `${cfg.task.copyFoldersProduction}`
+        cfg.task.copyFolders,
+        cfg.task.copyFoldersProduction
       );
     }
   );

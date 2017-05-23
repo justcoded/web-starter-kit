@@ -8,12 +8,21 @@ const gulp  = require('gulp'),
 
 module.exports = function(options) {
   return () => {
+    global.watch = true;
+
     watch(`./${options.src}/js/**/*`, () => {
       gulp.start([
         options.tasks.buildCustomJs,
         options.tasks.jsHint
       ]);
     });
+
+    watch(`${options.pug}/**/*.pug`, () => {
+      gulp.start('templates');
+    })
+    .on('all', (event, filepath) => {
+			global.emittyChangedFile = filepath;
+		});
 
     watch(`./${options.src}/scss/**/*`, () => {
       gulp.start(options.tasks.buildSass);
@@ -27,12 +36,7 @@ module.exports = function(options) {
       }
     });
 
-    watch('./*.html', () => {
-      gulp.start(options.tasks.htmlHint);
-    });
-
-    gulp.watch([`./${options.dest}/**/*`, './*.html'])
-      .on('change', options.browserSync.reload);
+    watch([`./${options.dest}/**/*`, './*.html'], options.browserSync.reload)
   };
 
 };
