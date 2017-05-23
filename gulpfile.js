@@ -198,11 +198,11 @@
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
-      buildCustomJs: `${cfg.task.buildCustomJs}`,
-      buildSass: `${cfg.task.buildSass}`,
-      jsHint: `${cfg.task.jsHint}`,
-      htmlHint: `${cfg.task.htmlHint}`,
-      imageMin: `${cfg.task.imageMin}`
+      buildCustomJs: cfg.task.buildCustomJs,
+      buildSass: cfg.task.buildSass,
+      jsHint: cfg.task.jsHint,
+      htmlHint: cfg.task.htmlHint,
+      imageMin: cfg.task.imageMin
     }
   });
 
@@ -211,20 +211,20 @@
    */
   gulp.task('default', (callback) => {
       runSequence(
-        `${cfg.task.cleanBuild}`,
+        cfg.task.cleanBuild,
         [
-          `${cfg.task.buildCustomJs}`,
-          `${cfg.task.buildJsVendors}`,
-          `${cfg.task.buildSass}`,
-          `${cfg.task.buildStylesVendors}`,
-          `${cfg.task.htmlHint}`,
-          `${cfg.task.jsHint}`,
-          `${cfg.task.imageMin}`
+          cfg.task.buildCustomJs,
+          cfg.task.buildJsVendors,
+          cfg.task.buildSass,
+          cfg.task.buildStylesVendors,
+          cfg.task.htmlHint,
+          cfg.task.jsHint,
+          cfg.task.imageMin
         ],
-        `${cfg.task.copyFolders}`,
+        cfg.task.copyFolders,
         [
-          `${cfg.task.browserSync}`,
-          `${cfg.task.watch}`
+          cfg.task.browserSync,
+          cfg.task.watch
         ]
       );
     }
@@ -235,18 +235,18 @@
    */
   gulp.task('dev', (callback) => {
       runSequence(
-        `${cfg.task.cleanBuild}`,
+        cfg.task.cleanBuild,
         [
-          `${cfg.task.buildCustomJs}`,
-          `${cfg.task.buildJsVendors}`,
-          `${cfg.task.buildSass}`,
-          `${cfg.task.buildStylesVendors}`,
-          `${cfg.task.htmlHint}`,
-          `${cfg.task.jsHint}`,
-          `${cfg.task.imageMin}`
+          cfg.task.buildCustomJs,
+          cfg.task.buildJsVendors,
+          cfg.task.buildSass,
+          cfg.task.buildStylesVendors,
+          cfg.task.htmlHint,
+          cfg.task.jsHint,
+          cfg.task.imageMin
         ],
-        `${cfg.task.copyFolders}`,
-        `${cfg.task.watch}`
+        cfg.task.copyFolders,
+        cfg.task.watch
       );
     }
   );
@@ -257,20 +257,20 @@
   gulp.task('production', (callback) => {
       runSequence(
         [
-          `${cfg.task.cleanProd}`,
-          `${cfg.task.cleanBuild}`
+          cfg.task.cleanProd,
+          cfg.task.cleanBuild
         ],
         [
-          `${cfg.task.buildCustomJs}`,
-          `${cfg.task.buildJsVendors}`,
-          `${cfg.task.buildSassProd}`,
-          `${cfg.task.buildStylesVendors}`,
-          `${cfg.task.htmlHint}`,
-          `${cfg.task.jsHint}`,
-          `${cfg.task.imageMin}`
+          cfg.task.buildCustomJs,
+          cfg.task.buildJsVendors,
+          cfg.task.buildSassProd,
+          cfg.task.buildStylesVendors,
+          cfg.task.htmlHint,
+          cfg.task.jsHint,
+          cfg.task.imageMin
         ],
-        `${cfg.task.copyFolders}`,
-        `${cfg.task.copyFoldersProduction}`
+        cfg.task.copyFolders,
+        cfg.task.copyFoldersProduction
       );
     }
   );
