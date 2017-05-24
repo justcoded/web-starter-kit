@@ -20,8 +20,7 @@ module.exports = function(options) {
         loadMaps: true
       }))
       .pipe(sass().on('error', function(err) {
-        let self = this;
-        options.showError.apply(self, ['Sass compile error', err]);
+        options.showError.apply(this, ['Sass compile error', err]);
       }))
       .pipe(autoprefixer(options.versions))
       .pipe(sourcemaps.write('./'))
