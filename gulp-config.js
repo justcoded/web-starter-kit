@@ -18,7 +18,6 @@ module.exports = {
   },
   task: {
     templates: 'templates',
-    htmlHint: 'html-hint',
     jsHint: 'js-hint',
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',

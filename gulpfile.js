@@ -69,11 +69,6 @@
   });
 
   /**
-   * Hint HTML
-   */
-  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
-
-  /**
    * Hint JS
    */
   requireTask(`${cfg.task.jsHint}`, `./${cfg.folder.tasks}/`, {
@@ -275,7 +270,6 @@
           cfg.task.buildJsVendors,
           cfg.task.buildSassProd,
           cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
           cfg.task.jsHint,
           cfg.task.imageMin
         ],
