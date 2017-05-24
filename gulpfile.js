@@ -65,7 +65,8 @@
    */
   requireTask(`${cfg.task.templates}`, `./${cfg.folder.tasks}/`, {
     pug: cfg.folder.pug,
-    dest: './'
+    dest: './',
+    showError: showError
   });
 
   /**

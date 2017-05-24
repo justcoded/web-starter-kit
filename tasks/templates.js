@@ -13,6 +13,8 @@ module.exports = function (options) {
             .pipe(gulpif(global.watch, emitty.filter(global.emittyChangedFile)))
             .pipe(pug({
               pretty: true
+            }).on('error', function (err) {
+              options.showError.apply(this, ['Pug compile error', err]);
             }))
             .pipe(gulp.dest(options.dest))
             .on('end', resolve)
