@@ -15,8 +15,7 @@ module.exports = function(options) {
   return function() {
     return gulp.src(`./${options.src}/scss/${options.mainScss}`)
       .pipe(sass().on('error', function(err) {
-        let self = this;
-        options.showError.apply(self, ['Sass compile error', err]);
+        options.showError.apply(this, ['Sass compile error', err]);
       }))
       .pipe(rename(options.mainScssMin))
       .pipe(gcmq())
