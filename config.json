@@ -1,0 +1,8 @@
+{
+  "add": {
+    "devDependencies": {
+      "gulp-if": "^2.0.2",
+      "gulp-pug": "^3.3.0"
+    }
+  }
+}
