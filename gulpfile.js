@@ -41,7 +41,7 @@
   * @param  {string} taskName    Task name
   * @param  {String} path        Path to task file
   * @param  {Object} options     Options for task
-  * @param  [Array]  dep         Task dependencies
+  * @param  {Array}  dep         Task dependencies
   */
   function requireTask(taskName, path, options, dep) {
     let settings = options || {},
@@ -61,9 +61,13 @@
   }
 
   /**
-   * Hint HTML
+   * Compile pug
    */
-  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.templates}`, `./${cfg.folder.tasks}/`, {
+    pug: cfg.folder.pug,
+    dest: './',
+    showError: showError
+  });
 
   /**
    * Hint JS
@@ -194,14 +198,15 @@
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    pug: cfg.folder.pug,
     imageExtensions: cfg.imageExtensions,
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
+      templates: cfg.task.templates,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
       jsHint: cfg.task.jsHint,
-      htmlHint: cfg.task.htmlHint,
       imageMin: cfg.task.imageMin
     }
   });
@@ -213,11 +218,11 @@
       runSequence(
         cfg.task.cleanBuild,
         [
+          cfg.task.templates,
           cfg.task.buildCustomJs,
           cfg.task.buildJsVendors,
           cfg.task.buildSass,
           cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
           cfg.task.jsHint,
           cfg.task.imageMin
         ],
@@ -237,11 +242,11 @@
       runSequence(
         cfg.task.cleanBuild,
         [
+          cfg.task.templates,
           cfg.task.buildCustomJs,
           cfg.task.buildJsVendors,
           cfg.task.buildSass,
           cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
           cfg.task.jsHint,
           cfg.task.imageMin
         ],
@@ -261,11 +266,11 @@
           cfg.task.cleanBuild
         ],
         [
+          cfg.task.templates,
           cfg.task.buildCustomJs,
           cfg.task.buildJsVendors,
           cfg.task.buildSassProd,
           cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
           cfg.task.jsHint,
           cfg.task.imageMin
         ],

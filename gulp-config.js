@@ -3,7 +3,8 @@ module.exports = {
     tasks: 'tasks',
     src: 'src',
     build: 'assets',
-    prod: 'production'
+    prod: 'production',
+    pug: 'src/templates'
   },
   file: {
     mainHtml: 'index.html',
@@ -16,7 +17,7 @@ module.exports = {
     vendorScssMin: 'vendor.min.css',
   },
   task: {
-    htmlHint: 'html-hint',
+    templates: 'templates',
     jsHint: 'js-hint',
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',

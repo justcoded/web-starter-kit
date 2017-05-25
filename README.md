@@ -190,6 +190,14 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
    ├── style.scss               #Main scss file (can be used for importing another files)
+├── templates                   #Folder with pug templates
+   ├── layouts                  #Folder with pug layouts
+      ├── default.pug           #Example of the pug layout
+   ├── mixins                   #Folder with pug mixins
+      ├── article.pug           #Example of the pug mixin
+   ├── views                    #Folder with pug pages
+      ├── blog.pug              #Example of a blog page
+      ├── index.pug             #Example of a index page
 ├── vendor_entries              #Folder for vendor entries(plugins)
   ├── vendor.js                 #File for plugins js 
   ├── vendor.scss               #File for plugins styles
@@ -240,12 +248,13 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
 | build-custom-js                         | Compiles all custom js from `src/js`                                                                                                     |
-| build-js-vendors               | Minifies and сompiles all vendor js from `src/vendor_entries`)                                                                                                |
+| build-js-vendors               | minifies and сompiles all vendor js from `src/vendor_entries`)                                                                                                |
 | build-sass-production               | Compiles and minifies all custom scss from `src/scss` to `production`   folder                                                                                               |
 | build-sass                   | Compiles all custom scss from `src/scss` to `assets/css`   folder  |
 | build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder                                                                                                                                                                            |
 | clean-production                | `production` folder removing                                                                                                                           |
 | copy-folders           | Need to copy all folders from sources to assets                       |
+| templates           | Compiles all pug files into html files                       |
 | html-hint           | Need to hint html files                    |
 | js-hint           | Need to hint js files                      |
 | image-clean           | Removing images                    |
@@ -264,7 +273,7 @@ Contributions, questions and comments are all welcome and encouraged. For code c
 
 ## License
 
-The MIT License (MIT) 
+The MIT License (MIT)
 
 Copyright (c) 2017 JustCoded the IP provided on other devices on your network
                                                                                                                                      
