@@ -42,13 +42,13 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Feature                                | Summary                                                                                                                                                                                                                                                     |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html`.                          |
-| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more. (Run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
-| Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean. (Run `gulp` to create an optimised version of your project to `/assets`)                                                                                                |
-| Code Hinting               | JavaScript code hinting is done using [JsHint](https://www.npmjs.com/package/gulp-jshint) - a hinter tool for identifying and reporting on patterns in JavaScript. HTML code hinting is done using [HtmlHint](https://www.npmjs.com/package/gulp-htmlhint)                                                                                                |
+| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (Run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
+| Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (Run `gulp` to create an optimised version of your project to `/assets`).                                                                                                |
+| Code Hinting               | JavaScript code hinting is done using [JsHint](https://www.npmjs.com/package/gulp-jshint) - a hinter tool for identifying and reporting on patterns in JavaScript. HTML code hinting is done using [HtmlHint](https://www.npmjs.com/package/gulp-htmlhint).                                                                                             |
 | ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
-| Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate                                                                                                                                                                            |
-| Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension. (Run `gulp` and edit your files)                                                                                                                           |
-| Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io). (Run `gulp` and open up the IP provided on other devices on your network)                       |
+| Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate.                                                                                                                                                                            |
+| Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension (Run `gulp` and edit your files).                                                                                                                           |
+| Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (Run `gulp` and open up the IP provided on other devices on your network).                       |
                                                                                                                                      
 ## Quickstart
 
@@ -126,8 +126,7 @@ $ gulp
 
 Build and optimize the current project, ready for deployment.
 This includes linting as well as image, script, stylesheet and HTML optimization and minification.
-Also, a [browsersync](https://browsersync.io/)
-script will be automatically generated, which will take care of precaching your sites' resources.
+Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites' resources.
 
 
 ```sh
@@ -190,6 +189,14 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
    ├── style.scss               #Main scss file (can be used for importing another files)
+├── templates                   #Folder with pug templates
+   ├── layouts                  #Folder with pug layouts
+      ├── default.pug           #Example of the pug layout
+   ├── mixins                   #Folder with pug mixins
+      ├── article.pug           #Example of the pug mixin
+   ├── views                    #Folder with pug pages
+      ├── blog.pug              #Example of a blog page
+      ├── index.pug             #Example of a index page
 ├── vendor_entries              #Folder for vendor entries(plugins)
   ├── vendor.js                 #File for plugins js 
   ├── vendor.scss               #File for plugins styles
@@ -208,10 +215,10 @@ Use `vendor_entries` to include plugins into your project.
 
 * All custom **javascript** files locate in `js/` folder;
 * Entry point for javascript is `src/js/app.js` you can **import** all you *.js* files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
-* All javascript is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
+* All javascript is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here;
 * All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include its files**:
-  * **js files** must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**;
+  * **js files** must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
 
 
 
@@ -239,18 +246,21 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 |Task                               | Description                                                                                                                                                                                                                                               |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
-| build-custom-js                         | Compiles all custom js from `src/js`                                                                                                     |
-| build-js-vendors               | Minifies and сompiles all vendor js from `src/vendor_entries`)                                                                                                |
-| build-sass-production               | Compiles and minifies all custom scss from `src/scss` to `production`   folder                                                                                               |
-| build-sass                   | Compiles all custom scss from `src/scss` to `assets/css`   folder  |
-| build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder                                                                                                                                                                            |
-| clean-production                | `production` folder removing                                                                                                                           |
-| copy-folders           | Need to copy all folders from sources to assets                       |
-| html-hint           | Need to hint html files                    |
-| js-hint           | Need to hint js files                      |
-| image-clean           | Removing images                    |
-| image-min           | We use this to minify images                    |
-| watch           | Task for watching all the changes                   |
+
+| build-custom-js                         | Compiles all custom js from `src/js`.                                                                                                     |
+| build-js-vendors               | minifies and сompiles all vendor js from `src/vendor_entries`.                                                                                                |
+| build-sass-production               | Compiles and minifies all custom scss from `src/scss` to `production`   folder.                                                                                               |
+| build-sass                   | Compiles all custom scss from `src/scss` to `assets/css`   folder.  |
+| build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder.                                                                                                                                                                            |
+| clean-production                | `production` folder removing.                                                                                                                           |
+| copy-folders           | Need to copy all folders from sources to assets.                       |
+| templates           | Compiles all pug files into html files.                       |
+| html-hint           | Need to hint html files.                    |
+| js-hint           | Need to hint js files.                      |
+| image-clean           | Removing images.                    |
+| image-min           | We use this to minify images.                    |
+| watch           | Task for watching all the changes.                   |
+
 
 
 ## Troubleshooting
@@ -264,7 +274,7 @@ Contributions, questions and comments are all welcome and encouraged. For code c
 
 ## License
 
-The MIT License (MIT) 
+The MIT License (MIT).
 
-Copyright (c) 2017 JustCoded the IP provided on other devices on your network
+Copyright (c) 2017 JustCoded the IP provided on other devices on your network.
                                                                                                                                      
