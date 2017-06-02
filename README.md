@@ -246,6 +246,7 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 |Task                               | Description                                                                                                                                                                                                                                               |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
+
 | build-custom-js                         | Compiles all custom js from `src/js`.                                                                                                     |
 | build-js-vendors               | minifies and сompiles all vendor js from `src/vendor_entries`.                                                                                                |
 | build-sass-production               | Compiles and minifies all custom scss from `src/scss` to `production`   folder.                                                                                               |
@@ -259,6 +260,7 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 | image-clean           | Removing images.                    |
 | image-min           | We use this to minify images.                    |
 | watch           | Task for watching all the changes.                   |
+
 
 
 ## Troubleshooting
