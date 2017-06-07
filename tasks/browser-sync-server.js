@@ -13,6 +13,7 @@ module.exports = function(options) {
     let listDirectory = fs.existsSync(options.mainHtml) ? false : true;
 
     options.browserSync.init({
+      notify: false,
       server: {
         baseDir: "./",
         directory: listDirectory
