@@ -191,8 +191,9 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── pages                    #Global styles for pages
    ├── style.scss               #Main scss file (can be used for importing another files)
 ├── templates                   #Folder with pug templates
-   ├── layouts                  #Folder with pug layouts
-      ├── default.pug           #Example of the pug layout
+   ├── partials                 #Folder with pug partials (head, foot, etc.)
+      ├── head.pug              #Example of the header
+      ├── foot.pug              #Example of the footer
    ├── mixins                   #Folder with pug mixins
       ├── article.pug           #Example of the pug mixin
    ├── views                    #Folder with pug pages
