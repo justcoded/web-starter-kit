@@ -72,7 +72,9 @@ module.exports = {
       `!./${this.folder.src}/scss/`,
       `!./${this.folder.src}/scss/**/*`,
       `!./${this.folder.src}/vendor_entries/`,
-      `!./${this.folder.src}/vendor_entries/**/*`
+      `!./${this.folder.src}/vendor_entries/**/*`,
+      `!./${this.folder.src}/templates/`,
+      `!./${this.folder.src}/templates/**/*`
     ];
   }
 };

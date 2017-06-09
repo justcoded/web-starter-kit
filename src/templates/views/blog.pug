@@ -1,8 +1,10 @@
-extends ../layouts/default
-include ../mixins/article
-
-block blog
-  +article('Hello world')
-  +article('Hello world')
-    p This is my
-    p Amazing article
+doctype html
+html(lang='en')
+  include ../partials/head
+  body
+    #wrapper
+      +article('Hello world')
+      +article('Hello world')
+        p This is my
+        p Amazing article
+  include ../partials/foot
