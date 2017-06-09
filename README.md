@@ -151,7 +151,7 @@ Your folder structure for WSK:
 If you want to use our WSK , you need to know something about the structure.
 
 ```
-├── assets          #Folder with files after compilling
+├── assets          #Folder with files after compiling
 ├── src             #Folder with sources
 ├── tasks           #Folder with tasks for gulpfile
 ├── LICENSE
