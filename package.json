@@ -55,8 +55,10 @@
   "engines": {
     "node": ">=4.0.0"
   },
-   "scripts": {
+  "scripts": {
     "test": "gulp production",
+    "production": "gulp production",
+    "develop": "gulp dev",
     "start": "gulp"
   },
   "dependencies": {
