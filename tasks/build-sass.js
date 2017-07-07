@@ -7,7 +7,6 @@ const gulp         = require('gulp'),
       sass         = require('gulp-sass'),
       rename       = require('gulp-rename'),
       sourcemaps   = require('gulp-sourcemaps'),
-      gutil        = require('gulp-util'),
       notifier     = require('node-notifier'),
       autoprefixer = require('gulp-autoprefixer');
 
