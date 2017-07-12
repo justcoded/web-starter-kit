@@ -1,6 +1,7 @@
 // This is the main with imports from base folder.
 
-@import 'variables',
+@import 'materialize-variables',
+		'variables',
 		'functions',
 		'mixins',
 		'helpers';
