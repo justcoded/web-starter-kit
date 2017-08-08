@@ -11,7 +11,9 @@ module.exports = function(options) {
 
   return cb => {
     gulp.src('./*.html')
-      .pipe(htmlhint())
+      .pipe(htmlhint({
+        'attr-lowercase': ['viewBox']
+      }))
       .pipe(htmlhint.reporter('htmlhint-stylish'))
       .pipe(htmlhint.failReporter({
         suppress: true 
