@@ -57,6 +57,7 @@ module.exports = {
       '!readme.txt',
       '!CONTRIBUTING.md',
       '!gulp-config.js',
+      '!package-lock.json',
       '!tasks/',
       '!tasks/**/*'
     ];
