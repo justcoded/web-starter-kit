@@ -3,7 +3,7 @@
 // You can remove or add your own function in this file.
 
 var DE = {
-  dotsEffect: function() {
+  dotsEffect: function($) {
     var $cnt  = $('#home-canvas'),
         cells = createCells();
 

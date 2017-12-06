@@ -32,6 +32,7 @@
     "gulp-cssnano": "^2.1.2",
     "gulp-debug": "^3.1.0",
     "gulp-group-css-media-queries": "^1.2.0",
+    "gulp-header": "^1.8.9",
     "gulp-htmlhint": "^0.3.1",
     "gulp-imagemin": "^3.1.1",
     "gulp-jshint": "^2.0.4",
@@ -46,6 +47,7 @@
     "htmlhint-stylish": "^1.0.3",
     "imagemin-pngquant": "^5.0.0",
     "jshint": "^2.9.4",
+    "merge-stream": "^1.0.1",
     "node-notifier": "^5.0.2",
     "path": "^0.12.7",
     "run-sequence": "^1.2.2",
@@ -64,6 +66,8 @@
   "dependencies": {
     "include-media": "~1.4.9",
     "jquery": "~2.2.4",
-    "normalize.css": "~5.0.0"
+    "normalize.css": "~5.0.0",
+    "notifyjs-browser": "^0.4.2",
+    "requirejs": "^2.3.5"
   }
 }

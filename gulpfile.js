@@ -80,6 +80,7 @@
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
     checkProduction: true,
+    requireJs: cfg.file.requireJs,
     showError: showError
   });
 
@@ -91,6 +92,16 @@
     dest: cfg.folder.build,
     vendorJs: cfg.file.vendorJs,
     vendorJsMin: cfg.file.vendorJsMin
+  });
+
+  /**
+   * Build requirejs vendors
+   */
+  requireTask(`${cfg.task.buildJsRequireVendors}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
+    requireVendorsJs: cfg.file.requireVendorsJs,
+    showError: showError
   });
 
   /**
@@ -215,6 +226,7 @@
         [
           cfg.task.buildCustomJs,
           cfg.task.buildJsVendors,
+          cfg.task.buildJsRequireVendors,
           cfg.task.buildSass,
           cfg.task.buildStylesVendors,
           cfg.task.htmlHint,
@@ -239,6 +251,7 @@
         [
           cfg.task.buildCustomJs,
           cfg.task.buildJsVendors,
+          cfg.task.buildJsRequireVendors,
           cfg.task.buildSass,
           cfg.task.buildStylesVendors,
           cfg.task.htmlHint,
@@ -263,6 +276,7 @@
         [
           cfg.task.buildCustomJs,
           cfg.task.buildJsVendors,
+          cfg.task.buildJsRequireVendors,
           cfg.task.buildSassProd,
           cfg.task.buildStylesVendors,
           cfg.task.htmlHint,
