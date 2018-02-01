@@ -45,9 +45,10 @@
   function requireTask(taskName, path, options, dependencies) {
     let settings = options || {};
     const taskFunction = function (callback) {
-      if (settings.checkProduction) {
-        settings.isProduction = this.seq.slice(-1)[0] === 'production';
-      }
+      // TODO: Check production mode
+      // if (settings.checkProduction) {
+      //   settings.isProduction = this.seq.slice(-1)[0] === 'production';
+      // }
 
       let task = require(path + taskName + '.js').call(this, settings);
 
@@ -288,7 +289,7 @@
    * @param  {String} dest     Name of the destination folder
    */
   function deleteFile(file, src, dest) {
-    let fileName = file.history.toString().split('/').pop();
+    let fileName = file.path.toString().split('/').pop();
     let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
 
     let filePathFromSrc = path.relative(path.resolve(src), file.path);

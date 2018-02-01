@@ -14,8 +14,11 @@ module.exports = function(options) {
     const imagesWatcher = gulp.watch(`./${options.src}/images/**/*.+(${options.imageExtensions})`);
 
     imagesWatcher
-      .on('unlink', () => {
-        options.deleteFile(file, options.src, options.dest);
+      .on('unlink', (path) => {
+        options.deleteFile({
+          path,
+          event: 'unlink'
+        }, options.src, options.dest);
       })
       .on('add', gulp.series(options.tasks.imageMin));
 
