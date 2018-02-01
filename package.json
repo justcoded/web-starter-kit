@@ -42,7 +42,6 @@
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
-    "gulp-watch": "^4.3.11",
     "htmlhint-stylish": "^1.0.3",
     "imagemin-pngquant": "^5.0.0",
     "jshint": "^2.9.4",
