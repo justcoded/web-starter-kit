@@ -45,10 +45,9 @@
   function requireTask(taskName, path, options, dependencies) {
     let settings = options || {};
     const taskFunction = function (callback) {
-      // TODO: Check production mode
-      // if (settings.checkProduction) {
-      //   settings.isProduction = this.seq.slice(-1)[0] === 'production';
-      // }
+      if (settings.checkProduction) {
+        settings.isProduction = process.argv[process.argv.length - 1] === 'production';
+      }
 
       let task = require(path + taskName + '.js').call(this, settings);
 
