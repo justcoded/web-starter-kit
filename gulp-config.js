@@ -38,11 +38,9 @@ module.exports = {
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
   ignoreProd: function() {
     return [
-      `!${this.folder.src}/`,
-      `!${this.folder.src}/**/*`,
-      '!bower/',
-      '!bower/**/*',
-      '!node_modules/**/*',
+      `!{${this.folder.src},${this.folder.src}/**}`,
+      '!{bower,bower/**}',
+      '!{node_modules,node_modules/**}',
       '!node_modules/',
       `!${this.folder.build}/css/**.map`,
       `!${this.folder.build}/images/info.txt`,
@@ -58,8 +56,7 @@ module.exports = {
       '!CONTRIBUTING.md',
       '!gulp-config.js',
       '!package-lock.json',
-      '!tasks/',
-      '!tasks/**/*'
+      '!{tasks,tasks/**}'
     ];
   },
   foldersToCopy: function() {
