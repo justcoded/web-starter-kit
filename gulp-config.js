@@ -61,15 +61,11 @@ module.exports = {
   },
   foldersToCopy: function() {
     return [
-      `./${this.folder.src}/**/*`,
-      `!./${this.folder.src}/images/`,
-      `!./${this.folder.src}/images/**/*`,
-      `!./${this.folder.src}/js/`,
-      `!./${this.folder.src}/js/**/*`,
-      `!./${this.folder.src}/scss/`,
-      `!./${this.folder.src}/scss/**/*`,
-      `!./${this.folder.src}/vendor_entries/`,
-      `!./${this.folder.src}/vendor_entries/**/*`
+      `./${this.folder.src}/**`,
+      `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
+      `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
+      `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
+      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`
     ];
   }
 };
