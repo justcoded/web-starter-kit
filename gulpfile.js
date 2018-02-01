@@ -38,18 +38,14 @@
 
   /**
   * Require gulp task from file
-  * @param  {string} taskName    Task name
-  * @param  {String} path        Path to task file
-  * @param  {Object} options     Options for task
-  * @param  [Array]  dep         Task dependencies
+  * @param  {string} taskName     Task name
+  * @param  {String} path         Path to task file
+  * @param  {Object} options      Options for task
+  * @param  {Array}  dependencies Task dependencies
   */
-  function requireTask(taskName, path, options, dep) {
-    let settings = options || {},
-      dependencies = dep || [];
-
-    settings.taskName = taskName;
-
-    gulp.task(taskName, dependencies, function(callback) {
+  function requireTask(taskName, path, options, dependencies) {
+    let settings = options || {};
+    const taskFunction = function(callback) {
       if(settings.checkProduction) {
         settings.isProduction = this.seq.slice(-1)[0] === 'production';
       }
@@ -57,7 +53,17 @@
       let task = require(path + taskName + '.js').call(this, settings);
 
       return task(callback);
-    });
+    }
+
+    settings.taskName = taskName;
+
+    if (!Array.isArray(dependencies)) {
+      gulp.task(taskName, taskFunction);
+    } else if(dependencies.length === 1) {
+      gulp.task(taskName, gulp.series(dependencies[0], taskFunction));
+    } else {
+      gulp.task(taskName, gulp.series(dependencies, taskFunction));
+    }
   }
 
   /**
