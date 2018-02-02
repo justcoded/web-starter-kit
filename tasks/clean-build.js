@@ -13,6 +13,6 @@ module.exports = function(options) {
       `${options.src}/**/*`,
       `!${options.src}/images/`,
       `!${options.src}/images/**`
-    ]);
+    ], { dot: true });
   };
 };

@@ -169,7 +169,7 @@
    */
   requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
-    foldersToCopy: cfg.foldersToCopy()
+    foldersToCopy: cfg.getPathesToCopy()
   });
 
   /**
@@ -177,12 +177,7 @@
    */
   requireTask(`${cfg.task.copyFoldersProduction}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.prod,
-    foldersToCopy: mergeArrays(
-      [
-        './**/*'
-      ],
-      cfg.ignoreProd()
-    )
+    foldersToCopy: cfg.getPathesToCopyForProduction()
   });
 
   /**
@@ -270,15 +265,6 @@
     cfg.task.copyFolders,
     cfg.task.copyFoldersProduction
   ));
-
-  /**
-   * Merge arrays
-   * @param  {Array} event    Event object
-   * @param  {Array} src      Name of the source folder
-   */
-  function mergeArrays(array1, array2) {
-    return array1.concat(array2);
-  }
 
   /**
    * Remove image(s) from build folder if corresponding

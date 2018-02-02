@@ -9,7 +9,7 @@ const gulp = require('gulp'),
 module.exports = function(options) {
 
   return () => {
-    return del([`./${options.src}/`]);
+    return del([`./${options.src}/`], { dot: true });
   };
 
 };
