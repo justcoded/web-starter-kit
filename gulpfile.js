@@ -222,7 +222,6 @@
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
       cfg.task.jsHint,
       cfg.task.imageMin
     ),
@@ -244,7 +243,6 @@
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
       cfg.task.jsHint,
       cfg.task.imageMin
     ),
@@ -266,7 +264,6 @@
       cfg.task.buildJsVendors,
       cfg.task.buildSassProd,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
       cfg.task.jsHint,
       cfg.task.imageMin
     ),
