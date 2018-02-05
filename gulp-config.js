@@ -42,7 +42,6 @@ module.exports = {
       `!{${this.folder.src},${this.folder.src}/**}`,
       '!{bower,bower/**}',
       '!{node_modules,node_modules/**}',
-      '!node_modules/',
       `!${this.folder.build}/css/**.map`,
       `!${this.folder.build}/images/info.txt`,
       '!.bowerrc',
