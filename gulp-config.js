@@ -37,14 +37,12 @@ module.exports = {
     versions: 'last 4 versions'
   },
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
-  ignoreProd: function() {
+  getPathesToCopyForProduction: function() {
     return [
-      `!${this.folder.src}/`,
-      `!${this.folder.src}/**/*`,
-      '!bower/',
-      '!bower/**/*',
-      '!node_modules/**/*',
-      '!node_modules/',
+      './**/*',
+      `!{${this.folder.src},${this.folder.src}/**}`,
+      '!{bower,bower/**}',
+      '!{node_modules,node_modules/**}',
       `!${this.folder.build}/css/**.map`,
       `!${this.folder.build}/images/info.txt`,
       '!.bowerrc',
@@ -58,23 +56,24 @@ module.exports = {
       '!readme.txt',
       '!CONTRIBUTING.md',
       '!gulp-config.js',
-      '!tasks/',
-      '!tasks/**/*'
+      '!package-lock.json',
+      '!{tasks,tasks/**}',
+      '!{.git,.git/**}',
+      '!{.history,.history/**}',
+      '!.gitattributes',
+      '!.travis.yml',
+      '!.eslintrc',
+      '!{tasks,tasks/**}'
     ];
   },
-  foldersToCopy: function() {
+  getPathesToCopy: function() {
     return [
-      `./${this.folder.src}/**/*`,
-      `!./${this.folder.src}/images/`,
-      `!./${this.folder.src}/images/**/*`,
-      `!./${this.folder.src}/js/`,
-      `!./${this.folder.src}/js/**/*`,
-      `!./${this.folder.src}/scss/`,
-      `!./${this.folder.src}/scss/**/*`,
-      `!./${this.folder.src}/vendor_entries/`,
-      `!./${this.folder.src}/vendor_entries/**/*`,
-      `!./${this.folder.src}/templates/`,
-      `!./${this.folder.src}/templates/**/*`
+      `./${this.folder.src}/**`,
+      `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
+      `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
+      `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
+      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`,
+      `!{${this.folder.src}/templates,${this.folder.src}/templates/**}`
     ];
   }
 };
