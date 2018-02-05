@@ -3,40 +3,34 @@
  */
 'use strict';
 
-const gulp  = require('gulp'),
-      watch = require('gulp-watch');
+const gulp = require('gulp');
 
-module.exports = function(options) {
+module.exports = function (options) {
   return () => {
-    global.watch = true;
+    gulp.watch(`./${options.src}/js/**/*`, gulp.series(options.tasks.buildCustomJs, options.tasks.jsHint));
 
-    watch(`./${options.src}/js/**/*`, () => {
-      gulp.start([
-        options.tasks.buildCustomJs,
-        options.tasks.jsHint
-      ]);
-    });
+    gulp.watch(`${options.pug}/**/*.pug`, gulp.series('templates'))
+      .on('all', (path) => {
+        global.emittyChangedFile = path;
+      });
 
-    watch(`${options.pug}/**/*.pug`, () => {
-      gulp.start('templates');
-    })
-    .on('all', (event, filepath) => {
-			global.emittyChangedFile = filepath;
-		});
+    gulp.watch(`./${options.src}/scss/**/*`, gulp.series(options.tasks.buildSass));
 
-    watch(`./${options.src}/scss/**/*`, () => {
-      gulp.start(options.tasks.buildSass);
-    });
+    const imagesWatcher = gulp.watch(`./${options.src}/images/**/*.+(${options.imageExtensions})`);
 
-    watch(`./${options.src}/images/**/*.+(${options.imageExtensions})`, file => {
-      if(file.event === 'unlink') {
-        options.deleteFile(file, options.src, options.dest);
-      } else {
-        gulp.start(options.tasks.imageMin);
-      }
-    });
+    imagesWatcher
+      .on('unlink', (path) => {
+        options.deleteFile({
+          path,
+          event: 'unlink'
+        }, options.src, options.dest);
+      })
+      .on('add', gulp.series(options.tasks.imageMin));
 
-    watch([`./${options.dest}/**/*`, './*.html'], options.browserSync.reload)
+    gulp.watch('./*.html', gulp.series(options.tasks.htmlHint));
+
+    gulp.watch([`./${options.dest}/**/*`, './*.html'])
+      .on('change', options.browserSync.reload);
   };
 
 };
