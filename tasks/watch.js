@@ -9,7 +9,7 @@ module.exports = function (options) {
   return () => {
     gulp.watch(`./${options.src}/js/**/*`, gulp.series(options.tasks.buildCustomJs, options.tasks.jsHint));
 
-    gulp.watch(`${options.pug}/**/*.pug`, gulp.series('templates'))
+    gulp.watch(`${options.pug}/**/*.pug`, gulp.series(options.tasks.templates))
       .on('all', (path) => {
         global.emittyChangedFile = path;
       });
@@ -26,8 +26,6 @@ module.exports = function (options) {
         }, options.src, options.dest);
       })
       .on('add', gulp.series(options.tasks.imageMin));
-
-    gulp.watch('./*.html', gulp.series(options.tasks.htmlHint));
 
     gulp.watch([`./${options.dest}/**/*`, './*.html'])
       .on('change', options.browserSync.reload);
