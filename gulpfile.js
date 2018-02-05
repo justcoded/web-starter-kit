@@ -33,31 +33,36 @@
         path        = require('path'),
         notifier    = require('node-notifier'),
         gutil       = require('gulp-util'),
-        runSequence = require('run-sequence'),
         browserSync = require('browser-sync').create();
 
   /**
-  * Require gulp task from file
-  * @param  {string} taskName    Task name
-  * @param  {String} path        Path to task file
-  * @param  {Object} options     Options for task
-  * @param  [Array]  dep         Task dependencies
-  */
-  function requireTask(taskName, path, options, dep) {
-    let settings = options || {},
-      dependencies = dep || [];
-
-    settings.taskName = taskName;
-
-    gulp.task(taskName, dependencies, function(callback) {
-      if(settings.checkProduction) {
-        settings.isProduction = this.seq.slice(-1)[0] === 'production';
+   * Require gulp task from file
+   * @param  {string} taskName     Task name
+   * @param  {String} path         Path to task file
+   * @param  {Object} options      Options for task
+   * @param  {Array}  dependencies Task dependencies
+   */
+  function requireTask(taskName, path, options, dependencies) {
+    let settings = options || {};
+    const taskFunction = function (callback) {
+      if (settings.checkProduction) {
+        settings.isProduction = process.argv[process.argv.length - 1] === 'production';
       }
 
       let task = require(path + taskName + '.js').call(this, settings);
 
       return task(callback);
-    });
+    }
+
+    settings.taskName = taskName;
+
+    if (!Array.isArray(dependencies)) {
+      gulp.task(taskName, taskFunction);
+    } else if (dependencies.length === 1) {
+      gulp.task(taskName, gulp.series(dependencies[0], taskFunction));
+    } else {
+      gulp.task(taskName, gulp.series(dependencies, taskFunction));
+    }
   }
 
   /**
@@ -164,7 +169,7 @@
    */
   requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
-    foldersToCopy: cfg.foldersToCopy()
+    foldersToCopy: cfg.getPathesToCopy()
   });
 
   /**
@@ -172,12 +177,7 @@
    */
   requireTask(`${cfg.task.copyFoldersProduction}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.prod,
-    foldersToCopy: mergeArrays(
-      [
-        './**/*'
-      ],
-      cfg.ignoreProd()
-    )
+    foldersToCopy: cfg.getPathesToCopyForProduction()
   });
 
   /**
@@ -209,80 +209,62 @@
   /**
    * Default Gulp task
    */
-  gulp.task('default', (callback) => {
-      runSequence(
-        cfg.task.cleanBuild,
-        [
-          cfg.task.buildCustomJs,
-          cfg.task.buildJsVendors,
-          cfg.task.buildSass,
-          cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
-          cfg.task.jsHint,
-          cfg.task.imageMin
-        ],
-        cfg.task.copyFolders,
-        [
-          cfg.task.browserSync,
-          cfg.task.watch
-        ]
-      );
-    }
-  );
+  gulp.task('default', gulp.series(
+    cfg.task.cleanBuild,
+    gulp.parallel(
+      cfg.task.buildCustomJs,
+      cfg.task.buildJsVendors,
+      cfg.task.buildSass,
+      cfg.task.buildStylesVendors,
+      cfg.task.htmlHint,
+      cfg.task.jsHint,
+      cfg.task.imageMin
+    ),
+    cfg.task.copyFolders,
+    gulp.parallel(
+      cfg.task.browserSync,
+      cfg.task.watch
+    )
+  ));
 
   /**
    * Dev Gulp task without usage of browserSync
    */
-  gulp.task('dev', (callback) => {
-      runSequence(
-        cfg.task.cleanBuild,
-        [
-          cfg.task.buildCustomJs,
-          cfg.task.buildJsVendors,
-          cfg.task.buildSass,
-          cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
-          cfg.task.jsHint,
-          cfg.task.imageMin
-        ],
-        cfg.task.copyFolders,
-        cfg.task.watch
-      );
-    }
-  );
+  gulp.task('dev', gulp.series(
+    cfg.task.cleanBuild,
+    gulp.parallel(
+      cfg.task.buildCustomJs,
+      cfg.task.buildJsVendors,
+      cfg.task.buildSass,
+      cfg.task.buildStylesVendors,
+      cfg.task.htmlHint,
+      cfg.task.jsHint,
+      cfg.task.imageMin
+    ),
+    cfg.task.copyFolders,
+    cfg.task.watch
+  ));
 
   /**
    * Creating production folder without unnecessary files
    */
-  gulp.task('production', (callback) => {
-      runSequence(
-        [
-          cfg.task.cleanProd,
-          cfg.task.cleanBuild
-        ],
-        [
-          cfg.task.buildCustomJs,
-          cfg.task.buildJsVendors,
-          cfg.task.buildSassProd,
-          cfg.task.buildStylesVendors,
-          cfg.task.htmlHint,
-          cfg.task.jsHint,
-          cfg.task.imageMin
-        ],
-        cfg.task.copyFolders,
-        cfg.task.copyFoldersProduction
-      );
-    }
-  );
-
-  /**
-   * Merge arrays
-   * @param  {Array} event    Event object
-   * @param  {Array} src      Name of the source folder
-   */
-  function mergeArrays(array1, array2) {
-    return array1.concat(array2);
-  }
+  gulp.task('production', gulp.series(
+    gulp.parallel(
+      cfg.task.cleanProd,
+      cfg.task.cleanBuild
+    ),
+    gulp.parallel(
+      cfg.task.buildCustomJs,
+      cfg.task.buildJsVendors,
+      cfg.task.buildSassProd,
+      cfg.task.buildStylesVendors,
+      cfg.task.htmlHint,
+      cfg.task.jsHint,
+      cfg.task.imageMin
+    ),
+    cfg.task.copyFolders,
+    cfg.task.copyFoldersProduction
+  ));
 
   /**
    * Remove image(s) from build folder if corresponding
@@ -292,7 +274,7 @@
    * @param  {String} dest     Name of the destination folder
    */
   function deleteFile(file, src, dest) {
-    let fileName = file.history.toString().split('/').pop();
+    let fileName = file.path.toString().split('/').pop();
     let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
 
     let filePathFromSrc = path.relative(path.resolve(src), file.path);
@@ -313,7 +295,10 @@
    */
   function showError(preffix, err) {
     gutil.log(gutil.colors.white.bgRed(' ' + preffix + ' '), gutil.colors.white.bgBlue(' ' + err.message + ' '));
-    notifier.notify({ title: preffix, message: err.message });
+    notifier.notify({
+      title: preffix,
+      message: err.message
+    });
     this.emit('end');
   }
 })();
