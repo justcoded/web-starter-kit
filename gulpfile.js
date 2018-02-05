@@ -173,7 +173,7 @@
    */
   requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
-    foldersToCopy: cfg.foldersToCopy()
+    foldersToCopy: cfg.getPathesToCopy()
   });
 
   /**
@@ -181,12 +181,7 @@
    */
   requireTask(`${cfg.task.copyFoldersProduction}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.prod,
-    foldersToCopy: mergeArrays(
-      [
-        './**/*'
-      ],
-      cfg.ignoreProd()
-    )
+    foldersToCopy: cfg.getPathesToCopyForProduction()
   });
 
   /**
