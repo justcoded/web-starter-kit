@@ -62,7 +62,7 @@ Once you have verified that your system can run WSK, check out the [commands](#c
 
 ## Install
 
-[Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
+[Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp@next && npm install` in that directory to get started.
 
 
 To take advantage of Web Starter Kit you need to:
