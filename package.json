@@ -1,6 +1,6 @@
 {
   "name": "web-starter-jc",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Starter kit for markup projects",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "browserify": "^14.0.0",
     "del": "^3.0.0",
     "files-exist": "^1.0.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssimport": "^5.0.0",
@@ -34,7 +34,7 @@
     "gulp-group-css-media-queries": "^1.2.0",
     "gulp-header": "^1.8.9",
     "gulp-htmlhint": "^0.3.1",
-    "gulp-imagemin": "^3.1.1",
+    "gulp-imagemin": "^4.1.0",
     "gulp-jshint": "^2.0.4",
     "gulp-newer": "^1.3.0",
     "gulp-notify": "^3.0.0",
@@ -43,16 +43,14 @@
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
-    "gulp-watch": "^4.3.11",
     "htmlhint-stylish": "^1.0.3",
     "imagemin-pngquant": "^5.0.0",
     "jshint": "^2.9.4",
     "merge-stream": "^1.0.1",
     "node-notifier": "^5.0.2",
     "path": "^0.12.7",
-    "run-sequence": "^1.2.2",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^2.0.0"
   },
   "engines": {
     "node": ">=4.0.0"
