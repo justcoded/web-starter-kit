@@ -5,7 +5,9 @@
 
 const gulp = require('gulp');
 
-module.exports = function(options) {
+module.exports = function (options) {
+  const { files } = options.sassFilesInfo;
+
   return () => {
     gulp.watch(`./${options.src}/js/**/*`, gulp.series(options.tasks.buildCustomJs, options.tasks.jsHint));
 
@@ -26,6 +28,10 @@ module.exports = function(options) {
 
     gulp.watch([`./${options.dest}/**/*`, './*.html'])
       .on('change', options.browserSync.reload);
+    
+    if (files.length > 0) {
+      gulp.watch(files, gulp.series(options.tasks.buildSassFiles));
+    }
   };
 
 };

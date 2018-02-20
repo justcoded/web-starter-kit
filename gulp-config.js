@@ -21,6 +21,7 @@ module.exports = {
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
+    buildSassFiles: 'compile-sass-files',
     buildSassProd: 'build-sass-production',
     buildStylesVendors: 'build-styles-vendors',
     imageMin: 'image-min',
@@ -36,6 +37,12 @@ module.exports = {
     versions: 'last 4 versions'
   },
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
+  getPathesForSassCompiling: function () {
+    return {
+      files: [],
+      isGcmq: false
+     };
+  },
   getPathesToCopyForProduction: function() {
     return [
       './**/*',
@@ -62,6 +69,8 @@ module.exports = {
       '!.gitattributes',
       '!.travis.yml',
       '!.eslintrc',
+      `!{${this.folder.src}/test,${this.folder.src}/test/**}`,
+      `!{${this.folder.src}/test1,${this.folder.src}/test1/**}`
     ];
   },
   getPathesToCopy: function() {
@@ -70,7 +79,9 @@ module.exports = {
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
       `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
       `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
-      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`
+      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`,
+      `!{${this.folder.src}/test,${this.folder.src}/test/**}`,
+      `!{${this.folder.src}/test1,${this.folder.src}/test1/**}`
     ];
   }
 };

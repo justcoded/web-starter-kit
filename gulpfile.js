@@ -112,6 +112,17 @@
   });
 
   /**
+   * Compile scss files listed in the config
+   */
+  requireTask(`${cfg.task.buildSassFiles}`, `./${cfg.folder.tasks}/`, {
+    sassFilesInfo: cfg.getPathesForSassCompiling(),
+    dest: cfg.folder.build,
+    versions: cfg.autoprefixer.versions,
+    self: self,
+    showError: showError
+  });
+
+  /**
    * Build production styles for application from SASS
    */
   requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
@@ -192,12 +203,14 @@
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
+    sassFilesInfo: cfg.getPathesForSassCompiling(),
     src: cfg.folder.src,
     dest: cfg.folder.build,
     imageExtensions: cfg.imageExtensions,
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
+      buildSassFiles: cfg.task.buildSassFiles,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
       jsHint: cfg.task.jsHint,
@@ -215,6 +228,7 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
+      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
       cfg.task.jsHint,
@@ -236,6 +250,7 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
+      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
       cfg.task.jsHint,
@@ -257,6 +272,7 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSassProd,
+      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
       cfg.task.jsHint,
