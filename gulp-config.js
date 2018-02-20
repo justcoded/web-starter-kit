@@ -22,6 +22,7 @@ module.exports = {
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
+    buildSassFiles: 'compile-sass-files',
     buildSassProd: 'build-sass-production',
     buildStylesVendors: 'build-styles-vendors',
     imageMin: 'image-min',
@@ -37,6 +38,12 @@ module.exports = {
     versions: 'last 4 versions'
   },
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
+  getPathesForSassCompiling: function () {
+    return {
+      files: [],
+      isGcmq: false
+     };
+  },
   getPathesToCopyForProduction: function() {
     return [
       './**/*',

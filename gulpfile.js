@@ -196,6 +196,7 @@
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
+    sassFilesInfo: cfg.getPathesForSassCompiling(),
     src: cfg.folder.src,
     dest: cfg.folder.build,
     pug: cfg.folder.pug,
@@ -203,6 +204,7 @@
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
+      buildSassFiles: cfg.task.buildSassFiles,
       templates: cfg.task.templates,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
@@ -221,6 +223,7 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
+      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.jsHint,
       cfg.task.imageMin
@@ -242,6 +245,7 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
+      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.jsHint,
       cfg.task.imageMin
@@ -263,6 +267,7 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSassProd,
+      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.jsHint,
       cfg.task.imageMin
