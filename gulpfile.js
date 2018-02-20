@@ -116,6 +116,17 @@
   });
 
   /**
+   * Compile scss files listed in the config
+   */
+  requireTask(`${cfg.task.buildSassFiles}`, `./${cfg.folder.tasks}/`, {
+    sassFilesInfo: cfg.getPathesForSassCompiling(),
+    dest: cfg.folder.build,
+    versions: cfg.autoprefixer.versions,
+    self: self,
+    showError: showError
+  });
+
+  /**
    * Build production styles for application from SASS
    */
   requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
