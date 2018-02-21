@@ -68,9 +68,7 @@ module.exports = {
       '!{.history,.history/**}',
       '!.gitattributes',
       '!.travis.yml',
-      '!.eslintrc',
-      `!{${this.folder.src}/test,${this.folder.src}/test/**}`,
-      `!{${this.folder.src}/test1,${this.folder.src}/test1/**}`
+      '!.eslintrc'
     ];
   },
   getPathesToCopy: function() {
@@ -79,9 +77,7 @@ module.exports = {
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
       `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
       `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
-      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`,
-      `!{${this.folder.src}/test,${this.folder.src}/test/**}`,
-      `!{${this.folder.src}/test1,${this.folder.src}/test1/**}`
+      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`
     ];
   }
 };
