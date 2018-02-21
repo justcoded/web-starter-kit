@@ -239,7 +239,15 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 * All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include its files**:
   * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
+  
+You are able to add your own custom sass files and optionally [disable/enable gulp-group-css-media-queries module](https://github.com/justcoded/web-starter-kit/issues/56).
+You can see this property in the gulp-config.js file:
+![image](https://user-images.githubusercontent.com/14921077/36471272-8ce84fbc-16f6-11e8-8173-4e41d1dbbb9f.png)
 
+Please don't forget to link all your custom scss files in html:
+![image](https://user-images.githubusercontent.com/14921077/36471279-9387a368-16f6-11e8-9814-a7f1a18150fc.png)
+
+Also, you might want to add these sass files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the assets and production folders.
 
 ## Tasks
 
@@ -259,7 +267,7 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 | image-clean           | Removing images.                    |
 | image-min           | We use this to minify images.                    |
 | watch           | Task for watching all the changes.                   |
-
+| compile-sass-files           | Compiles all custom scss files listed in the `gulp-config.js` to `assets/css`   folder                   |
 
 ## Troubleshooting
 
