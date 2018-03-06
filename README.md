@@ -52,7 +52,7 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
                                                                                                                                      
 ## Quickstart
 
-[Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit or clone this repository and build on what is included in the `assets` directory.
+Init your project using [jcn](https://github.com/justcoded/npm-jcn) or  [Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit from this repository and build on what is included in the `assets` directory.
 
 You can start from `index.html` - the default starting point, with template text.
 
@@ -62,7 +62,7 @@ Once you have verified that your system can run WSK, check out the [commands](#c
 
 ## Install
 
-[Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp@next && npm install` in that directory to get started.
+Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp@next && npm install` in that directory to get started.
 
 
 To take advantage of Web Starter Kit you need to:
