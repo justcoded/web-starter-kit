@@ -189,6 +189,7 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
    ├── style.scss               #Main scss file (can be used for importing another files)
+#This `templates` folder will be created if you choose a Pug option using jcn
 ├── templates                   #Folder with pug templates
    ├── layouts                  #Folder with pug layouts
       ├── default.pug           #Example of the pug layout
