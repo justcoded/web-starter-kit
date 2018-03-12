@@ -81,13 +81,13 @@ To take advantage of Web Starter Kit you need to:
 ### [Node.js](https://nodejs.org)
 
 Bring up a terminal and type `node --version`.
-Node should respond with a version at or above 4.0.x.
+Node should respond with a version at or above 6.0.x.
 If you need to install Node, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
 
 ### [Gulp](http://gulpjs.com)
 
 Bring up a terminal and type `gulp --version`.
-If Gulp is installed it should return a version number at or above 3.9.x.
+If Gulp is installed it should return a version number at or above 4.0.x.
 If you need to install/upgrade Gulp, open up a terminal and type in the following:
 
 ```sh
