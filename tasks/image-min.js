@@ -13,18 +13,19 @@ module.exports = function(options) {
   return () => {
     return gulp.src(`./${options.src}/images/**/*`)
       .pipe(newer(`./${options.dest}/images/`))
-      .pipe(imagemin({
-        optimizationLevel: 5,
-        progressive: true,
-        svgoPlugins: [
-          {
+      .pipe(imagemin([
+        imagemin.jpegtran({
+          progressive: true
+        }),
+        imagemin.optipng({
+          optimizationLevel: 5
+        }),
+        imagemin.svgo({
+          plugins: [{
             removeViewBox: false
-          }
-        ],
-        use: [
-          pngquant()
-        ]
-      }))
+          }]
+        })
+      ]))
       .pipe(gulp.dest(`./${options.dest}/images/`));
   };
 
