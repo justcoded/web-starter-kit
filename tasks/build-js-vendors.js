@@ -10,8 +10,12 @@ const gulp       = require('gulp'),
 
 module.exports = function(options) {
 
-  return () => {
+  return (cb) => {
     let jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
+
+    if (jsVendors.length == 0) {
+      return cb();
+    }
 
     return gulp.src(filesExist(jsVendors))
       .pipe(concat(options.vendorJsMin))
