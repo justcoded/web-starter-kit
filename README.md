@@ -72,6 +72,15 @@ To take advantage of Web Starter Kit you need to:
 3. Modify the application as you wish.
 4. Make the production of your code.
 
+This starter wasn't tested on Linux. If you want to use it on Ubuntu 17 type these commands in a command terminal:
+```sh
+$ sudo snap install node --classic --channel 6/stable
+```
+```sh
+$ npm install gulpjs/gulp-cli -g
+```
+
+
 ## Getting the code
 
 [Download](https://github.com/justcoded/web-starter-kit/releases/latest) and extract WSK to the place where you want to work.
