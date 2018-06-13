@@ -7,6 +7,7 @@ const gulp = require('gulp');
 
 module.exports = function (options) {
   return () => {
+    global.watch = true;
     gulp.watch(`./${options.src}/js/**/*`, gulp.series(options.tasks.buildCustomJs, options.tasks.jsHint));
 
     gulp.watch(`${options.pug}/**/*.pug`, gulp.series(options.tasks.templates))
