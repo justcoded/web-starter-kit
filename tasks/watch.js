@@ -11,7 +11,7 @@ module.exports = function (options) {
     gulp.watch(`./${options.src}/js/**/*`, gulp.series(options.tasks.buildCustomJs, options.tasks.jsHint));
 
     gulp.watch(`${options.pug}/**/*.pug`, gulp.series(options.tasks.templates))
-      .on('all', (path) => {
+      .on('all', (event, path) => {
         global.emittyChangedFile = path;
       });
 
