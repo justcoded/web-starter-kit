@@ -1,7 +1,7 @@
 // Set column widths
 @for $i from 1 through length($columns-width) {
   .col-#{$i} {
-    width: map-get($columns-width, 'col-#{$i}');
+    width: nth($columns-width, $i);
   }
 }
 

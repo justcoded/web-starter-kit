@@ -8,20 +8,11 @@
   // Used to adjust the grid
 */
 
-$columns-width: (
-  'col-1': 8.33%,
-  'col-2': 16.66%,
-  'col-3': 25%,
-  'col-4': 33.33%,
-  'col-5': 41.65%,
-  'col-6': 50%,
-  'col-7': 58.33%,
-  'col-8': 66.66%,
-  'col-9': 75%,
-  'col-10': 83.33%,
-  'col-11': 91.66%,
-  'col-12': 100%
-  );
+$columns-width: ();
+
+@for $i from 1 through 12 {
+  $columns-width: append($columns-width, $i * 100%/12);
+}
 
 /* 
   // Base gaps 
