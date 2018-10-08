@@ -5,8 +5,11 @@
 @import './node_modules/include-media/dist/include-media';
 
 
+// * Default settings * //
+@import '_config/main';
+
 //* Abstracts modules *//
-@import 'abstracts/main';
+// @import 'abstracts/main';
 
 //* Base modules *//
 @import 'base/main';
@@ -18,4 +21,4 @@
 @import 'pages/main';
 
 //* Components *//
-@import 'components/starter-box';
+@import 'components/main';
