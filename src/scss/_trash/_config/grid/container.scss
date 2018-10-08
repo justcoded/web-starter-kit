@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+
+  @include media('>tablet') {
+    max-width: $w1440;
+  }
+
+  @include media('<=tablet') {
+    max-width: $w980;
+  }
+
+  @include media('<=phone') {
+    max-width: $w480;
+  }
+
+  &--fullHeight {
+    height: 100vh;
+    max-width: 100%;
+  }
+}

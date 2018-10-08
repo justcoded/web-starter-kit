@@ -1,0 +1,40 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: $default-dark-font-color;
+  background: map-deep-get($colors, 'primary', 'body-bg-color');
+  font: #{
+    #{map-deep-get($typography-settings, 'base-font-settings', 'base-font-weight')}
+    #{map-deep-get($typography-settings, 'base-font-settings', 'base-font-size')} / 
+    #{map-deep-get($typography-settings, 'base-font-settings', 'base-line-height')} 
+    #{map-deep-get($typography-settings, 'base-font-settings', 'base-font-family')}
+  };
+  min-width: map-deep-get($values, 'width', 'min-screen-width');
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// google map fix
+.gm-style img {
+  max-width: none;
+}
+
+// hide tel links on desktop
+@media only screen and (min-width: 1025px) {
+
+  a[href^="tel"],
+  a[href^="skype"],
+  a[href^="sms"] {
+    cursor: default;
+    pointer-events: none;
+  }
+}

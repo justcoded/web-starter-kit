@@ -45,7 +45,7 @@
     min-height: $va-height;
   }
 
-  > * {
+  >* {
     white-space: normal;
     display: inline-block;
     vertical-align: $va-direction;
@@ -60,13 +60,15 @@
 //     or @include v-align-pair(image, text, bottom);
 //     or @include v-align-pair(image, text, middle, 200px);
 //
-@mixin v-align-pair($child-name1, $child-name2, $valign: middle, $width1: auto, $width2: auto ) {
+@mixin v-align-pair($child-name1, $child-name2, $valign: middle, $width1: auto, $width2: auto) {
   display: table;
-  .#{$child-name1}{
+
+  .#{$child-name1} {
     display: table-cell;
     vertical-align: $valign;
-    width: $width1; 
+    width: $width1;
   }
+
   .#{$child-name2} {
     display: table-cell;
     vertical-align: $valign;
@@ -75,14 +77,24 @@
 }
 
 
-// vertical align el
-// usage: @include vertical-align-el;
-//
-@mixin vertical-align-el {
+// Relative centering
+// usage: 
+// @include relative-centering(top) to vertical centering;
+// @include relative-centering(left) to horizontal centering
+@mixin relative-centering($position) {
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  $position: 50%;
+  transform: translate(-50%);
 }
+
+// Absolute horizontal centering
+// The same usage like Relative centering
+@mixin absolute-centering($position) {
+  position: absolute;
+  $position: 50%;
+  transform: translate(-50%);
+}
+
 
 /// Mixin helping defining both `width` and `height` simultaneously.
 ///
@@ -121,12 +133,13 @@
 /// font-smothing
 /// @include font-smoothing(on);
 /// @include font-smoothing(off);
-@mixin font-smoothing($value: on){
-  @if $value == on{
+@mixin font-smoothing($value: on) {
+  @if $value==on {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  @else{
+
+  @else {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
   }
@@ -174,60 +187,82 @@
   $width: nth($size, 1);
   $height: nth($size, length($size));
   $foreground-color: nth($color, 1);
-  $background-color: if(length($color) == 2, nth($color, 2), transparent);
+  $background-color: if(length($color)==2, nth($color, 2), transparent);
   height: 0;
   width: 0;
 
-  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+  @if ($direction==up) or ($direction==down) or ($direction==right) or ($direction==left) {
     $width: $width / 2;
     $height: if(length($size) > 1, $height, $height/2);
 
-    @if $direction == up {
+    @if $direction==up {
       border-bottom: $height solid $foreground-color;
       border-left: $width solid $background-color;
       border-right: $width solid $background-color;
-    } @else if $direction == right {
+    }
+
+    @else if $direction==right {
       border-bottom: $width solid $background-color;
       border-left: $height solid $foreground-color;
       border-top: $width solid $background-color;
-    } @else if $direction == down {
+    }
+
+    @else if $direction==down {
       border-left: $width solid $background-color;
       border-right: $width solid $background-color;
       border-top: $height solid $foreground-color;
-    } @else if $direction == left {
+    }
+
+    @else if $direction==left {
       border-bottom: $width solid $background-color;
       border-right: $height solid $foreground-color;
       border-top: $width solid $background-color;
     }
-  } @else if ($direction == up-right) or ($direction == up-left) {
+  }
+
+  @else if ($direction==up-right) or ($direction==up-left) {
     border-top: $height solid $foreground-color;
 
-    @if $direction == up-right {
+    @if $direction==up-right {
       border-left: $width solid $background-color;
-    } @else if $direction == up-left {
+    }
+
+    @else if $direction==up-left {
       border-right: $width solid $background-color;
     }
-  } @else if ($direction == down-right) or ($direction == down-left) {
+  }
+
+  @else if ($direction==down-right) or ($direction==down-left) {
     border-bottom: $height solid $foreground-color;
 
-    @if $direction == down-right {
+    @if $direction==down-right {
       border-left: $width solid $background-color;
-    } @else if $direction == down-left {
+    }
+
+    @else if $direction==down-left {
       border-right: $width solid $background-color;
     }
-  } @else if ($direction == inset-up) {
+  }
+
+  @else if ($direction==inset-up) {
     border-color: $background-color $background-color $foreground-color;
     border-style: solid;
     border-width: $height $width;
-  } @else if ($direction == inset-down) {
+  }
+
+  @else if ($direction==inset-down) {
     border-color: $foreground-color $background-color $background-color;
     border-style: solid;
     border-width: $height $width;
-  } @else if ($direction == inset-right) {
+  }
+
+  @else if ($direction==inset-right) {
     border-color: $background-color $background-color $background-color $foreground-color;
     border-style: solid;
     border-width: $width $height;
-  } @else if ($direction == inset-left) {
+  }
+
+  @else if ($direction==inset-left) {
     border-color: $background-color $foreground-color $background-color $background-color;
     border-style: solid;
     border-width: $width $height;
@@ -244,11 +279,13 @@
 $animation-speed: 0.3s !default;
 
 @mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
-  $list:();
+  $list: ();
+
   @each $prop in $properties {
     $str: #{$prop} #{$duration} #{$easing};
     $list: append($list, $str, comma);
   }
+
   transition: $list;
 }
 
@@ -268,11 +305,26 @@ $animation-speed: 0.3s !default;
 ///   }
 
 @mixin placeholder {
-  &::-webkit-input-placeholder {@content;}
-  &::-moz-placeholder {opacity: 1; @content;}
-  &:-moz-placeholder {@content;}
-  &:-ms-input-placeholder {@content;}
-  &.placeholder {@content;}
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1;
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &.placeholder {
+    @content;
+  }
 }
 
 /// Font-size px to rem calc
@@ -284,4 +336,20 @@ $animation-speed: 0.3s !default;
 @mixin rem-font-size($pxSize) {
   font-size: $pxSize;
   font-size: ($pxSize / 10px) + rem;
+}
+
+// Flex centering content in wrapper
+@mixin flex-centering($position, $justify-content) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: center;
+  position: $position;
+}
+
+// If you need to decorate heading of article by figure like a line, you can use it for pseudo classes 'before' and 'after
+@mixin pseudo-absolute($width, $height) {
+  content: '';
+  position: absolute;
+  width: $width;
+  height: $height;
 }

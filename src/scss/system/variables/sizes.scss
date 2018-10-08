@@ -1,0 +1,47 @@
+/*
+  // PX to REM
+*/
+
+$values: (
+  'width': (
+    'desktop': 90rem,
+    '1024px': 64rem,
+    'tablet': 61.25rem,
+    '768px': 48rem,
+    'mobile': 30rem,
+    '425px': 26.563rem,
+    '375px': 23.438rem,
+    'min-screen-width': 20rem
+  )
+);
+
+/*
+  // Paddings
+  // The value in pixels is relevant when base font-size 16px
+*/
+$indents: (
+  'horizontal': (
+    'xs': 0 0.938em, // 15px
+    'sm': 0 1.875em, // 30px
+    'md': 0 2.813em, // 45px
+    'lg': 0 3.750em, // 60px
+    'xl': 0 4.688em, // 75px
+  ),
+  'vertical': (
+    'xs': 0.938em 0, // 15px
+    'sm': 1.875em 0, // 30px
+    'md': 2.813em 0, // 45px
+    'lg': 3.750em 0, // 60px
+    'xl': 4.688em 0, // 75px
+  )
+);
+
+/*
+  // Base dimensions
+*/
+$dimensions: (
+  'full': 100%,
+  'half': 50%,
+  'third': 33.33%,
+  'quoter': 25%
+);

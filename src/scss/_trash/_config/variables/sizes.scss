@@ -1,0 +1,40 @@
+// Px to Em
+$w1440: 90em;
+$w1024: 64em;
+$w980: 61.25em;
+$w768: 48em;
+$w480: 30em;
+$w425: 26.563em;
+$w375: 23.438em;
+$w320: 20em;
+
+/*
+  // Paddings
+  // The value in pixels is relevant when base font-size 16px
+*/
+$indents: (
+  'horizontal': (
+    'xs': 0 0.938em, // 15px
+    'sm': 0 1.875em, // 30px
+    'md': 0 2.813em, // 45px
+    'lg': 0 3.750em, // 60px
+    'xl': 0 4.688em, // 75px
+  ),
+  'vertical': (
+    'xs': 0.938em 0, // 15px
+    'sm': 1.875em 0, // 30px
+    'md': 2.813em 0, // 45px
+    'lg': 3.750em 0, // 60px
+    'xl': 4.688em 0, // 75px
+  )
+);
+
+/*
+  // Base dimensions
+*/
+$dimensions: (
+  'full': 100%,
+  'half': 50%,
+  'third': 33.33%,
+  'quoter': 25%
+);

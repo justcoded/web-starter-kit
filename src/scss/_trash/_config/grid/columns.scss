@@ -1,0 +1,37 @@
+// Set column widths
+@for $i from 1 through length($columns-width) {
+  .col-#{$i} {
+    width: map-get($columns-width, 'col-#{$i}');
+  }
+}
+
+// Set display: flex to all columns
+[class^="col"],
+[class*=" col"] {
+  display: flex;
+}
+
+// Set default horizontal padding to rows
+.row {
+  width: map-get($dimensions, 'full');
+  padding: $base-horizontal-padding;
+}
+
+// Columns
+.cols-2 {
+  >* {
+    width: map-get($dimensions, 'half');
+  }
+}
+
+.cols-3 {
+  >* {
+    width: map-get($dimensions, 'third');
+  }
+}
+
+.cols-4 {
+  >* {
+    width: map-get($dimensions, 'quoter');
+  }
+}

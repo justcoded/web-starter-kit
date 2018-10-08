@@ -1,0 +1,15 @@
+.container {
+
+  // background-color: $color-gray-20;
+  font-size: map-deep-get($typography-settings, 'base', 'm');
+  
+  $typography-settings: map-deep-set($typography-settings, "base""m", 12px);
+}
+
+h1 {
+  // font-size: $default-font-size;
+  color: map-deep-get($colors, 'main-text', 'filling-80');
+}
+
+$base-font-size: 12px;
+

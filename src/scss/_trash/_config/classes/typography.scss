@@ -1,0 +1,15 @@
+.heading {
+  font-size: $article-heading-font-size;
+
+  &--lg {
+    font-size: 1em;
+  }
+
+  &--md {
+    font-size: .85em;
+  }
+
+  &--sm {
+    font-size: .7em;
+  }
+}

@@ -1,0 +1,16 @@
+/*
+// colors black & white
+// Example SCSS usage:
+// .class {
+//    background: black(0.15);
+//    color: white(0.9);
+// }
+*/
+
+@function black($opacity) {
+  @return rgba(#000, $opacity);
+}
+
+@function white($opacity) {
+  @return rgba(#fff, $opacity);
+}
