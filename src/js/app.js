@@ -4,6 +4,7 @@
 // Feel free with using ES6 here.
 
 import DE from './modules/dots';
+import randomInt from './modules/randomInt';
 
 ( ($) => {
   'use strict';
@@ -11,6 +12,7 @@ import DE from './modules/dots';
   // When DOM is ready
   $(() => {
     DE.dotsEffect();
+    randomInt.init();
   });
 
 })(jQuery);
