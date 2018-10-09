@@ -4,12 +4,11 @@
 //* Vendors *//
 @import './node_modules/include-media/dist/include-media';
 
+//* Customize settings //
+@import 'base/customize';
+
 // Add systems files witch can help you to customize all needed settings
 @import 'system/main';
-
-//* Customize settings //
-@import 'base/customize', 
-        'system/add-customize';
 
 //* Add base classes //
 @import 'classes/main';

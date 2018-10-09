@@ -1,26 +1,97 @@
-// Default settings
-$default-font-size: 16px;
-$default-line-height: 1.1em;
-$default-font-family: " 'Verdana', 'Geneva', sans-serif ";
-$default-dark-font-color: #333;
+/*
+    # What's new? 
+
+    1. Semantic values 
+
+      For easy readability you could use semantic values:
+      
+      // widths/heights
+      // 'full' = 100%
+      // 'half' = 50%
+      // 'third' = 33.33%
+      // 'quoter' = 25%
+
+      // horizontal/vertical paddings/margins
+      // xs (15px)
+      // sm (30px)
+      // md (45px)
+      // lg (60px)
+      // xl (75px)
+
+      // z-indexes
+      // 'outdated-browser' = 5
+      // 'modal' = 4
+      // 'hight' = 3
+      // 'content' = 2
+      // 'low' = 1
+
+    2. Flex grid
+
+      You could use 12 columns flex-grid
+
+      // .container (add modifier 'container--fullHeight' to make Full height (100vh) container)
+      //// .row (add modifier .cols-(2 to 4) if you need to split a row into columns)
+      ////// you could use .col-(1 to 12) to indicate the required width inside the string
+
+    3. To simplify reading and modification, all mixins and functions are divided into separate files with a description.
+
+    4. Added new mixins
+
+      You can find it in ../system/mixins
+
+    5. Added new functions
+
+      You can find it in ../system/functions
+      
+    6. Added helper classes
+
+      You can find it in ../classes
+
+    7. Using loops and maps has shortened the code and made it easier to edit.
+
+*/
+
+/*
+    This map is responsible for the standard typography of the project.
+    Use map-deep-get function to get the values.
+    Example: map-deep-get($map, $key, $key);
+
+    SCSS usage: 
+    // h1 {
+    //   font-size: map-deep-get($typography-settings, 'headings', 'h1-font-size');
+    // }
+
+    CSS output:
+    // h1 {
+    //   font-size: 2.25em;
+    // }
+
+    These values are already set as default values.
+    You can use them or modify for your own project.
+    Just save the file after starting Gulp to apply the new settings.
+*/
+
+$typography-settings: (
+  'base': (
+    'base-font-weight': 400,
+    'base-font-size': 16px,
+    'base-line-height': 1.1em,
+    'base-font-family': "'Verdana', 'Geneva', sans-serif"
+  ),
+  'headings': (
+    'h1-font-size': 2.25em,
+    'h2-font-size': 2em,
+    'h3-font-size': 1.75em,
+    'h4-font-size': 1.5em,
+    'h5-font-size': 1.25em,
+    'h6-font-size': 1em
+  ),
+);
 
 $animation-speed: 0.3s !default;
 
-// Containers max-width
-$desktop-container-max-width: 90rem;
-$tablet-container-max-width: 61.25rem;
-$mobile-container-max-width: 30rem;
-
 // Primary colors
 $body-background-color: #fff;
-
-// Base heading font-size
-$h1-font-size: 2.25em;
-$h2-font-size: 2em;
-$h3-font-size: 1.75em;
-$h4-font-size: 1.5em;
-$h5-font-size: 1.25em;
-$h6-font-size: 1em;
 
 /*
     In a large project,

@@ -10,4 +10,16 @@
     height: 100vh;
     max-width: 100%;
   }
+
+  @include media('>tablet') {
+    max-width: map-deep-get($values, 'width', 'desktop');
+  }
+
+  @include media('<=tablet') {
+    max-width: map-deep-get($values, 'width', 'tablet');
+  }
+
+  @include media('<=phone') {
+    max-width: map-deep-get($values, 'width', 'mobile');
+  }
 }

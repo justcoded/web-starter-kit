@@ -19,19 +19,19 @@
 
 // Columns
 .cols-2 {
-  >* {
+  > * {
     width: map-get($dimensions, 'half');
   }
 }
 
 .cols-3 {
-  >* {
+  > * {
     width: map-get($dimensions, 'third');
   }
 }
 
 .cols-4 {
-  >* {
+  > * {
     width: map-get($dimensions, 'quoter');
   }
 }

@@ -2,14 +2,14 @@
   font-weight: bold;
   margin: 0 0 0.5em;
   &--lg {
-    font-size: map-deep-get($typography-settings, 'sizes', 'h1-font-size');
+    font-size: map-deep-get($typography-settings, 'headings', 'h1-font-size');
   }
 
   &--md {
-    font-size: map-deep-get($typography-settings, 'sizes', 'h2-font-size');
+    font-size: map-deep-get($typography-settings, 'headings', 'h2-font-size');
   }
 
   &--sm {
-    font-size: map-deep-get($typography-settings, 'sizes', 'h3-font-size');
+    font-size: map-deep-get($typography-settings, 'headings', 'h3-font-size');
   }
 }

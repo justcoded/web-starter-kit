@@ -1,4 +1,5 @@
-/*  Creates a visual triangle. 
+/*  
+    Creates a visual triangle. 
     Mixin takes ($size, $color, $direction)
     The $size argument can take one or two values—width height.
     The $color argument can take one or two 
@@ -8,7 +9,7 @@
 
     $direction: 
     up, down, left, right, up-right, up-left, down-right, down-left
-    @example scss - Usage
+    Usage:
     @include triangle(12px, gray, down);
     @include triangle(12px 6px, gray blue, up-left);
 */

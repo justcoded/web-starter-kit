@@ -1,6 +1,10 @@
+/*
+    This cycle apply values to h1-h6 headings.
+    To change font-size or line-height go to ../base/customize.scss;
+*/
 @for $i from 1 through 6 {
   h#{$i}, .h#{$i} {
-    font-size: map-deep-get($typography-settings, 'sizes', 'h#{$i}-font-size');
-    line-height: map-deep-get($typography-settings, 'base-font-settings', 'base-line-height');
+    font-size: map-deep-get($typography-settings, 'headings', 'h#{$i}-font-size');
+    line-height: map-deep-get($typography-settings, 'base', 'base-line-height');
   }
 }

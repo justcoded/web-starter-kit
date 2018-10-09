@@ -13,7 +13,6 @@ $columns-width: ();
     Used for simplifying shorthands
 */
 $base-horizontal-padding: map-deep-get($indents, 'horizontal', 'xs');
-
 $base-vertical-padding: map-deep-get($indents, 'vertical', 'xs');
 
 $base-horizontal-margin: $base-horizontal-padding;

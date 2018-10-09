@@ -10,10 +10,10 @@ body {
   color: $default-dark-font-color;
   background: map-deep-get($colors, 'primary', 'body-bg-color');
   font: #{
-    #{map-deep-get($typography-settings, 'base-font-settings', 'base-font-weight')}
-    #{map-deep-get($typography-settings, 'base-font-settings', 'base-font-size')} / 
-    #{map-deep-get($typography-settings, 'base-font-settings', 'base-line-height')} 
-    #{map-deep-get($typography-settings, 'base-font-settings', 'base-font-family')}
+    #{map-deep-get($typography-settings, 'base', 'base-font-weight')}
+    #{map-deep-get($typography-settings, 'base', 'base-font-size')} / 
+    #{map-deep-get($typography-settings, 'base', 'base-line-height')} 
+    #{map-deep-get($typography-settings, 'base', 'base-font-family')}
   };
   min-width: map-deep-get($values, 'width', 'min-screen-width');
 }
