@@ -2,23 +2,23 @@
 	Fluid Property
 	http://www.adrenalinmedia.com.au/the-agency/insights/this-changes-everything-css-fluid-properties.aspx
 	HTML:
-	<h1 class="element">
-		<span>Text to replace</span>
-	</h1>
+    <h1 class="element">
+      <span>Text to replace</span>
+    </h1>
 	example:
-	h1 {
-		@include fp(font-size, 50, 100); // 50px at 320, 100px at 1920;
-	}
+    h1 {
+      @include fp(font-size, 50, 100); // 50px at 320, 100px at 1920;
+    }
 	output:
-	h1 {
-		font-size: calc(3.125vw + 40px); //This is the magic!
-	}
-	@media (max-width:320px){ //Clips the start to the min value
-		font-size:50px;
-	}
-	@media (min-width:1920px){ //Clips the end to the max value
-		font-size:100px;
-	}
+    h1 {
+      font-size: calc(3.125vw + 40px); //This is the magic!
+    }
+    @media (max-width:320px){ //Clips the start to the min value
+      font-size:50px;
+    }
+    @media (min-width:1920px){ //Clips the end to the max value
+      font-size:100px;
+    }
 */
 
 @mixin fp($property, $min, $max, $start: 320, $end: breakpoint('desktop'), $clip: true, $clipAtStart: true, $clipAtEnd: true) {
