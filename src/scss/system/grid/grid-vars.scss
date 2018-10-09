@@ -1,6 +1,6 @@
-/*
-  // Base columns width
-  // Used to adjust the grid
+/*  
+    Base columns width
+    Used to adjust the grid
 */
 
 $columns-width: ();
@@ -8,9 +8,9 @@ $columns-width: ();
   $columns-width: append($columns-width, $i * 100%/12);
 }
 
-/* 
-  // Base gaps 
-  // Used for simplifying shorthands
+/*  
+    Base gaps 
+    Used for simplifying shorthands
 */
 $base-horizontal-padding: map-deep-get($indents, 'horizontal', 'xs');
 
@@ -18,10 +18,3 @@ $base-vertical-padding: map-deep-get($indents, 'vertical', 'xs');
 
 $base-horizontal-margin: $base-horizontal-padding;
 $base-vertical-margin: $base-vertical-padding;
-
-// Base media breakpoints
-$breakpoints: (
-  'desktop': map-deep-get($values, 'width', 'desktop'),
-  'tablet' : map-deep-get($values, 'width', 'tablet'),
-  'phone'  : map-deep-get($values, 'width', 'mobile')
-  );
