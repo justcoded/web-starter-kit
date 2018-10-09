@@ -1,0 +1,38 @@
+/*  Mixin for styling form-placeholders
+
+    @example scss - Usage
+    @include placeholder {
+      color: #333;
+    }
+
+    input[type='text'],
+    input[type='tel'],
+    input[type='email'] {
+      @include placeholder {
+        color: red;
+      }
+    } 
+*/
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1;
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &.placeholder {
+    @content;
+  }
+}

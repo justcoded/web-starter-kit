@@ -1,7 +1,3 @@
-// This is base reset for form elements.
-//
-// Note: If you use a framework that includes form styling then you need to remove this file.
-
 form,
 fieldset {
   margin: 0;
@@ -18,16 +14,15 @@ textarea {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
-  border: 1px solid map-get($forms, 'form-element-border-color');
-  padding: map-get($forms, 'form-element-padding');
-  font-family: map-get($forms, 'form-font-family');
+  border: 0;
+  padding: map-deep-get($indents, 'horizontal', 'xs');
 
   &:focus {
-    border-color: map-get($forms, 'form-element-focus-border-color');
+    // border-color: ;
   }
 
   @include placeholder {
-    color: map-get($forms, 'placeholder-color');
+    color: map-deep-get($colors, 'placeholder', 'base');
   }
 }
 
@@ -48,5 +43,4 @@ input[type='submit'] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   cursor: pointer;
-  font-family: map-get($forms, 'form-font-family');
 }

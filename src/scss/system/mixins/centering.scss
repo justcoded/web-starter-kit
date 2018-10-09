@@ -1,0 +1,36 @@
+/*  Relative centering
+    usage: 
+    @include relative-centering(top) to vertical centering;
+    @include relative-centering(left) to horizontal centering; 
+*/
+@mixin relative-centering($position) {
+  position: relative;
+  $position: 50%;
+  transform: translate(-50%);
+}
+
+/* Absolute horizontal centering
+The same usage like Relative centering */
+@mixin absolute-centering($position) {
+  position: absolute;
+  $position: 50%;
+  transform: translate(-50%);
+}
+
+/*  Flex centering content in wrapper
+    usage:
+    @include flex-centering(relative, center);
+    css output:
+    .className {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+*/
+@mixin flex-centering($position, $justify-content) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: center;
+  position: $position;
+}

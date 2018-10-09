@@ -1,15 +1,9 @@
-// =========================
-//          ...
-// =========================
-// $base-min-width: $w320;
-
 /*
   // Base columns width
   // Used to adjust the grid
 */
 
 $columns-width: ();
-
 @for $i from 1 through 12 {
   $columns-width: append($columns-width, $i * 100%/12);
 }

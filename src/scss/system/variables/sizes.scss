@@ -4,14 +4,14 @@
 
 $values: (
   'width': (
-    'desktop': 90rem,
-    '1024px': 64rem,
-    'tablet': 61.25rem,
+    'desktop': 90rem,         // 1440px
+    'wide-tablet': 64rem,     // 1024px
+    'tablet': 61.25rem,       // 768px
     '768px': 48rem,
-    'mobile': 30rem,
+    'mobile': 30rem,          // 480px
     '425px': 26.563rem,
     '375px': 23.438rem,
-    'min-screen-width': 20rem
+    'min-screen-width': 20rem // 320px
   )
 );
 
@@ -21,18 +21,18 @@ $values: (
 */
 $indents: (
   'horizontal': (
-    'xs': 0 0.938em, // 15px
-    'sm': 0 1.875em, // 30px
-    'md': 0 2.813em, // 45px
-    'lg': 0 3.750em, // 60px
-    'xl': 0 4.688em, // 75px
+    'xs': 0 0.938em, // 0 15px
+    'sm': 0 1.875em, // 0 30px
+    'md': 0 2.813em, // 0 45px
+    'lg': 0 3.750em, // 0 60px
+    'xl': 0 4.688em, // 0 75px
   ),
   'vertical': (
-    'xs': 0.938em 0, // 15px
-    'sm': 1.875em 0, // 30px
-    'md': 2.813em 0, // 45px
-    'lg': 3.750em 0, // 60px
-    'xl': 4.688em 0, // 75px
+    'xs': 0.938em 0, // 15px 0
+    'sm': 1.875em 0, // 30px 0
+    'md': 2.813em 0, // 45px 0
+    'lg': 3.750em 0, // 60px 0
+    'xl': 4.688em 0, // 75px 0
   )
 );
 

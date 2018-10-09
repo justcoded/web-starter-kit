@@ -1,0 +1,23 @@
+/*  Mixin helping with long string of the url
+    https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+    Usage 
+    @include word-wrap; 
+*/
+@mixin word-wrap() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+}
+
+/*  Preventing Overflow with Ellipsis
+    Usage 
+    @include ellipsis;
+ */
+@mixin ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

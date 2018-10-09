@@ -7,26 +7,21 @@
 // Add systems files witch can help you to customize all needed settings
 @import 'system/main';
 
-// * Default settings * //
-// @import '_config/main';
+//* Customize settings //
+@import 'base/customize', 
+        'system/add-customize';
 
-//* Abstracts modules *//
-// @import 'abstracts/main';
+//* Add base classes //
+@import 'classes/main';
 
-//* Base modules *//
-// @import 'base/main';
+//* Add base styles *//
+@import 'base/main';
 
 //* Layout modules *//
-// @import 'layout/main';
+@import 'layout/main';
 
 //* Pages modules *//
-// @import 'pages/main';
+@import 'pages/main';
 
 //* Components *//
-// @import 'components/main';
-
-
-@import 'base/customize', 
-        'system/add-customize'; // кастомизация настроек и их применение
-
-@import 'base/main'; // стили для вёртски, должны быть в самом конце
+@import 'components/main';

@@ -23,9 +23,16 @@ img {
   height: auto;
 }
 
-// google map fix
-.gm-style img {
-  max-width: none;
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: map-deep-get($colors, 'digital', 'blue');
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
 }
 
 // hide tel links on desktop
