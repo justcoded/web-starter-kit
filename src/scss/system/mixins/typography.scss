@@ -15,7 +15,7 @@
 /*  
     Preventing Overflow with Ellipsis
     Usage: @include ellipsis;
- */
+*/
 @mixin ellipsis() {
   overflow: hidden;
   white-space: nowrap;
