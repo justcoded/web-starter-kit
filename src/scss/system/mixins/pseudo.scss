@@ -1,0 +1,32 @@
+/*
+    When you use ::before and ::after,
+    you always need these three lines of code. Using this mixin,
+    you save your time writing them.
+
+    See below for an example of using mixin without any arguments.
+
+    .element::after {
+      @include pseudo;
+      top: -1rem;
+      left: -1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+
+    CSS output: 
+    .element::after {
+      display: block;
+      position: absolute;
+      content: '';
+      top: -1rem;
+      left: -1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+*/
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}

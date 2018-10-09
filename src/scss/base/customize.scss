@@ -21,3 +21,27 @@ $h3-font-size: 1.75em;
 $h4-font-size: 1.5em;
 $h5-font-size: 1.25em;
 $h6-font-size: 1em;
+
+/*
+    In a large project,
+    it is difficult to keep track of all the index values,
+    and this mixin will help to collect them in one place.
+
+    Usage: 
+    .header {
+      z-index: z('hight');
+    }
+
+    Output CSS:
+    .header {
+      z-index: 3;
+    }
+*/
+
+$z-indexes: (
+  'outdated-browser', // 5
+  'modal',            // 4
+  'hight',            // 3
+  'content',          // 2
+  'low'               // 1
+);
