@@ -39,7 +39,6 @@ Options All -Indexes
         order allow,deny
         deny from all
 </FilesMatch>
-# BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
@@ -51,9 +50,8 @@ RewriteRule ^test/* - [R=403]
 RewriteRule ^static/* - [R=403]
 RewriteRule ^node_modules/* - [R=403]
 RewriteRule ^vendor(/|$) - [F]
-RewriteRule ^(^\.|\/\.) /index.php [QSA,L]
+RewriteRule ^(^\.|\/\.) /index.php [R=404]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+RewriteRule . /index.php [R=404]
 </IfModule>
-# END WordPress
