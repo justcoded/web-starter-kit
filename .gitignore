@@ -37,5 +37,4 @@ tmp
 
 # wordpress configs and uploads
 /wp-config.php
-/.htaccess
 /wp-content/uploads/*
