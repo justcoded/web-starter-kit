@@ -50,8 +50,8 @@ RewriteRule ^test/* - [R=403]
 RewriteRule ^static/* - [R=403]
 RewriteRule ^node_modules/* - [R=403]
 RewriteRule ^vendor(/|$) - [F]
-RewriteRule ^(^\.|\/\.) /index.php [R=404]
+RewriteRule ^(^\.|\/\.) /index.html [R=404]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [R=404]
+RewriteRule . /index.html [R=404]
 </IfModule>
