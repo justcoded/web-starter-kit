@@ -28,12 +28,12 @@ $base: (
   'base-font-size': 16px,
   'base-line-height': 1.2,
   'base-font-family': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
-  'vertical-rhythm': '(map-get($base, base-line-height) * 1em)',
   'base-min-width': 320px
 );
 
 // Vars for forms
 $forms: (
+  'form-font-family': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
   'form-element-padding': unquote("0.4em 0.7em"),
   'form-element-border-color': #999,
   'form-element-focus-border-color': #000,

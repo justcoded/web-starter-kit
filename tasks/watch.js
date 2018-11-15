@@ -26,7 +26,7 @@ module.exports = function (options) {
 
     gulp.watch('./*.html', gulp.series(options.tasks.htmlHint));
 
-    gulp.watch([`./${options.dest}/**/*`, './*.html'])
+    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`, './*.html'])
       .on('change', options.browserSync.reload);
     
     if (files.length > 0) {
