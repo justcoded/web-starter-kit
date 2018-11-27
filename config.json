@@ -4,7 +4,7 @@
     "devDependencies": {
       "gulp-if": "^2.0.2",
       "gulp-pug": "^3.3.0",
-      "emitty": "^1.3.1"
+      "emitty": "^1.4.1"
     }
   }
 }
