@@ -42,7 +42,6 @@ Options All -Indexes
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
-RewriteRule ^assets/* - [R=403]
 RewriteRule ^build/* - [R=403]
 RewriteRule ^config/* - [R=403]
 RewriteRule ^src/* - [R=403]
