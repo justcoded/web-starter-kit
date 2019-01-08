@@ -17,7 +17,7 @@ module.exports = {
   },
   task: {
     htmlHint: 'html-hint',
-    jsHint: 'js-hint',
+    esLint: 'es-lint',
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
