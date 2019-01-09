@@ -257,7 +257,7 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 | copy-folders           | Need to copy all folders from sources to assets                       |
 | templates           | Compiles all pug files into html files                       |
 | html-hint           | Need to hint html files                    |
-| js-hint           | Need to hint js files                      |
+| es-lint           | Need to lint js files                      |
 | image-clean           | Removing images                    |
 | image-min           | We use this to minify images                    |
 | watch           | Task for watching all the changes                   |

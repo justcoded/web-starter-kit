@@ -75,9 +75,10 @@
   });
 
   /**
-   * Hint JS
+   * Lint ES
    */
-  requireTask(`${cfg.task.jsHint}`, `./${cfg.folder.tasks}/`, {
+
+  requireTask(`${cfg.task.esLint}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src
   });
 
@@ -219,7 +220,7 @@
       templates: cfg.task.templates,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
-      jsHint: cfg.task.jsHint,
+      esLint: cfg.task.esLint,
       imageMin: cfg.task.imageMin
     }
   });
@@ -236,7 +237,7 @@
       cfg.task.buildSass,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.jsHint,
+      cfg.task.esLint,
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
@@ -258,7 +259,6 @@
       cfg.task.buildSass,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.jsHint,
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
@@ -280,7 +280,7 @@
       cfg.task.buildSassProd,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.jsHint,
+      cfg.task.esLint,
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
