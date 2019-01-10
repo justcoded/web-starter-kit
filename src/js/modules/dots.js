@@ -2,28 +2,28 @@
 //
 // You can remove or add your own function in this file.
 
-var DE = {
-  dotsEffect: function() {
-    var $cnt  = $('#home-canvas'),
-        cells = createCells();
-
-    $cnt.html(cells);
-
+const DE = {
+  dotsEffect() {
     function createCells() {
-      var width  = 10,
-          height = 10,
-          size   = width * height,
-          html   = '<div class="entry-cells">';
+      const width = 10;
+      const height = 10;
+      const size = width * height;
+      let html = '<div class="entry-cells">';
 
-      for (var i = 0; i < size; i++) {
-        html += '<div class="cell cell-' + i + '"></div>';
+      for (let i = 0; i < size; i += 1) {
+        html += `<div class="cell cell-${i}"></div>`;
       }
 
       html += '</div>';
 
       return html;
     }
-  }
+
+    const $cnt = $('#home-canvas');
+    const cells = createCells();
+
+    $cnt.html(cells);
+  },
 };
 
 export default DE;

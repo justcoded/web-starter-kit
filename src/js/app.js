@@ -5,12 +5,9 @@
 
 import DE from './modules/dots';
 
-( ($) => {
-  'use strict';
-
+(($) => {
   // When DOM is ready
   $(() => {
     DE.dotsEffect();
   });
-
 })(jQuery);

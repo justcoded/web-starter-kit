@@ -71,9 +71,10 @@
   requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
 
   /**
-   * Hint JS
+   * Lint ES
    */
-  requireTask(`${cfg.task.jsHint}`, `./${cfg.folder.tasks}/`, {
+
+  requireTask(`${cfg.task.esLint}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src
   });
 
@@ -213,11 +214,11 @@
       buildSassFiles: cfg.task.buildSassFiles,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
-      jsHint: cfg.task.jsHint,
+      esLint: cfg.task.esLint,
       htmlHint: cfg.task.htmlHint,
       imageMin: cfg.task.imageMin
     }
-  });
+  }, false);
 
   /**
    * Default Gulp task
@@ -231,7 +232,7 @@
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
-      cfg.task.jsHint,
+      cfg.task.esLint,
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
@@ -253,7 +254,6 @@
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
-      cfg.task.jsHint,
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
@@ -275,12 +275,12 @@
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
-      cfg.task.jsHint,
+      cfg.task.esLint,
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
     cfg.task.copyFoldersProduction
-  ));
+  ), true);
 
   /**
    * Remove image(s) from build folder if corresponding

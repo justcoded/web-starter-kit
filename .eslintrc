@@ -1,11 +1,14 @@
 {
-  "parser": "babel-eslint",
   "globals": {
-    "jQuery": true
+    "jQuery": true,
+    "$": true
   },
   "env": {
     "browser": true,
     "node": true
   },
-  "extends": "eslint:recommended"
+  "extends": "airbnb-base",
+  "rules": {
+    
+  }
 }
