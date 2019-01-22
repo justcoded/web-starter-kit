@@ -1,7 +1,6 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
 # install scripts
 init_wp
+wp-host-update*
 
 # editor
 /nbproject/private/
@@ -16,6 +15,9 @@ composer.lock
 /vendor/
 /cms/
 
+# svn
+.svn
+
 # Ignore Mac DS_Store files
 .DS_Store
 ._*
@@ -26,15 +28,17 @@ node_modules/
 *~
 
 # markup
-/build/
-/assets/
-/production/
 .sass-cache
 node_modules
 *.map
+*.tmp
 .tmp
 tmp
+*.psd
+*.ai
+*.zip
+*.tgz
+*.tar
+*.rar
 
-# wordpress configs and uploads
-/wp-config.php
-/wp-content/uploads/*
+

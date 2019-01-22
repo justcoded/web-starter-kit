@@ -22,7 +22,7 @@ module.exports = function(options) {
       .bundle().on('error', function(err) {
         options.showError.apply(this, ['JS error', err])
       })
-      .pipe(source('app.js'))
+      .pipe(source('jquery.main.js'))
       .pipe(gulp.dest(`./${options.dest}/js`));
   };
 

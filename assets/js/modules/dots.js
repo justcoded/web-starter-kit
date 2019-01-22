@@ -3,7 +3,7 @@
 // You can remove or add your own function in this file.
 
 const DE = {
-  dotsEffect() {
+  dotsEffect($) {
     function createCells() {
       const width = 10;
       const height = 10;
@@ -18,7 +18,6 @@ const DE = {
 
       return html;
     }
-
     const $cnt = $('#home-canvas');
     const cells = createCells();
 

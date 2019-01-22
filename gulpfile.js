@@ -126,14 +126,14 @@
   /**
    * Build production styles for application from SASS
    */
-  requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build,
-    mainScss: cfg.file.mainScss,
-    mainScssMin: cfg.file.mainScssMin,
-    versions: cfg.autoprefixer.versions,
-    showError: showError
-  });
+  // requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
+  //   src: cfg.folder.src,
+  //   dest: cfg.folder.build,
+  //   mainScss: cfg.file.mainScss,
+  //   mainScssMin: cfg.file.mainScssMin,
+  //   versions: cfg.autoprefixer.versions,
+  //   showError: showError
+  // });
 
   /**
    * Build styles for vendor from SASS
@@ -144,21 +144,6 @@
     vendorScss: cfg.file.vendorScss,
     vendorScssMin: cfg.file.vendorScssMin,
     showError: showError
-  });
-
-  /**
-   * Minify images
-   */
-  requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build
-  });
-
-  /**
-   * Clean image build directory
-   */
-  requireTask(`${cfg.task.imageClean}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.build
   });
 
   /**
@@ -185,14 +170,6 @@
   });
 
   /**
-   * Copy folders to the production folder
-   */
-  requireTask(`${cfg.task.copyFoldersProduction}`, `./${cfg.folder.tasks}/`, {
-    dest: cfg.folder.prod,
-    foldersToCopy: cfg.getPathesToCopyForProduction()
-  });
-
-  /**
    * Start browserSync server
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
@@ -211,12 +188,10 @@
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
-      buildSassFiles: cfg.task.buildSassFiles,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
       esLint: cfg.task.esLint,
-      htmlHint: cfg.task.htmlHint,
-      imageMin: cfg.task.imageMin
+      htmlHint: cfg.task.htmlHint
     }
   }, false);
 
@@ -229,11 +204,10 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
-      cfg.task.buildSassFiles,
+      // cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
-      cfg.task.esLint,
-      cfg.task.imageMin
+      cfg.task.esLint
     ),
     cfg.task.copyFolders,
     gulp.parallel(
@@ -251,36 +225,12 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
-      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
-      cfg.task.imageMin
+      cfg.task.htmlHint
     ),
     cfg.task.copyFolders,
     cfg.task.watch
   ));
-
-  /**
-   * Creating production folder without unnecessary files
-   */
-  gulp.task('production', gulp.series(
-    gulp.parallel(
-      cfg.task.cleanProd,
-      cfg.task.cleanBuild
-    ),
-    gulp.parallel(
-      cfg.task.buildCustomJs,
-      cfg.task.buildJsVendors,
-      cfg.task.buildSassProd,
-      cfg.task.buildSassFiles,
-      cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
-      cfg.task.esLint,
-      cfg.task.imageMin
-    ),
-    cfg.task.copyFolders,
-    cfg.task.copyFoldersProduction
-  ), true);
 
   /**
    * Remove image(s) from build folder if corresponding

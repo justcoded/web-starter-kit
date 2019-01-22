@@ -6,7 +6,6 @@
 const gulp      = require('gulp'),
       sass      = require('gulp-sass'),
       rename    = require('gulp-rename'),
-      cssnano   = require('gulp-cssnano'),
       cssimport = require('gulp-cssimport');
 
 module.exports = function(options) {
@@ -18,9 +17,6 @@ module.exports = function(options) {
       }))
       .pipe(cssimport())
       .pipe(rename(options.vendorScssMin))
-      .pipe(cssnano({
-        safe: true
-      }))
       .pipe(gulp.dest(`./${options.dest}/css`));
   };
 

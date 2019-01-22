@@ -1,1 +1,0 @@
-There will we files for WordPress + Gulp projects

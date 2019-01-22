@@ -1,19 +1,18 @@
 module.exports = {
   folder: {
     tasks: 'tasks',
-    src: 'src',
-    build: 'assets',
-    prod: 'production'
+    src: 'assets',
+    build: 'public'
   },
   file: {
     mainHtml: 'index.html',
     mainJs: 'app.js',
     vendorJs: 'vendor.js',
-    vendorJsMin: 'vendor.min.js',
+    vendorJsMin: 'vendor.js',
     mainScss: 'style.scss',
-    mainScssMin: 'style.min.css',
+    mainScssMin: 'styles.css',
     vendorScss: 'vendor.scss',
-    vendorScssMin: 'vendor.min.css',
+    vendorScssMin: 'vendor.css',
   },
   task: {
     htmlHint: 'html-hint',
@@ -22,11 +21,7 @@ module.exports = {
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
     buildSassFiles: 'compile-sass-files',
-    buildSassProd: 'build-sass-production',
     buildStylesVendors: 'build-styles-vendors',
-    imageMin: 'image-min',
-    imageClean: 'image-clean',
-    cleanProd: 'clean-production',
     cleanBuild: 'clean-build',
     copyFolders: 'copy-folders',
     copyFoldersProduction: 'copy-folders-production',
@@ -42,34 +37,6 @@ module.exports = {
       files: [],
       isGcmq: false
      };
-  },
-  getPathesToCopyForProduction: function() {
-    return [
-      './**/*',
-      `!{${this.folder.src},${this.folder.src}/**}`,
-      '!{bower,bower/**}',
-      '!{node_modules,node_modules/**}',
-      `!${this.folder.build}/css/**.map`,
-      `!${this.folder.build}/images/info.txt`,
-      '!.bowerrc',
-      '!bower.json',
-      '!.gitignore',
-      '!gulpfile.js',
-      '!LICENSE',
-      '!package.json',
-      `!${this.folder.prod}`,
-      '!README.md',
-      '!readme.txt',
-      '!CONTRIBUTING.md',
-      '!gulp-config.js',
-      '!package-lock.json',
-      '!{tasks,tasks/**}',
-      '!{.git,.git/**}',
-      '!{.history,.history/**}',
-      '!.gitattributes',
-      '!.travis.yml',
-      '!.eslintrc'
-    ];
   },
   getPathesToCopy: function() {
     return [

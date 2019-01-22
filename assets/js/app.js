@@ -8,6 +8,6 @@ import DE from './modules/dots';
 (($) => {
   // When DOM is ready
   $(() => {
-    DE.dotsEffect();
+    DE.dotsEffect($);
   });
 })(jQuery);
