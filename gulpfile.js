@@ -126,14 +126,14 @@
   /**
    * Build production styles for application from SASS
    */
-  // requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
-  //   src: cfg.folder.src,
-  //   dest: cfg.folder.build,
-  //   mainScss: cfg.file.mainScss,
-  //   mainScssMin: cfg.file.mainScssMin,
-  //   versions: cfg.autoprefixer.versions,
-  //   showError: showError
-  // });
+  requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.src,
+    dest: cfg.folder.build,
+    mainScss: cfg.file.mainScss,
+    mainScssMin: cfg.file.mainScssMin,
+    versions: cfg.autoprefixer.versions,
+    showError: showError
+  });
 
   /**
    * Build styles for vendor from SASS
@@ -152,14 +152,6 @@
   requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.build
   });
-
-  /**
-   * Clean production folder
-   */
-  requireTask(`${cfg.task.cleanProd}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.prod
-  });
-
 
   /**
    * Copy folders to the build folder
@@ -184,7 +176,6 @@
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     src: cfg.folder.src,
     dest: cfg.folder.build,
-    imageExtensions: cfg.imageExtensions,
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
@@ -204,7 +195,7 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
-      // cfg.task.buildSassFiles,
+      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
       cfg.task.esLint

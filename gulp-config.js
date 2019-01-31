@@ -31,7 +31,6 @@ module.exports = {
   autoprefixer: {
     versions: 'last 4 versions'
   },
-  imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
   getPathesForSassCompiling: function () {
     return {
       files: [],
