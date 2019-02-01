@@ -10,9 +10,10 @@ module.exports = function(options) {
 
   return () => {
     return del([
-      `${options.src}/**/*`,
-      `!${options.src}/images/`,
-      `!${options.src}/images/**`
+      `${options.src}/js/`,
+      `${options.src}/js/*`,
+      `${options.src}/css/`,
+      `${options.src}/css/*`
     ], { dot: true });
   };
 };
