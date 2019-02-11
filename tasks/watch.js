@@ -24,9 +24,9 @@ module.exports = function (options) {
       })
       .on('add', gulp.series(options.tasks.imageMin));
 
-    gulp.watch('./*.html', gulp.series(options.tasks.htmlHint));
+    gulp.watch('./assets/html/*.html', gulp.series(options.tasks.htmlHint));
 
-    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`, './*.html'])
+    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`, './assets/html/*.html'])
       .on('change', options.browserSync.reload);
     
     if (files.length > 0) {

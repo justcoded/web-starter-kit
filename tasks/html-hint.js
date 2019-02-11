@@ -10,7 +10,7 @@ const gulp     = require('gulp'),
 module.exports = function(options) {
 
   return cb => {
-    gulp.src('./*.html')
+    gulp.src('./assets/html/*.html')
       .pipe(htmlhint({
         'attr-lowercase': ['viewBox']
       }))
