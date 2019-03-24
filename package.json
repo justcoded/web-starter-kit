@@ -45,7 +45,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.4.1",
-    "gulp-uglify": "^3.0.0",
+    "gulp-terser": "^1.1.7",
     "gulp-util": "^3.0.8",
     "htmlhint-stylish": "^1.0.3",
     "imagemin-pngquant": "^5.0.0",
