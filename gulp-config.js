@@ -3,7 +3,7 @@ module.exports = {
     tasks: 'tasks',
     src: 'src',
     build: 'assets',
-    prod: 'production',
+    prod: 'production'
   },
   file: {
     mainHtml: 'index.html',
@@ -14,6 +14,10 @@ module.exports = {
     mainScssMin: 'style.min.css',
     vendorScss: 'vendor.scss',
     vendorScssMin: 'vendor.min.css',
+  },
+  fileInclude: {
+    templates: 'src/html/templates',
+    dest: './',
   },
   task: {
     htmlHint: 'html-hint',

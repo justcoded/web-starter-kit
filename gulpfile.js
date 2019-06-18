@@ -69,7 +69,10 @@
    * template HTML
    */
 
-  requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
+    templates: cfg.fileInclude.templates,
+    dest: cfg.fileInclude.dest
+  });
 
   /**
    * Hint HTML
@@ -213,6 +216,7 @@
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     src: cfg.folder.src,
+    templates: cfg.folder.templates,
     dest: cfg.folder.build,
     imageExtensions: cfg.imageExtensions,
     browserSync: browserSync,

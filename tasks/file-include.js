@@ -6,15 +6,15 @@
 const gulp        = require('gulp'),
       fileinclude = require('gulp-file-include')
 
-module.exports = function() {
+module.exports = function(options) {
 
   return function() {
-    return gulp.src('./src/html/templates/**/*.html')
+    return gulp.src(`./${options.templates}/**/*.html`)
     .pipe(fileinclude({
       prefix: '@@',
-      basepath: './src/html/templates'
+      basepath: `./${options.templates}`
     }))
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest(options.dest));
   };
 
 };
