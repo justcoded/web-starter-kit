@@ -3,7 +3,7 @@ module.exports = {
     tasks: 'tasks',
     src: 'src',
     build: 'assets',
-    prod: 'production'
+    prod: 'production',
   },
   file: {
     mainHtml: 'index.html',
@@ -30,6 +30,7 @@ module.exports = {
     cleanBuild: 'clean-build',
     copyFolders: 'copy-folders',
     copyFoldersProduction: 'copy-folders-production',
+    fileInclude: 'file-include',
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },

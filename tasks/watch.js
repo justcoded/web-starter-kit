@@ -13,6 +13,8 @@ module.exports = function (options) {
 
     gulp.watch(`./${options.src}/scss/**/*`, gulp.series(options.tasks.buildSass));
 
+    gulp.watch(`./${options.src}/html/**/*`, gulp.series(options.tasks.fileInclude));
+
     const imagesWatcher = gulp.watch(`./${options.src}/images/**/*.+(${options.imageExtensions})`);
 
     imagesWatcher

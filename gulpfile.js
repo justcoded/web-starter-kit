@@ -66,8 +66,15 @@
   }
 
   /**
+   * template HTML
+   */
+
+  requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`);
+
+  /**
    * Hint HTML
    */
+
   requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
 
   /**
@@ -215,6 +222,7 @@
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
       esLint: cfg.task.esLint,
+      fileInclude: cfg.task.fileInclude,
       htmlHint: cfg.task.htmlHint,
       imageMin: cfg.task.imageMin
     }
@@ -231,6 +239,7 @@
       cfg.task.buildSass,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
+      cfg.task.fileInclude,
       cfg.task.htmlHint,
       cfg.task.esLint,
       cfg.task.imageMin
@@ -253,6 +262,7 @@
       cfg.task.buildSass,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
+      cfg.task.fileInclude,
       cfg.task.htmlHint,
       cfg.task.imageMin
     ),
@@ -274,6 +284,7 @@
       cfg.task.buildSassProd,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
+      cfg.task.fileInclude,
       cfg.task.htmlHint,
       cfg.task.esLint,
       cfg.task.imageMin
