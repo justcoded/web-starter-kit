@@ -2,20 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Starter Kit</title>
-  <link media="all" rel="stylesheet" href="assets/css/vendor.min.css">
-  <link media="all" rel="stylesheet" href="assets/css/style.min.css">
-</head>
+  @@include('../partials/head/head.html')
 
 <body>
   <div id="wrapper">
-    <div class="entry-section">
-      @@include('../partials/components/home-canvas.html')
-    </div>
-    @@include('../partials/components/sections/starter-box.html')
+    @@include('../partials/components/entry-section.html')
+
+    @@include('../partials/components/starter-box.html',  {
+      "title": "JustCoded",
+      "intro-text": "Web Starter Kit"
+    })
   </div>
   <script src="assets/js/vendor.min.js" defer></script>
   <script src="assets/js/app.js" defer></script>
