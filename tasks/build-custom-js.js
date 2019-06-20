@@ -12,7 +12,7 @@ module.exports = function(options) {
 
   return function() {
     return browserify({
-        entries: `./${options.src}/js/${options.mainJs}`,
+        entries: `./js/${options.mainJs}`,
         // Remove sourcemap for production
         debug: !options.isProduction
       })
@@ -23,7 +23,7 @@ module.exports = function(options) {
         options.showError.apply(this, ['JS error', err])
       })
       .pipe(source('jquery.main.js'))
-      .pipe(gulp.dest(`./${options.dest}/js`));
+      .pipe(gulp.dest(`../${options.dest}/js`));
   };
 
 };

@@ -1,0 +1,35 @@
+// This is base reset for global components.
+//
+// Note: If you use a framework that includes base styling then you need to remove this file.
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  @include font-smoothing(on);
+  color: $base-text-color;
+  background: $base-background-color;
+  font: #{$base-font-size}/#{$base-line-height} $base-font-family;
+  min-width: $base-min-width;
+}
+
+// adaptive images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// google map fix
+.gm-style img {max-width: none}
+
+// hide tel links on desktop
+@media only screen and (min-width:1025px) {
+    a[href^=tel],a[href^=skype], a[href^=sms] {
+    cursor:default;
+    pointer-events:none;
+  }
+}

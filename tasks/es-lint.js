@@ -9,7 +9,7 @@ const gulp   = require('gulp'),
 module.exports = function(options) {
 
   return cb => {
-    gulp.src(`./${options.src}/js/**/*.js`)
+    gulp.src(`./js/**/*.js`)
       .pipe(esLint())
       // eslint.format() outputs the lint results to the console.
       // Alternatively use eslint.formatEach() (see Docs).

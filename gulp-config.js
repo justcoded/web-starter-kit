@@ -20,32 +20,11 @@ module.exports = {
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
-    buildSassFiles: 'compile-sass-files',
     buildStylesVendors: 'build-styles-vendors',
-    cleanBuild: 'clean-build',
-    copyFolders: 'copy-folders',
-    copyFoldersProduction: 'copy-folders-production',
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
   autoprefixer: {
     versions: 'last 4 versions'
-  },
-  getPathesForSassCompiling: function () {
-    return {
-      files: [],
-      isGcmq: false
-     };
-  },
-  getPathesToCopy: function() {
-    return [
-      `./${this.folder.src}/**`,
-      `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
-      `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
-      `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
-      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`,
-      `!{${this.folder.src}/build,${this.folder.src}/build/**}`,
-      `!{${this.folder.src}/html,${this.folder.src}/html/**}`,
-    ];
   }
 };
