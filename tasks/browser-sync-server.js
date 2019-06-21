@@ -16,10 +16,9 @@ module.exports = function(options) {
       injectChanges: true,
       server: {
         baseDir: "../",
-        files: "../public/css/styles.css",
         directory: listDirectory
       },
-      startPath: "./assets/html/index.html",
+      startPath: "assets/index.html",
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {

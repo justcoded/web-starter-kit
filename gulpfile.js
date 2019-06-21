@@ -64,6 +64,14 @@
   }
 
   /**
+   * template HTML
+   */
+  requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
+    templates: cfg.fileInclude.templates,
+    dest: cfg.fileInclude.dest
+  });
+
+  /**
    * Hint HTML
    */
   requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
@@ -136,11 +144,13 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     browserSync: browserSync,
+    templates: cfg.folder.templates,
     tasks: {
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
       esLint: cfg.task.esLint,
-      htmlHint: cfg.task.htmlHint
+      htmlHint: cfg.task.htmlHint,
+      fileInclude: cfg.task.fileInclude,
     }
   }, false);
 
@@ -154,7 +164,8 @@
       cfg.task.buildSass,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
-      cfg.task.esLint
+      cfg.task.esLint,
+      cfg.task.fileInclude,
     ),
     gulp.parallel(
       cfg.task.browserSync,
@@ -171,7 +182,8 @@
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint
+      cfg.task.htmlHint,
+      cfg.task.fileInclude,
     ),
     cfg.task.watch
   ));

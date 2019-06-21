@@ -12,9 +12,11 @@ module.exports = function (options) {
 
     gulp.watch(`scss/**/*`, gulp.series(options.tasks.buildSass));
 
-    gulp.watch('html/*.html', gulp.series(options.tasks.htmlHint));
+    gulp.watch(`./html/**/*`, gulp.series(options.tasks.fileInclude));
 
-    gulp.watch([`**/*`, `!scss/**/*.scss`, `!./${options.dest}/**/*.map`, 'html/*.html'])
+    gulp.watch('*.html', gulp.series(options.tasks.htmlHint));
+
+    gulp.watch([`*.html`, `js/**/*`, `!scss/**/*.scss`, `!./${options.dest}/**/*.map`])
       .on('change', options.browserSync.reload);
 
     gulp.watch(`../../**/*.css`)

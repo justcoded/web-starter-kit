@@ -14,6 +14,10 @@ module.exports = {
     vendorScss: 'vendor.scss',
     vendorScssMin: 'vendor.css',
   },
+  fileInclude: {
+    templates: 'html/templates',
+    dest: './',
+  },
   task: {
     htmlHint: 'html-hint',
     esLint: 'es-lint',
@@ -23,6 +27,7 @@ module.exports = {
     buildStylesVendors: 'build-styles-vendors',
     browserSync: 'browser-sync-server',
     watch: 'watch',
+    fileInclude: 'file-include',
   },
   autoprefixer: {
     versions: 'last 4 versions'
