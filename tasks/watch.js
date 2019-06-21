@@ -16,11 +16,9 @@ module.exports = function (options) {
 
     gulp.watch('*.html', gulp.series(options.tasks.htmlHint));
 
-    gulp.watch([`*.html`, `js/**/*`, `!scss/**/*.scss`, `!./${options.dest}/**/*.map`])
+    gulp.watch([`*.html`, `js/**/*`, `../../**/*.css`, `!scss/**/*.scss`, `!./${options.dest}/**/*.map`])
       .on('change', options.browserSync.reload);
 
-    gulp.watch(`../../**/*.css`)
-      .on('change', options.browserSync.reload);
   };
 
 };
