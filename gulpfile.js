@@ -29,8 +29,6 @@
   const cfg         = require('./gulp-config.js'),
         self        = this,
         gulp        = require('gulp'),
-        del         = require('del'),
-        path        = require('path'),
         notifier    = require('node-notifier'),
         gutil       = require('gulp-util'),
         browserSync = require('browser-sync').create();
@@ -64,6 +62,14 @@
       gulp.task(taskName, gulp.series(dependencies, taskFunction));
     }
   }
+
+  /**
+   * template HTML
+   */
+  requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
+    templates: cfg.fileInclude.templates,
+    dest: cfg.fileInclude.dest
+  });
 
   /**
    * Hint HTML
@@ -113,29 +119,6 @@
   });
 
   /**
-   * Compile scss files listed in the config
-   */
-  requireTask(`${cfg.task.buildSassFiles}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
-    dest: cfg.folder.build,
-    versions: cfg.autoprefixer.versions,
-    self: self,
-    showError: showError
-  });
-
-  /**
-   * Build production styles for application from SASS
-   */
-  requireTask(`${cfg.task.buildSassProd}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build,
-    mainScss: cfg.file.mainScss,
-    mainScssMin: cfg.file.mainScssMin,
-    versions: cfg.autoprefixer.versions,
-    showError: showError
-  });
-
-  /**
    * Build styles for vendor from SASS
    */
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
@@ -144,21 +127,6 @@
     vendorScss: cfg.file.vendorScss,
     vendorScssMin: cfg.file.vendorScssMin,
     showError: showError
-  });
-
-  /**
-   * Clean build folder
-   */
-  requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.build
-  });
-
-  /**
-   * Copy folders to the build folder
-   */
-  requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
-    dest: cfg.folder.build,
-    foldersToCopy: cfg.getPathesToCopy()
   });
 
   /**
@@ -173,16 +141,16 @@
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
     src: cfg.folder.src,
     dest: cfg.folder.build,
     browserSync: browserSync,
-    deleteFile: deleteFile,
+    templates: cfg.folder.templates,
     tasks: {
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
       esLint: cfg.task.esLint,
-      htmlHint: cfg.task.htmlHint
+      htmlHint: cfg.task.htmlHint,
+      fileInclude: cfg.task.fileInclude,
     }
   }, false);
 
@@ -190,17 +158,15 @@
    * Default Gulp task
    */
   gulp.task('default', gulp.series(
-    cfg.task.cleanBuild,
     gulp.parallel(
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
-      cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
       cfg.task.htmlHint,
-      cfg.task.esLint
+      cfg.task.esLint,
+      cfg.task.fileInclude,
     ),
-    cfg.task.copyFolders,
     gulp.parallel(
       cfg.task.browserSync,
       cfg.task.watch
@@ -211,39 +177,16 @@
    * Dev Gulp task without usage of browserSync
    */
   gulp.task('dev', gulp.series(
-    cfg.task.cleanBuild,
     gulp.parallel(
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint
+      cfg.task.htmlHint,
+      cfg.task.fileInclude,
     ),
-    cfg.task.copyFolders,
     cfg.task.watch
   ));
-
-  /**
-   * Remove image(s) from build folder if corresponding
-   * images were deleted from source folder
-   * @param  {Object} event    Event object
-   * @param  {String} src      Name of the source folder
-   * @param  {String} dest     Name of the destination folder
-   */
-  function deleteFile(file, src, dest) {
-    let fileName = file.path.toString().split('/').pop();
-    let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
-
-    let filePathFromSrc = path.relative(path.resolve(src), file.path);
-    let destFilePath = path.resolve(dest, filePathFromSrc);
-
-    try {
-      del.sync(destFilePath);
-      console.log(` \u{1b}[32m${fileEventWord}: ${fileName}\u{1b}[0m`);
-    } catch (error) {
-      console.log(` \u{1b}[31mFile has already deleted\u{1b}[0m`);
-    }
-  }
 
   /**
    * Show error in console

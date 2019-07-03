@@ -3,8 +3,7 @@
  */
 'use strict';
 
-const gulp  = require('gulp'),
-      fs    = require('fs');
+const fs = require('fs');
 
 module.exports = function(options) {
 
@@ -14,10 +13,12 @@ module.exports = function(options) {
 
     options.browserSync.init({
       notify: false,
+      injectChanges: true,
       server: {
-        baseDir: "./",
+        baseDir: "../",
         directory: listDirectory
       },
+      startPath: "assets/index.html",
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {

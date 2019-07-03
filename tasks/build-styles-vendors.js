@@ -11,13 +11,13 @@ const gulp      = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return gulp.src(`./${options.src}/vendor_entries/${options.vendorScss}`)
+    return gulp.src(`vendor_entries/${options.vendorScss}`)
       .pipe(sass().on('error', function(err) {
         options.showError.apply(this, ['Sass compile error (vendor)', err]);
       }))
       .pipe(cssimport())
       .pipe(rename(options.vendorScssMin))
-      .pipe(gulp.dest(`./${options.dest}/css`));
+      .pipe(gulp.dest(`../${options.dest}/css`));
   };
 
 };

@@ -1,0 +1,67 @@
+$gray: #999;
+$black: #333;
+$white: #fff;
+$light-blue: #39f;
+
+$base-font-sans-serif: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+$base-font-serif: 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
+
+// Body
+$base-text-color: $black !default;
+$base-background-color: $white !default;
+$base-font-size: 16px !default;
+$base-line-height: 1.2 !default;
+$base-font-family: $base-font-sans-serif !default;
+
+$vertical-rhythm: ($base-line-height * 1em);
+
+$base-min-width: 320px;
+
+// Links
+$base-link-color: $light-blue;
+
+// Buttons
+$btn-color: $white !default;
+$btn-background: $black !default;
+$btn-padding: 0.4em 0.7em !default;
+$btn-font-size: inherit !default;
+$btn-font-family: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+
+// Forms
+$form-font-family: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+$form-element-padding: $btn-padding !default;
+$form-element-border-color: $gray !default;
+$form-element-focus-border-color: $black !default;
+$placeholder-color: $gray !default;
+
+// Headers
+$h1-font-size: 30px !default;
+$h2-font-size: 27px !default;
+$h3-font-size: 24px !default;
+$h4-font-size: 21px !default;
+$h5-font-size: 17px !default;
+$h6-font-size: 15px !default;
+
+$headings-font-family: inherit !default;
+$headings-color: inherit !default;
+
+$animation-speed: 0.3s;
+
+$breakpoints: (
+    'xs-phone': 320px,
+    'phone': 480px,
+    'tablet': 768px,
+    'desktop': 1024px,
+    'widescreen': 1200px
+);
+
+// keywords
+$media-expressions: (
+    'screen': 'screen',
+    'print': 'print',
+    'handheld': 'handheld',
+    'landscape': '(orientation: landscape)',
+    'portrait': '(orientation: portrait)',
+    'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+    'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);

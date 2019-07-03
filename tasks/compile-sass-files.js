@@ -26,7 +26,7 @@ module.exports = function(options) {
         .pipe(gulpif(isGcmq, gcmq()))
         .pipe(autoprefixer(options.versions))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(`./${options.dest}/css`));
+        .pipe(gulp.dest(`../${options.dest}/css`));
     } else {
       return cb();
     }

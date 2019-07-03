@@ -13,7 +13,7 @@ const gulp         = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return gulp.src(`./${options.src}/scss/${options.mainScss}`)
+    return gulp.src(`./scss/${options.mainScss}`)
       .pipe(rename(options.mainScssMin))
       .pipe(sourcemaps.init({
         loadMaps: true
@@ -23,7 +23,7 @@ module.exports = function(options) {
       }))
       .pipe(autoprefixer(options.versions))
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(`./${options.dest}/css`));
+      .pipe(gulp.dest(`../${options.dest}/css`));
   };
 
 };
