@@ -46,6 +46,7 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (Run `gulp` to create an optimised version of your project to `/assets`).                                                                                                |
 | Code Linting               | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used airbnb-base rules https://www.npmjs.com/package/eslint-config-airbnb-base). HTML code hinting is done using [HtmlHint](https://www.npmjs.com/package/gulp-htmlhint).                                                                                             |
 | ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
+| HTML templating                       | Used [gulp-file-include](https://www.npmjs.com/package/gulp-file-include) for templating html files. |
 | Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate.                                                                                                                                                                            |
 | Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension (Run `gulp` and edit your files).                                                                                                                           |
 | Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (Run `gulp` and open up the IP provided on other devices on your network).                       |
@@ -179,6 +180,9 @@ In `src` folder you can find all sources for the project (images, sass , javascr
 ## `src` folder structure
 
 ```
+├── html
+   ├── partials                 #Folder for html components, that we can include into the templates 
+   ├── templates                #Folder for source html templates of pages
 ├── images                      #Folder for storing images
 ├── js                          #Folder for storing js files
    ├── modules                  #Folder for storing js modules
@@ -273,6 +277,7 @@ Also, you might want to add these sass files to the ignore list (check `getPathe
 | build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder.                                                                                                                                                                            |
 | clean-production                | `production` folder removing.                                                                                                                           |
 | copy-folders           | Need to copy all folders from sources to assets.                       |
+| file-include           | Compiles all html templates into html files.                       |
 | templates           | Compiles all pug files into html files.                       |
 | html-hint           | Need to hint html files.                    |
 | es-lint           | Need to lint js files.                      |

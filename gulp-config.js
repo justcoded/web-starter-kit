@@ -15,6 +15,10 @@ module.exports = {
     vendorScss: 'vendor.scss',
     vendorScssMin: 'vendor.min.css',
   },
+  fileInclude: {
+    templates: 'src/html/templates',
+    dest: './',
+  },
   task: {
     htmlHint: 'html-hint',
     esLint: 'es-lint',
@@ -30,6 +34,7 @@ module.exports = {
     cleanBuild: 'clean-build',
     copyFolders: 'copy-folders',
     copyFoldersProduction: 'copy-folders-production',
+    fileInclude: 'file-include',
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
