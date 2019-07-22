@@ -240,16 +240,26 @@
 // scss - @include animate(color);
 //     or @include animate(color width);
 //     or @include animate(color width, 1s, linear);
+//     or @include animate(color width, 1s, ease-in, 0.5s); - defining delay ALL params should be passed!
 //
 $animation-speed: 0.3s !default;
 
-@mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
-  $list:();
-  @each $prop in $properties {
-    $str: #{$prop} #{$duration} #{$easing};
-    $list: append($list, $str, comma);
+@mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out, $delay: false) {
+  @if ($properties and $duration and $easing and $delay) {
+    $list:();
+    @each $prop in $properties {
+      $str: #{$prop} #{$duration} #{$easing} #{$delay};
+      $list: append($list, $str, comma);
+    }
+    transition: $list;
+  } @else {
+    $list:();
+    @each $prop in $properties {
+      $str: #{$prop} #{$duration} #{$easing};
+      $list: append($list, $str, comma);
+    }
+    transition: $list;
   }
-  transition: $list;
 }
 
 
