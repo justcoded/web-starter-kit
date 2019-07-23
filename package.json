@@ -45,6 +45,9 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.4.1",
     "gulp-util": "^3.0.8",
+    "gulp-file": "^0.4.0",
+    "gulp-file-include": "^2.0.1",
+    "include": "^1.1.0",
     "htmlhint-stylish": "^1.0.3",
     "node-notifier": "^5.0.2",
     "path": "^0.12.7",
@@ -61,9 +64,6 @@
     "start": "gulp"
   },
   "dependencies": {
-    "gulp-file": "^0.4.0",
-    "gulp-file-include": "^2.0.1",
-    "include": "^1.1.0",
     "include-media": "^1.4.9",
     "jquery": "^3.3.1",
     "normalize.css": "^5.0.0"
