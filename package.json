@@ -65,7 +65,6 @@
     "start": "gulp"
   },
   "dependencies": {
-    "gulp-file-include": "^2.0.1",
     "include-media": "^1.4.9",
     "jquery": "^3.3.1",
     "normalize.css": "^5.0.0"
