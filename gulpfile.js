@@ -211,6 +211,16 @@
   });
 
   /**
+   * Build production scss files listed in the config
+   */
+  requireTask(`${cfg.task.buildSassFilesProd}`, `./${cfg.folder.tasks}/`, {
+    sassFilesInfo: cfg.getPathesForSassCompiling(),
+    dest: cfg.folder.build,
+    versions: cfg.autoprefixer.versions,
+    showError: showError
+  });
+
+  /**
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
@@ -286,7 +296,7 @@
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSassProd,
-      cfg.task.buildSassFiles,
+      cfg.task.buildSassFilesProd,
       cfg.task.buildStylesVendors,
       cfg.task.fileInclude,
       cfg.task.htmlHint,
@@ -294,7 +304,7 @@
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
-    cfg.task.copyFoldersProduction
+    cfg.task.copyFoldersProduction,
   ), true);
 
   /**

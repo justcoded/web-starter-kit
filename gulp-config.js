@@ -34,6 +34,7 @@ module.exports = {
     cleanBuild: 'clean-build',
     copyFolders: 'copy-folders',
     copyFoldersProduction: 'copy-folders-production',
+    buildSassFilesProd: 'compile-sass-files-production',
     fileInclude: 'file-include',
     browserSync: 'browser-sync-server',
     watch: 'watch',
@@ -46,7 +47,9 @@ module.exports = {
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
   getPathesForSassCompiling: function () {
     return {
-      files: [],
+      files: [
+        `${this.folder.src}/scss/custom/**`
+      ],
       isGcmq: false
      };
   },
