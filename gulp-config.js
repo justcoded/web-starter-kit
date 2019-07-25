@@ -47,9 +47,7 @@ module.exports = {
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
   getPathesForSassCompiling: function () {
     return {
-      files: [
-        `${this.folder.src}/scss/custom/**`
-      ],
+      files: [],
       isGcmq: false
      };
   },
