@@ -30,6 +30,8 @@ module.exports = {
     fileInclude: 'file-include',
   },
   autoprefixer: {
-    versions: 'last 4 versions'
+    browserslist: [
+      ".browserslistrc"
+    ]
   }
 };
