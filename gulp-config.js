@@ -39,7 +39,9 @@ module.exports = {
     watch: 'watch',
   },
   autoprefixer: {
-    versions: 'last 4 versions'
+    browserslist: [
+      ".browserslistrc"
+    ]
   },
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
   getPathesForSassCompiling: function () {
