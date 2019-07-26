@@ -63,6 +63,7 @@ module.exports = {
       '!bower.json',
       '!.gitignore',
       '!gulpfile.js',
+      '!.browserslistrc',
       '!LICENSE',
       '!package.json',
       `!${this.folder.prod}`,
