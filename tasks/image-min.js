@@ -5,8 +5,7 @@
 
 const gulp     = require('gulp'),
       newer    = require('gulp-newer'),
-      imagemin = require('gulp-imagemin'),
-      pngquant = require('imagemin-pngquant');
+      imagemin = require('gulp-imagemin');
 
 module.exports = function(options) {
 

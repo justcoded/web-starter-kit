@@ -26,22 +26,19 @@ module.exports = {
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
     buildSassFiles: 'compile-sass-files',
-    buildSassProd: 'build-sass-production',
     buildStylesVendors: 'build-styles-vendors',
     imageMin: 'image-min',
-    imageClean: 'image-clean',
     cleanProd: 'clean-production',
     cleanBuild: 'clean-build',
     copyFolders: 'copy-folders',
     copyFoldersProduction: 'copy-folders-production',
-    buildSassFilesProd: 'compile-sass-files-production',
     fileInclude: 'file-include',
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
   autoprefixer: {
     browserslist: [
-      ".browserslistrc"
+      '.browserslistrc'
     ]
   },
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
@@ -57,7 +54,6 @@ module.exports = {
       `!{${this.folder.src},${this.folder.src}/**}`,
       '!{bower,bower/**}',
       '!{node_modules,node_modules/**}',
-      `!${this.folder.build}/css/**.map`,
       `!${this.folder.build}/images/info.txt`,
       '!.bowerrc',
       '!bower.json',
@@ -88,6 +84,7 @@ module.exports = {
       `./${this.folder.src}/**`,
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
       `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
+      `!{${this.folder.src}/html,${this.folder.src}/html/**}`,
       `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
       `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`
     ];

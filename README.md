@@ -1,4 +1,4 @@
-[![Web Starter Kit](https://cloud.githubusercontent.com/assets/25930200/23856381/20707b74-0802-11e7-8578-5e4e91bb463e.png)](https://github.com/justcoded/web-starter-kit/releases)
+[![Web Starter Kit](https://user-images.githubusercontent.com/25930200/62307445-46eeff80-b48c-11e9-8a98-197b7bd4faaf.png)](https://github.com/justcoded/web-starter-kit/releases)
 
 >  A modern Web starter kit for projects
 
@@ -139,20 +139,13 @@ This includes linting as well as image, script, stylesheet and HTML optimization
 Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites' resources.
 
 
-```sh
-$ gulp dev
-```
-
-Same as 'gulp' command but without starting the local server.
-
-
 ## Serve the Fully Built & Optimized Site
 
 ```sh
-$ gulp production
+$ gulp build
 ```
 
-`gulp production` task creates the `production/` folder in the root of the project with **assets files only**. It will **help you** to **create clear** instances of code for the **production** or **further implementation**.
+`gulp build` task creates the `production/` folder in the root of the project with **assets files only including HTML-files**. It will **help you** to **create clear** instances of code for the **production** or **further implementation**.
 
 
 ## Structure
