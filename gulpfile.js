@@ -303,8 +303,7 @@
       cfg.task.esLint,
       cfg.task.imageMin
     ),
-    cfg.task.copyFolders,
-    cfg.task.copyFoldersProduction,
+    cfg.task.copyFoldersProduction
   ), true);
 
   /**
