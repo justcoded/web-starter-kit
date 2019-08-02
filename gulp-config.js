@@ -52,11 +52,11 @@ module.exports = {
     return [
       './**/*',
       '!.*',
+      '!.*/**',
       '.htaccess',
       `!${this.folder.prod}`,
       `!${this.folder.build}/images/info.txt`,
       `!{${this.folder.src},${this.folder.src}/**}`,
-      '!{.idea,.idea/**}',
       '!{tasks,tasks/**}',
       '!{node_modules,node_modules/**}',
       '!CONTRIBUTING.md',
