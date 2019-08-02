@@ -26,22 +26,19 @@ module.exports = {
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
     buildSassFiles: 'compile-sass-files',
-    buildSassProd: 'build-sass-production',
     buildStylesVendors: 'build-styles-vendors',
     imageMin: 'image-min',
-    imageClean: 'image-clean',
     cleanProd: 'clean-production',
     cleanBuild: 'clean-build',
     copyFolders: 'copy-folders',
     copyFoldersProduction: 'copy-folders-production',
-    buildSassFilesProd: 'compile-sass-files-production',
     fileInclude: 'file-include',
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
   autoprefixer: {
     browserslist: [
-      ".browserslistrc"
+      '.browserslistrc'
     ]
   },
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
@@ -54,33 +51,22 @@ module.exports = {
   getPathesToCopyForProduction: function() {
     return [
       './**/*',
-      `!{${this.folder.src},${this.folder.src}/**}`,
-      '!{bower,bower/**}',
-      '!{node_modules,node_modules/**}',
-      `!${this.folder.build}/css/**.map`,
+      '!.*',
+      '.htaccess',
+      `!${this.folder.prod}`,
       `!${this.folder.build}/images/info.txt`,
-      '!.bowerrc',
-      '!bower.json',
-      '!.gitignore',
+      `!{${this.folder.src},${this.folder.src}/**}`,
+      '!{.idea,.idea/**}',
+      '!{tasks,tasks/**}',
+      '!{node_modules,node_modules/**}',
+      '!CONTRIBUTING.md',
       '!gulpfile.js',
-      '!.browserslistrc',
+      '!gulp-config.js',
       '!LICENSE',
       '!package.json',
-      `!${this.folder.prod}`,
-      '!README.md',
-      '!readme.txt',
-      '!CONTRIBUTING.md',
-      '!gulp-config.js',
       '!package-lock.json',
-      '!{tasks,tasks/**}',
-      '!{.git,.git/**}',
-      '!{.history,.history/**}',
-      '!.gitattributes',
-      '!.travis.yml',
-      '!{.idea,.idea/**}',
-      '!.eslintignore',
-      '!.editorconfig',
-      '!.eslintrc'
+      '!README.md',
+      '!readme.txt'
     ];
   },
   getPathesToCopy: function() {
@@ -88,6 +74,7 @@ module.exports = {
       `./${this.folder.src}/**`,
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
       `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
+      `!{${this.folder.src}/html,${this.folder.src}/html/**}`,
       `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
       `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`
     ];

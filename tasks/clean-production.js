@@ -3,8 +3,7 @@
  */
 'use strict';
 
-const gulp = require('gulp'),
-      del  = require('del');
+const del  = require('del');
 
 module.exports = function(options) {
 
