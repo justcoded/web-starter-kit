@@ -9,7 +9,8 @@ const gulp         = require('gulp'),
       gcmq         = require('gulp-group-css-media-queries'),
       gulpif       = require('gulp-if'),
       sourcemaps   = require('gulp-sourcemaps'),
-      autoprefixer = require('gulp-autoprefixer');
+      autoprefixer = require('gulp-autoprefixer'),
+      cssnano      = require('gulp-cssnano');
 
 module.exports = function(options) {
 
@@ -21,6 +22,7 @@ module.exports = function(options) {
         options.showError.apply(this, ['Sass compile error', err]);
       }))
       .pipe(gulpif(options.isProduction, gcmq()))
+      .pipe(gulpif(options.isProduction, cssnano({ safe: true })))
       .pipe(autoprefixer(options.versions))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(`./${options.dest}/css`));

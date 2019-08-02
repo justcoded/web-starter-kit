@@ -195,19 +195,6 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
    ├── style.scss               #Main scss file (can be used for importing another files)
-#This `templates` folder will be created if you choose a Pug option using jcn
-├── templates                   #Folder with pug templates
-   ├── layouts                  #Folder with pug layouts
-      ├── default.pug           #Example of the pug layout
-   ├── mixins                   #Folder with pug mixins
-      ├── article.pug           #Example of the pug mixin
-   ├── views                    #Folder with pug pages
-      ├── blog.pug              #Example of a blog page
-      ├── index.pug             #Example of a index page
-├── vendor_entries              #Folder for vendor entries(plugins)
-  ├── vendor.js                 #File for plugins js 
-  ├── vendor.scss               #File for plugins styles
-
 ```
 
 Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `style.scss` file .
@@ -265,16 +252,15 @@ Also, you might want to add these sass files to the ignore list (check `getPathe
 | browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
 | build-custom-js                         | Compiles all custom js from `src/js`.                                                                                                      |
 | build-js-vendors               | minifies and сompiles all vendor js from `src/vendor_entries`.                                                                                                |
-| build-sass-production               | Compiles and minifies all custom scss from `src/scss` to `production`   folder.                                                                                               |
 | build-sass                   | Compiles all custom scss from `src/scss` to `assets/css`   folder.  |
 | build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder.                                                                                                                                                                            |
+| clean-build                | `assets` folder removing.                                                                                                                           |
 | clean-production                | `production` folder removing.                                                                                                                           |
 | copy-folders           | Need to copy all folders from sources to assets.                       |
 | file-include           | Compiles all html templates into html files.                       |
 | templates           | Compiles all pug files into html files.                       |
 | html-hint           | Need to hint html files.                    |
 | es-lint           | Need to lint js files.                      |
-| image-clean           | Removing images.                    |
 | image-min           | We use this to minify images.                    |
 | watch           | Task for watching all the changes.                   |
 | compile-sass-files           | Compiles all custom scss files listed in the `gulp-config.js` to `assets/css`   folder                   |

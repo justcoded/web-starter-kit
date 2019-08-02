@@ -10,6 +10,7 @@ init_wp
 npm-debug.log
 .idea
 .history
+.npmrc
 
 # composer
 composer.lock
