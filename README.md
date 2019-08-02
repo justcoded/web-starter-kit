@@ -258,7 +258,6 @@ Also, you might want to add these sass files to the ignore list (check `getPathe
 | clean-production                | `production` folder removing.                                                                                                                           |
 | copy-folders           | Need to copy all folders from sources to assets.                       |
 | file-include           | Compiles all html templates into html files.                       |
-| templates           | Compiles all pug files into html files.                       |
 | html-hint           | Need to hint html files.                    |
 | es-lint           | Need to lint js files.                      |
 | image-min           | We use this to minify images.                    |
