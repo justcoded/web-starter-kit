@@ -15,10 +15,10 @@ module.exports = function(options) {
       notify: false,
       injectChanges: true,
       server: {
-        baseDir: "../",
+        baseDir: '../',
         directory: listDirectory
       },
-      startPath: "assets/index.html",
+      startPath: 'assets/index.html',
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {

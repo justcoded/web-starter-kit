@@ -8,11 +8,9 @@ module.exports = {
     mainHtml: 'index.html',
     mainJs: 'app.js',
     vendorJs: 'vendor.js',
-    vendorJsMin: 'vendor.js',
     mainScss: 'style.scss',
     mainScssMin: 'styles.css',
     vendorScss: 'vendor.scss',
-    vendorScssMin: 'vendor.css',
   },
   fileInclude: {
     templates: 'html/templates',
@@ -24,14 +22,22 @@ module.exports = {
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
+    buildSassCustom: 'build-sass-custom',
     buildStylesVendors: 'build-styles-vendors',
+    cleanBuild: 'clean-build',
     browserSync: 'browser-sync-server',
     watch: 'watch',
     fileInclude: 'file-include',
   },
   autoprefixer: {
     browserslist: [
-      ".browserslistrc"
+      '.browserslistrc'
     ]
-  }
+  },
+  getPathesForSassCompiling: function () {
+    return {
+      files: [],
+      isGcmq: false,
+    };
+  },
 };

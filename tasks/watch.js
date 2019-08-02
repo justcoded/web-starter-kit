@@ -10,7 +10,7 @@ module.exports = function (options) {
   return () => {
     gulp.watch(`js/**/*`, gulp.series(options.tasks.buildCustomJs, options.tasks.esLint));
 
-    gulp.watch(`scss/**/*`, gulp.series(options.tasks.buildSass));
+    gulp.watch(`scss/**/*`, gulp.series(options.tasks.buildSass, options.tasks.buildSassCustom));
 
     gulp.watch(`./html/**/*`, gulp.series(options.tasks.fileInclude));
 
