@@ -12,7 +12,7 @@ module.exports = function (options) {
 
     gulp.watch(`scss/**/*`, gulp.series(options.tasks.buildSass, options.tasks.buildSassCustom));
 
-    gulp.watch(`./html/**/*`, gulp.series(options.tasks.fileInclude));
+    gulp.watch(`html/**/*`, gulp.series(options.tasks.fileInclude));
 
     gulp.watch('*.html', gulp.series(options.tasks.htmlHint));
 

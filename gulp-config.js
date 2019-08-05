@@ -1,14 +1,13 @@
 module.exports = {
   folder: {
     tasks: 'tasks',
-    src: 'assets',
     build: 'public'
   },
   file: {
     mainHtml: 'index.html',
     mainJs: 'app.js',
     vendorJs: 'vendor.js',
-    mainScss: 'style.scss',
+    mainScss: 'styles.scss',
     vendorScss: 'vendor.scss',
   },
   fileInclude: {
