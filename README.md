@@ -63,7 +63,7 @@ Once you have verified that your system can run WSK, check out the [commands](#c
 
 ## Install
 
-Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp@next && npm install` in that directory to get started.
+Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
 
 
 To take advantage of Web Starter Kit you need to:
@@ -204,13 +204,13 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── components               #Global Reusable Presentational Components
    ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
-   ├── style.scss               #Main scss file (can be used for importing another files)
+   ├── styles.scss              #Main scss file (can be used for importing another files)
 ├── vendor_entries              #Folder for vendor entries (plugins)
    ├── vendor.js                #File for plugins js 
    ├── vendor.scss              #File for plugins styles
 ```
 
-Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `style.scss` file .
+Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `styles.scss` file .
 
 Use `vendor_entries` to include plugins into your project.
 
@@ -238,7 +238,7 @@ Sass is a CSS preprocessor — a layer between the stylesheets you author and th
 So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.  
 
 * All custom **scss** files locate in `src/scss/` folder;
-* Entry point for all scss is `src/scss/style.scss` you can **import** all your *.scss* files from here;
+* Entry point for all scss is `src/scss/styles.scss` you can **import** all your *.scss* files from here;
 * You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the gulp.
 
 The `src` directory above contains MDL's Sass files and the JavaScript sources for all MDL components.
