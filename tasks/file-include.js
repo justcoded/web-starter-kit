@@ -12,7 +12,8 @@ module.exports = function(options) {
     return gulp.src(`./${options.templates}/**/*.html`)
     .pipe(fileinclude({
       prefix: '@@',
-      basepath: `./${options.templates}`
+      basepath: `./${options.templates}`,
+      indent: true
     }))
     .pipe(gulp.dest(options.dest));
   };

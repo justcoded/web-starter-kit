@@ -12,12 +12,12 @@ module.exports = function(options) {
   return (cb) => {
     let jsVendors = require(`../vendor_entries/${options.vendorJs}`);
 
-    if (jsVendors.length == 0) {
+    if (jsVendors.length === 0) {
       return cb();
     }
 
     return gulp.src(filesExist(jsVendors))
-      .pipe(concat(options.vendorJsMin))
+      .pipe(concat(options.vendorJs))
       .pipe(gulp.dest(`../${options.dest}/js`));
   };
 

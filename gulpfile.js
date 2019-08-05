@@ -27,7 +27,6 @@
   'use strict';
 
   const cfg         = require('./gulp-config.js'),
-        self        = this,
         gulp        = require('gulp'),
         notifier    = require('node-notifier'),
         gutil       = require('gulp-util'),
@@ -43,14 +42,11 @@
   function requireTask(taskName, path, options, dependencies) {
     let settings = options || {};
     const taskFunction = function (callback) {
-      if (settings.checkProduction) {
-        settings.isProduction = process.argv[process.argv.length - 1] === 'production';
-      }
 
       let task = require(path + taskName + '.js').call(this, settings);
 
       return task(callback);
-    }
+    };
 
     settings.taskName = taskName;
 
@@ -61,6 +57,20 @@
     } else {
       gulp.task(taskName, gulp.series(dependencies, taskFunction));
     }
+  }
+
+  /**
+   * Show error in console
+   * @param  {String} preffix Title of the error
+   * @param  {String} err     Error message
+   */
+  function showError(preffix, err) {
+    gutil.log(gutil.colors.white.bgRed(' ' + preffix + ' '), gutil.colors.white.bgBlue(' ' + err.message + ' '));
+    notifier.notify({
+      title: preffix,
+      message: err.message
+    });
+    this.emit('end');
   }
 
   /**
@@ -79,7 +89,6 @@
   /**
    * Lint ES
    */
-
   requireTask(`${cfg.task.esLint}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src
   });
@@ -91,7 +100,6 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
-    checkProduction: true,
     showError: showError
   });
 
@@ -112,9 +120,7 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
-    mainScssMin: cfg.file.mainScssMin,
     versions: cfg.autoprefixer.versions,
-    self: self,
     showError: showError
   });
 
@@ -126,7 +132,24 @@
     dest: cfg.folder.build,
     vendorScss: cfg.file.vendorScss,
     vendorScssMin: cfg.file.vendorScssMin,
+    // showError: showError
+  });
+
+  /**
+   * Compile custom scss files without sourcemaps & optional Gcmq
+   */
+  requireTask(`${cfg.task.buildSassCustom}`, `./${cfg.folder.tasks}/`, {
+    sassFilesInfo: cfg.getPathesForSassCompiling(),
+    dest: cfg.folder.build,
+    versions: cfg.autoprefixer.versions,
     showError: showError
+  });
+
+  /**
+   * Clean build folder
+   */
+  requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
+    src: cfg.folder.build,
   });
 
   /**
@@ -134,23 +157,25 @@
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     mainHtml: cfg.file.mainHtml,
-    browserSync: browserSync
+    browserSync
   });
 
   /**
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
+    sassFilesInfo: cfg.pathToCustomSass,
     src: cfg.folder.src,
     dest: cfg.folder.build,
-    browserSync: browserSync,
+    browserSync,
     templates: cfg.folder.templates,
     tasks: {
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
+      buildSassCustom: cfg.task.buildSassCustom,
+      fileInclude: cfg.task.fileInclude,
       esLint: cfg.task.esLint,
       htmlHint: cfg.task.htmlHint,
-      fileInclude: cfg.task.fileInclude,
     }
   }, false);
 
@@ -158,47 +183,20 @@
    * Default Gulp task
    */
   gulp.task('default', gulp.series(
+    cfg.task.cleanBuild,
     gulp.parallel(
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
+      cfg.task.buildSassCustom,
       cfg.task.buildStylesVendors,
+      cfg.task.fileInclude,
       cfg.task.htmlHint,
       cfg.task.esLint,
-      cfg.task.fileInclude,
     ),
     gulp.parallel(
       cfg.task.browserSync,
       cfg.task.watch
     )
   ));
-
-  /**
-   * Dev Gulp task without usage of browserSync
-   */
-  gulp.task('dev', gulp.series(
-    gulp.parallel(
-      cfg.task.buildCustomJs,
-      cfg.task.buildJsVendors,
-      cfg.task.buildSass,
-      cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
-      cfg.task.fileInclude,
-    ),
-    cfg.task.watch
-  ));
-
-  /**
-   * Show error in console
-   * @param  {String} preffix Title of the error
-   * @param  {String} err     Error message
-   */
-  function showError(preffix, err) {
-    gutil.log(gutil.colors.white.bgRed(' ' + preffix + ' '), gutil.colors.white.bgBlue(' ' + err.message + ' '));
-    notifier.notify({
-      title: preffix,
-      message: err.message
-    });
-    this.emit('end');
-  }
 })();
