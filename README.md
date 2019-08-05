@@ -46,7 +46,7 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (Run `gulp` to create an optimised version of your project to `/assets`).                                                                                                |
 | Code Linting               | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used airbnb-base rules https://www.npmjs.com/package/eslint-config-airbnb-base). HTML code hinting is done using [HtmlHint](https://www.npmjs.com/package/gulp-htmlhint).                                                                                             |
 | ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
-| HTML templating                       | Used [gulp-file-include](https://www.npmjs.com/package/gulp-file-include) for templating html files. |
+| HTML templating                       | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
 | Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate.                                                                                                                                                                            |
 | Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension (Run `gulp` and edit your files).                                                                                                                           |
 | Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (Run `gulp` and open up the IP provided on other devices on your network).                       |
@@ -55,7 +55,7 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 
 Init your project using [jcn](https://github.com/justcoded/npm-jcn) or  [Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit from this repository and build on what is included in the `assets` directory.
 
-You can start from `index.html` - the default starting point, with template text.
+You can start from `src/html` - the default starting point, with template text.
 
 Be sure to look over the [installation](#install) to verify your environment is prepared to run Web Starter Kit.
 Once you have verified that your system can run WSK, check out the [commands](#commands) available to get started.
@@ -154,15 +154,25 @@ Your folder structure for WSK:
 If you want to use our WSK , you need to know something about the structure.
 
 ```
-├── assets          #Folder with files after compiling
-├── src             #Folder with sources
-├── tasks           #Folder with tasks for gulpfile
+├── assets              #Folder with files after compiling
+├── src                 #Folder with sources
+├── tasks               #Folder with tasks for gulpfile
+├── .browserslistrc     #Config for autoprefixer
+├── .editorconfig       #Config for IDEs
+├── .eslintignore       #Eslint ignore list
+├── .eslintrc           #Config for eslint
+├── .gitattributes      #Git config for defining attributes per path
+├── .gitignore          #Git ignore list
+├── .htaccess           #Config file of Apache web service
+├── .npmrc              #Config for NPM
+├── .travis.yml         #Config file of service for building and testing software projects hosted at GitHub
+├── CONTRIBUTING.md
+├── gulp-config.js      #Config for gulp
+├── gulpfile.js         #File with gulp tasks
+├── index.html          #Compiled file with gulp-file-include
 ├── LICENSE
-├── README.md
-├── gulp-config.js  #Config for gulp
-├── gulpfile.js     #File with gulp tasks
-├── index.html      #Main application
-└── package.json    #File with dependencies
+├── package.json        #File with dependencies
+└── README.md       
 
 ```
 
@@ -195,6 +205,9 @@ In `src` folder you can find all sources for the project (images, sass , javascr
    ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
    ├── style.scss               #Main scss file (can be used for importing another files)
+├── vendor_entries              #Folder for vendor entries (plugins)
+   ├── vendor.js                #File for plugins js 
+   ├── vendor.scss              #File for plugins styles
 ```
 
 Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `style.scss` file .
@@ -262,7 +275,7 @@ Also, you might want to add these sass files to the ignore list (check `getPathe
 | es-lint           | Need to lint js files.                      |
 | image-min           | We use this to minify images.                    |
 | watch           | Task for watching all the changes.                   |
-| compile-sass-files           | Compiles all custom scss files listed in the `gulp-config.js` to `assets/css`   folder                   |
+| compile-sass-files           | Compiles all custom scss files listed in the `gulp-config.js` to `assets/css` folder                   |
 
 ## Troubleshooting
 
@@ -278,4 +291,3 @@ Contributions, questions and comments are all welcome and encouraged. For code c
 The MIT License (MIT).
 
 Copyright (c) 2018 JustCoded the IP provided on other devices on your network.
-                                                                                                                                     
