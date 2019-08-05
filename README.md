@@ -162,6 +162,7 @@ If you want to use our WSK, you need to know something about the structure.
     ├── vendor.js                 #File for plugins js 
     ├── vendor.scss               #File for plugins styles
   ├── .browserslistrc             #Config for autoprefixer
+  ├── .editorconfig               #Config file for IDE
   ├── .eslintignore               #Eslint ignore list
   ├── .eslintrc                   #Config for eslint
   ├── .gitattributes              #Git config for defining attributes per path
