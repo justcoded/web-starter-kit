@@ -158,7 +158,7 @@ If you want to use our WSK , you need to know something about the structure.
 ├── src                 #Folder with sources
 ├── tasks               #Folder with tasks for gulpfile
 ├── .browserslistrc     #Config for autoprefixer
-├── .editorconfig       #Config for IDEs
+├── .editorconfig       #Config for IDE
 ├── .eslintignore       #Eslint ignore list
 ├── .eslintrc           #Config for eslint
 ├── .gitattributes      #Git config for defining attributes per path
@@ -172,7 +172,7 @@ If you want to use our WSK , you need to know something about the structure.
 ├── index.html          #Compiled file with gulp-file-include
 ├── LICENSE
 ├── package.json        #File with dependencies
-└── README.md       
+└── README.md        
 
 ```
 
