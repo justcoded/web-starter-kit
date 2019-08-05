@@ -32,7 +32,8 @@ At present, we officially aim to support the last two versions of the following 
 * Edge
 * Firefox
 * Safari
-* Internet Explorer
+* iOS
+* Android 5+
 
 This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
 
@@ -156,7 +157,7 @@ If you want to use our WSK, you need to know something about the structure.
      ├── components               #Global Reusable Presentational Components
      ├── layout                   #Global layout
      ├── pages                    #Global styles for pages
-     ├── style.scss               #Main scss file (can be used for importing another files)
+     ├── styles.scss               #Main scss file (can be used for importing another files)
   ├── tasks                       #Folder with tasks for gulpfile
   ├── vendor_entries              #Folder for vendor entries (plugins)
     ├── vendor.js                 #File for plugins js 
@@ -174,7 +175,7 @@ If you want to use our WSK, you need to know something about the structure.
   ├── index.html                  #Compiled file with gulp-file-include
   ├── LICENSE
   ├── package.json                #File with dependencies
-  └── README.md
+  └── README-Front-end.md
 ├── public                        #Folder with files after compiling
   ├── css                         #Folder with compiled styles
   └── js                          #Folder with compiled js
@@ -185,7 +186,7 @@ In `package.json` you can find all the dependencies.
 In `assets` folder (`web-starter-kit` after renaming) you can find all sources for the project.
 In `public` folder (created after running `gulp`) you will find compiled files of styles & js.
 
-Use `public/images` folder to add your graphic files, `assets/js/modules` to add your javascript modules (don't forget to include it in app.js), `assets/scss` folder to add your styles for the project. You can create, delete files and folders in `assets/scss`, but don't forget to include them in `assets/style.scss` file.
+Use `public/images` folder to add your graphic files, `assets/js/modules` to add your javascript modules (don't forget to include it in app.js), `assets/scss` folder to add your styles for the project. You can create, delete files and folders in `assets/scss`, but don't forget to include them in `assets/styles.scss` file.
 
 Use `assets/vendor_entries` to include plugins into your project.
 
@@ -213,7 +214,7 @@ Sass is a CSS preprocessor — a layer between the stylesheets you author and th
 So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.  
 
 * All custom **scss** files locate in `assets/scss/` folder;
-* Entry point for all scss is `assets/scss/style.scss` you can **import** all your *.scss* files from here;
+* Entry point for all scss is `assets/scss/styles.scss` you can **import** all your *.scss* files from here;
 * You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the gulp.
 
 The `assets` directory above contains MDL's Sass files and the JavaScript sources for all MDL components.
@@ -261,5 +262,5 @@ Contributions, questions and comments are all welcome and encouraged. For code c
 
 The MIT License (MIT).
 
-Copyright (c) 2018 JustCoded the IP provided on other devices on your network.
+Copyright (c) 2019 JustCoded the IP provided on other devices on your network.
                                                                                                                                      
