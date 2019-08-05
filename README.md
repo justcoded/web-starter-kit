@@ -32,7 +32,8 @@ At present, we officially aim to support the last two versions of the following 
 * Edge
 * Firefox
 * Safari
-* Internet Explorer
+* iOS
+* Android 5+
 
 This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
 
@@ -290,4 +291,4 @@ Contributions, questions and comments are all welcome and encouraged. For code c
 
 The MIT License (MIT).
 
-Copyright (c) 2018 JustCoded the IP provided on other devices on your network.
+Copyright (c) 2019 JustCoded the IP provided on other devices on your network.
