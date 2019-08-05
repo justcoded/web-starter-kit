@@ -11,11 +11,7 @@ const gulp       = require('gulp'),
 module.exports = function(options) {
 
   return function() {
-    return browserify({
-        entries: `./js/${options.mainJs}`,
-        // Remove sourcemap for production
-        debug: !options.isProduction
-      })
+    return browserify({ entries: `./js/${options.mainJs}` })
       .transform('babelify', {
         presets: ['es2015']
       })
