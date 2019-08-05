@@ -89,15 +89,12 @@
   /**
    * Lint ES
    */
-  requireTask(`${cfg.task.esLint}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src
-  });
+  requireTask(`${cfg.task.esLint}`, `./${cfg.folder.tasks}/`);
 
   /**
    * Build custom js
    */
   requireTask(`${cfg.task.buildCustomJs}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
     showError: showError
@@ -107,7 +104,6 @@
    * Build js vendor (concatenate vendors array)
    */
   requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
     dest: cfg.folder.build,
     vendorJs: cfg.file.vendorJs,
     vendorJsMin: cfg.file.vendorJsMin
@@ -117,7 +113,6 @@
    * Build styles for application from SASS
    */
   requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
     versions: cfg.autoprefixer.versions,
@@ -128,7 +123,6 @@
    * Build styles for vendor from SASS
    */
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
     dest: cfg.folder.build,
     vendorScss: cfg.file.vendorScss,
     vendorScssMin: cfg.file.vendorScssMin,
@@ -148,9 +142,7 @@
   /**
    * Clean build folder
    */
-  requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.build,
-  });
+  requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`);
 
   /**
    * Start browserSync server
@@ -165,7 +157,6 @@
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.pathToCustomSass,
-    src: cfg.folder.src,
     dest: cfg.folder.build,
     browserSync,
     templates: cfg.folder.templates,

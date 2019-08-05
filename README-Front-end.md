@@ -1,4 +1,4 @@
-[![Web Starter Kit](https://cloud.githubusercontent.com/assets/25930200/23856381/20707b74-0802-11e7-8578-5e4e91bb463e.png)](https://github.com/justcoded/web-starter-kit/releases)
+[![Web Starter Kit](https://user-images.githubusercontent.com/25930200/62307445-46eeff80-b48c-11e9-8a98-197b7bd4faaf.png)](https://github.com/justcoded/web-starter-kit/releases)
 
 >  A modern Web starter kit to build projects, ready for WordPress.
 
@@ -63,7 +63,7 @@ Once you have verified that your system can run WSK, check out the [commands](#c
 
 ## Install
 
-Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp@next && npm install` in that directory to get started.
+Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
 
 
 To take advantage of Web Starter Kit you need to:
