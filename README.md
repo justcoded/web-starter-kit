@@ -224,11 +224,11 @@ The `assets` directory above contains MDL's Sass files and the JavaScript source
 You are able to add your own custom sass files and optionally [disable/enable gulp-group-css-media-queries module](https://github.com/justcoded/web-starter-kit/issues/56).
 You can see this property in the gulp-config.js file:
 
-![image](https://user-images.githubusercontent.com/14921077/36471272-8ce84fbc-16f6-11e8-8173-4e41d1dbbb9f.png)
+![image](https://user-images.githubusercontent.com/32138684/62449074-118b3000-b772-11e9-899c-13dca868cac8.png)
 
 Please don't forget to link all your custom scss files in html:
 
-![image](https://user-images.githubusercontent.com/14921077/36471279-9387a368-16f6-11e8-9814-a7f1a18150fc.png)
+![image](https://user-images.githubusercontent.com/32138684/62449033-ec96bd00-b771-11e9-9e0b-e4c1211e1102.png)
 
 Also, you might want to add these sass files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `public/css` without grouping css media queries.
 
