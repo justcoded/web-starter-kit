@@ -1,4 +1,4 @@
-[![Web Starter Kit](https://user-images.githubusercontent.com/25930200/62307445-46eeff80-b48c-11e9-8a98-197b7bd4faaf.png)](https://github.com/justcoded/web-starter-kit/releases)
+[![Web Starter Kit](https://user-images.githubusercontent.com/25930200/62951163-2317ac00-bdf2-11e9-9df8-8782c6e8d5ec.png)](https://github.com/justcoded/web-starter-kit/releases)
 
 >  A modern Web starter kit to build projects, ready for WordPress.
 
