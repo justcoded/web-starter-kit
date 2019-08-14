@@ -1,4 +1,4 @@
-[![Web Starter Kit](https://user-images.githubusercontent.com/25930200/62951163-2317ac00-bdf2-11e9-9df8-8782c6e8d5ec.png)](https://github.com/justcoded/web-starter-kit/releases)
+[![Web Starter Kit](https://user-images.githubusercontent.com/25930200/63020667-68e27c00-bea7-11e9-8047-a9d595ad9c1a.jpg)](https://github.com/justcoded/web-starter-kit/releases)
 
 >  A modern Web starter kit for projects
 
