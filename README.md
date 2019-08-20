@@ -14,14 +14,16 @@ Web Starter Kit is an opinionated boilerplate for web development. Tools for bui
 2. [Features](#features)
 3. [Install](#install)
 4. [Quickstart](#quickstart)
-5. [Commands](#commands)
-6. [Structure](#structure)
-7. [JS](#js)
-8. [SCSS](#scss)
-9. [Tasks](#tasks)
-10. [Troubleshooting](#troubleshooting)
-11. [Contributing](#contributing)
-12. [License](#license)
+5. [Getting the code](#getting-the-code)
+6. [Prerequisites](#prerequisites)
+7. [Commands](#commands)
+8. [Structure](#structure)
+9. [JS](#js)
+10. [SCSS](#scss)
+11. [Tasks](#tasks)
+12. [Troubleshooting](#troubleshooting)
+13. [Contributing](#contributing)
+14. [License](#license)
 
 
 ## Browser Support
@@ -42,7 +44,7 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 
 | Feature                                | Summary                                                                                                                                                                                                                                                     |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html`.                          |
+| Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html` from `src/html`.                          |
 | Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (Run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
 | Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (Run `gulp` to create an optimised version of your project to `/assets`).                                                                                                |
 | Code Linting               | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used airbnb-base rules https://www.npmjs.com/package/eslint-config-airbnb-base). HTML code hinting is done using [HtmlHint](https://www.npmjs.com/package/gulp-htmlhint).                                                                                             |
@@ -52,15 +54,6 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension (Run `gulp` and edit your files).                                                                                                                           |
 | Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (Run `gulp` and open up the IP provided on other devices on your network).                       |
                                                                                                                                      
-## Quickstart
-
-Init your project using [jcn](https://github.com/justcoded/npm-jcn) or  [Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit from this repository and build on what is included in the `assets` directory.
-
-You can start from `src/html` - the default starting point, with template text.
-
-Be sure to look over the [installation](#install) to verify your environment is prepared to run Web Starter Kit.
-Once you have verified that your system can run WSK, check out the [commands](#commands) available to get started.
-
 
 ## Install
 
@@ -81,6 +74,15 @@ $ sudo snap install node --classic --channel 6/stable
 ```sh
 $ npm install gulpjs/gulp-cli -g
 ```
+
+## Quickstart
+
+Init your project using [jcn](https://github.com/justcoded/npm-jcn) or  [Download](https://github.com/justcoded/web-starter-kit/releases/latest) the kit from this repository and build on what is included in the `assets` directory.
+
+You can start from `src/html` - the default starting point, with template text.
+
+Be sure to look over the [installation](#install) to verify your environment is prepared to run Web Starter Kit.
+Once you have verified that your system can run WSK, check out the [commands](#commands) available to get started.
 
 
 ## Getting the code
@@ -122,25 +124,22 @@ That's it! You should now have everything needed to use the Web Starter Kit.
 You may also want to get used to some of the [commands](#commands) available.
 
 
-
 ## Commands
 
-There are many commands available to help you build and test sites. Here are a few highlights to get started with.
+There are few commands available to help you build and test sites:
 
 ### Watch For Changes & Automatically Refresh Across Devices
-
-## Build & Optimize
 
 ```sh
 $ gulp
 ```
 
-Build and optimize the current project, ready for deployment.
+`gulp` task creates the `assets/` folder in the root of the project.
 This includes linting as well as image, script, stylesheet and HTML optimization and minification.
 Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites' resources.
 
 
-## Serve the Fully Built & Optimized Site
+### Serve the Fully Built & Optimized Site
 
 ```sh
 $ gulp build
@@ -152,7 +151,7 @@ $ gulp build
 ## Structure
 
 Your folder structure for WSK:
-If you want to use our WSK , you need to know something about the structure.
+If you want to use our WSK, you need to know something about the structure.
 
 ```
 ├── assets              #Folder with files after compiling
@@ -166,7 +165,7 @@ If you want to use our WSK , you need to know something about the structure.
 ├── .gitignore          #Git ignore list
 ├── .htaccess           #Config file of Apache web service
 ├── .npmrc              #Config for NPM
-├── .travis.yml         #Config file of service for building and testing software projects hosted at GitHub
+├── .travis.yml         #Config file of service for building and testing projects hosted at GitHub
 ├── CONTRIBUTING.md
 ├── gulp-config.js      #Config for gulp
 ├── gulpfile.js         #File with gulp tasks
@@ -179,9 +178,9 @@ If you want to use our WSK , you need to know something about the structure.
 
 `Tasks` - folder for gulpfile tasks.
 In `package.json` you can find all the dependencies.
-In `src` folder you can find all sources for the project (images, sass , javascript files).
+In `src` folder you can find all sources for the project (images, sass, javascript files).
 
-## `src` folder structure
+### `src` folder structure
 
 ```
 ├── html
@@ -227,7 +226,6 @@ Use `vendor_entries` to include plugins into your project.
 * All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include its files**:
   * **js files** must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
-
 
 
 ## SCSS
