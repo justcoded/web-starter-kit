@@ -14,7 +14,6 @@ const dotsEffect = () => {
     }
 
     html += '</div>';
-
     return html;
   };
 
