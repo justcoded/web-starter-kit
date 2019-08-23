@@ -5,7 +5,6 @@
 
 const gulp       = require('gulp'),
       browserify = require('browserify'),
-      babelify   = require('babelify'),
       source     = require('vinyl-source-stream');
 
 module.exports = function(options) {
@@ -16,8 +15,19 @@ module.exports = function(options) {
         // Remove sourcemap for production
         debug: !options.isProduction
       })
+    // If you need to 'babelify' with options:
+      // .transform('babelify', {
+      //   presets: [
+      //     ['@babel/preset-env', {
+      //       exclude: [
+      //         'transform-template-literals',
+      //       ],
+      //       debug: true,
+      //     }],
+      //   ],
+      // })
       .transform('babelify', {
-        presets: ['es2015']
+        presets: ['@babel/preset-env'],
       })
       .bundle().on('error', function(err) {
         options.showError.apply(this, ['JS error', err])
