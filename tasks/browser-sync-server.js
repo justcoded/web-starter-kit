@@ -3,8 +3,7 @@
  */
 'use strict';
 
-const gulp  = require('gulp'),
-      fs    = require('fs');
+const fs    = require('fs');
 
 module.exports = function(options) {
 
@@ -15,7 +14,7 @@ module.exports = function(options) {
     options.browserSync.init({
       notify: false,
       server: {
-        baseDir: "./",
+        baseDir: './',
         directory: listDirectory
       },
       snippetOptions: {
