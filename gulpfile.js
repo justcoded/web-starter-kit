@@ -182,9 +182,9 @@
       cfg.task.buildSassCustom,
       cfg.task.buildStylesVendors,
       cfg.task.fileInclude,
-      cfg.task.htmlHint,
       cfg.task.esLint,
     ),
+    cfg.task.htmlHint,
     gulp.parallel(
       cfg.task.browserSync,
       cfg.task.watch
