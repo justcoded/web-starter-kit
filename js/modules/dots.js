@@ -2,7 +2,7 @@
 //
 // You can remove or add your own function in this file.
 
-const dotsEffect = () => {
+const dotsEffect = (($) => {
   const createCells = () => {
     const width = 10;
     const height = 10;
@@ -14,6 +14,7 @@ const dotsEffect = () => {
     }
 
     html += '</div>';
+
     return html;
   };
 
@@ -26,6 +27,6 @@ const dotsEffect = () => {
   return {
     init,
   };
-};
+})(jQuery);
 
-export default dotsEffect();
+export default dotsEffect;
