@@ -143,7 +143,9 @@
   /**
    * Clean build folder
    */
-  requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
+    dest: cfg.folder.build
+  });
 
   /**
    * Start browserSync server
