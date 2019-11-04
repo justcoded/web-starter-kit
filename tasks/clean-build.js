@@ -3,9 +3,9 @@
  */
 'use strict';
 
-const del  = require('del');
+const del = require('del');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
   return () => {
     return del([

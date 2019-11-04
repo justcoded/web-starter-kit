@@ -3,22 +3,25 @@
  */
 'use strict';
 
-const gulp         = require('gulp'),
-      sass         = require('gulp-sass'),
-      gcmq         = require('gulp-group-css-media-queries'),
-      sourcemaps   = require('gulp-sourcemaps'),
-      autoprefixer = require('gulp-autoprefixer');
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const gcmq = require('gulp-group-css-media-queries');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return function() {
+  return function () {
     return gulp.src(`./scss/${options.mainScss}`)
       .pipe(sourcemaps.init({ loadMaps: true }))
-      .pipe(sass().on('error', function(err) {
-        options.showError.apply(this, ['Sass compile error', err]);
+      .pipe(sass())
+      .on('error', notify.onError({
+        title: 'Sass compiling error',
+        wait: true
       }))
+      .pipe(autoprefixer())
       .pipe(gcmq())
-      .pipe(autoprefixer(options.versions))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(`../${options.dest}/css`));
   };

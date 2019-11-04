@@ -26,11 +26,11 @@
 (() => {
   'use strict';
 
-  const cfg         = require('./gulp-config.js'),
-        gulp        = require('gulp'),
-        notifier    = require('node-notifier'),
-        gutil       = require('gulp-util'),
-        browserSync = require('browser-sync').create();
+  const cfg = require('./gulp-config.js');
+  const gulp = require('gulp');
+  const notifier = require('node-notifier');
+  const log = require('fancy-log');
+  const browserSync = require('browser-sync').create();
 
   /**
    * Require gulp task from file
@@ -65,10 +65,11 @@
    * @param  {String} err     Error message
    */
   function showError(preffix, err) {
-    gutil.log(gutil.colors.white.bgRed(' ' + preffix + ' '), gutil.colors.white.bgBlue(' ' + err.message + ' '));
+    log.error(`${preffix}`, `${err.message}`);
     notifier.notify({
       title: preffix,
-      message: err.message
+      message: err.message,
+      wait: true
     });
     this.emit('end');
   }
@@ -115,7 +116,7 @@
   requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
-    versions: cfg.autoprefixer.versions,
+    browsersVersions: cfg.autoprefixer.browserslist,
     showError: showError
   });
 
@@ -135,7 +136,7 @@
   requireTask(`${cfg.task.buildSassCustom}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     dest: cfg.folder.build,
-    versions: cfg.autoprefixer.versions,
+    browsersVersions: cfg.autoprefixer.browserslist,
     showError: showError
   });
 
