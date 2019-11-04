@@ -33,7 +33,7 @@
     "gulp-autoprefixer": "^7.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-cssimport": "^7.0.0",
-    "gulp-debug": "^3.1.0",
+    "gulp-debug": "^4.0.0",
     "gulp-eslint": "^6.0.0",
     "gulp-file-include": "^2.1.1",
     "gulp-group-css-media-queries": "^1.2.2",
