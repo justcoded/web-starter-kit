@@ -35,7 +35,7 @@
     "gulp-cssimport": "^7.0.0",
     "gulp-debug": "^3.1.0",
     "gulp-eslint": "^5.0.0",
-    "gulp-file-include": "^2.0.1",
+    "gulp-file-include": "^2.1.1",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-htmlhint": "^2.2.1",
     "gulp-if": "^3.0.0",
