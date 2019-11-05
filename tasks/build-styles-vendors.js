@@ -15,6 +15,7 @@ module.exports = function (options) {
       .pipe(sass())
       .on('error', notify.onError({
         title: 'Sass compiling error',
+        icon: './sys_icon/error_icon.png',
         wait: true
       }))
       .pipe(cssimport())

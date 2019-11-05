@@ -17,6 +17,7 @@ module.exports = function (options) {
       })
       .bundle().on('error', notify.onError({
         title: 'JS compiling error',
+        icon: './sys_icon/error_icon.png',
         wait: true
       }))
       .pipe(source('jquery.main.js'))

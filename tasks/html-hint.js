@@ -20,6 +20,7 @@ module.exports = function (options) {
       }))
       .on('error', notify.onError({
         title: 'HTML linting error',
+        icon: './sys_icon/error_icon.png',
         wait: true
       }));
 

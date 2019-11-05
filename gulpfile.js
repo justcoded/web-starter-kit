@@ -28,8 +28,6 @@
 
   const cfg = require('./gulp-config.js');
   const gulp = require('gulp');
-  const notifier = require('node-notifier');
-  const log = require('fancy-log');
   const browserSync = require('browser-sync').create();
 
   /**
@@ -60,21 +58,6 @@
   }
 
   /**
-   * Show error in console
-   * @param  {String} preffix Title of the error
-   * @param  {String} err     Error message
-   */
-  function showError(preffix, err) {
-    log.error(`${preffix}`, `${err.message}`);
-    notifier.notify({
-      title: preffix,
-      message: err.message,
-      wait: true
-    });
-    this.emit('end');
-  }
-
-  /**
    * template HTML
    */
   requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
@@ -98,7 +81,6 @@
   requireTask(`${cfg.task.buildCustomJs}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
-    showError: showError
   });
 
   /**
@@ -117,7 +99,6 @@
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
     browsersVersions: cfg.autoprefixer.browserslist,
-    showError: showError
   });
 
   /**
@@ -127,7 +108,6 @@
     dest: cfg.folder.build,
     vendorScss: cfg.file.vendorScss,
     vendorScssMin: cfg.file.vendorScssMin,
-    // showError: showError
   });
 
   /**
@@ -137,7 +117,6 @@
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     dest: cfg.folder.build,
     browsersVersions: cfg.autoprefixer.browserslist,
-    showError: showError
   });
 
   /**
