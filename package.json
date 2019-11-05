@@ -20,7 +20,7 @@
   "homepage": "https://github.com/justcoded/web-starter-kit",
   "devDependencies": {
     "@babel/core": "^7.7.0",
-    "@babel/preset-env": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
     "babelify": "^10.0.0",
     "browser-sync": "^2.26.7",
     "browserify": "^16.5.0",
