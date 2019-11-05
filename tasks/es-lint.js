@@ -3,10 +3,11 @@
  */
 'use strict';
 
-const gulp   = require('gulp'),
-      esLint = require('gulp-eslint');
+const gulp = require('gulp');
+const esLint = require('gulp-eslint');
 
-module.exports = function(options) {
+module.exports = function (options) {
+
   return () => gulp.src('./js/**/*.js')
     .pipe(esLint())
     // eslint.format() outputs the lint results to the console.

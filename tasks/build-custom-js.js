@@ -3,31 +3,22 @@
  */
 'use strict';
 
-const gulp       = require('gulp'),
-      browserify = require('browserify'),
-      source     = require('vinyl-source-stream');
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return function() {
+  return () => {
     return browserify({ entries: `./js/${options.mainJs}` })
-    // If you need to 'babelify' with options:
-      // .transform('babelify', {
-      //   presets: [
-      //     ['@babel/preset-env', {
-      //       exclude: [
-      //         'transform-template-literals',
-      //       ],
-      //       debug: true,
-      //     }],
-      //   ],
-      // })
       .transform('babelify', {
         presets: ['@babel/preset-env']
       })
-      .bundle().on('error', function(err) {
-        options.showError.apply(this, ['JS error', err])
-      })
+      .bundle().on('error', notify.onError({
+        title: 'JS compiling error',
+        wait: true
+      }))
       .pipe(source('jquery.main.js'))
       .pipe(gulp.dest(`../${options.dest}/js`));
   };

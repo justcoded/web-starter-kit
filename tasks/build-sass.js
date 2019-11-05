@@ -12,7 +12,7 @@ const gcmq = require('gulp-group-css-media-queries');
 
 module.exports = function (options) {
 
-  return function () {
+  return () => {
     return gulp.src(`./scss/${options.mainScss}`)
       .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(sass())
@@ -25,5 +25,4 @@ module.exports = function (options) {
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(`../${options.dest}/css`));
   };
-
 };

@@ -3,24 +3,27 @@
  */
 'use strict';
 
-  const gulp         = require('gulp'),
-        sass         = require('gulp-sass'),
-        gcmq         = require('gulp-group-css-media-queries'),
-        gulpif       = require('gulp-if'),
-        autoprefixer = require('gulp-autoprefixer');
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const gulpif = require('gulp-if');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const gcmq = require('gulp-group-css-media-queries');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return function(cb) {
+  return (cb) => {
     const { files, isGcmq } = options.sassFilesInfo;
 
     if (files.length > 0) {
       return gulp.src(files)
-        .pipe(sass().on('error', function(err) {
-          options.showError.apply(this, ['Sass compile error', err]);
+        .pipe(sass())
+        .on('error', notify.onError({
+          title: 'Sass compiling error',
+          wait: true
         }))
-        .pipe(gulpif(isGcmq, gcmq()))
         .pipe(autoprefixer(options.versions))
+        .pipe(gulpif(isGcmq, gcmq()))
         .pipe(gulp.dest(`../${options.dest}/css`));
     } else {
       return cb();

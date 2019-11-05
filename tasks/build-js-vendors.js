@@ -3,11 +3,11 @@
  */
 'use strict';
 
-const gulp       = require('gulp'),
-      filesExist = require('files-exist'),
-      concat     = require('gulp-concat');
+const gulp = require('gulp');
+const filesExist = require('files-exist');
+const concat = require('gulp-concat');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
   return (cb) => {
     let jsVendors = require(`../vendor_entries/${options.vendorJs}`);
