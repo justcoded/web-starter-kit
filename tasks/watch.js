@@ -18,7 +18,6 @@ module.exports = function (options) {
 
     gulp.watch(['*.html', 'js/**/*', 'scss/**/*', 'html/**/*'])
       .on('change', options.browserSync.reload);
-
   };
 
 };
