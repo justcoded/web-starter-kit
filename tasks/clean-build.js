@@ -9,8 +9,8 @@ module.exports = function (options) {
 
   return async () => {
     await del([
-      `../${options.dest}/css`,
-      `../${options.dest}/js`,
+      `../${options.dir}/css`,
+      `../${options.dir}/js`,
     ], { force: true });
   };
 };
