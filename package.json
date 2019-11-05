@@ -22,7 +22,7 @@
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "babelify": "^10.0.0",
-    "browser-sync": "^2.18.0",
+    "browser-sync": "^2.26.7",
     "browserify": "^16.5.0",
     "del": "^5.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
