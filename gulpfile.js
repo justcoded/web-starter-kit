@@ -137,7 +137,7 @@
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.pathToCustomSass,
+    sassFilesInfo: cfg.getPathesForSassCompiling(),
     dest: cfg.folder.build,
     browserSync,
     templates: cfg.folder.templates,
