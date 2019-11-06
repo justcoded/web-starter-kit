@@ -40,3 +40,6 @@ tmp
 *.tgz
 *.tar
 *.rar
+
+#npm dependencies
+package-lock.json
