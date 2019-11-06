@@ -12,11 +12,9 @@ module.exports = function (options) {
 
     gulp.watch(`scss/**/*`, gulp.series(options.tasks.buildSass, options.tasks.buildSassCustom));
 
-    gulp.watch(`html/**/*`, gulp.series(options.tasks.fileInclude));
+    gulp.watch(`html/**/*`, gulp.series(options.tasks.fileInclude, options.tasks.htmlHint));
 
-    gulp.watch('*.html', gulp.series(options.tasks.htmlHint));
-
-    gulp.watch(['*.html', 'js/**/*', 'scss/**/*', 'html/**/*'])
+    gulp.watch(['js/**/*', 'scss/**/*', 'html/**/*'])
       .on('change', options.browserSync.reload);
   };
 };
