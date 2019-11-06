@@ -89,7 +89,6 @@
   requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     vendorJs: cfg.file.vendorJs,
-    vendorJsMin: cfg.file.vendorJsMin
   });
 
   /**

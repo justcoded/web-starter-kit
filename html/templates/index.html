@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  @@include('../partials/head/head.html')
+@@include('../partials/head/head.html')
 
 <body>
   <div class="wrapper">
     @@include('../partials/components/entry-section.html')
     @@include('../partials/components/starter-box.html', {
-      "title": "JustCoded",
-      "intro-text": "Web Starter Kit"
+    "title": "JustCoded",
+    "intro-text": "Web Starter Kit"
     })
   </div>
-  <script
- src="https://code.jquery.com/jquery-1.12.4.js"
- integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
- crossorigin="anonymous" defer></script>
-  <script src="../public/js/vendor.js" defer></script>
-  <script src="../public/js/jquery.main.js" defer></script>
+  @@include('../partials/scripts/common.html')
 </body>
+
 </html>

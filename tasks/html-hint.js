@@ -9,7 +9,7 @@ const htmlhint = require('gulp-htmlhint');
 
 module.exports = function (options) {
 
-  return (cb) => {
+  return (done) => {
     gulp.src('./*.html')
       .pipe(htmlhint({
         'attr-lowercase': ['viewBox']
@@ -24,6 +24,6 @@ module.exports = function (options) {
         wait: true
       }));
 
-    return cb();
+    return done();
   };
 };

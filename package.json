@@ -55,7 +55,6 @@
   },
   "dependencies": {
     "include-media": "^1.4.9",
-    "jquery": "^3.3.1",
     "normalize.css": "^8.0.1"
   }
 }

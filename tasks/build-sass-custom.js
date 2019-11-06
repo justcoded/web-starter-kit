@@ -12,7 +12,7 @@ const gcmq = require('gulp-group-css-media-queries');
 
 module.exports = function (options) {
 
-  return (cb) => {
+  return (done) => {
     const { files, isGcmq } = options.sassFilesInfo;
 
     if (files.length > 0) {
@@ -27,7 +27,7 @@ module.exports = function (options) {
         .pipe(gulpif(isGcmq, gcmq()))
         .pipe(gulp.dest(`../${options.dest}/css`));
     } else {
-      return cb();
+      return done();
     }
   };
 };
