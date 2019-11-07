@@ -3,11 +3,11 @@
  */
 'use strict';
 
-const gulp     = require('gulp'),
-      htmlhint = require('gulp-htmlhint'),
-      notify   = require('gulp-notify');
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const htmlhint = require('gulp-htmlhint');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
   return cb => {
     gulp.src('./*.html')
@@ -16,10 +16,12 @@ module.exports = function(options) {
       }))
       .pipe(htmlhint.reporter('htmlhint-stylish'))
       .pipe(htmlhint.failReporter({
-        suppress: true 
+        suppress: true
       }))
       .on('error', notify.onError({
-        title: 'HTML'
+        title: 'HTML linting error',
+        icon: './sys_icon/error_icon.png',
+        wait: true
       }));
 
     cb();
