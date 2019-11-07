@@ -3,15 +3,18 @@
  */
 'use strict';
 
-const del  = require('del');
+const del = require('del');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return () => {
-    return del([
+  return async () => {
+    const deletedPaths = await del([
       `${options.src}/**/*`,
       `!${options.src}/images/`,
       `!${options.src}/images/**`
-    ], { dot: true });
+    ], { force: true });
+
+    // log paths for deleted files & directories
+    // console.log('Deleted files and directories:\n', deletedPaths.join('\n'));
   };
 };
