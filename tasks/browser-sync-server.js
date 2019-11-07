@@ -9,7 +9,7 @@ const path = require('path');
 module.exports = function (options) {
 
   return () => {
-    const baseDevDir = process.platform === "win32" ? path.resolve('.').split(path.resolve('..') + '/') : path.resolve('.').split(path.resolve('..') + '/')[1];
+    const baseDevDir = process.platform === 'win32' ? path.resolve('.').split(path.resolve('..') + '/') : path.resolve('.').split(path.resolve('..') + '/')[1];
     // If index.html exist - open it, else show folder
     let listDirectory = fs.existsSync(options.mainHtml) ? false : true;
 
