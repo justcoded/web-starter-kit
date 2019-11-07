@@ -3,9 +3,9 @@
  */
 'use strict';
 
-const fs    = require('fs');
+const fs = require('fs');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
   return () => {
     // If index.html exist - open it, else show folder
@@ -27,5 +27,4 @@ module.exports = function(options) {
       port: 8080
     });
   };
-
 };
