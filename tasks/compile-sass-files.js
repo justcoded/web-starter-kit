@@ -23,8 +23,8 @@ module.exports = function (options) {
           icon: './sys_icon/error_icon.png',
           wait: true
         }))
-        .pipe(gulpif(isGcmq, gcmq()))
         .pipe(autoprefixer())
+        .pipe(gulpif(isGcmq, gcmq()))
         .pipe(gulp.dest(`./${options.dest}/css`));
     }
 
