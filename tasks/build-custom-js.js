@@ -29,9 +29,9 @@ module.exports = function(options) {
       .transform('babelify', {
         presets: ['@babel/preset-env'],
       })
-      .bundle().on('error', function(err) {
-        options.showError.apply(this, ['JS error', err])
-      })
+      .bundle().on('error', notify.onError({
+        title: 'JS'
+      }))
       .pipe(source('app.js'))
       .pipe(gulp.dest(`./${options.dest}/js`));
   };

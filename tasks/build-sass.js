@@ -18,8 +18,9 @@ module.exports = function(options) {
     return gulp.src(`./${options.src}/scss/${options.mainScss}`)
       .pipe(rename(options.mainScssMin))
       .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true })))
-      .pipe(sass().on('error', function(err) {
-        options.showError.apply(this, ['Sass compile error', err]);
+      .pipe(sass())
+      .on('error', notify.onError({
+        title: 'Sass'
       }))
       .pipe(gulpif(options.isProduction, gcmq()))
       .pipe(gulpif(options.isProduction, cssnano({ safe: true })))

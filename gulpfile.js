@@ -30,8 +30,6 @@
         gulp        = require('gulp'),
         del         = require('del'),
         path        = require('path'),
-        notifier    = require('node-notifier'),
-        gutil       = require('gulp-util'),
         browserSync = require('browser-sync').create();
 
   /**
@@ -87,20 +85,6 @@
   }
 
   /**
-   * Show error in console
-   * @param  {String} preffix Title of the error
-   * @param  {String} err     Error message
-   */
-  function showError(preffix, err) {
-    gutil.log(gutil.colors.white.bgRed(' ' + preffix + ' '), gutil.colors.white.bgBlue(' ' + err.message + ' '));
-    notifier.notify({
-      title: preffix,
-      message: err.message
-    });
-    this.emit('end');
-  }
-
-  /**
    * template HTML
    */
   requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
@@ -127,8 +111,7 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
-    checkProduction: true,
-    showError: showError
+    checkProduction: true
   });
 
   /**
@@ -150,8 +133,7 @@
     mainScss: cfg.file.mainScss,
     mainScssMin: cfg.file.mainScssMin,
     versions: cfg.autoprefixer.versions,
-    checkProduction: true,
-    showError: showError
+    checkProduction: true
   });
 
   /**
@@ -160,8 +142,7 @@
   requireTask(`${cfg.task.buildSassFiles}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     dest: cfg.folder.build,
-    versions: cfg.autoprefixer.versions,
-    showError: showError
+    versions: cfg.autoprefixer.versions
   });
 
   /**
@@ -171,8 +152,7 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     vendorScss: cfg.file.vendorScss,
-    vendorScssMin: cfg.file.vendorScssMin,
-    showError: showError
+    vendorScssMin: cfg.file.vendorScssMin
   });
 
   /**

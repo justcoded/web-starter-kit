@@ -47,7 +47,6 @@
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^3.0.0",
     "htmlhint-stylish": "^1.0.3",
-    "node-notifier": "^5.0.2",
     "path": "^0.12.7",
     "vinyl-source-stream": "^2.0.0"
   },

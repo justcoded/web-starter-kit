@@ -16,8 +16,9 @@ module.exports = function(options) {
 
     if (files.length > 0) {
       return gulp.src(files)
-        .pipe(sass().on('error', function(err) {
-          options.showError.apply(this, ['Sass compile error', err]);
+        .pipe(sass())
+        .on('error', notify.onError({
+          title: 'Sass'
         }))
         .pipe(gulpif(isGcmq, gcmq()))
         .pipe(autoprefixer(options.versions))
