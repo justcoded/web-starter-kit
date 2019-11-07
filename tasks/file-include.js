@@ -3,19 +3,18 @@
  */
 'use strict';
 
-const gulp        = require('gulp'),
-      fileinclude = require('gulp-file-include')
+const gulp = require('gulp');
+const fileinclude = require('gulp-file-include');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return function() {
+  return () => {
     return gulp.src(`./${options.templates}/**/*.html`)
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: `./${options.templates}`,
-      indent: true
-    }))
-    .pipe(gulp.dest(options.dest));
+      .pipe(fileinclude({
+        prefix: '@@',
+        basepath: `./${options.templates}`,
+        indent: true
+      }))
+      .pipe(gulp.dest(options.dest));
   };
-
 };
