@@ -4,10 +4,14 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
   return () => {
+    const pathWin = (() => path.resolve('.').split(path.resolve('..') + '\\')[1])();
+    const pathUnix = (() => path.resolve('.').split(path.resolve('..') + '/')[1])();
+    const baseDevDir = process.platform === 'win32' ? pathWin : pathUnix;
     // If index.html exist - open it, else show folder
     let listDirectory = fs.existsSync(options.mainHtml) ? false : true;
 
@@ -18,7 +22,7 @@ module.exports = function(options) {
         baseDir: '../',
         directory: listDirectory
       },
-      startPath: 'assets/index.html',
+      startPath: baseDevDir,
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {
@@ -29,5 +33,4 @@ module.exports = function(options) {
       port: 8080
     });
   };
-
 };

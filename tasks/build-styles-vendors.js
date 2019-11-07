@@ -3,19 +3,22 @@
  */
 'use strict';
 
-const gulp      = require('gulp'),
-      sass      = require('gulp-sass'),
-      cssimport = require('gulp-cssimport');
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const sass = require('gulp-sass');
+const cssimport = require('gulp-cssimport');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return function() {
+  return () => {
     return gulp.src(`./vendor_entries/${options.vendorScss}`)
-      .pipe(sass().on('error', function(err) {
-        options.showError.apply(this, ['Sass compile error (vendor)', err]);
+      .pipe(sass())
+      .on('error', notify.onError({
+        title: 'Sass compiling error',
+        icon: './sys_icon/error_icon.png',
+        wait: true
       }))
       .pipe(cssimport())
       .pipe(gulp.dest(`../${options.dest}/css`));
   };
-
 };
