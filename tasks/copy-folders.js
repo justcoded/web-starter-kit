@@ -11,5 +11,4 @@ module.exports = function(options) {
     return gulp.src(options.foldersToCopy, { dot: true })
       .pipe(gulp.dest(`./${options.dest}`));
   };
-
 };

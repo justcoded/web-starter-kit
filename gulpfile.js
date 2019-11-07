@@ -26,11 +26,11 @@
 (() => {
   'use strict';
 
-  const cfg         = require('./gulp-config.js'),
-        gulp        = require('gulp'),
-        del         = require('del'),
-        path        = require('path'),
-        browserSync = require('browser-sync').create();
+  const cfg = require('./gulp-config.js');
+  const gulp = require('gulp');
+  const del = require('del');
+  const path = require('path');
+  const browserSync = require('browser-sync').create();
 
   /**
    * Require gulp task from file
@@ -132,7 +132,6 @@
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
     mainScssMin: cfg.file.mainScssMin,
-    versions: cfg.autoprefixer.versions,
     checkProduction: true
   });
 
@@ -141,8 +140,7 @@
    */
   requireTask(`${cfg.task.buildSassFiles}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
-    dest: cfg.folder.build,
-    versions: cfg.autoprefixer.versions
+    dest: cfg.folder.build
   });
 
   /**

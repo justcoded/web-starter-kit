@@ -66,7 +66,8 @@ module.exports = {
       '!package.json',
       '!package-lock.json',
       '!README.md',
-      '!readme.txt'
+      '!readme.txt',
+      '!{sys_icon,sys_icon/**}'
     ];
   },
   getPathesToCopy: function() {
