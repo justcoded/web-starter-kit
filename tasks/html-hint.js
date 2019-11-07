@@ -9,13 +9,13 @@ const htmlhint = require('gulp-htmlhint');
 
 module.exports = function (options) {
 
-  return cb => {
+  return (done) => {
     gulp.src('./*.html')
       .pipe(htmlhint({
         'attr-lowercase': ['viewBox']
       }))
       .pipe(htmlhint.reporter('htmlhint-stylish'))
-      .pipe(htmlhint.failReporter({
+      .pipe(htmlhint.failOnError({
         suppress: true
       }))
       .on('error', notify.onError({
@@ -24,7 +24,6 @@ module.exports = function (options) {
         wait: true
       }));
 
-    cb();
+    return done();
   };
-
 };
