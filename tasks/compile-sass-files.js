@@ -5,14 +5,14 @@
 
 const gulp = require('gulp');
 const notify = require('gulp-notify');
-const sass = require('gulp-sass');
 const gulpif = require('gulp-if');
-const gcmq = require('gulp-group-css-media-queries');
+const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
+const gcmq = require('gulp-group-css-media-queries');
 
 module.exports = function (options) {
 
-  return function (cb) {
+  return (done) => {
     const { files, isGcmq } = options.sassFilesInfo;
 
     if (files.length > 0) {
@@ -24,9 +24,10 @@ module.exports = function (options) {
           wait: true
         }))
         .pipe(gulpif(isGcmq, gcmq()))
-        .pipe(autoprefixer(options.versions))
+        .pipe(autoprefixer())
         .pipe(gulp.dest(`./${options.dest}/css`));
-    } return cb();
-  };
+    }
 
+    return done();
+  };
 };

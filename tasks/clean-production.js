@@ -13,5 +13,4 @@ module.exports = function (options) {
     // log paths for deleted files & directories
     // console.log('Deleted files and directories:\n', deletedPaths.join('\n'));
   };
-
 };

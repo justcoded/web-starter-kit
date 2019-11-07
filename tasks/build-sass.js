@@ -25,11 +25,10 @@ module.exports = function (options) {
         icon: './sys_icon/error_icon.png',
         wait: true
       }))
+      .pipe(autoprefixer())
       .pipe(gulpif(options.isProduction, gcmq()))
       .pipe(gulpif(options.isProduction, cssnano({ safe: true })))
-      .pipe(autoprefixer(options.versions))
-      .pipe(sourcemaps.write('./'))
+      .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))
       .pipe(gulp.dest(`./${options.dest}/css`));
   };
-
 };

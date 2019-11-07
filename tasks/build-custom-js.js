@@ -16,17 +16,6 @@ module.exports = function (options) {
       // Remove sourcemap for production
       debug: !options.isProduction
     })
-      // If you need to 'babelify' with options:
-      // .transform('babelify', {
-      //   presets: [
-      //     ['@babel/preset-env', {
-      //       exclude: [
-      //         'transform-template-literals',
-      //       ],
-      //       debug: true,
-      //     }],
-      //   ],
-      // })
       .transform('babelify', {
         presets: ['@babel/preset-env'],
       })
@@ -38,5 +27,4 @@ module.exports = function (options) {
       .pipe(source('app.js'))
       .pipe(gulp.dest(`./${options.dest}/js`));
   };
-
 };

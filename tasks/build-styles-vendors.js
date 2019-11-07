@@ -10,10 +10,9 @@ const cssimport = require('gulp-cssimport');
 const rename = require('gulp-rename');
 const cssnano = require('gulp-cssnano');
 
-
 module.exports = function (options) {
 
-  return function () {
+  return () => {
     return gulp.src(`./${options.src}/vendor_entries/${options.vendorScss}`)
       .pipe(sass())
       .on('error', notify.onError({
@@ -23,10 +22,7 @@ module.exports = function (options) {
       }))
       .pipe(cssimport())
       .pipe(rename(options.vendorScssMin))
-      .pipe(cssnano({
-        safe: true
-      }))
+      .pipe(cssnano({ safe: true }))
       .pipe(gulp.dest(`./${options.dest}/css`));
   };
-
 };

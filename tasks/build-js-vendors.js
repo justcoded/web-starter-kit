@@ -3,18 +3,18 @@
  */
 'use strict';
 
-const gulp       = require('gulp'),
-      filesExist = require('files-exist'),
-      uglify     = require('gulp-uglify'),
-      concat     = require('gulp-concat');
+const gulp = require('gulp');
+const filesExist = require('files-exist');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return (cb) => {
+  return (done) => {
     let jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
 
     if (jsVendors.length == 0) {
-      return cb();
+      return done();
     }
 
     return gulp.src(filesExist(jsVendors))
@@ -22,5 +22,4 @@ module.exports = function(options) {
       .pipe(uglify())
       .pipe(gulp.dest(`./${options.dest}/js`));
   };
-
 };
