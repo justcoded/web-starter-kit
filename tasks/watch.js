@@ -13,11 +13,9 @@ module.exports = function (options) {
 
     gulp.watch(`./${options.src}/scss/**/*`, gulp.series(options.tasks.buildSass));
 
-    gulp.watch(`./${options.src}/html/**/*`, gulp.series(options.tasks.fileInclude));
+    gulp.watch(`./${options.src}/html/**/*`, gulp.series(options.tasks.fileInclude, options.tasks.htmlHint));
 
-    const imagesWatcher = gulp.watch(`./${options.src}/images/**/*.+(${options.imageExtensions})`);
-
-    imagesWatcher
+    gulp.watch(`./${options.src}/images/**/*.+(${options.imageExtensions})`)
       .on('unlink', (path) => {
         options.deleteFile({
           path,
@@ -26,14 +24,11 @@ module.exports = function (options) {
       })
       .on('add', gulp.series(options.tasks.imageMin));
 
-    gulp.watch('./*.html', gulp.series(options.tasks.htmlHint));
-
-    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`, './*.html'])
+    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`, `./*.html`])
       .on('change', options.browserSync.reload);
-    
+
     if (files.length > 0) {
       gulp.watch(files, gulp.series(options.tasks.buildSassFiles));
     }
   };
-
 };

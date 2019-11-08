@@ -3,25 +3,26 @@
  */
 'use strict';
 
-const gulp      = require('gulp'),
-      sass      = require('gulp-sass'),
-      rename    = require('gulp-rename'),
-      cssnano   = require('gulp-cssnano'),
-      cssimport = require('gulp-cssimport');
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const sass = require('gulp-sass');
+const cssimport = require('gulp-cssimport');
+const rename = require('gulp-rename');
+const cssnano = require('gulp-cssnano');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return function() {
+  return () => {
     return gulp.src(`./${options.src}/vendor_entries/${options.vendorScss}`)
-      .pipe(sass().on('error', function(err) {
-        options.showError.apply(this, ['Sass compile error (vendor)', err]);
+      .pipe(sass())
+      .on('error', notify.onError({
+        title: 'Sass compiling error',
+        icon: './sys_icon/error_icon.png',
+        wait: true
       }))
       .pipe(cssimport())
       .pipe(rename(options.vendorScssMin))
-      .pipe(cssnano({
-        safe: true
-      }))
+      .pipe(cssnano({ safe: true }))
       .pipe(gulp.dest(`./${options.dest}/css`));
   };
-
 };

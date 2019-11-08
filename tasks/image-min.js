@@ -3,11 +3,11 @@
  */
 'use strict';
 
-const gulp     = require('gulp'),
-      newer    = require('gulp-newer'),
-      imagemin = require('gulp-imagemin');
+const gulp = require('gulp');
+const newer = require('gulp-newer');
+const imagemin = require('gulp-imagemin');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
   return () => {
     return gulp.src(`./${options.src}/images/**/*`)
@@ -27,5 +27,4 @@ module.exports = function(options) {
       ]))
       .pipe(gulp.dest(`./${options.dest}/images/`));
   };
-
 };

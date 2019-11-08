@@ -3,12 +3,14 @@
  */
 'use strict';
 
-const del  = require('del');
+const del = require('del');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return () => {
-    return del([`./${options.src}/`], { dot: true });
+  return async () => {
+    const deletedPaths = await del([`./${options.src}/`], { force: true });
+
+    // log paths for deleted files & directories
+    // console.log('Deleted files and directories:\n', deletedPaths.join('\n'));
   };
-
 };

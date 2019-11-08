@@ -3,26 +3,27 @@
  */
 'use strict';
 
-const gulp     = require('gulp'),
-      htmlhint = require('gulp-htmlhint'),
-      notify   = require('gulp-notify');
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const htmlhint = require('gulp-htmlhint');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return cb => {
+  return (done) => {
     gulp.src('./*.html')
       .pipe(htmlhint({
         'attr-lowercase': ['viewBox']
       }))
       .pipe(htmlhint.reporter('htmlhint-stylish'))
-      .pipe(htmlhint.failReporter({
-        suppress: true 
+      .pipe(htmlhint.failOnError({
+        suppress: true
       }))
       .on('error', notify.onError({
-        title: 'HTML'
+        title: 'HTML linting error',
+        icon: './sys_icon/error_icon.png',
+        wait: true
       }));
 
-    cb();
+    return done();
   };
-
 };
