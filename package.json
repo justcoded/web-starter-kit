@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/justcoded/web-starter-kit",
   "devDependencies": {
-    "@babel/core": "^7.7.0",
+    "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "babelify": "^10.0.0",
     "browser-sync": "^2.26.7",
@@ -36,7 +36,7 @@
     "gulp-eslint": "^6.0.0",
     "gulp-file-include": "^2.1.1",
     "gulp-group-css-media-queries": "^1.2.2",
-    "gulp-htmlhint": "^2.2.1",
+    "gulp-htmlhint": "^3.0.0",
     "gulp-if": "^3.0.0",
     "gulp-newer": "^1.4.0",
     "gulp-notify": "^3.2.0",
@@ -48,7 +48,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "start": "gulp"

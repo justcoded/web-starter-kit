@@ -5,6 +5,7 @@
 
 const gulp = require('gulp');
 const notify = require('gulp-notify');
+const gulpif = require('gulp-if');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
@@ -14,16 +15,16 @@ module.exports = function (options) {
 
   return () => {
     return gulp.src(`./scss/${options.mainScss}`)
-      .pipe(sourcemaps.init({ loadMaps: true }))
+      .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true })))
       .pipe(sass())
       .on('error', notify.onError({
         title: 'Sass compiling error',
         icon: './sys_icon/error_icon.png',
         wait: true
       }))
-      .pipe(autoprefixer())
-      .pipe(gcmq())
-      .pipe(sourcemaps.write('./'))
+      .pipe(gulpif(options.isProduction, autoprefixer()))
+      .pipe(gulpif(options.isProduction, gcmq()))
+      .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))
       .pipe(gulp.dest(`../${options.dest}/css`));
   };
 };

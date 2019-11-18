@@ -20,5 +20,4 @@ module.exports = function (options) {
       .pipe(concat(options.vendorJs))
       .pipe(gulp.dest(`../${options.dest}/js`));
   };
-
 };
