@@ -40,6 +40,9 @@
   function requireTask(taskName, path, options, dependencies) {
     let settings = options || {};
     const taskFunction = function (callback) {
+      if (settings.checkProduction) {
+        settings.isProduction = process.argv[process.argv.length - 1] === 'build';
+      }
 
       let task = require(path + taskName + '.js').call(this, settings);
 
@@ -97,7 +100,7 @@
   requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
-    browsersVersions: cfg.autoprefixer.browserslist,
+    checkProduction: true,
   });
 
   /**
@@ -115,7 +118,6 @@
   requireTask(`${cfg.task.buildSassCustom}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     dest: cfg.folder.build,
-    browsersVersions: cfg.autoprefixer.browserslist,
   });
 
   /**
@@ -156,19 +158,47 @@
    */
   gulp.task('default', gulp.series(
     cfg.task.cleanBuild,
+    cfg.task.esLint,
     gulp.parallel(
-      cfg.task.buildCustomJs,
-      cfg.task.buildJsVendors,
-      cfg.task.buildSass,
-      cfg.task.buildSassCustom,
-      cfg.task.buildStylesVendors,
-      cfg.task.fileInclude,
-      cfg.task.esLint,
+      gulp.series(
+        cfg.task.fileInclude,
+        cfg.task.htmlHint,
+      ),
+      gulp.series(
+        cfg.task.buildSass,
+        cfg.task.buildSassCustom,
+        cfg.task.buildStylesVendors,
+      ),
+      gulp.series(
+        cfg.task.buildCustomJs,
+        cfg.task.buildJsVendors,
+      ),
     ),
-    cfg.task.htmlHint,
     gulp.parallel(
       cfg.task.browserSync,
       cfg.task.watch
+    )
+  ));
+  /**
+  * Production Gulp task
+  */
+  gulp.task('build', gulp.series(
+    cfg.task.cleanBuild,
+    cfg.task.esLint,
+    gulp.parallel(
+      gulp.series(
+        cfg.task.fileInclude,
+        cfg.task.htmlHint,
+      ),
+      gulp.series(
+        cfg.task.buildSass,
+        cfg.task.buildSassCustom,
+        cfg.task.buildStylesVendors,
+      ),
+      gulp.series(
+        cfg.task.buildCustomJs,
+        cfg.task.buildJsVendors,
+      ),
     )
   ));
 })();
