@@ -12,12 +12,10 @@ module.exports = function (options) {
 
   return function () {
     return browserify({
-      entries: `./${options.src}/js/${options.mainJs}`,
-      // Remove sourcemap for production
-      debug: !options.isProduction
+      entries: `./${options.src}/js/${options.mainJs}`
     })
       .transform('babelify', {
-        presets: ['@babel/preset-env'],
+        presets: ['@babel/preset-env']
       })
       .bundle().on('error', notify.onError({
         title: 'JS compiling error',
