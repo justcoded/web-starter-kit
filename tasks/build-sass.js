@@ -25,7 +25,7 @@ module.exports = function (options) {
         icon: './sys_icon/error_icon.png',
         wait: true
       }))
-      .pipe(autoprefixer())
+      .pipe(gulpif(options.isProduction, autoprefixer()))
       .pipe(gulpif(options.isProduction, gcmq()))
       .pipe(gulpif(options.isProduction, cssnano({ safe: true })))
       .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))

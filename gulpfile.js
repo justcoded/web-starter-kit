@@ -121,7 +121,8 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     vendorJs: cfg.file.vendorJs,
-    vendorJsMin: cfg.file.vendorJsMin
+    vendorJsMin: cfg.file.vendorJsMin,
+    checkProduction: true
   });
 
   /**
@@ -150,7 +151,8 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     vendorScss: cfg.file.vendorScss,
-    vendorScssMin: cfg.file.vendorScssMin
+    vendorScssMin: cfg.file.vendorScssMin,
+    checkProduction: true
   });
 
   /**
@@ -227,17 +229,23 @@
    */
   gulp.task('default', gulp.series(
     cfg.task.cleanBuild,
+    cfg.task.esLint,
     gulp.parallel(
-      cfg.task.buildCustomJs,
-      cfg.task.buildJsVendors,
-      cfg.task.buildSass,
-      cfg.task.buildSassFiles,
-      cfg.task.buildStylesVendors,
-      cfg.task.fileInclude,
-      cfg.task.esLint,
-      cfg.task.imageMin
+      gulp.series(
+        cfg.task.fileInclude,
+        cfg.task.htmlHint,
+      ),
+      gulp.series(
+        cfg.task.buildSass,
+        cfg.task.buildSassFiles,
+        cfg.task.buildStylesVendors,
+      ),
+      gulp.series(
+        cfg.task.buildCustomJs,
+        cfg.task.buildJsVendors,
+      ),
     ),
-    cfg.task.htmlHint,
+    cfg.task.imageMin,
     cfg.task.copyFolders,
     gulp.parallel(
       cfg.task.browserSync,
@@ -253,17 +261,23 @@
       cfg.task.cleanProd,
       cfg.task.cleanBuild
     ),
+    cfg.task.esLint,
     gulp.parallel(
-      cfg.task.buildCustomJs,
-      cfg.task.buildJsVendors,
-      cfg.task.buildSass,
-      cfg.task.buildSassFiles,
-      cfg.task.buildStylesVendors,
-      cfg.task.fileInclude,
-      cfg.task.esLint,
-      cfg.task.imageMin
+      gulp.series(
+        cfg.task.fileInclude,
+        cfg.task.htmlHint,
+      ),
+      gulp.series(
+        cfg.task.buildSass,
+        cfg.task.buildSassFiles,
+        cfg.task.buildStylesVendors,
+      ),
+      gulp.series(
+        cfg.task.buildCustomJs,
+        cfg.task.buildJsVendors,
+      ),
     ),
-    cfg.task.htmlHint,
+    cfg.task.imageMin,
     cfg.task.copyFolders,
     cfg.task.copyFoldersProduction
   ), true);

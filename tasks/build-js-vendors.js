@@ -4,6 +4,7 @@
 'use strict';
 
 const gulp = require('gulp');
+const gulpif = require('gulp-if');
 const filesExist = require('files-exist');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
@@ -19,7 +20,7 @@ module.exports = function (options) {
 
     return gulp.src(filesExist(jsVendors))
       .pipe(concat(options.vendorJsMin))
-      .pipe(uglify())
+      .pipe(gulpif(options.isProduction, uglify()))
       .pipe(gulp.dest(`./${options.dest}/js`));
   };
 };
