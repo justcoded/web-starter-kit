@@ -51,6 +51,8 @@
     "node": ">=8.0.0"
   },
   "scripts": {
+    "test": "gulp build",
+    "production": "gulp build",
     "start": "gulp"
   },
   "dependencies": {
