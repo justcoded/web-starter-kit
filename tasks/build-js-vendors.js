@@ -12,15 +12,30 @@ const uglify = require('gulp-uglify');
 module.exports = function (options) {
 
   return (done) => {
-    let jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
+    const jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
+    const noneES5 = jsVendors.es5.length === 0 ? true : false;
+    const noneES6 = jsVendors.es6.length === 0 ? true : false;
 
-    if (jsVendors.length == 0) {
+    if (noneES5 && noneES6) {
       return done();
+    } else if (noneES6) {
+      return gulp.src(filesExist(jsVendors.es5))
+        .pipe(concat(options.vendorJsMin))
+        .pipe(gulpif(options.isProduction, uglify()))
+        .pipe(gulp.dest(`./${options.dest}/js`));
+    } else if (noneES5) {
+      return gulp.src(filesExist(jsVendors.es6))
+        .pipe(babel({ presets: ['@babel/env'] }))
+        .pipe(concat(options.vendorJsMin))
+        .pipe(gulpif(options.isProduction, uglify()))
+        .pipe(gulp.dest(`./${options.dest}/js`));
+    } else {
+      return gulp.src(filesExist(jsVendors.es6))
+        .pipe(babel({ presets: ['@babel/env'] }))
+        .pipe(gulp.src(filesExist(jsVendors.es5)))
+        .pipe(concat(options.vendorJsMin))
+        .pipe(gulpif(options.isProduction, uglify()))
+        .pipe(gulp.dest(`./${options.dest}/js`));
     }
-
-    return gulp.src(filesExist(jsVendors))
-      .pipe(concat(options.vendorJsMin))
-      .pipe(gulpif(options.isProduction, uglify()))
-      .pipe(gulp.dest(`./${options.dest}/js`));
   };
 };
