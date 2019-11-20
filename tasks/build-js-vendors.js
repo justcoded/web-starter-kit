@@ -19,18 +19,18 @@ module.exports = function (options) {
     } else if (noneES6) {
       return gulp.src(filesExist(jsVendors.es5))
         .pipe(concat(options.vendorJs))
-        .pipe(gulp.dest(`./${options.dest}/js`));
+        .pipe(gulp.dest(`../${options.dest}/js`));
     } else if (noneES5) {
       return gulp.src(filesExist(jsVendors.es6))
         .pipe(babel({ presets: ['@babel/env'] }))
         .pipe(concat(options.vendorJs))
-        .pipe(gulp.dest(`./${options.dest}/js`));
+        .pipe(gulp.dest(`../${options.dest}/js`));
     } else {
       return gulp.src(filesExist(jsVendors.es6))
         .pipe(babel({ presets: ['@babel/env'] }))
         .pipe(gulp.src(filesExist(jsVendors.es5)))
         .pipe(concat(options.vendorJs))
-        .pipe(gulp.dest(`./${options.dest}/js`));
+        .pipe(gulp.dest(`../${options.dest}/js`));
     }
   };
 };
