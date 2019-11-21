@@ -2,7 +2,7 @@
 
 >  A modern Web starter kit for projects
 
-![node](http://img.shields.io/badge/node-6.13.x-blue.svg) ![npm](https://img.shields.io/badge/npm-4.2.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
+![node](http://img.shields.io/badge/node-8.0.x-blue.svg) ![npm](https://img.shields.io/badge/npm-5.0.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
 
 
 ## Overview
@@ -47,13 +47,13 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html` from `src/html`.                          |
 | Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (Run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
 | Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (Run `gulp` to create an optimised version of your project to `/assets`).                                                                                                |
-| Code Linting               | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used airbnb-base rules https://www.npmjs.com/package/eslint-config-airbnb-base). HTML code hinting is done using [HtmlHint](https://www.npmjs.com/package/gulp-htmlhint).                                                                                             |
-| ES2015(ES6) Support                   | Optional ES2015 support .You can use all kind of ES6 features here. ES2015 source code will be automatically transpiled to ES5 for wide browser support.  |
+| Code Linting               | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code hinting is done using [gulp-htmlhint](https://www.npmjs.com/package/gulp-htmlhint).                                                                                             |
+| ES6+ Support                   | Optional ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support.  |
 | HTML templating                       | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
 | Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate.                                                                                                                                                                            |
 | Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension (Run `gulp` and edit your files).                                                                                                                           |
 | Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (Run `gulp` and open up the IP provided on other devices on your network).                       |
-                                                                                                                                     
+
 
 ## Install
 
@@ -164,7 +164,6 @@ If you want to use our WSK, you need to know something about the structure.
 ├── .gitattributes      #Git config for defining attributes per path
 ├── .gitignore          #Git ignore list
 ├── .htaccess           #Config file of Apache web service
-├── .npmrc              #Config for NPM
 ├── .travis.yml         #Config file of service for building and testing projects hosted at GitHub
 ├── CONTRIBUTING.md
 ├── gulp-config.js      #Config for gulp
@@ -172,7 +171,7 @@ If you want to use our WSK, you need to know something about the structure.
 ├── index.html          #Compiled file with gulp-file-include
 ├── LICENSE
 ├── package.json        #File with dependencies
-└── README.md        
+└── README.md
 
 ```
 
@@ -184,7 +183,7 @@ In `src` folder you can find all sources for the project (images, sass, javascri
 
 ```
 ├── html
-   ├── partials                 #Folder for html components, that we can include into the templates 
+   ├── partials                 #Folder for html components, that we can include into the templates
    ├── templates                #Folder for source html templates of pages
 ├── images                      #Folder for storing images
 ├── js                          #Folder for storing js files
@@ -197,16 +196,16 @@ In `src` folder you can find all sources for the project (images, sass, javascri
       ├── _mixins.scss          #Sass mixins
       ├── _variables.scss       #Sass variables that we can use in our scss files
    ├── base                     #Folder for storing base styles
-      ├── _forms.scss           #Sass styles for forms      
-      ├── _main.scss            #Main scss file for base styles      
+      ├── _forms.scss           #Sass styles for forms
+      ├── _main.scss            #Main scss file for base styles
       ├── _reset.scss           #Sass reset
-      ├── _typography.scss      #Sass styles for text      
+      ├── _typography.scss      #Sass styles for text
    ├── components               #Global Reusable Presentational Components
    ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
    ├── styles.scss              #Main scss file (can be used for importing another files)
 ├── vendor_entries              #Folder for vendor entries (plugins)
-   ├── vendor.js                #File for plugins js 
+   ├── vendor.js                #File for plugins js
    ├── vendor.scss              #File for plugins styles
 ```
 
@@ -216,9 +215,9 @@ Use `vendor_entries` to include plugins into your project.
 
 ## JS
 
- In our WSK you can use ES2015(ES6). ES2015 isn't introducing anything other than improvements to the JavaScript language and a few new features. 
+ In our WSK you can use ES6+. ES6+ isn't introducing anything other than improvements to the JavaScript language and a few new features.
 
- It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language. 
+ It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language.
 
 * All custom **javascript** files are located in `js/` folder;
 * Entry point for javascript is `src/js/app.js` you can **import** all your *.js* files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
@@ -230,11 +229,11 @@ Use `vendor_entries` to include plugins into your project.
 
 ## SCSS
 
-In our WSK you can use [SASS](http://sass-lang.com/). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+In our WSK you can use [Sass](http://sass-lang.com/). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
 
 Sass is a CSS preprocessor — a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
 
-So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.  
+So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.
 
 * All custom **scss** files locate in `src/scss/` folder;
 * Entry point for all scss is `src/scss/styles.scss` you can **import** all your *.scss* files from here;
@@ -245,7 +244,7 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 * All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include its files**:
   * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
-  
+
 You are able to add your own custom sass files and optionally [disable/enable gulp-group-css-media-queries module](https://github.com/justcoded/web-starter-kit/issues/56).
 You can see this property in the gulp-config.js file:
 
@@ -262,11 +261,11 @@ Also, you might want to add these sass files to the ignore list (check `getPathe
 |Task                               | Description                                                                                                                                                                                                                                               |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
-| build-custom-js                         | Compiles all custom js from `src/js`.                                                                                                      |
-| build-js-vendors               | minifies and сompiles all vendor js from `src/vendor_entries`.                                                                                                |
+| build-custom-js                         | Compiles all custom js from `src/js` to `assets/js` folder.                                                                                                      |
+| build-js-vendors               | Compiles all vendor js from `src/vendor_entries` to `assets/js` folder.                                                                                                |
 | build-sass                   | Compiles all custom scss from `src/scss` to `assets/css`   folder.  |
-| build-styles-vendors                 | Compiles and minifies all plugins  scss from `src/vendor_entries` to `production`   folder.                                                                                                                                                                            |
-| clean-build                | `assets` folder removing.                                                                                                                           |
+| build-styles-vendors                 | Compiles all vendor styles from `src/vendor_entries` to `assets/css`   folder.                                                                                                                                                                            |
+| clean-build                | Cleaning `assets` folder and html files in root folder.                                                                                                                           |
 | clean-production                | `production` folder removing.                                                                                                                           |
 | copy-folders           | Need to copy all folders from sources to assets.                       |
 | file-include           | Compiles all html templates into html files.                       |
