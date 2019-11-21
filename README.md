@@ -80,6 +80,7 @@ If you want to use our WSK, you need to know something about the structure.
      ├── pages                    #Global styles for pages
      ├── styles.scss               #Main scss file (can be used for importing another files)
   ├── tasks                       #Folder with tasks for gulpfile
+  ├── sys_icon                    #Folder with system icons for notification
   ├── vendor_entries              #Folder for vendor entries (plugins)
     ├── vendor.js                 #File for plugins js
     ├── vendor.scss               #File for plugins styles
