@@ -157,6 +157,7 @@ If you want to use our WSK, you need to know something about the structure.
 ├── assets              #Folder with files after compiling
 ├── src                 #Folder with sources
 ├── tasks               #Folder with tasks for gulpfile
+├── sys_icon            #Folder with system icons for notification
 ├── .browserslistrc     #Config for autoprefixer
 ├── .editorconfig       #Config for IDE
 ├── .eslintignore       #Eslint ignore list
