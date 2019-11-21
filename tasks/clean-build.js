@@ -9,6 +9,7 @@ module.exports = function (options) {
 
   return async () => {
     const deletedPaths = await del([
+      `*.html`,
       `${options.src}/**/*`,
       `!${options.src}/images/`,
       `!${options.src}/images/**`

@@ -2,7 +2,7 @@
 
 >  A modern Web starter kit for projects
 
-![node](http://img.shields.io/badge/node-6.13.x-blue.svg) ![npm](https://img.shields.io/badge/npm-4.2.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
+![node](http://img.shields.io/badge/node-8.0.x-blue.svg) ![npm](https://img.shields.io/badge/npm-5.0.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
 
 
 ## Overview
@@ -53,7 +53,7 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate.                                                                                                                                                                            |
 | Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension (Run `gulp` and edit your files).                                                                                                                           |
 | Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (Run `gulp` and open up the IP provided on other devices on your network).                       |
-                                                                                                                                     
+
 
 ## Install
 
@@ -172,7 +172,7 @@ If you want to use our WSK, you need to know something about the structure.
 ├── index.html          #Compiled file with gulp-file-include
 ├── LICENSE
 ├── package.json        #File with dependencies
-└── README.md        
+└── README.md
 
 ```
 
@@ -184,7 +184,7 @@ In `src` folder you can find all sources for the project (images, sass, javascri
 
 ```
 ├── html
-   ├── partials                 #Folder for html components, that we can include into the templates 
+   ├── partials                 #Folder for html components, that we can include into the templates
    ├── templates                #Folder for source html templates of pages
 ├── images                      #Folder for storing images
 ├── js                          #Folder for storing js files
@@ -197,16 +197,16 @@ In `src` folder you can find all sources for the project (images, sass, javascri
       ├── _mixins.scss          #Sass mixins
       ├── _variables.scss       #Sass variables that we can use in our scss files
    ├── base                     #Folder for storing base styles
-      ├── _forms.scss           #Sass styles for forms      
-      ├── _main.scss            #Main scss file for base styles      
+      ├── _forms.scss           #Sass styles for forms
+      ├── _main.scss            #Main scss file for base styles
       ├── _reset.scss           #Sass reset
-      ├── _typography.scss      #Sass styles for text      
+      ├── _typography.scss      #Sass styles for text
    ├── components               #Global Reusable Presentational Components
    ├── layout                   #Global layout
    ├── pages                    #Global styles for pages
    ├── styles.scss              #Main scss file (can be used for importing another files)
 ├── vendor_entries              #Folder for vendor entries (plugins)
-   ├── vendor.js                #File for plugins js 
+   ├── vendor.js                #File for plugins js
    ├── vendor.scss              #File for plugins styles
 ```
 
@@ -216,9 +216,9 @@ Use `vendor_entries` to include plugins into your project.
 
 ## JS
 
- In our WSK you can use ES2015(ES6). ES2015 isn't introducing anything other than improvements to the JavaScript language and a few new features. 
+ In our WSK you can use ES2015(ES6). ES2015 isn't introducing anything other than improvements to the JavaScript language and a few new features.
 
- It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language. 
+ It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language.
 
 * All custom **javascript** files are located in `js/` folder;
 * Entry point for javascript is `src/js/app.js` you can **import** all your *.js* files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
@@ -234,7 +234,7 @@ In our WSK you can use [SASS](http://sass-lang.com/). Sass is the most mature, s
 
 Sass is a CSS preprocessor — a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
 
-So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.  
+So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.
 
 * All custom **scss** files locate in `src/scss/` folder;
 * Entry point for all scss is `src/scss/styles.scss` you can **import** all your *.scss* files from here;
@@ -245,7 +245,7 @@ The `src` directory above contains MDL's Sass files and the JavaScript sources f
 * All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include its files**:
   * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
-  
+
 You are able to add your own custom sass files and optionally [disable/enable gulp-group-css-media-queries module](https://github.com/justcoded/web-starter-kit/issues/56).
 You can see this property in the gulp-config.js file:
 
