@@ -136,7 +136,7 @@ $ gulp
 
 `gulp` task creates the `assets/` folder in the root of the project.
 This includes linting as well as image, script, stylesheet and HTML optimization and minification.
-Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites' resources.
+Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites resources.
 
 
 ### Serve the Fully Built & Optimized Site
@@ -209,7 +209,7 @@ In `src` folder you can find all sources for the project (images, sass, javascri
    ├── vendor.scss              #File for plugins styles
 ```
 
-Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `styles.scss` file .
+Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `scss/styles.scss` file .
 
 Use `vendor_entries` to include plugins into your project.
 
