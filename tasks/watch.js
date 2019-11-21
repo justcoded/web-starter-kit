@@ -14,7 +14,7 @@ module.exports = function (options) {
 
     gulp.watch(`html/**/*`, gulp.series(options.tasks.fileInclude, options.tasks.htmlHint));
 
-    gulp.watch(['../public/js/*', '../public/scss/*', '*.html'])
+    gulp.watch(['../public/js/*', '../public/css/*', '!../public/css/*.map', '*.html'])
       .on('change', options.browserSync.reload);
   };
 };
