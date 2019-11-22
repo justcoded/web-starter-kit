@@ -12,7 +12,7 @@ module.exports = {
   },
   fileInclude: {
     templates: 'html/templates',
-    dest: './',
+    dest: 'public',
   },
   task: {
     htmlHint: 'html-hint',

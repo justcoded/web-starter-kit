@@ -9,11 +9,8 @@ const path = require('path');
 module.exports = function (options) {
 
   return () => {
-    const pathWin = (() => path.resolve('.').split(path.resolve('..') + '\\')[1])();
-    const pathUnix = (() => path.resolve('.').split(path.resolve('..') + '/')[1])();
-    const baseDevDir = process.platform === 'win32' ? pathWin : pathUnix;
     // If index.html exist - open it, else show folder
-    let listDirectory = fs.existsSync(options.mainHtml) ? false : true;
+    let listDirectory = fs.existsSync(`../${options.dir}/${options.mainHtml}`) ? false : true;
 
     options.browserSync.init({
       notify: false,
@@ -22,7 +19,7 @@ module.exports = function (options) {
         baseDir: '../',
         directory: listDirectory
       },
-      startPath: baseDevDir,
+      startPath: `../${options.dir}`,
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {

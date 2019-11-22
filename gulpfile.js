@@ -71,7 +71,9 @@
   /**
    * Hint HTML
    */
-  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`, {
+    dir: cfg.folder.build,
+  });
 
   /**
    * Lint ES
@@ -132,6 +134,7 @@
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     mainHtml: cfg.file.mainHtml,
+    dir: cfg.folder.build,
     browserSync
   });
 
