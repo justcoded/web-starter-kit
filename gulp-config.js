@@ -25,7 +25,7 @@ module.exports = {
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
-    buildSassFiles: 'compile-sass-files',
+    buildSassCustom: 'build-sass-custom',
     buildStylesVendors: 'build-styles-vendors',
     imageMin: 'image-min',
     cleanProd: 'clean-production',
@@ -46,9 +46,9 @@ module.exports = {
     return {
       files: [],
       isGcmq: false
-     };
+    };
   },
-  getPathesToCopyForProduction: function() {
+  getPathesToCopyForProduction: function () {
     return [
       './**/*',
       '!.*',
@@ -70,7 +70,7 @@ module.exports = {
       '!{sys_icon,sys_icon/**}'
     ];
   },
-  getPathesToCopy: function() {
+  getPathesToCopy: function () {
     return [
       `./${this.folder.src}/**`,
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
