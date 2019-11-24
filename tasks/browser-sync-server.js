@@ -4,7 +4,6 @@
 'use strict';
 
 const fs = require('fs');
-const path = require('path');
 
 module.exports = function (options) {
 
@@ -16,10 +15,10 @@ module.exports = function (options) {
       notify: false,
       injectChanges: true,
       server: {
-        baseDir: '../',
+        baseDir: `../${options.dir}`,
         directory: listDirectory
       },
-      startPath: `../${options.dir}`,
+      startPath: `.`,
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {

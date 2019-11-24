@@ -97,7 +97,7 @@
   });
 
   /**
-   * Build styles for application from SASS
+   * Build styles for application from Sass
    */
   requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
@@ -106,20 +106,19 @@
   });
 
   /**
-   * Build styles for vendor from SASS
+    * Build custom Sass files listed in the config
+    */
+  requireTask(`${cfg.task.buildSassCustom}`, `./${cfg.folder.tasks}/`, {
+    sassFilesInfo: cfg.getPathesForSassCompiling(),
+    dest: cfg.folder.build,
+  });
+
+  /**
+   * Build styles for vendor from Sass
    */
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     vendorScss: cfg.file.vendorScss,
-    vendorScssMin: cfg.file.vendorScssMin,
-  });
-
-  /**
-   * Compile custom scss files without sourcemaps & optional Gcmq
-   */
-  requireTask(`${cfg.task.buildSassCustom}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
-    dest: cfg.folder.build,
   });
 
   /**
@@ -142,16 +141,14 @@
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
-    dest: cfg.folder.build,
+    dir: cfg.folder.build,
     browserSync,
-    templates: cfg.folder.templates,
     tasks: {
+      esLint: cfg.task.esLint,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
       buildSassCustom: cfg.task.buildSassCustom,
       fileInclude: cfg.task.fileInclude,
-      esLint: cfg.task.esLint,
       htmlHint: cfg.task.htmlHint,
     }
   }, false);
@@ -182,6 +179,7 @@
       cfg.task.watch
     )
   ));
+
   /**
   * Production Gulp task
   */
