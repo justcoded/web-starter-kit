@@ -15,6 +15,6 @@ module.exports = function (options) {
         basepath: `./${options.templates}`,
         indent: true
       }))
-      .pipe(gulp.dest(options.dest));
+      .pipe(gulp.dest(`../${options.dest}`));
   };
 };

@@ -1,6 +1,6 @@
 {
   "name": "web-starter-jc",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Starter kit for markup projects",
   "repository": {
     "type": "git",
@@ -10,7 +10,8 @@
     "starter",
     "markup",
     "JustCoded",
-    "jc"
+    "jc",
+    "WordPress"
   ],
   "author": "JustCoded",
   "license": "MIT",
@@ -30,6 +31,7 @@
     "files-exist": "^1.1.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssimport": "^7.0.0",
     "gulp-debug": "^4.0.0",
