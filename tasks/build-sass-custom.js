@@ -1,5 +1,5 @@
 /**
- * Compile scss files listed in the config
+ * Build custom Sass files listed in the config
  */
 'use strict';
 

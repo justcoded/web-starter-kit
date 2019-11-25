@@ -126,7 +126,7 @@
   });
 
   /**
-   * Build styles for application from SASS
+   * Build styles for application from Sass
    */
   requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
@@ -137,15 +137,15 @@
   });
 
   /**
-   * Compile scss files listed in the config
+   * Build custom Sass files listed in the config
    */
-  requireTask(`${cfg.task.buildSassFiles}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildSassCustom}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     dest: cfg.folder.build
   });
 
   /**
-   * Build styles for vendor from SASS
+   * Build styles for vendor from Sass
    */
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
@@ -199,25 +199,23 @@
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     mainHtml: cfg.file.mainHtml,
-    browserSync: browserSync
+    browserSync
   });
 
   /**
    * Watch for file changes
    */
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
     src: cfg.folder.src,
-    templates: cfg.folder.templates,
     dest: cfg.folder.build,
     imageExtensions: cfg.imageExtensions,
-    browserSync: browserSync,
-    deleteFile: deleteFile,
+    browserSync,
+    deleteFile,
     tasks: {
-      buildSassFiles: cfg.task.buildSassFiles,
+      esLint: cfg.task.esLint,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
-      esLint: cfg.task.esLint,
+      buildSassCustom: cfg.task.buildSassCustom,
       fileInclude: cfg.task.fileInclude,
       htmlHint: cfg.task.htmlHint,
       imageMin: cfg.task.imageMin
@@ -237,7 +235,7 @@
       ),
       gulp.series(
         cfg.task.buildSass,
-        cfg.task.buildSassFiles,
+        cfg.task.buildSassCustom,
         cfg.task.buildStylesVendors,
       ),
       gulp.series(
@@ -269,7 +267,7 @@
       ),
       gulp.series(
         cfg.task.buildSass,
-        cfg.task.buildSassFiles,
+        cfg.task.buildSassCustom,
         cfg.task.buildStylesVendors,
       ),
       gulp.series(
