@@ -9,8 +9,6 @@ jQuery.noConflict();
 (($) => {
   // When DOM is ready
   $(() => {
-  	'use strict';
-  	
     dotsEffect.init();
   });
 })(jQuery);
