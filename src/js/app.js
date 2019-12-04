@@ -8,6 +8,8 @@ import dotsEffect from './modules/dots';
 (($) => {
   // When DOM is ready
   $(() => {
+  	'use strict';
+  	
     dotsEffect.init();
   });
 })(jQuery);
