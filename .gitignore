@@ -43,3 +43,6 @@ tmp
 
 #npm dependencies
 package-lock.json
+
+# parcel cache
+.parcel_cache

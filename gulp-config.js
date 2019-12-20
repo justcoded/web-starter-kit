@@ -6,6 +6,7 @@ module.exports = {
   file: {
     mainHtml: 'index.html',
     mainJs: 'app.js',
+    publicJs: 'jquery.main.js',
     vendorJs: 'vendor.js',
     mainScss: 'styles.scss',
     vendorScss: 'vendor.scss',
@@ -17,7 +18,7 @@ module.exports = {
   task: {
     htmlHint: 'html-hint',
     esLint: 'es-lint',
-    buildCustomJs: 'build-custom-js',
+    buildJs: 'build-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
     buildSassCustom: 'build-sass-custom',
