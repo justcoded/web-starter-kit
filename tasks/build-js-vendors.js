@@ -7,6 +7,7 @@ const gulp = require('gulp');
 const filesExist = require('files-exist');
 const concat = require('gulp-concat');
 const parcelBundler = require('parcel-bundler');
+const del = require('del');
 const notify = require('gulp-notify');
 
 module.exports = function (options) {
@@ -17,8 +18,7 @@ module.exports = function (options) {
     const noneES6 = jsVendors.es6.length === 0 ? true : false;
     const files = jsVendors.es6;
     const config = {
-      outDir: `../${options.dest}/js`,
-      outFile: options.vendorJs,
+      outDir: `../${options.dest}/js/.parcel_cache`,
       watch: false,
       cache: true,
       cacheDir: '.parcel_cache',
@@ -35,6 +35,16 @@ module.exports = function (options) {
 
     parcel.on('error', notify.onError(error));
 
+    function buildVendorES6() {
+      parcel.bundle();
+
+      gulp.src(filesExist([`../${options.dest}/js/.cache_parcel/*.js`]))
+        .pipe(concat(options.vendorJs))
+        .pipe(gulp.dest(`../${options.dest}/js`));
+
+      return del(`../${options.dest}/js/.cache_parcel/`);
+    };
+
     if (noneES5 && noneES6) {
       return done();
     } else if (noneES6) {
@@ -42,7 +52,7 @@ module.exports = function (options) {
         .pipe(concat(options.vendorJs))
         .pipe(gulp.dest(`../${options.dest}/js`));
     } else if (noneES5) {
-      return parcel.bundle();
+      return buildVendorES6();
     } else {
       return parcel.bundle()
         .pipe(gulp.src(`../${options.dest}/js/${options.vendorJs}`))
