@@ -6,6 +6,7 @@
 const gulp = require('gulp');
 const filesExist = require('files-exist');
 const concat = require('gulp-concat');
+const babel = require('gulp-babel');
 
 module.exports = function (options) {
 
