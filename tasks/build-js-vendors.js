@@ -12,18 +12,19 @@ const notify = require('gulp-notify');
 
 module.exports = function (options) {
 
-  return (done) => {
+  return async (done) => {
     const jsVendors = require(`../vendor_entries/${options.vendorJs}`);
     const noneES5 = jsVendors.es5.length === 0 ? true : false;
     const noneES6 = jsVendors.es6.length === 0 ? true : false;
     const files = jsVendors.es6;
     const config = {
-      outDir: `../${options.dest}/js/.parcel_cache`,
+      outDir: `.parcel_cache/vendors`,
       watch: false,
       cache: true,
       cacheDir: '.parcel_cache',
       minify: false,
       sourceMaps: false,
+      logLevel: 2,
     };
     const error = {
       title: 'JS vendor compiling error',
@@ -32,18 +33,7 @@ module.exports = function (options) {
     };
     const parcel = new parcelBundler(files, config);
 
-
     parcel.on('error', notify.onError(error));
-
-    function buildVendorES6() {
-      parcel.bundle();
-
-      gulp.src(filesExist([`../${options.dest}/js/.cache_parcel/*.js`]))
-        .pipe(concat(options.vendorJs))
-        .pipe(gulp.dest(`../${options.dest}/js`));
-
-      return del(`../${options.dest}/js/.cache_parcel/`);
-    };
 
     if (noneES5 && noneES6) {
       return done();
@@ -52,13 +42,17 @@ module.exports = function (options) {
         .pipe(concat(options.vendorJs))
         .pipe(gulp.dest(`../${options.dest}/js`));
     } else if (noneES5) {
-      return buildVendorES6();
-    } else {
-      return parcel.bundle()
-        .pipe(gulp.src(`../${options.dest}/js/${options.vendorJs}`))
-        .pipe(gulp.src(filesExist(jsVendors.es5)))
+      return await parcel.bundle().then(() => gulp.src(filesExist(`${config.outDir}/*.js`))
         .pipe(concat(options.vendorJs))
-        .pipe(gulp.dest(`../${options.dest}/js`));
+        .pipe(gulp.dest(`../${options.dest}/js`))
+        .on('end', () => del(`${config.outDir}`, { force: true }))
+      );
+    } else {
+      return await parcel.bundle().then(() => gulp.src(filesExist(`${config.outDir}/*.js`, ...jsVendors.es5))
+        .pipe(concat(options.vendorJs))
+        .pipe(gulp.dest(`../${options.dest}/js`))
+        .on('end', () => del(`${config.outDir}`, { force: true }))
+      );
     }
   };
 };

@@ -7,7 +7,8 @@ const parcelBundler = require('parcel-bundler');
 const notify = require('gulp-notify');
 
 module.exports = function (options) {
-  return () => {
+
+  return async () => {
     const files = `./js/${options.mainJs}`;
     const config = {
       outDir: `../${options.dest}/js`,
@@ -17,6 +18,7 @@ module.exports = function (options) {
       cacheDir: '.parcel_cache',
       minify: false,
       sourceMaps: false,
+      logLevel: 2,
     };
     const error = {
       title: 'JS compiling error',
@@ -27,6 +29,6 @@ module.exports = function (options) {
 
     parcel.on('error', notify.onError(error))
 
-    return parcel.bundle();
+    return await parcel.bundle();
   };
 };

@@ -38,13 +38,12 @@
     "gulp-if": "^3.0.0",
     "gulp-newer": "^1.4.0",
     "gulp-notify": "^3.2.0",
-    "gulp-rename": "^1.4.0",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "htmlhint-stylish": "^1.0.3",
     "parcel-bundler": "^1.12.4",
-    "path": "^0.12.7",
-    "vinyl-source-stream": "^2.0.0"
+    "path": "^0.12.7"
   },
   "engines": {
     "node": ">=8.0.0"
