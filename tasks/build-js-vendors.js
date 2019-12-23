@@ -8,6 +8,7 @@ const gulpif = require('gulp-if');
 const filesExist = require('files-exist');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+const babel = require('gulp-babel');
 
 module.exports = function (options) {
 
