@@ -4,19 +4,29 @@
 'use strict';
 
 const gulp = require('gulp');
-const gulpif = require('gulp-if');
 const filesExist = require('files-exist');
 const concat = require('gulp-concat');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const del = require('del');
 const uglify = require('gulp-uglify');
-const babel = require('gulp-babel');
+const notify = require('gulp-notify');
 
 module.exports = function (options) {
+  const jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
+  const noneES5 = jsVendors.es5.length === 0 ? true : false;
+  const noneES6 = jsVendors.es6.length === 0 ? true : false;
+  const errorConfig = {
+    title: 'JS compiling error',
+    icon: './sys_icon/error_icon.png',
+    wait: true
+  };
+  const babelConfig = {
+    presets: ['@babel/preset-env'],
+  };
+  const tempJs = 'temp.js';
 
   return (done) => {
-    const jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
-    const noneES5 = jsVendors.es5.length === 0 ? true : false;
-    const noneES6 = jsVendors.es6.length === 0 ? true : false;
-
     if (noneES5 && noneES6) {
       return done();
     } else if (noneES6) {
@@ -25,18 +35,27 @@ module.exports = function (options) {
         .pipe(gulpif(options.isProduction, uglify()))
         .pipe(gulp.dest(`./${options.dest}/js`));
     } else if (noneES5) {
-      return gulp.src(filesExist(jsVendors.es6))
-        .pipe(babel({ presets: ['@babel/env'] }))
-        .pipe(concat(options.vendorJsMin))
+      return browserify({ entries: jsVendors.es6 })
+        .transform('babelify', babelConfig)
+        .bundle()
+        .on('error', notify.onError(errorConfig))
+        .pipe(source(options.vendorJsMin))
         .pipe(gulpif(options.isProduction, uglify()))
         .pipe(gulp.dest(`./${options.dest}/js`));
     } else {
-      return gulp.src(filesExist(jsVendors.es6))
-        .pipe(babel({ presets: ['@babel/env'] }))
-        .pipe(gulp.src(filesExist(jsVendors.es5)))
-        .pipe(concat(options.vendorJsMin))
-        .pipe(gulpif(options.isProduction, uglify()))
-        .pipe(gulp.dest(`./${options.dest}/js`));
+      return browserify({ entries: jsVendors.es6 })
+        .transform('babelify', babelConfig)
+        .bundle()
+        .on('error', notify.onError(errorConfig))
+        .pipe(source(tempJs))
+        .pipe(gulp.dest(`./${options.dest}/js`))
+        .on('end', () => {
+          gulp.src(filesExist([...jsVendors.es5, `./${options.dest}/js/${tempJs}`]))
+            .pipe(concat(options.vendorJsMin))
+            .pipe(gulpif(options.isProduction, uglify()))
+            .pipe(gulp.dest(`./${options.dest}/js`))
+            .on('end', () => del(`./${options.dest}/js/${tempJs}`, { force: true }))
+        });
     }
   };
 };
