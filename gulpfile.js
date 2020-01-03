@@ -85,7 +85,7 @@
   }
 
   /**
-   * template HTML
+   * Template HTML
    */
   requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
     templates: cfg.fileInclude.templates,
@@ -199,6 +199,7 @@
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     mainHtml: cfg.file.mainHtml,
+    dest: cfg.fileInclude.dest,
     browserSync
   });
 

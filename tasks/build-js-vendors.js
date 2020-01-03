@@ -10,6 +10,7 @@ const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const del = require('del');
 const uglify = require('gulp-uglify');
+const gulpif = require('gulp-if');
 const notify = require('gulp-notify');
 
 module.exports = function (options) {
@@ -40,6 +41,7 @@ module.exports = function (options) {
         .bundle()
         .on('error', notify.onError(errorConfig))
         .pipe(source(options.vendorJsMin))
+        // buffer
         .pipe(gulpif(options.isProduction, uglify()))
         .pipe(gulp.dest(`./${options.dest}/js`));
     } else {

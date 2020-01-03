@@ -17,7 +17,7 @@ module.exports = {
   },
   fileInclude: {
     templates: 'src/html/templates',
-    dest: './',
+    dest: './assets',
   },
   task: {
     htmlHint: 'html-hint',
