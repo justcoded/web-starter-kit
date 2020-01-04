@@ -17,15 +17,15 @@ module.exports = function (options) {
   const jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
   const noneES5 = jsVendors.es5.length === 0 ? true : false;
   const noneES6 = jsVendors.es6.length === 0 ? true : false;
+  const babelConfig = {
+    presets: ['@babel/preset-env'],
+  };
+  const tempJs = 'temp.js';
   const errorConfig = {
     title: 'JS compiling error',
     icon: './sys_icon/error_icon.png',
     wait: true
   };
-  const babelConfig = {
-    presets: ['@babel/preset-env'],
-  };
-  const tempJs = 'temp.js';
 
   return (done) => {
     if (noneES5 && noneES6) {

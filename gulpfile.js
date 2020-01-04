@@ -87,27 +87,27 @@
   /**
    * Template HTML
    */
-  requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
-    templates: cfg.fileInclude.templates,
-    dest: cfg.fileInclude.dest
+  requireTask(`${cfg.task.buildHtml}`, `./${cfg.folder.tasks}/`, {
+    templates: cfg.buildHtml.templates,
+    dest: cfg.buildHtml.dest
   });
 
   /**
    * Hint HTML
    */
-  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.lintHtml}`, `./${cfg.folder.tasks}/`);
 
   /**
    * Lint ES
    */
-  requireTask(`${cfg.task.esLint}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.lintJs}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src
   });
 
   /**
    * Build custom js
    */
-  requireTask(`${cfg.task.buildCustomJs}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildJs}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
@@ -128,7 +128,7 @@
   /**
    * Build styles for application from Sass
    */
-  requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildStyles}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
@@ -139,7 +139,7 @@
   /**
    * Build custom Sass files listed in the config
    */
-  requireTask(`${cfg.task.buildSassCustom}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     dest: cfg.folder.build
   });
@@ -189,7 +189,7 @@
   /**
    * Copy folders to the production folder
    */
-  requireTask(`${cfg.task.copyFoldersProduction}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.copyFoldersProd}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.prod,
     foldersToCopy: cfg.getPathesToCopyForProduction()
   });
@@ -199,7 +199,7 @@
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     mainHtml: cfg.file.mainHtml,
-    dest: cfg.fileInclude.dest,
+    dest: cfg.buildHtml.dest,
     browserSync
   });
 
@@ -213,12 +213,12 @@
     browserSync,
     deleteFile,
     tasks: {
-      esLint: cfg.task.esLint,
-      buildCustomJs: cfg.task.buildCustomJs,
-      buildSass: cfg.task.buildSass,
-      buildSassCustom: cfg.task.buildSassCustom,
-      fileInclude: cfg.task.fileInclude,
-      htmlHint: cfg.task.htmlHint,
+      lintJs: cfg.task.lintJs,
+      buildJs: cfg.task.buildJs,
+      buildStyles: cfg.task.buildStyles,
+      buildStylesCustom: cfg.task.buildStylesCustom,
+      buildHtml: cfg.task.buildHtml,
+      lintHtml: cfg.task.lintHtml,
       imageMin: cfg.task.imageMin
     }
   }, false);
@@ -228,19 +228,19 @@
    */
   gulp.task('default', gulp.series(
     cfg.task.cleanBuild,
-    cfg.task.esLint,
+    cfg.task.lintJs,
     gulp.parallel(
       gulp.series(
-        cfg.task.fileInclude,
-        cfg.task.htmlHint,
+        cfg.task.buildHtml,
+        cfg.task.lintHtml,
       ),
       gulp.series(
-        cfg.task.buildSass,
-        cfg.task.buildSassCustom,
+        cfg.task.buildStyles,
+        cfg.task.buildStylesCustom,
         cfg.task.buildStylesVendors,
       ),
       gulp.series(
-        cfg.task.buildCustomJs,
+        cfg.task.buildJs,
         cfg.task.buildJsVendors,
       ),
     ),
@@ -260,24 +260,24 @@
       cfg.task.cleanProd,
       cfg.task.cleanBuild
     ),
-    cfg.task.esLint,
+    cfg.task.lintJs,
     gulp.parallel(
       gulp.series(
-        cfg.task.fileInclude,
-        cfg.task.htmlHint,
+        cfg.task.buildHtml,
+        cfg.task.lintHtml,
       ),
       gulp.series(
-        cfg.task.buildSass,
-        cfg.task.buildSassCustom,
+        cfg.task.buildStyles,
+        cfg.task.buildStylesCustom,
         cfg.task.buildStylesVendors,
       ),
       gulp.series(
-        cfg.task.buildCustomJs,
+        cfg.task.buildJs,
         cfg.task.buildJsVendors,
       ),
     ),
     cfg.task.imageMin,
     cfg.task.copyFolders,
-    cfg.task.copyFoldersProduction
+    cfg.task.copyFoldersProd
   ), true);
 })();

@@ -4,13 +4,13 @@
 'use strict';
 
 const gulp = require('gulp');
-const fileinclude = require('gulp-file-include');
+const fileInclude = require('gulp-file-include');
 
 module.exports = function (options) {
 
   return () => {
     return gulp.src(`./${options.templates}/**/*.html`)
-      .pipe(fileinclude({
+      .pipe(fileInclude({
         prefix: '@@',
         basepath: `./${options.templates}`,
         indent: true
