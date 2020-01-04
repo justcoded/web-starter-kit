@@ -23,7 +23,7 @@ module.exports = function (options) {
       })
       .on('add', gulp.series(options.tasks.imageMin));
 
-    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`, `./*.html`])
+    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`])
       .on('change', options.browserSync.reload);
   };
 };

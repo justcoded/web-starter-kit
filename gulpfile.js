@@ -89,19 +89,21 @@
    */
   requireTask(`${cfg.task.buildHtml}`, `./${cfg.folder.tasks}/`, {
     templates: cfg.buildHtml.templates,
-    dest: cfg.buildHtml.dest
+    dest: cfg.buildHtml.dest,
   });
 
   /**
    * Lint HTML
    */
-  requireTask(`${cfg.task.lintHtml}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.lintHtml}`, `./${cfg.folder.tasks}/`, {
+    dest: cfg.buildHtml.dest,
+  });
 
   /**
    * Lint JS
    */
   requireTask(`${cfg.task.lintJs}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src
+    src: cfg.folder.src,
   });
 
   /**
@@ -111,7 +113,7 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -122,7 +124,7 @@
     dest: cfg.folder.build,
     vendorJs: cfg.file.vendorJs,
     vendorJsMin: cfg.file.vendorJsMin,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -133,7 +135,7 @@
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
     mainScssMin: cfg.file.mainScssMin,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -141,7 +143,7 @@
    */
   requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
-    dest: cfg.folder.build
+    dest: cfg.folder.build,
   });
 
   /**
@@ -152,7 +154,7 @@
     dest: cfg.folder.build,
     vendorScss: cfg.file.vendorScss,
     vendorScssMin: cfg.file.vendorScssMin,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -160,21 +162,21 @@
    */
   requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
-    dest: cfg.folder.build
+    dest: cfg.folder.build,
   });
 
   /**
    * Clean build folder
    */
   requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.build
+    src: cfg.folder.build,
   });
 
   /**
    * Clean production folder
    */
   requireTask(`${cfg.task.cleanProd}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.prod
+    src: cfg.folder.prod,
   });
 
 
@@ -183,7 +185,7 @@
    */
   requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
-    foldersToCopy: cfg.getPathesToCopy()
+    foldersToCopy: cfg.getPathesToCopy(),
   });
 
   /**
@@ -191,7 +193,7 @@
    */
   requireTask(`${cfg.task.copyFoldersProd}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.prod,
-    foldersToCopy: cfg.getPathesToCopyForProduction()
+    foldersToCopy: cfg.getPathesToCopyForProduction(),
   });
 
   /**
@@ -200,7 +202,7 @@
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     mainHtml: cfg.file.mainHtml,
     dest: cfg.buildHtml.dest,
-    browserSync
+    browserSync,
   });
 
   /**
@@ -219,8 +221,8 @@
       buildStylesCustom: cfg.task.buildStylesCustom,
       buildHtml: cfg.task.buildHtml,
       lintHtml: cfg.task.lintHtml,
-      imageMin: cfg.task.imageMin
-    }
+      imageMin: cfg.task.imageMin,
+    },
   }, false);
 
   /**
@@ -248,8 +250,8 @@
     cfg.task.copyFolders,
     gulp.parallel(
       cfg.task.browserSync,
-      cfg.task.watch
-    )
+      cfg.task.watch,
+    ),
   ));
 
   /**
@@ -278,6 +280,6 @@
     ),
     cfg.task.imageMin,
     cfg.task.copyFolders,
-    cfg.task.copyFoldersProd
+    cfg.task.copyFoldersProd,
   ), true);
 })();

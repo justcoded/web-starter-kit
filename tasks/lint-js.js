@@ -1,5 +1,5 @@
 /**
- * Lint ES
+ * Lint JS
  */
 'use strict';
 

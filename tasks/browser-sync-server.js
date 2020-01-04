@@ -6,11 +6,10 @@
 const fs = require('fs');
 
 module.exports = function (options) {
+  // If index.html exist - open it, else show folder
+  const listDirectory = !fs.existsSync(`${options.dest}/${options.mainHtml}`);
 
   return () => {
-    // If index.html exist - open it, else show folder
-    let listDirectory = !fs.existsSync(`${options.dest}/${options.mainHtml}`);
-
     options.browserSync.init({
       notify: false,
       server: {
