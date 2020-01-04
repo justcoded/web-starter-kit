@@ -93,19 +93,19 @@
   });
 
   /**
-   * Hint HTML
+   * Lint HTML
    */
   requireTask(`${cfg.task.lintHtml}`, `./${cfg.folder.tasks}/`);
 
   /**
-   * Lint ES
+   * Lint JS
    */
   requireTask(`${cfg.task.lintJs}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src
   });
 
   /**
-   * Build custom js
+   * Build JS
    */
   requireTask(`${cfg.task.buildJs}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
@@ -115,7 +115,7 @@
   });
 
   /**
-   * Build js vendor (concatenate vendors array)
+   * Build JS vendor (concatenate vendors array)
    */
   requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
@@ -126,7 +126,7 @@
   });
 
   /**
-   * Build styles for application from Sass
+   * Build styles for application
    */
   requireTask(`${cfg.task.buildStyles}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
@@ -137,7 +137,7 @@
   });
 
   /**
-   * Build custom Sass files listed in the config
+   * Build custom files listed in the config
    */
   requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
@@ -145,7 +145,7 @@
   });
 
   /**
-   * Build styles for vendor from Sass
+   * Build styles for vendor
    */
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
