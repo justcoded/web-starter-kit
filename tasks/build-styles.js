@@ -1,5 +1,5 @@
 /**
- * Build styles for application from SASS
+ * Build styles for application
  */
 'use strict';
 

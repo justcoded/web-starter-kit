@@ -1,5 +1,5 @@
 /**
- * Build custom js
+ * Build js
  */
 'use strict';
 

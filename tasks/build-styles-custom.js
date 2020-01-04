@@ -1,5 +1,5 @@
 /**
- * Build custom Sass files listed in the config
+ * Build custom styles files listed in the config
  */
 'use strict';
 
