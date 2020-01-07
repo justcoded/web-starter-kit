@@ -9,6 +9,7 @@ module.exports = {
   file: {
     mainHtml: 'index.html',
     mainJs: 'app.js',
+    mainJsMin: 'app.min.js',
     vendorJs: 'vendor.js',
     vendorJsMin: 'vendor.min.js',
     vendorJsTemp: 'vendor.temp.js',

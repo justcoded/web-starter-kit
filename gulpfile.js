@@ -113,6 +113,7 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
+    mainJsMin: cfg.file.mainJsMin,
     checkProduction: true,
   });
 
@@ -141,7 +142,7 @@
   });
 
   /**
-   * Build custom files listed in the config
+   * Build styles custom files listed in the config
    */
   requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
