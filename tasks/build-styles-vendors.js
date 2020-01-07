@@ -17,7 +17,7 @@ module.exports = function (options) {
   const errorConfig = {
     title: 'Sass compiling error',
     icon: './sys_icon/error_icon.png',
-    wait: true
+    wait: true,
   };
 
   return () => {
@@ -26,7 +26,7 @@ module.exports = function (options) {
       .pipe(sass.sync())
       .on('error', notify.onError(errorConfig))
       .pipe(cssimport())
-      .pipe(gulpif(options.isProduction, cssnano({ safe: true })))
+      .pipe(gulpif(options.isProduction, cssnano({ safe: true, })))
       .pipe(gulp.dest(`./${options.dest}/css`));
   };
 };

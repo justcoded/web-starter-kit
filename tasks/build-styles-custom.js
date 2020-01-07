@@ -18,7 +18,7 @@ module.exports = function (options) {
   const errorConfig = {
     title: 'Sass compiling error',
     icon: './sys_icon/error_icon.png',
-    wait: true
+    wait: true,
   };
 
   return (done) => {

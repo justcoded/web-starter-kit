@@ -122,8 +122,10 @@
   requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    temp: cfg.folder.temp,
     vendorJs: cfg.file.vendorJs,
     vendorJsMin: cfg.file.vendorJsMin,
+    vendorJsTemp: cfg.file.vendorJsTemp,
     checkProduction: true,
   });
 

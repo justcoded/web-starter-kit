@@ -3,13 +3,15 @@ module.exports = {
     tasks: 'tasks',
     src: 'src',
     build: 'assets',
-    prod: 'production'
+    prod: 'production',
+    temp: '.temp',
   },
   file: {
     mainHtml: 'index.html',
     mainJs: 'app.js',
     vendorJs: 'vendor.js',
     vendorJsMin: 'vendor.min.js',
+    vendorJsTemp: 'vendor.temp.js',
     mainScss: 'styles.scss',
     mainScssMin: 'styles.min.css',
     vendorScss: 'vendor.scss',

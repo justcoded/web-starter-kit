@@ -11,7 +11,7 @@ module.exports = function (options) {
   const errorConfig = {
     title: 'HTML linting error',
     icon: './sys_icon/error_icon.png',
-    wait: true
+    wait: true,
   };
 
   return (done) => {

@@ -10,7 +10,7 @@ module.exports = function (options) {
   const config = {
     prefix: '@@',
     basepath: `./${options.templates}`,
-    indent: true
+    indent: true,
   };
 
   return () => {

@@ -8,7 +8,7 @@ const filesExist = require('files-exist');
 const concat = require('gulp-concat');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
-const del = require('del');
+const buffer = require('vinyl-buffer');
 const uglify = require('gulp-uglify');
 const gulpif = require('gulp-if');
 const notify = require('gulp-notify');
@@ -20,11 +20,10 @@ module.exports = function (options) {
   const babelConfig = {
     presets: ['@babel/preset-env'],
   };
-  const tempJs = 'temp.js';
   const errorConfig = {
     title: 'JS compiling error',
     icon: './sys_icon/error_icon.png',
-    wait: true
+    wait: true,
   };
 
   return (done) => {
@@ -41,7 +40,7 @@ module.exports = function (options) {
         .bundle()
         .on('error', notify.onError(errorConfig))
         .pipe(source(options.vendorJsMin))
-        // buffer
+        .pipe(gulpif(options.isProduction, buffer()))
         .pipe(gulpif(options.isProduction, uglify()))
         .pipe(gulp.dest(`./${options.dest}/js`));
     } else {
@@ -49,14 +48,13 @@ module.exports = function (options) {
         .transform('babelify', babelConfig)
         .bundle()
         .on('error', notify.onError(errorConfig))
-        .pipe(source(tempJs))
-        .pipe(gulp.dest(`./${options.dest}/js`))
+        .pipe(source(options.vendorJsTemp))
+        .pipe(gulp.dest(`./${options.temp}/js`))
         .on('end', () => {
-          gulp.src(filesExist([...jsVendors.es5, `./${options.dest}/js/${tempJs}`]))
+          gulp.src(filesExist([...jsVendors.es5, `./${options.temp}/js/${options.vendorJsTemp}`]))
             .pipe(concat(options.vendorJsMin))
             .pipe(gulpif(options.isProduction, uglify()))
             .pipe(gulp.dest(`./${options.dest}/js`))
-            .on('end', () => del(`./${options.dest}/js/${tempJs}`, { force: true }))
         });
     }
   };
