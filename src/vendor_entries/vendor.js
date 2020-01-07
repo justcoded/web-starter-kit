@@ -7,6 +7,5 @@ module.exports = {
   ],
   es6: [
     // './node_modules/your-plugin/es6/your-plugin.js',
-    './node_modules/jquery/dist/jquery.js',
   ]
 };
