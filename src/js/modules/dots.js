@@ -19,7 +19,7 @@ const dotsEffect = (() => {
   };
 
   const init = () => {
-    const $cnt = $('#home-canvas');
+    const $cnt = $('.entry-section');
     const cells = createCells();
     $cnt.html(cells);
   };

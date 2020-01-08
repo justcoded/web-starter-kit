@@ -14,10 +14,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: var(--color-white);
 
   h1 {
-    font-size: 3rem;
+    font-size: 4.8rem;
     @include animate(text-shadow);
     @include media("hover") {
       &:hover {
@@ -25,9 +25,8 @@
       }
     }
   }
-
   p {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 
@@ -35,12 +34,8 @@
   height: 100vh;
 }
 
-#home-canvas {
-  height: 100%;
-}
-
 .entry-cells {
-  background: #191e23;
+  background: var(--base-background-color);
   height: 100%;
   width: 100%;
   display: flex;
@@ -54,10 +49,10 @@
     &:after {
       content: "";
       position: absolute;
-      height: 9px;
-      width: 9px;
+      height: 1rem;
+      width: 1rem;
       border-radius: 50%;
-      background: #fff;
+      background-color: var(--color-white);
       transform: scale(0.5);
       animation-name: pulse;
       animation-iteration-count: infinite;
@@ -75,12 +70,12 @@
 }
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(#fff, 0.6);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
   }
   70% {
-    box-shadow: 0 0 0 15px rgba(#fff, 0);
+    box-shadow: 0 0 0 1.5rem rgba(255, 255, 255, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(#fff, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }

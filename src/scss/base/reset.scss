@@ -3,7 +3,8 @@
 // Note: If you use a framework that includes base styling then you need to remove this file.
 
 html {
-	box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
 *, *:before, *:after {
 	box-sizing: inherit;
@@ -11,10 +12,10 @@ html {
 
 body {
   @include font-smoothing(on);
-  color: map-get($base, 'base-text-color');
-  background: map-get($base, 'base-background-color');
-  font: #{map-get($base, 'base-font-size')}/#{map-get($base, 'base-line-height')} #{map-get($base, 'base-font-family')};
-  min-width: map-get($base, base-min-width);
+  color: var(--base-text-color);
+  background: var(--base-background-color);
+  font: var(--base-font-size)/var(--base-line-height) var(--base-font-family);
+  min-width: var(--base-min-width);
 }
 
 // adaptive images

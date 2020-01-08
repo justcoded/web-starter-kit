@@ -44,7 +44,7 @@ p {
 }
 
 a {
-  color: map-get($base, 'base-link-color');
+  color: var(--base-link-color);
   &:hover,
   &:focus {
     text-decoration: none;

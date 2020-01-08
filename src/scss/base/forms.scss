@@ -18,16 +18,16 @@ textarea {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
-  border: 1px solid map-get($forms, 'form-element-border-color');
-  padding: map-get($forms, 'form-element-padding');
-  font-family: map-get($forms, 'form-font-family');
+  border: 1px solid var(--form-element-border-color);
+  padding: var(--form-element-padding);
+  font-family: var(--form-font-family);
 
   &:focus {
-    border-color: map-get($forms, 'form-element-focus-border-color');
+    border-color: var(--form-element-focus-border-color);
   }
 
   @include placeholder {
-    color: map-get($forms, 'placeholder-color');
+    color: var(placeholder-color);
   }
 }
 
@@ -48,5 +48,5 @@ input[type='submit'] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   cursor: pointer;
-  font-family: map-get($forms, 'form-font-family');
+  font-family: var(--form-font-family);
 }

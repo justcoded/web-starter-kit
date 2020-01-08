@@ -1,61 +1,76 @@
 // Global variables
-//
+
+:root {
+  // Colors
+  --color-white: #fff;
+  --color-black: #000;
+  --color-grey: #999;
+  --color-blue: #39f;
+
+  // Fonts
+  --font-sans-serif: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-serif: "Times New Roman", Times, Baskerville, Georgia, serif;
+
+  // Body
+  --base-background-color: var(--color-black);
+  --base-font-family: var(--font-sans-serif);
+  --base-font-size: 1.6rem;
+  --base-line-height: 1.2;
+  --base-text-color: var(--color-black);
+  --base-min-width: 320px;
+
+  // Links
+  --base-link-color: var(--color-blue);
+
+  // Buttons
+  --btn-color: var(--color-white);
+  --btn-background: var(--color-blue);
+  --btn-padding: 0.4em 0.7em;
+  --btn-font-size: inherit;
+  --btn-font-family: inherit;
+
+  // Forms
+  --form-font-family: inherit;
+  --form-element-padding: var(--btn-padding);
+  --form-element-border-color: var(--color-grey);
+  --form-element-focus-border-color: var(--color-black);
+  --placeholder-color: var(--color-grey);
+}
+
 // Base font styles for headings and links.
 
 // For headers
 $headings: (
-  'sizes': (
-    'h1-font-size': 30px,
-    'h2-font-size': 27px,
-    'h3-font-size': 24px,
-    'h4-font-size': 21px,
-    'h5-font-size': 17px,
-    'h6-font-size': 15px
+  "sizes": (
+    "h1-font-size": 3rem,
+    "h2-font-size": 2.7rem,
+    "h3-font-size": 2.4rem,
+    "h4-font-size": 2.1rem,
+    "h5-font-size": 1.7rem,
+    "h6-font-size": 1.5rem
   ),
-  'fonts': (
-    'headings-font-family': inherit,
-    'headings-color': inherit
+  "fonts": (
+    "headings-font-family": inherit,
+    "headings-color": inherit
   )
-);
-
-// Global vars for body typography
-$base: (
-  'base-font-sans-serif': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
-  'base-font-serif': unquote("'Times New Roman', Times, Baskerville, Georgia, serif"),
-  'base-text-color': #000,
-  'base-background-color': #fff,
-  'base-link-color':#39f,
-  'base-font-size': 16px,
-  'base-line-height': 1.2,
-  'base-font-family': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
-  'base-min-width': 320px
-);
-
-// Vars for forms
-$forms: (
-  'form-font-family': unquote("Arial, 'Helvetica Neue', Helvetica, sans-serif"),
-  'form-element-padding': unquote("0.4em 0.7em"),
-  'form-element-border-color': #999,
-  'form-element-focus-border-color': #000,
-  'placeholder-color': #999
 );
 
 // Breakpoints for include media mixin
 $breakpoints: (
-  'phone': 480px,
-  'tablet': 768px,
-  'desktop': 980px,
-  'widescreen': 1200px
+  "phone": 480px,
+  "tablet": 768px,
+  "desktop": 980px,
+  "widescreen": 1200px
 );
 
 // Keywords for include media mixin
 $media-expressions: (
-  'screen': 'screen',
-  'print': 'print',
-  'handheld': 'handheld',
-  'landscape': '(orientation: landscape)',
-  'portrait': '(orientation: portrait)',
-  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
-  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)',
-  'hover': '(hover: hover)'
+  "screen": "screen",
+  "print": "print",
+  "handheld": "handheld",
+  "landscape": "(orientation: landscape)",
+  "portrait": "(orientation: portrait)",
+  "retina2x": "(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)",
+  "retina3x": "(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)",
+  "hover": "(hover: hover)"
 );
