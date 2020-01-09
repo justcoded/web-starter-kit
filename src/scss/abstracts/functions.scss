@@ -68,7 +68,7 @@
 //
 // .btn{
 //   @include background-svg('
-//   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" xml:space="preserve"  preserveAspectRatio="none">  
+//   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" xml:space="preserve"  preserveAspectRatio="none">
 //         <polygon fill="#0068f2" points="0,0 81,0 100,50 80,100 0,100 20,50" />
 //   </svg>');
 // }
@@ -79,19 +79,19 @@
     //
     @if not str-index($svg,xmlns) {
         $svg: str-replace($svg, '<svg','<svg xmlns="http://www.w3.org/2000/svg"');
-    }        
-    //    
-    //  Chunk up string in order to avoid 
+    }
+    //
+    //  Chunk up string in order to avoid
     //  "stack level too deep" error
-    //     
+    //
     $encoded:'';
     $slice: 2000;
     $index: 0;
     $loops: ceil(str-length($svg)/$slice);
     @for $i from 1 through $loops {
-        $chunk: str-slice($svg, $index, $index + $slice - 1); 
+        $chunk: str-slice($svg, $index, $index + $slice - 1);
         //
-        //   Encode 
+        //   Encode
         //
         $chunk: str-replace($chunk,'"', "\'");
         $chunk: str-replace($chunk,'%', '%25');
@@ -101,13 +101,13 @@
         $chunk: str-replace($chunk,'}', '%7D');
         $chunk: str-replace($chunk,'<', '%3C');
         $chunk: str-replace($chunk,'>', '%3E');
-        
-        // 
-        //    The maybe list 
+
+        //
+        //    The maybe list
         //
         //    Keep size and compile time down
-        //    ... only add on documented fail 
-        // 
+        //    ... only add on documented fail
+        //
         //  $chunk: str-replace($chunk, '|', '%7C');
         //  $chunk: str-replace($chunk, '[', '%5B');
         //  $chunk: str-replace($chunk, ']', '%5D');
@@ -118,9 +118,9 @@
         //  $chunk: str-replace($chunk, ':', '%3A');
         //  $chunk: str-replace($chunk, '@', '%40');
         //  $chunk: str-replace($chunk, '=', '%3D');
-        
+
         $encoded: #{$encoded}#{$chunk};
-        $index: $index + $slice; 
+        $index: $index + $slice;
     }
     @return url("data:image/svg+xml,#{$encoded}");
 }
@@ -132,10 +132,10 @@
 
 //  Helper function to replace characters in a string
 @function str-replace($string, $search, $replace: '') {
-    $index: str-index($string, $search); 
-    @return if($index, 
-        str-slice($string, 1, $index - 1) + $replace + 
-        str-replace(str-slice($string, $index + 
-        str-length($search)), $search, $replace), 
-        $string); 
-}  
+    $index: str-index($string, $search);
+    @return if($index,
+        str-slice($string, 1, $index - 1) + $replace +
+        str-replace(str-slice($string, $index +
+        str-length($search)), $search, $replace),
+        $string);
+}

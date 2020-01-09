@@ -35,11 +35,14 @@
   --form-element-border-color: var(--color-grey);
   --form-element-focus-border-color: var(--color-black);
   --placeholder-color: var(--color-grey);
+
+  // Headings
+  --headings-font-family: inherit;
+  --headings-color: inherit;
 }
 
-// Base font styles for headings and links.
+// Base font styles for headings
 
-// For headers
 $headings: (
   "sizes": (
     "h1-font-size": 3rem,
@@ -48,10 +51,6 @@ $headings: (
     "h4-font-size": 2.1rem,
     "h5-font-size": 1.7rem,
     "h6-font-size": 1.5rem
-  ),
-  "fonts": (
-    "headings-font-family": inherit,
-    "headings-color": inherit
   )
 );
 

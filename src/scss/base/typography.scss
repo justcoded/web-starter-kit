@@ -9,10 +9,10 @@ h4, .h4,
 h5, .h5,
 h6, .h6,
 .h {
-  font-family: map-deep-get($headings, 'fonts', 'headings-font-family');
+  font-family: var(--headings-font-family);
   font-weight: bold;
   margin: 0 0 0.5em;
-  color: map-deep-get($headings, 'fonts', 'headings-color');
+  color: var(--headings-color);
 }
 
 h1, .h1 {
@@ -45,8 +45,12 @@ p {
 
 a {
   color: var(--base-link-color);
-  &:hover,
   &:focus {
     text-decoration: none;
+  }
+  @include media('hover') {
+    &:hover {
+      text-decoration: none;
+    }
   }
 }

@@ -27,7 +27,7 @@ textarea {
   }
 
   @include placeholder {
-    color: var(placeholder-color);
+    color: var(--placeholder-color);
   }
 }
 
