@@ -251,7 +251,7 @@ You can see this property in the `gulp-config.js` file:
 
 ![image](https://user-images.githubusercontent.com/38295556/72081273-dbe10900-3306-11ea-8851-e0ae77b93b77.png)
 
-Please don't forget to link all your **custom scss** files in **html**:
+Please don't forget to link all your **styles custom files** in **html**:
 
 ![image](https://user-images.githubusercontent.com/38295556/72081259-d683be80-3306-11ea-9085-ce37ee4b74bd.png)
 
