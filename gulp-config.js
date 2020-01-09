@@ -43,7 +43,7 @@ module.exports = {
   getPathesForSassCompiling: function () {
     return {
       files: [],
-      isGcmq: false
+      isGcmq: false,
     };
   },
   getPathesToCopyForProduction: function () {

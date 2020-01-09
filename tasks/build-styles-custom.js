@@ -26,14 +26,14 @@ module.exports = function (options) {
 
     if (files.length > 0) {
       return gulp.src(files)
-        .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true })))
+        .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true, })))
         .pipe(sass.sync({
           sourceMap: !options.isProduction,
         }))
         .on('error', notify.onError(errorConfig))
         .pipe(autoprefixer())
         .pipe(gulpif(isGcmq, gcmq()))
-        .pipe(gulpif(options.isProduction, cssnano({ safe: true })))
+        .pipe(gulpif(options.isProduction, cssnano({ safe: true, })))
         .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))
         .pipe(gulp.dest(`./${options.dest}/css`));
     }

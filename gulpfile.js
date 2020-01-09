@@ -147,6 +147,7 @@
   requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     dest: cfg.folder.build,
+    checkProduction: true,
   });
 
   /**
