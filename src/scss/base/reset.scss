@@ -3,18 +3,21 @@
 // Note: If you use a framework that includes base styling then you need to remove this file.
 
 html {
-	box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
-*, *:before, *:after {
-	box-sizing: inherit;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 body {
   @include font-smoothing(on);
-  color: map-get($base, 'base-text-color');
-  background: map-get($base, 'base-background-color');
-  font: #{map-get($base, 'base-font-size')}/#{map-get($base, 'base-line-height')} #{map-get($base, 'base-font-family')};
-  min-width: map-get($base, base-min-width);
+  color: var(--base-text-color);
+  background: var(--base-background-color);
+  font: var(--base-font-size) / var(--base-line-height) var(--base-font-family);
+  min-width: var(--base-min-width);
 }
 
 // adaptive images
@@ -24,11 +27,15 @@ img {
 }
 
 // google map fix
-.gm-style img {max-width: none;}
+.gm-style img {
+  max-width: none;
+}
 
 // hide tel links on desktop
-@media only screen and (min-width: 1025px) {
-    a[href^="tel"], a[href^="skype"], a[href^="sms"] {
+@include media('screen', '>desktop') {
+  a[href^='tel'],
+  a[href^='skype'],
+  a[href^='sms'] {
     cursor: default;
     pointer-events: none;
   }

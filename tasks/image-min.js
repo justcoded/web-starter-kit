@@ -14,14 +14,14 @@ module.exports = function (options) {
       .pipe(newer(`./${options.dest}/images/`))
       .pipe(imagemin([
         imagemin.jpegtran({
-          progressive: true
+          progressive: true,
         }),
         imagemin.optipng({
-          optimizationLevel: 5
+          optimizationLevel: 5,
         }),
         imagemin.svgo({
           plugins: [{
-            removeViewBox: false
+            removeViewBox: false,
           }]
         })
       ]))

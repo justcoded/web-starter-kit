@@ -1,5 +1,5 @@
 /**
- * Copy folders to another folder
+ * Copy folders to the production folder
  */
 'use strict';
 
