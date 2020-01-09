@@ -6,3 +6,6 @@ indent_size = 2
 charset = utf-8
 trim_trailing_whitespace = true
 end_of_line = lf
+
+[*.{js,css,scss}]
+quote_type = single

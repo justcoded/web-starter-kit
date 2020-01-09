@@ -19,9 +19,9 @@
   h1 {
     font-size: 4.8rem;
     @include animate(text-shadow);
-    @include media("hover") {
+    @include media('hover') {
       &:hover {
-        text-shadow: 1px 5px 5px rgba(#fff, 0.5);
+        text-shadow: 0.1rem 0.5rem 0.5rem rgba(#fff, 0.5);
       }
     }
   }
@@ -47,13 +47,12 @@
     position: relative;
 
     &:after {
-      content: "";
+      content: '';
       position: absolute;
-      height: 1rem;
-      width: 1rem;
+      height: 0.5rem;
+      width: 0.5rem;
       border-radius: 50%;
       background-color: var(--color-white);
-      transform: scale(0.5);
       animation-name: pulse;
       animation-iteration-count: infinite;
     }
@@ -61,8 +60,8 @@
 
   @for $i from 0 through 100 {
     .cell-#{$i}:after {
-      left: #{random(100)} + "%";
-      top: #{random(100)} + "%";
+      left: #{random(100)} + '%';
+      top: #{random(100)} + '%';
       animation-duration: #{(random(100) + 100) / 100}s;
       animation-delay: #{random(100) / 100}s;
     }
@@ -70,12 +69,12 @@
 }
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 0 rgba(#fff, 0.6);
   }
   70% {
-    box-shadow: 0 0 0 1.5rem rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0.8rem rgba(#fff, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 rgba(#fff, 0);
   }
 }

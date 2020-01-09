@@ -1,6 +1,44 @@
 // Global variables
 
+// Breakpoints for include media mixin
+$breakpoints: (
+  'phone': 48rem,
+  'tablet': 76.8rem,
+  'desktop': 98rem,
+  'widescreen': 120rem
+);
+
+// Keywords for include media mixin
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)',
+  'hover': '(hover: hover)'
+);
+
+// Base font styles for headings
+$headings: (
+  'sizes': (
+    'h1-font-size': 3rem,
+    'h2-font-size': 2.7rem,
+    'h3-font-size': 2.4rem,
+    'h4-font-size': 2.1rem,
+    'h5-font-size': 1.7rem,
+    'h6-font-size': 1.5rem
+  )
+);
+
 :root {
+  // Breakpoints
+  --phone: #{map-get($breakpoints, 'phone')};
+  --tablet: #{map-get($breakpoints, 'tablet')};
+  --desktop: #{map-get($breakpoints, 'desktop')};
+  --widescreen: #{map-get($breakpoints, 'widescreen')};
+
   // Colors
   --color-white: #fff;
   --color-black: #000;
@@ -8,10 +46,10 @@
   --color-blue: #39f;
 
   // Fonts
-  --font-sans-serif: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  --font-serif: "Times New Roman", Times, Baskerville, Georgia, serif;
+  --font-sans-serif: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  --font-serif: 'Times New Roman', Times, Baskerville, Georgia, serif;
 
-  // Body
+  // Body base
   --base-background-color: var(--color-black);
   --base-font-family: var(--font-sans-serif);
   --base-font-size: 1.6rem;
@@ -19,57 +57,24 @@
   --base-text-color: var(--color-black);
   --base-min-width: 320px;
 
-  // Links
+  // Links base
   --base-link-color: var(--color-blue);
 
-  // Buttons
+  // Buttons base
   --btn-color: var(--color-white);
   --btn-background: var(--color-blue);
   --btn-padding: 0.4em 0.7em;
   --btn-font-size: inherit;
   --btn-font-family: inherit;
 
-  // Forms
+  // Forms base
   --form-font-family: inherit;
   --form-element-padding: var(--btn-padding);
   --form-element-border-color: var(--color-grey);
   --form-element-focus-border-color: var(--color-black);
   --placeholder-color: var(--color-grey);
 
-  // Headings
+  // Headings base
   --headings-font-family: inherit;
   --headings-color: inherit;
 }
-
-// Base font styles for headings
-
-$headings: (
-  "sizes": (
-    "h1-font-size": 3rem,
-    "h2-font-size": 2.7rem,
-    "h3-font-size": 2.4rem,
-    "h4-font-size": 2.1rem,
-    "h5-font-size": 1.7rem,
-    "h6-font-size": 1.5rem
-  )
-);
-
-// Breakpoints for include media mixin
-$breakpoints: (
-  "phone": 480px,
-  "tablet": 768px,
-  "desktop": 980px,
-  "widescreen": 1200px
-);
-
-// Keywords for include media mixin
-$media-expressions: (
-  "screen": "screen",
-  "print": "print",
-  "handheld": "handheld",
-  "landscape": "(orientation: landscape)",
-  "portrait": "(orientation: portrait)",
-  "retina2x": "(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)",
-  "retina3x": "(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)",
-  "hover": "(hover: hover)"
-);
