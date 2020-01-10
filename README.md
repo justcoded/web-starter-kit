@@ -45,13 +45,13 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | Feature                                | Summary                                                                                                                                                                                                                                                     |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Easy start |  We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html` from `src/html`.                          |
-| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (Run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
-| Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (Run `gulp` to create an optimised version of your project to `/assets`).                                                                                                |
+| Sass support                           | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).                                                                                                      |
+| Performance optimization               | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `/assets`).                                                                                                |
 | Code Linting               | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [gulp-htmlhint](https://www.npmjs.com/package/gulp-htmlhint).                                                                                             |
 | ES6+ Support                   | Optional ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support.  |
 | HTML templating                       | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
 | Built-in HTTP Server                   | A built-in server for previewing your site locally while you develop and iterate.                                                                                                                                                                            |
-| Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension (Run `gulp` and edit your files).                                                                                                                           |
+| Live Browser Reloading                 | Reload the browser in real-time anytime an edit is made without the need for an extension (run `gulp` and edit your files).                                                                                                                           |
 | Cross-device Synchronization           | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (Run `gulp` and open up the IP provided on other devices on your network).                       |
 
 
@@ -134,7 +134,7 @@ There are few commands available to help you build and test sites:
 $ gulp
 ```
 
-`gulp` task creates the `assets/` folder in the root of the project.
+`gulp` task creates the `assets` folder in the root of the project.
 This includes linting as well as image, script, stylesheet and HTML optimization.
 Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites resources.
 
@@ -145,8 +145,16 @@ Also, a [browsersync](https://browsersync.io/) script will be automatically gene
 $ gulp build
 ```
 
-`gulp build` task creates the `production/` folder in the root of the project with **minifying assets files**. It will **help you** to **create clear** instances of code for the **production** or **further implementation**.
+`gulp build` task creates the `production` folder in the root of the project with **minifying** files from `assets`. It will help you to create clear instances of code for the **production** or **further implementation**.
 
+
+### Lint only
+
+```sh
+$ gulp lint-js
+```
+
+`gulp lint-js` task for run the separate lint for JS files.
 
 ## Structure
 
@@ -172,7 +180,6 @@ If you want to use our WSK, you need to know something about the structure.
 ├── LICENSE
 ├── package.json        #File with dependencies
 └── README.md
-
 ```
 
 `tasks` - folder for gulpfile tasks.
@@ -259,23 +266,23 @@ Also, you might want to add files to the ignore list (check `getPathesToCopyForP
 
 ## Tasks
 
-|Task                               | Description                                                                                                                                                                                                                                               |
-|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
-| build-html           | Compiles all html templates into html files.                       |
-| build-js                         | Compiles all js from `src/js` to `assets/js` folder.                                                                                                      |
-| build-js-vendors               | Compiles all vendor js from `src/vendor_entries` to `assets/js` folder.                                                                                                |
-| build-styles                   | Compiles all scss from `src/scss` to `assets/css`   folder.  |
-| build-styles-custom          | Compiles all custom scss files listed in the `gulp-config.js` to `assets/css` folder                   |
-| build-styles-vendors                 | Compiles all vendor styles from `src/vendor_entries` to `assets/css`   folder.                                                                                                                                                                            |
-| clean-build                | Cleaning `assets` folder.                                                                                                                           |
-| clean-production                | Cleaning `production` folder.                                                                                                                                 |
-| copy-folders-production           | Copy all folders & files from `assets` to `production`.                       |
-| copy-folders           | Copy all not compiling files & folders from `src` to `assets`.                       |
-| lint-html           | Need to lint html files.                    |
-| lint-js           | Need to lint js files.                      |
-| image-min           | We use this to minify images.                    |
-| watch           | Task for watching all the changes.                   |
+| Task | Description |
+| --- | --- |
+| browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh. |
+| build-html | Compiles all html templates into html files. |
+| build-js | Compiles all js from `src/js` to `assets/js` folder. |
+| build-js-vendors | Compiles all vendor js from `src/vendor_entries` to `assets/js` folder. |
+| build-styles | Compiles all scss from `src/scss` to `assets/css`   folder. |
+| build-styles-custom | Compiles all custom scss files listed in the `gulp-config.js` to `assets/css` folder |
+| build-styles-vendors | Compiles all vendor styles from `src/vendor_entries` to `assets/css`   folder. |
+| clean-build | Cleaning `assets` folder. |
+| clean-production | Cleaning `production` folder. |
+| copy-folders-production | Copy all folders & files from `assets` to `production`. |
+| copy-folders | Copy all not compiling files & folders from `src` to `assets`. |
+| lint-html | Need to lint html files. |
+| lint-js | Need to lint js files. |
+| image-min | We use this to minify images. |
+| watch | Task for watching all the changes. |
 
 ## Troubleshooting
 
