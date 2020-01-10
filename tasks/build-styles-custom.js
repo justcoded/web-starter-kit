@@ -5,35 +5,37 @@
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
 const gulpif = require('gulp-if');
 const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
-const gcmq = require('gulp-group-css-media-queries');
-const cssnano = require('gulp-cssnano');
+const autoprefixer = require('autoprefixer');
+const gcmq = require('postcss-sort-media-queries');
+const cssnano = require('cssnano');
 const notify = require('gulp-notify');
 
 sass.compiler = require('sass');
 
 module.exports = function (options) {
+  const { files, isGcmq } = options.sassFilesInfo;
+  const plugins = [
+    autoprefixer(),
+  ];
   const errorConfig = {
     title: 'Sass compiling error',
     icon: './sys_icon/error_icon.png',
     wait: true,
   };
 
-  return (done) => {
-    const { files, isGcmq } = options.sassFilesInfo;
+  isGcmq ? plugins.push(gcmq()) : false;
+  options.isProduction ? plugins.push(cssnano()) : false;
 
+  return (done) => {
     if (files.length > 0) {
       return gulp.src(files)
         .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true, })))
-        .pipe(sass.sync({
-          sourceMap: !options.isProduction,
-        }))
+        .pipe(sass.sync({ sourceMap: !options.isProduction, }))
         .on('error', notify.onError(errorConfig))
-        .pipe(autoprefixer())
-        .pipe(gulpif(isGcmq, gcmq()))
-        .pipe(gulpif(options.isProduction, cssnano({ safe: true, })))
+        .pipe(postcss(plugins))
         .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))
         .pipe(gulp.dest(`./${options.dest}/css`));
     }
