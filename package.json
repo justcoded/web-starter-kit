@@ -57,9 +57,10 @@
     "node": ">=8.0.0"
   },
   "scripts": {
+    "start": "gulp",
     "test": "gulp build",
     "production": "gulp build",
-    "start": "gulp"
+    "lint-js": "gulp lint-js"
   },
   "dependencies": {
     "include-media": "^1.4.9",

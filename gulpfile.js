@@ -138,6 +138,7 @@
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
     mainScssMin: cfg.file.mainScssMin,
+    sortType: cfg.buildStyles.sortType,
     checkProduction: true,
   });
 
@@ -145,8 +146,9 @@
    * Build styles custom files listed in the config
    */
   requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
+    stylesCustomInfo: cfg.getPathesForStylesCustom(),
     dest: cfg.folder.build,
+    sortType: cfg.buildStyles.sortType,
     checkProduction: true,
   });
 
@@ -286,4 +288,9 @@
     cfg.task.copyFolders,
     cfg.task.copyFoldersProd,
   ), true);
+
+  /**
+   * Linting JS files
+   */
+  gulp.task('lint-js', gulp.series(cfg.task.lintJs));
 })();

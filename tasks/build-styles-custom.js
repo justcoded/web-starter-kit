@@ -16,7 +16,7 @@ const notify = require('gulp-notify');
 sass.compiler = require('sass');
 
 module.exports = function (options) {
-  const { files, isGcmq } = options.sassFilesInfo;
+  const { files, isGcmq } = options.stylesCustomInfo;
   const plugins = [
     autoprefixer(),
   ];
@@ -26,8 +26,7 @@ module.exports = function (options) {
     wait: true,
   };
 
-  // Optional - sorting variant css media queries: 'desktop-first' || 'mobile-first'
-  isGcmq ? plugins.push(gcmq({ sort: 'desktop-first', })) : false;
+  isGcmq ? plugins.push(gcmq({ sort: options.sortType, })) : false;
   options.isProduction ? plugins.push(cssnano()) : false;
 
   return (done) => {
