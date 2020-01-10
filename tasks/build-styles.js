@@ -26,7 +26,8 @@ module.exports = function (options) {
     wait: true,
   };
 
-  options.isProduction ? plugins.push(gcmq()) : false;
+  // Optional - sorting variant css media queries: 'desktop-first' || 'mobile-first'
+  options.isProduction ? plugins.push(gcmq({ sort: 'desktop-first', })) : false;
   options.isProduction ? plugins.push(cssnano()) : false;
 
   return () => {
