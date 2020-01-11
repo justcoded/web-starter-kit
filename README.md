@@ -7,7 +7,7 @@
 
 ## Overview
 
-Web Starter Kit is an opinionated boilerplate for web development. Tools for building a great experience across many devices. A solid starting point for both professionals and newcomers to the industry.
+Web Starter Kit (WSK) - is an opinionated boilerplate for web development. Tools for building a great experience across many devices. A solid starting point for both professionals and newcomers to the industry.
 
 ## Table of Contents
 1. [Browser Support](#browser-support)
@@ -37,7 +37,7 @@ At present, we officially aim to support the last two versions of the following 
 * iOS
 * Android 5+
 
-This is not to say that Web Starter Kit cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
+This is not to say that WSK cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
 
 
 ## Features
@@ -46,21 +46,22 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 | --- | --- |
 | Easy start | We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html` from `src/html`. |
 | Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture). |
+| PostCSS support | PostCSS connect most usable plugin library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries). |
 | Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `/assets`). |
 | Code Linting | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [gulp-htmlhint](https://www.npmjs.com/package/gulp-htmlhint). |
-| ES6+ Support | Optional ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. |
+| JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. |
 | HTML templating | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
 | Built-in HTTP Server | A built-in server for previewing your site locally while you develop and iterate. |
 | Live Browser Reloading | Reload the browser in real-time anytime an edit is made without the need for an extension (run `gulp` and edit your files). |
-| Cross-device Synchronization | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (Run `gulp` and open up the IP provided on other devices on your network). |
+| Cross-device Synchronization | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (run `gulp` and open up the IP provided on other devices on your network). |
 
 
 ## Install
 
-Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [Download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
+Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
 
 
-To take advantage of Web Starter Kit you need to:
+To take advantage of WSK you need to:
 
 1. Download the code.
 2. Install all necessary dependencies if you don't already have them.
@@ -94,7 +95,7 @@ Once you have verified that your system can run WSK, check out the [commands](#c
 ### [Node.js](https://nodejs.org)
 
 Bring up a terminal and type `node --version`.
-Node should respond with a version at or above 6.0.x.
+Node should respond with a version at or above 8.0.x.
 If you need to install Node, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
 
 ### [Gulp](http://gulpjs.com)
@@ -112,13 +113,13 @@ $ npm install --global gulp
 
 ### Local dependencies
 
-Next, install the local dependencies Web Starter Kit requires:
+Next, install the local dependencies WSK requires:
 
 ```sh
 $ npm install
 ```
 
-That's it! You should now have everything needed to use the Web Starter Kit.
+That's it! You should now have everything needed to use the WSK.
 
 
 You may also want to get used to some of the [commands](#commands) available.
@@ -158,8 +159,9 @@ $ gulp lint-js
 
 ## Structure
 
-Your folder structure for WSK:
 If you want to use our WSK, you need to know something about the structure.
+
+Your folder structure for WSK:
 
 ```
 ├── assets              #Folder with files after compiling
@@ -221,46 +223,45 @@ Use `images` folder to add your graphic files, `modules` to add your javascript 
 
 Use `vendor_entries` to include plugins into your project.
 
-## JS
+## JavaScript
 
  In our WSK you can use ES6+. ES6+ isn't introducing anything other than improvements to the JavaScript language and a few new features.
 
  It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language.
 
 * All custom **javascript** files are located in `js/` folder;
-* Entry point for javascript is `src/js/app.js` you can **import** all your *.js* files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
-* All javascript is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
+* Entry point for javascript is `src/js/app.js` you can **import** all your **javascript** files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
+* All **javascript** is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
-* After installing the extension you must **include its files**:
-  * **js files** must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
+* After installing the extension you must **include** its files:
+  * **javascript** files must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
 
 
-## SCSS
+## Styles
 
-In our WSK you can use [Sass](http://sass-lang.com/). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+In our WSK you can use [Sass](http://sass-lang.com/) (conect [Dart-Sass](https://sass-lang.com/dart-sass) version compiler). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
 
 Sass is a CSS preprocessor — a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Style Sheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
 
 So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.
 
-* All custom **scss** files locate in `src/scss/` folder;
-* Entry point for all scss is `src/scss/styles.scss` you can **import** all your *.scss* files from here;
+* All custom **sass** files locate in `src/scss/` folder;
+* Entry point for all scss is `src/scss/styles.scss` you can **import** all your `.scss` files from here;
 * You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the [postcss/autoprefixer](https://github.com/postcss/autoprefixer).
-
-The `src` directory above contains MDL's Sass files and the JavaScript sources for all MDL components.
-
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
-* After installing the extension you must **include its files**:
-  * **css or sass files** must be included in `src/vendor_entries/vendor.scss` using `@import`.
+* After installing the extension you must **include** its files:
+  * **css** or **sass** files must be included in `src/vendor_entries/vendor.scss` using `@import`.
 
-You are able to add your own **custom sass files** and optionally **disable/enable** [gulp-group-css-media-queries module](https://github.com/justcoded/web-starter-kit/issues/56).
-You can see this property in the `gulp-config.js` file:
+You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
+You can see this property `getPathesForStylesCustom` in the `gulp-config.js` file:
 
 ![image](https://user-images.githubusercontent.com/38295556/72081273-dbe10900-3306-11ea-8851-e0ae77b93b77.png)
 
-Please don't forget to link all your **styles custom files** in **html**:
+Please don't forget to link all your **styles custom files** in **html** file:
 
 ![image](https://user-images.githubusercontent.com/38295556/72081259-d683be80-3306-11ea-9085-ce37ee4b74bd.png)
+
+In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for transforming CSS with JavaScript. Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list](https://github.com/postcss/postcss/blob/master/docs/plugins.md).
 
 Also, you might want to add files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the assets and production folders.
 
