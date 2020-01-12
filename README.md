@@ -18,12 +18,13 @@ Web Starter Kit (WSK) - is an opinionated boilerplate for web development. Tools
 6. [Prerequisites](#prerequisites)
 7. [Commands](#commands)
 8. [Structure](#structure)
-9. [Styles](#styles)
-10. [JavaScript](#javascript)
-11. [Tasks](#tasks)
-12. [Troubleshooting](#troubleshooting)
-13. [Contributing](#contributing)
-14. [License](#license)
+9. [Templating](#templating)
+10. [Styles](#styles)
+11. [JavaScript](#javascript)
+12. [Tasks](#tasks)
+13. [Troubleshooting](#troubleshooting)
+14. [Contributing](#contributing)
+15. [License](#license)
 
 
 ## Browser Support
@@ -270,7 +271,7 @@ In **production** mode we use:
 
 In **production** mode we use:
 
-* **Uglifying** `.js` files by [uglify](https://github.com/mishoo/UglifyJS2).
+* **Uglifying** `.js` files by [uglifyJS](https://github.com/mishoo/UglifyJS2).
 
 ## Tasks
 
