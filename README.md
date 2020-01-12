@@ -45,12 +45,12 @@ This is not to say that WSK cannot be used in browsers older than those reflecte
 | Feature | Summary |
 | --- | --- |
 | Easy start | We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html` from `src/html`. |
-| Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture). |
-| PostCSS support | PostCSS connect most usable plugin library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries). |
-| Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `/assets`). |
-| Code Linting | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [gulp-htmlhint](https://www.npmjs.com/package/gulp-htmlhint). |
-| JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. |
 | HTML templating | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
+| Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we use [Dart-Sass](https://sass-lang.com/dart-sass) version compiler and follow [Sass guidelines](https://sass-guidelin.es/#architecture). |
+| PostCSS support | PostCSS connect most usable plugins library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries), etc. |
+| JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. For bundling and transpile used [Browserify](http://browserify.org/) and [Babel](https://babeljs.io/). |
+| Code Linting | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [gulp-htmlhint](https://www.npmjs.com/package/gulp-htmlhint). |
+| Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `/assets`). |
 | Built-in HTTP Server | A built-in server for previewing your site locally while you develop and iterate. |
 | Live Browser Reloading | Reload the browser in real-time anytime an edit is made without the need for an extension (run `gulp` and edit your files). |
 | Cross-device Synchronization | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (run `gulp` and open up the IP provided on other devices on your network). |
@@ -119,9 +119,7 @@ Next, install the local dependencies WSK requires:
 $ npm install
 ```
 
-That's it! You should now have everything needed to use the WSK.
-
-
+That's it! You should now have everything needed to use the WSK.  
 You may also want to get used to some of the [commands](#commands) available.
 
 
@@ -155,7 +153,7 @@ $ gulp build
 $ gulp lint-js
 ```
 
-`gulp lint-js` task for run the separate lint for JS files.
+`gulp lint-js` task run the separate lint for JS files.
 
 ## Structure
 
@@ -183,9 +181,8 @@ Your folder structure for WSK:
 ├── package.json        #File with dependencies
 └── README.md
 ```
-
-`tasks` - folder for gulpfile tasks.
-In `package.json` you can find all the dependencies.
+ 
+In `package.json` you can find all the dependencies. Folder `tasks` - for gulpfile tasks. 
 In `src` folder you can find all sources for the project (images, html, sass, javascript files).
 
 ### `src` folder structure
@@ -223,6 +220,34 @@ Use `images` folder to add your graphic files, `modules` to add your javascript 
 
 Use `vendor_entries` to include plugins into your project.
 
+## Styles
+
+In our WSK you can use [Sass](http://sass-lang.com/) ([Dart-Sass](https://sass-lang.com/dart-sass) version compiler). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+
+Sass is a CSS preprocessor — a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Style Sheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
+
+So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.
+
+* All custom **sass** files locate in `src/scss/` folder;
+* Entry point for all scss is `src/scss/styles.scss` you can **import** all your `.scss` files from here;
+* All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
+* After installing the extension you must **include** its **css** or **sass** files in `src/vendor_entries/vendor.scss` using `@import`.
+
+You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
+You can see this property `getPathesForStylesCustom` in the `gulp-config.js` file:
+
+![image](https://user-images.githubusercontent.com/38295556/72081273-dbe10900-3306-11ea-8851-e0ae77b93b77.png)
+
+Please don't forget to link all your **styles custom files** in **html** file:
+
+![image](https://user-images.githubusercontent.com/38295556/72081259-d683be80-3306-11ea-9085-ce37ee4b74bd.png)
+
+Also, you might want to add files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `assets` and `production` folders.
+
+In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for transforming CSS with JavaScript. Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list](https://github.com/postcss/postcss/blob/master/docs/plugins.md).
+
+* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the [postcss/autoprefixer](https://github.com/postcss/autoprefixer).
+
 ## JavaScript
 
  In our WSK you can use ES6+. ES6+ isn't introducing anything other than improvements to the JavaScript language and a few new features.
@@ -235,35 +260,6 @@ Use `vendor_entries` to include plugins into your project.
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include** its files:
   * **javascript** files must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
-
-
-## Styles
-
-In our WSK you can use [Sass](http://sass-lang.com/) (conect [Dart-Sass](https://sass-lang.com/dart-sass) version compiler). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
-
-Sass is a CSS preprocessor — a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Style Sheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
-
-So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.
-
-* All custom **sass** files locate in `src/scss/` folder;
-* Entry point for all scss is `src/scss/styles.scss` you can **import** all your `.scss` files from here;
-* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the [postcss/autoprefixer](https://github.com/postcss/autoprefixer).
-* All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
-* After installing the extension you must **include** its files:
-  * **css** or **sass** files must be included in `src/vendor_entries/vendor.scss` using `@import`.
-
-You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
-You can see this property `getPathesForStylesCustom` in the `gulp-config.js` file:
-
-![image](https://user-images.githubusercontent.com/38295556/72081273-dbe10900-3306-11ea-8851-e0ae77b93b77.png)
-
-Please don't forget to link all your **styles custom files** in **html** file:
-
-![image](https://user-images.githubusercontent.com/38295556/72081259-d683be80-3306-11ea-9085-ce37ee4b74bd.png)
-
-In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for transforming CSS with JavaScript. Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list](https://github.com/postcss/postcss/blob/master/docs/plugins.md).
-
-Also, you might want to add files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the assets and production folders.
 
 ## Tasks
 
