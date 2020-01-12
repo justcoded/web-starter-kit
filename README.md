@@ -240,11 +240,11 @@ So while normal CSS doesn’t yet allow things like variables, mixins (reusable 
 You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
 You can see this property `getPathesForStylesCustom` in the `gulp-config.js` file:
 
-![image](https://user-images.githubusercontent.com/38295556/72081273-dbe10900-3306-11ea-8851-e0ae77b93b77.png)
+![image](https://user-images.githubusercontent.com/38295556/72220657-88b3c400-355b-11ea-90d7-4cbb5edb0f43.png)
 
 Please don't forget to link all your **styles custom files** in **html** file:
 
-![image](https://user-images.githubusercontent.com/38295556/72081259-d683be80-3306-11ea-9085-ce37ee4b74bd.png)
+![image](https://user-images.githubusercontent.com/38295556/72220723-4b036b00-355c-11ea-841a-ce218c304aed.png)
 
 Also, you might want to add files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `assets` and `production` folders.
 
