@@ -18,8 +18,8 @@ Web Starter Kit (WSK) - is an opinionated boilerplate for web development. Tools
 6. [Prerequisites](#prerequisites)
 7. [Commands](#commands)
 8. [Structure](#structure)
-9. [JS](#js)
-10. [SCSS](#scss)
+9. [Styles](#styles)
+10. [JavaScript](#javascript)
 11. [Tasks](#tasks)
 12. [Troubleshooting](#troubleshooting)
 13. [Contributing](#contributing)
@@ -47,7 +47,7 @@ This is not to say that WSK cannot be used in browsers older than those reflecte
 | Easy start | We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html` from `src/html`. |
 | HTML templating | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
 | Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we use [Dart-Sass](https://sass-lang.com/dart-sass) version compiler and follow [Sass guidelines](https://sass-guidelin.es/#architecture). |
-| PostCSS support | PostCSS connect most usable plugins library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries), etc. |
+| PostCSS support | PostCSS connecting most usable plugins library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries), etc. |
 | JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. For bundling and transpile used [Browserify](http://browserify.org/) and [Babel](https://babeljs.io/). |
 | Code Linting | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [gulp-htmlhint](https://www.npmjs.com/package/gulp-htmlhint). |
 | Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `assets`). |
@@ -157,8 +157,7 @@ $ gulp lint-js
 
 ## Structure
 
-If you want to use our WSK, you need to know something about the structure.
-
+If you want to use our WSK, you need to know something about the structure.  
 Your folder structure for WSK:
 
 ```
@@ -220,6 +219,10 @@ Use `images` folder to add your graphic files, `modules` to add your javascript 
 
 Use `vendor_entries` to include plugins into your project.
 
+## Templating
+
+In our WSK you can use [gulp-file-include](https://github.com/haoxins/gulp-file-include) for **templating html** files. It's simple, just see [example](https://github.com/haoxins/gulp-file-include#examples) or demo example in our WSK folder `src/html`.
+
 ## Styles
 
 In our WSK you can use [Sass](http://sass-lang.com/) ([Dart-Sass](https://sass-lang.com/dart-sass) version compiler). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
@@ -229,7 +232,7 @@ Sass is a CSS preprocessor — a layer between the stylesheets you author and th
 So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.
 
 * All custom **sass** files locate in `src/scss/` folder;
-* Entry point for all scss is `src/scss/styles.scss` you can **import** all your `.scss` files from here;
+* Entry point is `src/scss/styles.scss` you can **import** all your `.scss` files from here;
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include** its **css** or **sass** files in `src/vendor_entries/vendor.scss` using `@import`.
 
@@ -246,7 +249,12 @@ Also, you might want to add files to the ignore list (check `getPathesToCopyForP
 
 In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for transforming CSS with JavaScript. Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list](https://github.com/postcss/postcss/blob/master/docs/plugins.md).
 
-* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the [postcss/autoprefixer](https://github.com/postcss/autoprefixer).
+* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the [autoprefixer](https://github.com/postcss/autoprefixer).
+
+In **production** mode we use:
+
+* **Group and sort CSS media queries** by [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries). By **default** we use `desktop-first` sorting type, but you can change it in `gulp-config.js` to `mobile-first`.
+* **Minifying** `.css` files by [cssnano](https://github.com/cssnano/cssnano).
 
 ## JavaScript
 
@@ -254,12 +262,15 @@ In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for tr
 
  It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language.
 
-* All custom **javascript** files are located in `js/` folder;
+* All custom **javascript** files are located in `js` folder;
 * Entry point for javascript is `src/js/app.js` you can **import** all your **javascript** files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
 * All **javascript** is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
-* After installing the extension you must **include** its files:
-  * **javascript** files must be included in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
+* After installing the extension you must **include** its **javascript** files in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
+
+In **production** mode we use:
+
+* **Uglifying** `.js` files by [uglify](https://github.com/mishoo/UglifyJS2).
 
 ## Tasks
 
