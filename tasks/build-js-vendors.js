@@ -37,8 +37,7 @@ module.exports = function (options) {
     } else if (noneES5) {
       return browserify({ entries: jsVendors.es6 })
         .transform('babelify', babelConfig)
-        .bundle()
-        .on('error', notify.onError(errorConfig))
+        .bundle().on('error', notify.onError(errorConfig))
         .pipe(source(options.vendorJsMin))
         .pipe(gulpif(options.isProduction, buffer()))
         .pipe(gulpif(options.isProduction, uglify()))
@@ -46,8 +45,7 @@ module.exports = function (options) {
     } else {
       return browserify({ entries: jsVendors.es6 })
         .transform('babelify', babelConfig)
-        .bundle()
-        .on('error', notify.onError(errorConfig))
+        .bundle().on('error', notify.onError(errorConfig))
         .pipe(source(options.vendorJsTemp))
         .pipe(gulp.dest(`./${options.temp}/js`))
         .on('end', () => {
