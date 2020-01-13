@@ -7,18 +7,19 @@
 
 ## Overview
 
-Web Starter Kit is an opinionated boilerplate for web development. Tools for building a great experience across many devices. A solid starting point for both professionals and newcomers to the industry.
+Web Starter Kit (WSK) - is an opinionated boilerplate for web development. Tools for building a great experience across many devices. A solid starting point for both professionals and newcomers to the industry.
 
 ## Table of Contents
 1. [Install](#install)
 2. [Commands](#commands)
 3. [Structure](#structure)
-4. [JS](#js)
-5. [SCSS](#scss)
-6. [Tasks](#tasks)
-7. [Troubleshooting](#troubleshooting)
-8. [Contributing](#contributing)
-9. [License](#license)
+4. [Templating](#templating)
+5. [Styles](#styles)
+6. [JavaScript](#javascript)
+7. [Tasks](#tasks)
+8. [Troubleshooting](#troubleshooting)
+9. [Contributing](#contributing)
+10. [License](#license)
 
 
 ## Install
@@ -50,6 +51,13 @@ $ gulp build
 Command for building current project, ready for WordPress.
 This includes linting as well as script, stylesheet and HTML compiling.
 
+### Lint only
+
+```sh
+$ gulp lint-js
+```
+
+`gulp lint-js` task run the separate lint for JS files.
 
 ## Structure
 
@@ -66,21 +74,21 @@ If you want to use our WSK, you need to know something about the structure.
      ├── app.js                   #Main js file
   ├── scss
      ├── abstracts                #Folder for storing scss files
-        ├── _functions.scss       #Sass functions
-        ├── _helpers.scss         #Sass helpers
-        ├── _mixins.scss          #Sass mixins
-        ├── _variables.scss       #Sass variables that we can use in our scss files
+        ├── functions.scss        #Sass functions
+        ├── helpers.scss          #Sass helpers
+        ├── mixins.scss           #Sass mixins
+        ├── variables.scss        #Sass variables that we can use in our scss files
      ├── base                     #Folder for storing base styles
-        ├── _forms.scss           #Sass styles for forms
-        ├── _main.scss            #Main scss file for base styles
-        ├── _reset.scss           #Sass reset
-        ├── _typography.scss      #Sass styles for text
+        ├── forms.scss            #Sass styles for forms
+        ├── main.scss             #Main scss file for base styles
+        ├── reset.scss            #Sass reset
+        ├── typography.scss       #Sass styles for text
      ├── components               #Global Reusable Presentational Components
      ├── layout                   #Global layout
      ├── pages                    #Global styles for pages
-     ├── styles.scss               #Main scss file (can be used for importing another files)
-  ├── tasks                       #Folder with tasks for gulpfile
+     ├── styles.scss              #Main scss file (can be used for importing another files)
   ├── sys_icon                    #Folder with system icons for notification
+  ├── tasks                       #Folder with tasks for gulpfile
   ├── vendor_entries              #Folder for vendor entries (plugins)
     ├── vendor.js                 #File for plugins js
     ├── vendor.scss               #File for plugins styles
@@ -93,84 +101,92 @@ If you want to use our WSK, you need to know something about the structure.
   ├── CONTRIBUTING.md
   ├── gulp-config.js              #Config for gulp
   ├── gulpfile.js                 #File with gulp tasks
-  ├── index.html                  #Compiled file with gulp-file-include
   ├── LICENSE
   ├── package.json                #File with dependencies
   └── README.md
 ├── public                        #Folder with files after compiling
   ├── css                         #Folder with compiled styles
   ├── js                          #Folder with compiled js
-  └── custom-folder               #Folder with your sources, witch are not compiling (like - images, fonts, videos, audios)
+  ├── custom-folder               #Folder with your sources, witch are not compiling (like - images, fonts, videos, audios)
+  └──  index.html                 #Compiled html file
 
 ```
 
-In `package.json` you can find all the dependencies.
-In `assets` folder (`web-starter-kit` after renaming) you can find all sources for the project.
-In `public` folder (created after running `gulp`) you will find compiled files of styles and js.
+In `package.json` you can find all the dependencies. In `assets` folder (`web-starter-kit` after renaming) you can find all sources for the project.  
+In `public` folder (created after running `gulp`) you will find compiled files.
 And in `public` folder you will put your custom folders with sources (like - images, fonts, videos, audios).
 
 Use `assets/js/modules` to add your javascript modules (don't forget to include it in app.js), `assets/scss` folder to add your styles for the project. You can create, delete files and folders in `assets/scss`, but don't forget to include them in `assets/scss/styles.scss` file.
 
 Use `assets/vendor_entries` to include plugins into your project.
 
-## JS
+## Templating
+
+In our WSK you can use [gulp-file-include](https://github.com/haoxins/gulp-file-include) for **templating html** files. It's simple, just see [example](https://github.com/haoxins/gulp-file-include#examples) or demo example in our WSK folder `src/html`.
+
+## Styles
+
+In our WSK you can use [Sass](http://sass-lang.com/) ([Dart-Sass](https://sass-lang.com/dart-sass) version compiler). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+
+Sass is a CSS preprocessor — a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Style Sheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow [Sass guidelines](https://sass-guidelin.es/#architecture).
+
+So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.
+
+* All custom **scss** files locate in `assets/scss/` folder;
+* Entry point for all scss is `assets/scss/styles.scss` you can **import** all your `.scss` files from here;
+* All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
+* After installing the extension you must **include** its **css** or **sass** files in `assets/vendor_entries/vendor.scss` using `@import`.
+
+You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
+You can see this property `getPathesForStylesCustom` in the `gulp-config.js` file:
+
+![image](https://user-images.githubusercontent.com/38295556/72220657-88b3c400-355b-11ea-90d7-4cbb5edb0f43.png)
+
+Please don't forget to link all your **styles custom files** in **html** file:
+
+![image](https://user-images.githubusercontent.com/38295556/72220723-4b036b00-355c-11ea-841a-ce218c304aed.png)
+
+Also, you might want to add these sass files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `public/css` without grouping css media queries.
+
+In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for transforming CSS with JavaScript. Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list](https://github.com/postcss/postcss/blob/master/docs/plugins.md).
+
+* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the [autoprefixer](https://github.com/postcss/autoprefixer).
+
+In **production** mode we use:
+
+* **Group and sort CSS media queries** by [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries). By **default** we use `desktop-first` sorting type, but you can change it in `gulp-config.js` to `mobile-first`.
+
+In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By default `1rem = 10px`.
+
+## JavaScript
 
  In our WSK you can use ES6+. ES6+ isn't introducing anything other than improvements to the JavaScript language and a few new features.
 
  It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language.
 
-* All custom **javascript** files are located in `js/` folder;
-* Entry point for javascript is `assets/js/app.js` you can **import** all your *.js* files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
-* All javascript is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
-* All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
-* After installing the extension you must **include its files**:
-  * **js files** must be included in `assets/vendor_entries/vendor.js` by adding new elements to the **array**.
+ For bundling and transpiling `.js` files in our WSK we used [Browserify](http://browserify.org/) and [Babel](https://babeljs.io/).
 
-
-
-## SCSS
-
-In our WSK you can use [Sass](http://sass-lang.com/). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
-
-Sass is a CSS preprocessor — a layer between the stylesheets you author and the .css files you serve to the browser. Sass (short for Syntactically Awesome Stylesheets) plugs the holes in CSS as a language, allowing you to write DRY code that’ll be faster, more efficient, and easier to maintain. In our WSK we follow Sass [guidelines](https://sass-guidelin.es/#architecture).
-
-So while normal CSS doesn’t yet allow things like variables, mixins (reusable blocks of styles), and other goodies, Sass provides a syntax that does all of that and more—enabling “super functionality” in addition to your normal CSS.
-
-* All custom **scss** files locate in `assets/scss/` folder;
-* Entry point for all scss is `assets/scss/styles.scss` you can **import** all your *.scss* files from here;
-* You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the gulp.
-
-The `assets` directory above contains MDL's Sass files and the JavaScript sources for all MDL components.
-
-* All **extensions** must be installed by the [NPM](https://docs.npmjs.com/cli/install);
-* After installing the extension you must **include its files**:
-  * **css or sass files** must be included in `assets/vendor_entries/vendor.scss` using `@import`.
-
-You are able to add your own custom sass files and optionally [disable/enable gulp-group-css-media-queries module](https://github.com/justcoded/web-starter-kit/issues/56).
-You can see this property in the gulp-config.js file:
-
-![image](https://user-images.githubusercontent.com/32138684/62449074-118b3000-b772-11e9-899c-13dca868cac8.png)
-
-Please don't forget to link all your custom scss files in html:
-
-![image](https://user-images.githubusercontent.com/32138684/62449033-ec96bd00-b771-11e9-9e0b-e4c1211e1102.png)
-
-Also, you might want to add these sass files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `public/css` without grouping css media queries.
+* All custom **javascript** files are located in `js` folder;
+* Entry point for javascript is `assets/js/app.js` you can **import** all your **javascript** files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
+* All **javascript** is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
+* All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
+* After installing the extension you must **include** its **javascript** files in `assets/vendor_entries/vendor.js` by adding new elements to the **array**.
 
 ## Tasks
 
-|Task                               | Description                                                                                                                                                                                                                                               |
-|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.                      |
-| build-custom-js                         | Compiles all custom js from `assets/js` to `public/js` folder.                                                                                                      |
-| build-js-vendors               | Compiles all vendor js from `assets/vendor_entries` to `public/js` folder.                                                                                                |
-| build-sass-custom               | Compiles all custom scss from `assets/scss` to `public/css` folder.                                                                                               |
-| build-sass                   | Compiles all custom scss from `assets/scss` to `public/css` folder.  |
-| build-styles-vendors                 | Compiles all vendor styles from `assets/vendor_entries` to `public/css` folder.                                                                                                                                                                            |
-| clean-build                | Removing all compiled files & folders from `public` and html files in root folder.                                                                                                                           |
-| html-hint           | Need to hint html files.                    |
-| es-lint           | Need to lint js files.                      |
-| watch           | Task for watching all the changes.                   |
+|Task | Description |
+| --- | --- |
+| browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.|
+| build-html | Compiles all html templates into html files. |
+| build-js | Compiles all custom js from `assets/js` to `public/js` folder. |
+| build-js-vendors | Compiles all vendor js from `assets/vendor_entries` to `public/js` folder. |
+| build-styles | Compiles all scss from `assets/scss` to `public/css` folder. |
+| build-styles-custom | Compiles all custom scss from `assets/scss` to `public/css` folder. |
+| build-styles-vendors | Compiles all vendor styles from `assets/vendor_entries` to `public/css` folder. |
+| clean-build | Removing all compiled files & folders from `public` and html files in root folder. |
+| lint-html | Need to lint html files. |
+| lint-js | Need to lint js files. |
+| watch | Task for watching all the changes. |
 
 ## Troubleshooting
 
