@@ -17,8 +17,8 @@
   color: var(--color-white);
 
   h1 {
-    font-size: 4.8rem;
     @include animate(text-shadow);
+    font-size: 4.8rem;
     @include media('hover') {
       &:hover {
         text-shadow: 0.1rem 0.5rem 0.5rem rgba(#fff, 0.5);

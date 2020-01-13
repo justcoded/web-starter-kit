@@ -22,6 +22,10 @@ module.exports = {
     templates: 'src/html/templates',
     dest: './assets',
   },
+  buildStyles: {
+    // Sorting type css media queries: 'desktop-first' || 'mobile-first'
+    sortType: 'desktop-first',
+  },
   task: {
     lintHtml: 'lint-html',
     lintJs: 'lint-js',
@@ -40,10 +44,10 @@ module.exports = {
     watch: 'watch',
   },
   imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
-  getPathesForSassCompiling: function () {
+  getPathesForStylesCustom: function () {
     return {
       files: [],
-      isGcmq: false
+      isGcmq: false,
     };
   },
   getPathesToCopyForProduction: function () {
