@@ -256,6 +256,8 @@ In **production** mode we use:
 * **Group and sort CSS media queries** by [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries). By **default** we use `desktop-first` sorting type, but you can change it in `gulp-config.js` to `mobile-first`.
 * **Minifying** `.css` files by [cssnano](https://github.com/cssnano/cssnano).
 
+In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By default `1rem = 10px`.
+
 ## JavaScript
 
  In our WSK you can use ES6+. ES6+ isn't introducing anything other than improvements to the JavaScript language and a few new features.
