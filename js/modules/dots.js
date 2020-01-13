@@ -2,7 +2,7 @@
 //
 // You can remove or add your own function in this file.
 
-const dotsEffect = (($) => {
+const dotsEffect = (() => {
   const createCells = () => {
     const width = 10;
     const height = 10;
@@ -19,7 +19,7 @@ const dotsEffect = (($) => {
   };
 
   const init = () => {
-    const $cnt = $('#home-canvas');
+    const $cnt = $('.entry-section');
     const cells = createCells();
     $cnt.html(cells);
   };
@@ -27,6 +27,6 @@ const dotsEffect = (($) => {
   return {
     init,
   };
-})(jQuery);
+})();
 
 export default dotsEffect;
