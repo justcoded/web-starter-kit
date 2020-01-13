@@ -1,38 +1,40 @@
 module.exports = {
   folder: {
     tasks: 'tasks',
-    build: 'public'
+    build: 'public',
+    temp: '.temp',
   },
   file: {
     mainHtml: 'index.html',
     mainJs: 'app.js',
+    publicJs: 'jquery.main.js',
     vendorJs: 'vendor.js',
+    vendorJsTemp: 'vendor.temp.js',
     mainScss: 'styles.scss',
     vendorScss: 'vendor.scss',
   },
-  fileInclude: {
+  buildHtml: {
     templates: 'html/templates',
     dest: 'public',
   },
+  buildStyles: {
+    // Sorting type css media queries: 'desktop-first' || 'mobile-first'
+    sortType: 'desktop-first',
+  },
   task: {
-    htmlHint: 'html-hint',
-    esLint: 'es-lint',
-    buildCustomJs: 'build-custom-js',
+    lintHtml: 'lint-html',
+    lintJs: 'lint-js',
+    buildHtml: 'build-html',
+    buildJs: 'build-js',
     buildJsVendors: 'build-js-vendors',
-    buildSass: 'build-sass',
-    buildSassCustom: 'build-sass-custom',
+    buildStyles: 'build-styles',
+    buildStylesCustom: 'build-styles-custom',
     buildStylesVendors: 'build-styles-vendors',
     cleanBuild: 'clean-build',
     browserSync: 'browser-sync-server',
     watch: 'watch',
-    fileInclude: 'file-include',
   },
-  autoprefixer: {
-    browserslist: [
-      '.browserslistrc'
-    ]
-  },
-  getPathesForSassCompiling: function () {
+  getPathesForStylesCustom: function () {
     return {
       files: [],
       isGcmq: false,

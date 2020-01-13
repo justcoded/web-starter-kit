@@ -6,27 +6,26 @@
 const fs = require('fs');
 
 module.exports = function (options) {
+  // If index.html exist - open it, else show folder
+  let listDirectory = !fs.existsSync(`../${options.dir}/${options.mainHtml}`);
 
   return () => {
-    // If index.html exist - open it, else show folder
-    let listDirectory = fs.existsSync(`../${options.dir}/${options.mainHtml}`) ? false : true;
-
     options.browserSync.init({
       notify: false,
       injectChanges: true,
       server: {
         baseDir: `../${options.dir}`,
-        directory: listDirectory
+        directory: listDirectory,
       },
       startPath: `.`,
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {
           match: /$/i,
-          fn: (snippet, match) => snippet + match
+          fn: (snippet, match) => snippet + match,
         }
       },
-      port: 8080
+      port: 8080,
     });
   };
 };

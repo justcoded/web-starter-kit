@@ -30,6 +30,7 @@ node_modules/
 # markup
 .sass-cache
 node_modules
+/.temp/
 *.map
 *.tmp
 .tmp

@@ -61,56 +61,61 @@
   }
 
   /**
-   * template HTML
+   * Template HTML
    */
-  requireTask(`${cfg.task.fileInclude}`, `./${cfg.folder.tasks}/`, {
-    templates: cfg.fileInclude.templates,
-    dest: cfg.fileInclude.dest
+  requireTask(`${cfg.task.buildHtml}`, `./${cfg.folder.tasks}/`, {
+    templates: cfg.buildHtml.templates,
+    dest: cfg.buildHtml.dest,
   });
 
   /**
-   * Hint HTML
+   * Lint HTML
    */
-  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.lintHtml}`, `./${cfg.folder.tasks}/`, {
     dir: cfg.folder.build,
   });
 
   /**
-   * Lint ES
+   * Lint JS
    */
-  requireTask(`${cfg.task.esLint}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.lintJs}`, `./${cfg.folder.tasks}/`);
 
   /**
-   * Build custom js
+   * Build JS
    */
-  requireTask(`${cfg.task.buildCustomJs}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildJs}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
+    publicJs: cfg.file.publicJs,
   });
 
   /**
-   * Build js vendor (concatenate vendors array)
+   * Build JS vendor (concatenate vendors array)
    */
   requireTask(`${cfg.task.buildJsVendors}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
+    temp: cfg.folder.temp,
     vendorJs: cfg.file.vendorJs,
+    vendorJsTemp: cfg.file.vendorJsTemp,
   });
 
   /**
-   * Build styles for application from Sass
+   * Build styles for application
    */
-  requireTask(`${cfg.task.buildSass}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildStyles}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
     mainScss: cfg.file.mainScss,
     checkProduction: true,
   });
 
   /**
-    * Build custom Sass files listed in the config
+    * Build styles custom files listed in the config
     */
-  requireTask(`${cfg.task.buildSassCustom}`, `./${cfg.folder.tasks}/`, {
-    sassFilesInfo: cfg.getPathesForSassCompiling(),
+  requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
+    stylesCustomInfo: cfg.getPathesForStylesCustom(),
     dest: cfg.folder.build,
+    sortType: cfg.buildStyles.sortType,
+    checkProduction: true,
   });
 
   /**
@@ -125,7 +130,7 @@
    * Clean build folder
    */
   requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
-    dir: cfg.folder.build
+    dir: cfg.folder.build,
   });
 
   /**
@@ -134,7 +139,7 @@
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {
     mainHtml: cfg.file.mainHtml,
     dir: cfg.folder.build,
-    browserSync
+    browserSync,
   });
 
   /**
@@ -144,13 +149,13 @@
     dir: cfg.folder.build,
     browserSync,
     tasks: {
-      esLint: cfg.task.esLint,
-      buildCustomJs: cfg.task.buildCustomJs,
-      buildSass: cfg.task.buildSass,
-      buildSassCustom: cfg.task.buildSassCustom,
-      fileInclude: cfg.task.fileInclude,
-      htmlHint: cfg.task.htmlHint,
-    }
+      lintJs: cfg.task.lintJs,
+      buildJs: cfg.task.buildJs,
+      buildStyles: cfg.task.buildStyles,
+      buildStylesCustom: cfg.task.buildStylesCustom,
+      buildHtml: cfg.task.buildHtml,
+      lintHtml: cfg.task.lintHtml,
+    },
   }, false);
 
   /**
@@ -158,19 +163,19 @@
    */
   gulp.task('default', gulp.series(
     cfg.task.cleanBuild,
-    cfg.task.esLint,
+    cfg.task.lintJs,
     gulp.parallel(
       gulp.series(
-        cfg.task.fileInclude,
-        cfg.task.htmlHint,
+        cfg.task.buildHtml,
+        cfg.task.lintHtml,
       ),
       gulp.series(
-        cfg.task.buildSass,
-        cfg.task.buildSassCustom,
+        cfg.task.buildStyles,
+        cfg.task.buildStylesCustom,
         cfg.task.buildStylesVendors,
       ),
       gulp.series(
-        cfg.task.buildCustomJs,
+        cfg.task.buildJs,
         cfg.task.buildJsVendors,
       ),
     ),
@@ -185,21 +190,26 @@
   */
   gulp.task('build', gulp.series(
     cfg.task.cleanBuild,
-    cfg.task.esLint,
+    cfg.task.lintJs,
     gulp.parallel(
       gulp.series(
-        cfg.task.fileInclude,
-        cfg.task.htmlHint,
+        cfg.task.buildHtml,
+        cfg.task.lintHtml,
       ),
       gulp.series(
-        cfg.task.buildSass,
-        cfg.task.buildSassCustom,
+        cfg.task.buildStyles,
+        cfg.task.buildStylesCustom,
         cfg.task.buildStylesVendors,
       ),
       gulp.series(
-        cfg.task.buildCustomJs,
+        cfg.task.buildJs,
         cfg.task.buildJsVendors,
       ),
     )
   ));
+
+  /**
+   * Linting JS files
+   */
+  gulp.task('lint-js', gulp.series(cfg.task.lintJs));
 })();
