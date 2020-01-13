@@ -5,6 +5,8 @@
 
 import dotsEffect from './modules/dots';
 
+jQuery.noConflict();
+
 (($) => {
   // When DOM is ready
   $(() => {
