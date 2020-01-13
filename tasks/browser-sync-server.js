@@ -12,6 +12,8 @@ module.exports = function (options) {
   return () => {
     options.browserSync.init({
       notify: false,
+      injectChanges: true,
+      minify: false,
       server: {
         baseDir: options.dest,
         directory: listDirectory,
