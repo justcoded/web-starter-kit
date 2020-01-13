@@ -13,11 +13,11 @@ module.exports = function (options) {
     options.browserSync.init({
       notify: false,
       injectChanges: true,
+      minify: false,
       server: {
         baseDir: `../${options.dir}`,
         directory: listDirectory,
       },
-      startPath: `.`,
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
         rule: {
