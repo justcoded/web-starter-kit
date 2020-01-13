@@ -31,7 +31,6 @@
     "eslint-plugin-import": "^2.18.2",
     "files-exist": "^1.1.0",
     "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-debug": "^4.0.0",
     "gulp-eslint": "^6.0.0",
