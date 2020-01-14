@@ -27,13 +27,13 @@
     "browserify": "^16.5.0",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.0",
     "files-exist": "^1.1.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-debug": "^4.0.0",
-    "gulp-eslint": "^6.0.0",
     "gulp-file-include": "^2.1.1",
     "gulp-htmlhint": "^3.0.0",
     "gulp-if": "^3.0.0",
@@ -60,7 +60,8 @@
     "start": "gulp",
     "test": "gulp build",
     "production": "gulp build",
-    "lint-js": "gulp lint-js"
+    "lint-js": "gulp lint-js",
+    "fix-js": "gulp fix-js"
   },
   "dependencies": {
     "include-media": "^1.4.9",
