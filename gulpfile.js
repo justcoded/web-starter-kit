@@ -45,6 +45,9 @@
       if (settings.checkProduction) {
         settings.isProduction = process.argv[process.argv.length - 1] === 'build';
       }
+      if (settings.checkFix) {
+        settings.isFix = process.argv[process.argv.length - 1] === 'fix-js';
+      }
 
       let task = require(path + taskName + '.js').call(this, settings);
 
@@ -104,6 +107,7 @@
    */
   requireTask(`${cfg.task.lintJs}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
+    checkFix: true,
   });
 
   /**
@@ -293,4 +297,9 @@
    * Linting JS files
    */
   gulp.task('lint-js', gulp.series(cfg.task.lintJs));
+
+  /**
+  * Fix JS files
+  */
+  gulp.task('fix-js', gulp.series(cfg.task.lintJs));
 })();
