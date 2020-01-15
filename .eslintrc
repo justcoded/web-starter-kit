@@ -7,8 +7,25 @@
     "browser": true,
     "node": true
   },
-  "extends": "airbnb-base",
+  "plugins": [
+    "import"
+  ],
+  "extends": [
+    "airbnb-base"
+  ],
   "rules": {
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "func-names": [
+      "error",
+      "as-needed"
+    ],
+    "quote-props": [
+      "error",
+      "as-needed",
+      {
+        "keywords": true,
+        "unnecessary": false
+      }
+    ]
   }
 }
