@@ -154,13 +154,15 @@ $ gulp build
 $ gulp lint-js
 ```
 
-`gulp lint-js` task run the separate lint for JS files.
+`gulp lint-js` task run the separate lint for JS files.  
+Included in `gulp` and `gulp build` tasks.
 
 ```sh
 $ gulp fix-js
 ```
 
-`gulp fix-js` task run auto-fix (eslint fix method) and lint for JS files.
+`gulp fix-js` task run auto-fix (eslint fix method) and lint for JS files.  
+**Not included in any tasks**.
 
 ## Structure
 
