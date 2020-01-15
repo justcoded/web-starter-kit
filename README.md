@@ -51,13 +51,21 @@ $ gulp build
 Command for building current project, ready for WordPress.
 This includes linting as well as script, stylesheet and HTML compiling.
 
-### Lint only
+### Linter - only for JS
 
 ```sh
 $ gulp lint-js
 ```
 
-`gulp lint-js` task run the separate lint for JS files.
+`gulp lint-js` task run the separate lint for JS files.  
+Included in `gulp` and `gulp build` tasks.
+
+```sh
+$ gulp fix-js
+```
+
+`gulp fix-js` task run auto-fix (eslint fix method) and lint for JS files.  
+**Not included in any tasks**.
 
 ## Structure
 
@@ -124,6 +132,8 @@ Use `assets/vendor_entries` to include plugins into your project.
 
 In our WSK you can use [gulp-file-include](https://github.com/haoxins/gulp-file-include) for **templating html** files. It's simple, just see [example](https://github.com/haoxins/gulp-file-include#examples) or demo example in our WSK folder `src/html`.
 
+For linting html files in WSK used [HTMLHint](https://github.com/htmlhint/HTMLHint). 
+
 ## Styles
 
 In our WSK you can use [Sass](http://sass-lang.com/) ([Dart-Sass](https://sass-lang.com/dart-sass) version compiler). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
@@ -172,6 +182,8 @@ In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By de
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include** its **javascript** files in `assets/vendor_entries/vendor.js` by adding new elements to the **array**.
 
+For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)) and some custom rules in file configuration `.eslintrc`.
+
 ## Tasks
 
 |Task | Description |
@@ -185,7 +197,7 @@ In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By de
 | build-styles-vendors | Compiles all vendor styles from `assets/vendor_entries` to `public/css` folder. |
 | clean-build | Removing all compiled files & folders from `public` and html files in root folder. |
 | lint-html | Need to lint html files. |
-| lint-js | Need to lint js files. |
+| lint-js | Need to lint & fix js files. |
 | watch | Task for watching all the changes. |
 
 ## Troubleshooting
