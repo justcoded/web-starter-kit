@@ -229,6 +229,8 @@ Use `vendor_entries` to include plugins into your project.
 
 In our WSK you can use [gulp-file-include](https://github.com/haoxins/gulp-file-include) for **templating html** files. It's simple, just see [example](https://github.com/haoxins/gulp-file-include#examples) or demo example in our WSK folder `src/html`.
 
+For linting html files in WSK used [HTMLHint](https://github.com/htmlhint/HTMLHint). 
+
 ## Styles
 
 In our WSK you can use [Sass](http://sass-lang.com/) ([Dart-Sass](https://sass-lang.com/dart-sass) version compiler). Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
@@ -282,7 +284,7 @@ In **production** mode we use:
 
 * **Uglifying** `.js` files by [uglifyJS](https://github.com/mishoo/UglifyJS2).
 
-For linting JavaScript files in WSK used [esLint](https://eslint.org/) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)) and some custom rules in file configuration `.eslintrc`.
+For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)) and some custom rules in file configuration `.eslintrc`.
 
 ## Tasks
 
@@ -300,7 +302,7 @@ For linting JavaScript files in WSK used [esLint](https://eslint.org/) - a linte
 | copy-folders-production | Copy all folders & files from `assets` to `production`. |
 | copy-folders | Copy all not compiling files & folders from `src` to `assets`. |
 | lint-html | Need to lint html files. |
-| lint-js | Need to lint js files. |
+| lint-js | Need to lint & fix js files. |
 | image-min | We use this to minify images. |
 | watch | Task for watching all the changes. |
 
