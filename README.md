@@ -50,7 +50,7 @@ This is not to say that WSK cannot be used in browsers older than those reflecte
 | Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we use [Dart-Sass](https://sass-lang.com/dart-sass) version compiler and follow [Sass guidelines](https://sass-guidelin.es/#architecture). |
 | PostCSS support | PostCSS connecting most usable plugins library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries), etc. |
 | JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. For bundling and transpiling used [Browserify](http://browserify.org/) and [Babel](https://babeljs.io/). |
-| Code Linting | JavaScript code linting is done using [esLint](https://www.npmjs.com/package/gulp-eslint) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [HTMLHint](https://github.com/htmlhint/HTMLHint). |
+| Code Linting | JavaScript code linting is done using [esLint](https://eslint.org/) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [HTMLHint](https://github.com/htmlhint/HTMLHint). |
 | Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `assets`). |
 | Built-in HTTP Server | A built-in server for previewing your site locally while you develop and iterate. |
 | Live Browser Reloading | Reload the browser in real-time anytime an edit is made without the need for an extension (run `gulp` and edit your files). |
@@ -148,13 +148,19 @@ $ gulp build
 `gulp build` task creates the `production` folder in the root of the project with **minifying** files from `assets`. It will help you to create clear instances of code for the **production** or **further implementation**.
 
 
-### Lint only
+### Linter - only for JS
 
 ```sh
 $ gulp lint-js
 ```
 
 `gulp lint-js` task run the separate lint for JS files.
+
+```sh
+$ gulp fix-js
+```
+
+`gulp fix-js` task run auto-fix (eslint fix method) and lint for JS files.
 
 ## Structure
 
@@ -275,6 +281,8 @@ In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By de
 In **production** mode we use:
 
 * **Uglifying** `.js` files by [uglifyJS](https://github.com/mishoo/UglifyJS2).
+
+For linting JavaScript files in WSK used [esLint](https://eslint.org/) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)) and some custom rules in file configuration `.eslintrc`.
 
 ## Tasks
 
