@@ -18,6 +18,14 @@
     "func-names": [
       "error",
       "as-needed"
+    ],
+    "quote-props": [
+      "error",
+      "as-needed",
+      {
+        "keywords": true,
+        "unnecessary": false
+      }
     ]
   }
 }
