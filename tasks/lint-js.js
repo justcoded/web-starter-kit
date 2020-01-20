@@ -19,6 +19,6 @@ module.exports = function (options) {
 
     CLIEngine.outputFixes(report);
 
-    done();
+    return done();
   };
 };

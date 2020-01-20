@@ -21,7 +21,7 @@ module.exports = function (options) {
     wait: true,
   };
 
-  return function () {
+  return () => {
     return browserify({
       entries: `./${options.src}/js/${options.mainJs}`,
     })

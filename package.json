@@ -60,7 +60,6 @@
     "start": "gulp",
     "test": "gulp build",
     "production": "gulp build",
-    "lint-js": "gulp lint-js",
     "fix-js": "gulp fix-js"
   },
   "dependencies": {

@@ -294,11 +294,6 @@
   ), true);
 
   /**
-   * Linting JS files
-   */
-  gulp.task('lint-js', gulp.series(cfg.task.lintJs));
-
-  /**
   * Fix JS files
   */
   gulp.task('fix-js', gulp.series(cfg.task.lintJs));
