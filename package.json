@@ -49,7 +49,7 @@
     "path": "^0.12.7",
     "postcss-import": "^12.0.1",
     "postcss-sort-media-queries": "^1.0.15",
-    "sass": "^1.24.4",
+    "sass": "^1.25.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },

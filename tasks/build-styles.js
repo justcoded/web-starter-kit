@@ -27,11 +27,10 @@ module.exports = function (options) {
   options.isProduction ? plugins.push(cssnano()) : false;
 
   return () => {
-    return gulp
-      .src(`./${options.src}/scss/${options.mainScss}`)
+    return gulp.src(`./${options.src}/scss/${options.mainScss}`)
       .pipe(rename(options.mainScssMin))
-      .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true })))
-      .pipe(sass.sync({ sourceMap: !options.isProduction }))
+      .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true, })))
+      .pipe(sass.sync({ sourceMap: !options.isProduction, }))
       .on('error', notify.onError(options.error))
       .pipe(postcss(plugins))
       .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))
