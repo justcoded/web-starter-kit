@@ -101,7 +101,7 @@
    */
   requireTask(`${cfg.task.lintHtml}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.buildHtml.dest,
-    error: cfg.error
+    error: cfg.error,
   });
 
   /**
@@ -121,7 +121,7 @@
     mainJs: cfg.file.mainJs,
     mainJsMin: cfg.file.mainJsMin,
     error: cfg.error,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -135,7 +135,7 @@
     vendorJsMin: cfg.file.vendorJsMin,
     vendorJsTemp: cfg.file.vendorJsTemp,
     error: cfg.error,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -148,7 +148,7 @@
     mainScssMin: cfg.file.mainScssMin,
     sortType: cfg.buildStyles.sortType,
     error: cfg.error,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -159,7 +159,7 @@
     dest: cfg.folder.build,
     sortType: cfg.buildStyles.sortType,
     error: cfg.error,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -171,7 +171,7 @@
     vendorScss: cfg.file.vendorScss,
     vendorScssMin: cfg.file.vendorScssMin,
     error: cfg.error,
-    checkProduction: true
+    checkProduction: true,
   });
 
   /**
@@ -182,6 +182,7 @@
     dest: cfg.folder.build,
     imageExtensions: cfg.buildImages.imageExtensions,
     isImageMin: cfg.buildImages.isImageMin,
+    checkProduction: true,
   });
 
   /**
