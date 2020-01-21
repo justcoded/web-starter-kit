@@ -249,63 +249,61 @@
   /**
    * Default Gulp task
    */
-  gulp.task('default',
-    gulp.series(
-      cfg.task.cleanBuild,
-      cfg.task.lintJs,
-      gulp.parallel(
-        gulp.series(
-          cfg.task.buildHtml,
-          cfg.task.lintHtml,
-        ),
-        gulp.series(
-          cfg.task.buildStyles,
-          cfg.task.buildStylesCustom,
-          cfg.task.buildStylesVendors,
-        ),
-        gulp.series(
-          cfg.task.buildJs,
-          cfg.task.buildJsVendors,
-        ),
+  gulp.task('default', gulp.series(
+    cfg.task.cleanBuild,
+    cfg.task.lintJs,
+    gulp.parallel(
+      gulp.series(
+        cfg.task.buildHtml,
+        cfg.task.lintHtml,
       ),
-      cfg.task.buildImages,
-      cfg.task.copyFiles,
-      gulp.parallel(
-        cfg.task.browserSync,
-        cfg.task.watch,
+      gulp.series(
+        cfg.task.buildStyles,
+        cfg.task.buildStylesCustom,
+        cfg.task.buildStylesVendors,
       ),
-    )
+      gulp.series(
+        cfg.task.buildJs,
+        cfg.task.buildJsVendors,
+      ),
+    ),
+    cfg.task.buildImages,
+    cfg.task.copyFiles,
+    gulp.parallel(
+      cfg.task.browserSync,
+      cfg.task.watch,
+    ),
+  )
   );
 
   /**
    * Creating production folder without unnecessary files
    */
-  gulp.task('build',
-    gulp.series(
-      gulp.parallel(
-        cfg.task.cleanProd,
-        cfg.task.cleanBuild,
+  gulp.task('build', gulp.series(
+    gulp.parallel(
+      cfg.task.cleanProd,
+      cfg.task.cleanBuild,
+    ),
+    cfg.task.lintJs,
+    gulp.parallel(
+      gulp.series(
+        cfg.task.buildHtml,
+        cfg.task.lintHtml,
       ),
-      cfg.task.lintJs,
-      gulp.parallel(
-        gulp.series(
-          cfg.task.buildHtml,
-          cfg.task.lintHtml,
-        ),
-        gulp.series(
-          cfg.task.buildStyles,
-          cfg.task.buildStylesCustom,
-          cfg.task.buildStylesVendors,
-        ),
-        gulp.series(
-          cfg.task.buildJs,
-          cfg.task.buildJsVendors,
-        ),
+      gulp.series(
+        cfg.task.buildStyles,
+        cfg.task.buildStylesCustom,
+        cfg.task.buildStylesVendors,
       ),
-      cfg.task.buildImages,
-      cfg.task.copyFiles,
-      cfg.task.copyFilesProd,
-    ), true);
+      gulp.series(
+        cfg.task.buildJs,
+        cfg.task.buildJsVendors,
+      ),
+    ),
+    cfg.task.buildImages,
+    cfg.task.copyFiles,
+    cfg.task.copyFilesProd,
+  ), true);
 
   /**
   * Fix JS files
