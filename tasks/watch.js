@@ -32,7 +32,7 @@ module.exports = function (options) {
       })
       .on('add', gulp.series(options.tasks.buildImages));
 
-    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`])
+    gulp.watch([...options.filesToCopy, `./${options.dest}/**/*`, `!./${options.dest}/**/*.map`])
       .on('change', options.browserSync.reload);
   };
 };
