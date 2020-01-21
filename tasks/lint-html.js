@@ -8,11 +8,7 @@ const notify = require('gulp-notify');
 const htmlhint = require('gulp-htmlhint');
 
 module.exports = function (options) {
-  const errorConfig = {
-    title: 'HTML linting error',
-    icon: './sys_icon/error_icon.png',
-    wait: true,
-  };
+  options.error.title = 'HTML linting error';
 
   return (done) => {
     gulp.src(`${options.dest}/*.html`)
@@ -23,7 +19,7 @@ module.exports = function (options) {
       .pipe(htmlhint.failOnError({
         suppress: true,
       }))
-      .on('error', notify.onError(errorConfig));
+      .on('error', notify.onError(options.error));
 
     return done();
   };

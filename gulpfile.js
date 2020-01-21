@@ -93,6 +93,7 @@
   requireTask(`${cfg.task.buildHtml}`, `./${cfg.folder.tasks}/`, {
     templates: cfg.buildHtml.templates,
     dest: cfg.buildHtml.dest,
+    error: cfg.error,
   });
 
   /**
@@ -100,6 +101,7 @@
    */
   requireTask(`${cfg.task.lintHtml}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.buildHtml.dest,
+    error: cfg.error
   });
 
   /**
@@ -118,7 +120,8 @@
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
     mainJsMin: cfg.file.mainJsMin,
-    checkProduction: true,
+    error: cfg.error,
+    checkProduction: true
   });
 
   /**
@@ -131,7 +134,8 @@
     vendorJs: cfg.file.vendorJs,
     vendorJsMin: cfg.file.vendorJsMin,
     vendorJsTemp: cfg.file.vendorJsTemp,
-    checkProduction: true,
+    error: cfg.error,
+    checkProduction: true
   });
 
   /**
@@ -143,7 +147,8 @@
     mainScss: cfg.file.mainScss,
     mainScssMin: cfg.file.mainScssMin,
     sortType: cfg.buildStyles.sortType,
-    checkProduction: true,
+    error: cfg.error,
+    checkProduction: true
   });
 
   /**
@@ -153,7 +158,8 @@
     stylesCustomInfo: cfg.getPathesForStylesCustom(),
     dest: cfg.folder.build,
     sortType: cfg.buildStyles.sortType,
-    checkProduction: true,
+    error: cfg.error,
+    checkProduction: true
   });
 
   /**
@@ -164,7 +170,8 @@
     dest: cfg.folder.build,
     vendorScss: cfg.file.vendorScss,
     vendorScssMin: cfg.file.vendorScssMin,
-    checkProduction: true,
+    error: cfg.error,
+    checkProduction: true
   });
 
   /**
@@ -238,31 +245,34 @@
   /**
    * Default Gulp task
    */
-  gulp.task('default', gulp.series(
-    cfg.task.cleanBuild,
-    cfg.task.lintJs,
-    gulp.parallel(
-      gulp.series(
-        cfg.task.buildHtml,
-        cfg.task.lintHtml,
+  gulp.task(
+    'default',
+    gulp.series(
+      cfg.task.cleanBuild,
+      cfg.task.lintJs,
+      gulp.parallel(
+        gulp.series(
+          cfg.task.buildHtml,
+          cfg.task.lintHtml,
+        ),
+        gulp.series(
+          cfg.task.buildStyles,
+          cfg.task.buildStylesCustom,
+          cfg.task.buildStylesVendors,
+        ),
+        gulp.series(
+          cfg.task.buildJs,
+          cfg.task.buildJsVendors,
+        ),
       ),
-      gulp.series(
-        cfg.task.buildStyles,
-        cfg.task.buildStylesCustom,
-        cfg.task.buildStylesVendors,
-      ),
-      gulp.series(
-        cfg.task.buildJs,
-        cfg.task.buildJsVendors,
-      ),
-    ),
-    cfg.task.imageMin,
-    cfg.task.copyFolders,
-    gulp.parallel(
-      cfg.task.browserSync,
-      cfg.task.watch,
-    ),
-  ));
+      cfg.task.buildImages,
+      cfg.task.copyFolders,
+      gulp.parallel(
+        cfg.task.browserSync,
+        cfg.task.watch,
+      )
+    )
+  );
 
   /**
    * Creating production folder without unnecessary files
@@ -270,7 +280,7 @@
   gulp.task('build', gulp.series(
     gulp.parallel(
       cfg.task.cleanProd,
-      cfg.task.cleanBuild
+      cfg.task.cleanBuild,
     ),
     cfg.task.lintJs,
     gulp.parallel(
@@ -288,7 +298,7 @@
         cfg.task.buildJsVendors,
       ),
     ),
-    cfg.task.imageMin,
+    cfg.task.buildImages,
     cfg.task.copyFolders,
     cfg.task.copyFoldersProd,
   ), true);

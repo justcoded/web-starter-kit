@@ -13,16 +13,13 @@ module.exports = function (options) {
     basepath: `./${options.templates}`,
     indent: true,
   };
-  const errorConfig = {
-    title: 'HTML compiling error',
-    icon: './sys_icon/error_icon.png',
-    wait: true,
-  };
+  
+  options.error.title = 'HTML compiling error';
 
   return () => {
     return gulp.src(`./${options.templates}/**/*.html`)
       .pipe(fileInclude(config))
-      .on('error', notify.onError(errorConfig))
+      .on('error', notify.onError(options.error))
       .pipe(gulp.dest(options.dest));
   };
 };

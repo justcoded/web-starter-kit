@@ -26,6 +26,10 @@ module.exports = {
     // Sorting type css media queries: 'desktop-first' || 'mobile-first'
     sortType: 'desktop-first',
   },
+  buildImages: {
+    imageExtensions: 'jpg,jpeg,png,svg,gif,ico',
+    isImageMin: false,
+  },
   task: {
     lintHtml: 'lint-html',
     lintJs: 'lint-js',
@@ -35,7 +39,7 @@ module.exports = {
     buildStyles: 'build-styles',
     buildStylesCustom: 'build-styles-custom',
     buildStylesVendors: 'build-styles-vendors',
-    imageMin: 'image-min',
+    buildImages: 'build-images',
     cleanProd: 'clean-production',
     cleanBuild: 'clean-build',
     copyFolders: 'copy-folders',
@@ -43,23 +47,23 @@ module.exports = {
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
-  buildImages: {
-    imageExtensions: 'jpg,jpeg,png,svg,gif,ico',
-    isImageMin: false,
+  error: {
+    icon: './sys_icon/error_icon.png',
+    wait: true,
   },
-  getPathesForStylesCustom: function () {
+  getPathesForStylesCustom: function() {
     return {
       files: [],
       isGcmq: false,
     };
   },
-  getPathesToCopyForProduction: function () {
+  getPathesToCopyForProduction: function() {
     return [
       `./${this.folder.build}/**`,
       '.htaccess',
     ];
   },
-  getPathesToCopy: function () {
+  getPathesToCopy: function() {
     return [
       `./${this.folder.src}/**`,
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
