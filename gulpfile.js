@@ -155,7 +155,7 @@
    * Build styles custom files listed in the config
    */
   requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
-    stylesCustomInfo: cfg.getPathesForStylesCustom(),
+    stylesCustomInfo: cfg.getFilesForStylesCustom(),
     dest: cfg.folder.build,
     sortType: cfg.buildStyles.sortType,
     error: cfg.error,
@@ -202,17 +202,17 @@
   /**
    * Copy folders to the build folder
    */
-  requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.copyFiles}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
-    foldersToCopy: cfg.getPathesToCopy(),
+    filesToCopy: cfg.getFilesToCopy(),
   });
 
   /**
    * Copy folders to the production folder
    */
-  requireTask(`${cfg.task.copyFoldersProd}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.copyFilesProd}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.prod,
-    foldersToCopy: cfg.getPathesToCopyForProduction(),
+    filesToCopyProd: cfg.getFilesToCopyProd(),
   });
 
   /**
@@ -230,6 +230,7 @@
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    filesToCopy: cfg.getFilesToCopy(),
     browserSync,
     deleteFile,
     tasks: {
@@ -239,6 +240,8 @@
       buildStylesCustom: cfg.task.buildStylesCustom,
       buildHtml: cfg.task.buildHtml,
       lintHtml: cfg.task.lintHtml,
+      buildImages: cfg.task.buildImages,
+      copyFiles: cfg.task.copyFiles,
     },
   }, false);
 
@@ -266,7 +269,7 @@
         ),
       ),
       cfg.task.buildImages,
-      cfg.task.copyFolders,
+      cfg.task.copyFiles,
       gulp.parallel(
         cfg.task.browserSync,
         cfg.task.watch,
@@ -299,8 +302,8 @@
       ),
     ),
     cfg.task.buildImages,
-    cfg.task.copyFolders,
-    cfg.task.copyFoldersProd,
+    cfg.task.copyFiles,
+    cfg.task.copyFilesProd,
   ), true);
 
   /**

@@ -8,7 +8,7 @@ const gulp = require('gulp');
 module.exports = function(options) {
 
   return () => {
-    return gulp.src(options.foldersToCopy, { dot: true })
+    return gulp.src(options.filesToCopyProd, { dot: true })
       .pipe(gulp.dest(`./${options.dest}`));
   };
 };

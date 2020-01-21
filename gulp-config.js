@@ -42,8 +42,8 @@ module.exports = {
     buildImages: 'build-images',
     cleanProd: 'clean-production',
     cleanBuild: 'clean-build',
-    copyFolders: 'copy-folders',
-    copyFoldersProd: 'copy-folders-production',
+    copyFiles: 'copy-folders',
+    copyFilesProd: 'copy-folders-production',
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
@@ -51,19 +51,19 @@ module.exports = {
     icon: './sys_icon/error_icon.png',
     wait: true,
   },
-  getPathesForStylesCustom: function() {
+  getFilesForStylesCustom: function() {
     return {
       files: [],
       isGcmq: false,
     };
   },
-  getPathesToCopyForProduction: function() {
+  getFilesToCopyProd: function() {
     return [
       `./${this.folder.build}/**`,
       '.htaccess',
     ];
   },
-  getPathesToCopy: function() {
+  getFilesToCopy: function() {
     return [
       `./${this.folder.src}/**`,
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,

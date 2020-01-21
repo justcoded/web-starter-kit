@@ -247,7 +247,7 @@ So while normal CSS doesn’t yet allow things like variables, mixins (reusable 
 * After installing the extension you must **include** its **css** or **sass** files in `src/vendor_entries/vendor.scss` using `@import`.
 
 You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
-You can see this property `getPathesForStylesCustom` in the `gulp-config.js` file:
+You can see this property `getFilesForStylesCustom` in the `gulp-config.js` file:
 
 ![image](https://user-images.githubusercontent.com/38295556/72220657-88b3c400-355b-11ea-90d7-4cbb5edb0f43.png)
 
@@ -255,7 +255,7 @@ Please don't forget to link all your **styles custom files** in **html** file:
 
 ![image](https://user-images.githubusercontent.com/38295556/72220723-4b036b00-355c-11ea-841a-ce218c304aed.png)
 
-Also, you might want to add files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `assets` and `production` folders.
+Also, you might want to add files to the ignore list (check `getFilesToCopyProd` and `getFilesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `assets` and `production` folders.
 
 In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for transforming CSS with JavaScript. Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list](https://github.com/postcss/postcss/blob/master/docs/plugins.md).
 
