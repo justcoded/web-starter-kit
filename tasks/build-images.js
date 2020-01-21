@@ -1,5 +1,5 @@
 /**
- * Minify images
+ * Copy & minify images
  */
 'use strict';
 

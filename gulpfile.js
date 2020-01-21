@@ -175,7 +175,7 @@
   });
 
   /**
-   * Build & Minify images
+   * Copy & minify images
    */
   requireTask(`${cfg.task.buildImages}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,

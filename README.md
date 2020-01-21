@@ -301,11 +301,11 @@ For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a
 | build-styles-vendors | Compiles all vendor styles from `src/vendor_entries` to `assets/css`   folder. |
 | clean-build | Cleaning `assets` folder. |
 | clean-production | Cleaning `production` folder. |
-| copy-folders-production | Copy all folders & files from `assets` to `production`. |
-| copy-folders | Copy all not compiling files & folders from `src` to `assets`. |
+| copy-files | Copy all not compiling files & folders from `src` to `assets`. |
+| copy-files-production | Copy all files & folders from `assets` to `production`. |
 | lint-html | Need to lint html files. |
 | lint-js | Need to lint & fix js files. |
-| image-min | We use this to minify images. |
+| build-images | We use this to copy images & minify for production. |
 | watch | Task for watching all the changes. |
 
 ## Troubleshooting
