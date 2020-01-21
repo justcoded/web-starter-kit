@@ -168,11 +168,13 @@
   });
 
   /**
-   * Minify images
+   * Build & Minify images
    */
-  requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildImages}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    imageExtensions: cfg.buildImages.imageExtensions,
+    isImageMin: cfg.buildImages.isImageMin,
   });
 
   /**
@@ -221,7 +223,6 @@
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
-    imageExtensions: cfg.imageExtensions,
     browserSync,
     deleteFile,
     tasks: {
@@ -231,7 +232,6 @@
       buildStylesCustom: cfg.task.buildStylesCustom,
       buildHtml: cfg.task.buildHtml,
       lintHtml: cfg.task.lintHtml,
-      imageMin: cfg.task.imageMin,
     },
   }, false);
 

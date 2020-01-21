@@ -43,7 +43,10 @@ module.exports = {
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
-  imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
+  buildImages: {
+    imageExtensions: 'jpg,jpeg,png,svg,gif,ico',
+    isImageMin: false,
+  },
   getPathesForStylesCustom: function () {
     return {
       files: [],
