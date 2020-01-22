@@ -21,10 +21,12 @@ Web Starter Kit (WSK) - is an opinionated boilerplate for web development. Tools
 9. [Templating](#templating)
 10. [Styles](#styles)
 11. [JavaScript](#javascript)
-12. [Tasks](#tasks)
-13. [Troubleshooting](#troubleshooting)
-14. [Contributing](#contributing)
-15. [License](#license)
+12. [Watching](#watching)
+13. [Images copy and minify](#images-copy-and-minify)
+14. [Tasks](#tasks)
+15. [Troubleshooting](#troubleshooting)
+16. [Contributing](#contributing)
+17. [License](#license)
 
 
 ## Browser Support
