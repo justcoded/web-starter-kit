@@ -12,6 +12,12 @@ module.exports = function (options) {
     prefix: '@@',
     basepath: `./${options.templates}`,
     indent: true,
+    context: {
+      mainJs: options.isProduction ? options.mainJsMin : options.mainJs,
+      vendorJs: options.isProduction ? options.vendorJsMin : options.vendorJs,
+      mainStyles: options.isProduction ? options.mainStylesMin : options.mainStyles,
+      vendorStyles: options.isProduction ? options.vendorStylesMin : options.vendorStyles,
+    },
   };
   
   options.error.title = 'HTML compiling error';

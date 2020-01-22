@@ -28,14 +28,14 @@ module.exports = function (options) {
       return done();
     } else if (noneES6) {
       return gulp.src(filesExist(jsVendors.es5))
-        .pipe(concat(options.vendorJsMin))
+        .pipe(concat(options.isProduction ? options.vendorJsMin : options.vendorJs))
         .pipe(gulpif(options.isProduction, uglify()))
         .pipe(gulp.dest(`./${options.dest}/js`));
     } else if (noneES5) {
       return browserify({ entries: jsVendors.es6 })
         .transform('babelify', babelConfig)
         .bundle().on('error', notify.onError(options.error))
-        .pipe(source(options.vendorJsMin))
+        .pipe(source(options.isProduction ? options.vendorJsMin : options.vendorJs))
         .pipe(gulpif(options.isProduction, buffer()))
         .pipe(gulpif(options.isProduction, uglify()))
         .pipe(gulp.dest(`./${options.dest}/js`));
@@ -47,7 +47,7 @@ module.exports = function (options) {
         .pipe(gulp.dest(`./${options.temp}/js`))
         .on('end', () => {
           gulp.src(filesExist([...jsVendors.es5, `./${options.temp}/js/${options.vendorJsTemp}`]))
-            .pipe(concat(options.vendorJsMin))
+            .pipe(concat(options.isProduction ? options.vendorJsMin : options.vendorJs))
             .pipe(gulpif(options.isProduction, uglify()))
             .pipe(gulp.dest(`./${options.dest}/js`))
         });

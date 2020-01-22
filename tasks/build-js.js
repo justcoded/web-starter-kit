@@ -24,7 +24,7 @@ module.exports = function (options) {
     })
       .transform('babelify', babelConfig)
       .bundle().on('error', notify.onError(options.error))
-      .pipe(source(options.mainJsMin))
+      .pipe(source(options.isProduction ? options.mainJsMin : options.mainJs))
       .pipe(gulpif(options.isProduction, buffer()))
       .pipe(gulpif(options.isProduction, uglify()))
       .pipe(gulp.dest(`./${options.dest}/js`));

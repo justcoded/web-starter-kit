@@ -93,7 +93,16 @@
   requireTask(`${cfg.task.buildHtml}`, `./${cfg.folder.tasks}/`, {
     templates: cfg.buildHtml.templates,
     dest: cfg.buildHtml.dest,
+    mainJs: cfg.file.mainJs,
+    mainJsMin: cfg.file.mainJsMin,
+    vendorJs: cfg.file.vendorJs,
+    vendorJsMin: cfg.file.vendorJsMin,
+    mainStyles: cfg.file.mainStyles,
+    mainStylesMin: cfg.file.mainStylesMin,
+    vendorStyles: cfg.file.vendorStyles,
+    vendorStylesMin: cfg.file.vendorStylesMin,
     error: cfg.error,
+    checkProduction: true,
   });
 
   /**
@@ -144,8 +153,8 @@
   requireTask(`${cfg.task.buildStyles}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
-    mainScss: cfg.file.mainScss,
-    mainScssMin: cfg.file.mainScssMin,
+    mainStyles: cfg.file.mainStyles,
+    mainStylesMin: cfg.file.mainStylesMin,
     sortType: cfg.buildStyles.sortType,
     error: cfg.error,
     checkProduction: true,
@@ -168,8 +177,8 @@
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
-    vendorScss: cfg.file.vendorScss,
-    vendorScssMin: cfg.file.vendorScssMin,
+    vendorStyles: cfg.file.vendorStyles,
+    vendorStylesMin: cfg.file.vendorStylesMin,
     error: cfg.error,
     checkProduction: true,
   });

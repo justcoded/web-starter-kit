@@ -24,8 +24,8 @@ module.exports = function (options) {
 
   return () => {
     return gulp
-      .src(`./${options.src}/vendor_entries/${options.vendorScss}`)
-      .pipe(rename(options.vendorScssMin))
+      .src(`./${options.src}/vendor_entries/${options.vendorStyles}`)
+      .pipe(rename(options.isProduction ? options.vendorStylesMin : options.vendorStyles))
       .pipe(sass.sync())
       .on('error', notify.onError(options.error))
       .pipe(postcss(plugins))
