@@ -13,9 +13,9 @@ module.exports = {
     vendorJs: 'vendor.js',
     vendorJsMin: 'vendor.min.js',
     vendorJsTemp: 'vendor.temp.js',
-    mainStyles: 'styles.scss',
+    mainStyles: 'styles.css',
     mainStylesMin: 'styles.min.css',
-    vendorStyles: 'vendor.scss',
+    vendorStyles: 'vendor.css',
     vendorStylesMin: 'vendor.min.css',
   },
   buildHtml: {

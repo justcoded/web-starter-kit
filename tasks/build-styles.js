@@ -27,7 +27,7 @@ module.exports = function (options) {
   options.isProduction ? plugins.push(cssnano()) : false;
 
   return () => {
-    return gulp.src(`./${options.src}/scss/${options.mainStyles}`)
+    return gulp.src(`./${options.src}/scss/styles.scss`)
       .pipe(rename(options.isProduction ? options.mainStylesMin : options.mainStyles))
       .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true, })))
       .pipe(sass.sync({ sourceMap: !options.isProduction, }))
