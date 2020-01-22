@@ -36,7 +36,7 @@ At present, we officially aim to support the last two versions of the following 
 * Firefox
 * Safari
 * iOS
-* Android 5+
+* ChromeAndroid
 
 This is not to say that WSK cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
 
@@ -128,7 +128,9 @@ You may also want to get used to some of the [commands](#commands) available.
 
 There are few commands available to help you build and test sites:
 
-### Watch For Changes & Automatically Refresh Across Devices
+### Develop mode
+
+Watch For Changes & Automatically Refresh Across Devices
 
 ```sh
 $ gulp
@@ -139,7 +141,9 @@ This includes linting as well as image, script, stylesheet and HTML optimization
 Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites resources.
 
 
-### Serve the Fully Built & Optimized Site
+### Production mode
+
+Serve the Fully Built & Optimized Site
 
 ```sh
 $ gulp build
@@ -249,7 +253,7 @@ So while normal CSS doesn’t yet allow things like variables, mixins (reusable 
 You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
 You can see this property `getFilesForStylesCustom` in the `gulp-config.js` file:
 
-![image](https://user-images.githubusercontent.com/38295556/72220657-88b3c400-355b-11ea-90d7-4cbb5edb0f43.png)
+![image](https://user-images.githubusercontent.com/38295556/72877232-2c8e3400-3d01-11ea-9653-ffd6fec69b28.png)
 
 Please don't forget to link all your **styles custom files** in **html** file:
 
@@ -287,6 +291,16 @@ In **production** mode we use:
 * **Uglifying** `.js` files by [uglifyJS](https://github.com/mishoo/UglifyJS2).
 
 For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)) and some custom rules in file configuration `.eslintrc`.
+
+## Watching
+
+After run `gulp` by default gulp watch for your files in `src` and `assets` folders.
+For `js`, `scss`, `html` and `vendors_entries` folders after change in included files, watcher run they tasks for compiling. For `images` and other folders (and files in `src` root) watcher run tasks for copy files.
+
+## Images copy and minify
+
+In our WSK by default in [develop and production mode](#commands), task `build-images` only copy images.  
+For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in production mode please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
 
 ## Tasks
 
