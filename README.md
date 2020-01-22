@@ -128,7 +128,7 @@ You may also want to get used to some of the [commands](#commands) available.
 
 There are few commands available to help you build and test sites:
 
-### Develop mode
+### Development mode
 
 Watch For Changes & Automatically Refresh Across Devices
 
@@ -294,13 +294,13 @@ For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a
 
 ## Watching
 
-After run `gulp` by default gulp watch for your files in `src` and `assets` folders.
+After run `gulp` by default gulp watching for your files in `src` and `assets` folders.
 For `js`, `scss`, `html` and `vendors_entries` folders after change in included files, watcher run they tasks for compiling. For `images` and other folders (and files in `src` root) watcher run tasks for copy files.
 
 ## Images copy and minify
 
-In our WSK by default in [develop and production mode](#commands), task `build-images` only copy images.  
-For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in production mode please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
+In our WSK by default in [development and production mode](#commands), task `build-images` only copy images.  
+For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in production mode, please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
 
 ## Tasks
 
