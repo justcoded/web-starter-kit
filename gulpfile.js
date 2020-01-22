@@ -237,8 +237,10 @@
     tasks: {
       lintJs: cfg.task.lintJs,
       buildJs: cfg.task.buildJs,
+      buildJsVendors: cfg.task.buildJsVendors,
       buildStyles: cfg.task.buildStyles,
       buildStylesCustom: cfg.task.buildStylesCustom,
+      buildStylesVendors: cfg.task.buildStylesVendors,
       buildHtml: cfg.task.buildHtml,
       lintHtml: cfg.task.lintHtml,
       buildImages: cfg.task.buildImages,

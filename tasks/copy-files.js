@@ -10,7 +10,7 @@ module.exports = function(options) {
 
   return () => {
     return gulp.src(options.filesToCopy, { dot: true })
-      .pipe(newer(`./${options.dest}/**/*`))
+      .pipe(newer(`./${options.dest}`))
       .pipe(gulp.dest(`./${options.dest}`));
   };
 };

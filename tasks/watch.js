@@ -14,6 +14,10 @@ module.exports = function (options) {
 
     gulp.watch(`./${options.src}/html/**/*`, gulp.series(options.tasks.buildHtml, options.tasks.lintHtml));
 
+    gulp.watch(`./${options.src}/vendor_entries/vendor.js`, gulp.series(options.tasks.buildJsVendors));
+
+    gulp.watch(`./${options.src}/vendor_entries/vendor.scss`, gulp.series(options.tasks.buildStylesVendors));
+
     gulp.watch(options.filesToCopy)
       .on('unlink', (path) => {
         options.deleteFile({
@@ -32,7 +36,9 @@ module.exports = function (options) {
       })
       .on('add', gulp.series(options.tasks.buildImages));
 
-    gulp.watch([...options.filesToCopy, `./${options.dest}/**/*`, `!./${options.dest}/**/*.map`])
-      .on('change', options.browserSync.reload);
+    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`])
+      .on('change', options.browserSync.reload)
+      .on('unlink', options.browserSync.reload)
+      .on('add', options.browserSync.reload);
   };
 };

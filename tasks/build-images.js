@@ -20,14 +20,11 @@ module.exports = function (options) {
       ]
     })
   ];
-  const config = {
-    silent: !runMinify,
-  };
   
   return () => {
     return gulp.src(`./${options.src}/images/**/*`)
-      .pipe(newer(`./${options.dest}/images/**/*`))
-      .pipe(gulpif(runMinify, imagemin(plugins, config)))
+      .pipe(newer(`./${options.dest}/images`))
+      .pipe(gulpif(runMinify, imagemin(plugins)))
       .pipe(gulp.dest(`./${options.dest}/images`));
   };
 };
