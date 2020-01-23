@@ -13,7 +13,7 @@ module.exports = function (options) {
   return (done) => {
     gulp.src(`${options.dest}/*.html`)
       .pipe(htmlhint({
-        'attr-lowercase': ['viewBox'],
+        'attr-lowercase': false,
       }))
       .pipe(htmlhint.reporter('htmlhint-stylish'))
       .pipe(htmlhint.failOnError({
