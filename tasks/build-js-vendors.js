@@ -20,37 +20,34 @@ module.exports = function (options) {
   const babelConfig = {
     presets: ['@babel/preset-env'],
   };
-  const errorConfig = {
-    title: 'JS compiling error',
-    icon: './sys_icon/error_icon.png',
-    wait: true,
-  };
+  
+  options.error.title = 'JS compiling error';
 
   return (done) => {
     if (noneES5 && noneES6) {
       return done();
     } else if (noneES6) {
       return gulp.src(filesExist(jsVendors.es5))
-        .pipe(concat(options.vendorJsMin))
+        .pipe(concat(options.isProduction ? options.vendorJsMin : options.vendorJs))
         .pipe(gulpif(options.isProduction, uglify()))
         .pipe(gulp.dest(`./${options.dest}/js`));
     } else if (noneES5) {
       return browserify({ entries: jsVendors.es6 })
         .transform('babelify', babelConfig)
-        .bundle().on('error', notify.onError(errorConfig))
-        .pipe(source(options.vendorJsMin))
+        .bundle().on('error', notify.onError(options.error))
+        .pipe(source(options.isProduction ? options.vendorJsMin : options.vendorJs))
         .pipe(gulpif(options.isProduction, buffer()))
         .pipe(gulpif(options.isProduction, uglify()))
         .pipe(gulp.dest(`./${options.dest}/js`));
     } else {
       return browserify({ entries: jsVendors.es6 })
         .transform('babelify', babelConfig)
-        .bundle().on('error', notify.onError(errorConfig))
+        .bundle().on('error', notify.onError(options.error))
         .pipe(source(options.vendorJsTemp))
         .pipe(gulp.dest(`./${options.temp}/js`))
         .on('end', () => {
           gulp.src(filesExist([...jsVendors.es5, `./${options.temp}/js/${options.vendorJsTemp}`]))
-            .pipe(concat(options.vendorJsMin))
+            .pipe(concat(options.isProduction ? options.vendorJsMin : options.vendorJs))
             .pipe(gulpif(options.isProduction, uglify()))
             .pipe(gulp.dest(`./${options.dest}/js`))
         });

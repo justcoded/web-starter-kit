@@ -15,19 +15,16 @@ module.exports = function (options) {
   const babelConfig = {
     presets: ['@babel/preset-env'],
   };
-  const errorConfig = {
-    title: 'JS compiling error',
-    icon: './sys_icon/error_icon.png',
-    wait: true,
-  };
+  
+  options.error.title = 'JS compiling error';
 
   return () => {
     return browserify({
       entries: `./${options.src}/js/${options.mainJs}`,
     })
       .transform('babelify', babelConfig)
-      .bundle().on('error', notify.onError(errorConfig))
-      .pipe(source(options.mainJsMin))
+      .bundle().on('error', notify.onError(options.error))
+      .pipe(source(options.isProduction ? options.mainJsMin : options.mainJs))
       .pipe(gulpif(options.isProduction, buffer()))
       .pipe(gulpif(options.isProduction, uglify()))
       .pipe(gulp.dest(`./${options.dest}/js`));

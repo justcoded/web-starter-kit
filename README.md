@@ -21,10 +21,12 @@ Web Starter Kit (WSK) - is an opinionated boilerplate for web development. Tools
 9. [Templating](#templating)
 10. [Styles](#styles)
 11. [JavaScript](#javascript)
-12. [Tasks](#tasks)
-13. [Troubleshooting](#troubleshooting)
-14. [Contributing](#contributing)
-15. [License](#license)
+12. [Watching](#watching)
+13. [Images copy and minify](#images-copy-and-minify)
+14. [Tasks](#tasks)
+15. [Troubleshooting](#troubleshooting)
+16. [Contributing](#contributing)
+17. [License](#license)
 
 
 ## Browser Support
@@ -36,7 +38,7 @@ At present, we officially aim to support the last two versions of the following 
 * Firefox
 * Safari
 * iOS
-* Android 5+
+* ChromeAndroid
 
 This is not to say that WSK cannot be used in browsers older than those reflected, but merely that our focus will be on ensuring our layouts work great in the above.
 
@@ -128,7 +130,9 @@ You may also want to get used to some of the [commands](#commands) available.
 
 There are few commands available to help you build and test sites:
 
-### Watch For Changes & Automatically Refresh Across Devices
+### Development mode
+
+Watch For Changes & Automatically Refresh Across Devices
 
 ```sh
 $ gulp
@@ -139,7 +143,9 @@ This includes linting as well as image, script, stylesheet and HTML optimization
 Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites resources.
 
 
-### Serve the Fully Built & Optimized Site
+### Production mode
+
+Serve the Fully Built & Optimized Site
 
 ```sh
 $ gulp build
@@ -247,15 +253,15 @@ So while normal CSS doesn’t yet allow things like variables, mixins (reusable 
 * After installing the extension you must **include** its **css** or **sass** files in `src/vendor_entries/vendor.scss` using `@import`.
 
 You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
-You can see this property `getPathesForStylesCustom` in the `gulp-config.js` file:
+You can see this property `getFilesForStylesCustom` in the `gulp-config.js` file:
 
-![image](https://user-images.githubusercontent.com/38295556/72220657-88b3c400-355b-11ea-90d7-4cbb5edb0f43.png)
+![image](https://user-images.githubusercontent.com/38295556/72877232-2c8e3400-3d01-11ea-9653-ffd6fec69b28.png)
 
 Please don't forget to link all your **styles custom files** in **html** file:
 
 ![image](https://user-images.githubusercontent.com/38295556/72220723-4b036b00-355c-11ea-841a-ce218c304aed.png)
 
-Also, you might want to add files to the ignore list (check `getPathesToCopyForProduction` and `getPathesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `assets` and `production` folders.
+Also, you might want to add files to the ignore list (check `getFilesToCopyProd` and `getFilesToCopy` properties in the `gulp-config.js` file). By default they will be copied to the `assets` and `production` folders.
 
 In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for transforming CSS with JavaScript. Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list](https://github.com/postcss/postcss/blob/master/docs/plugins.md).
 
@@ -288,6 +294,16 @@ In **production** mode we use:
 
 For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)) and some custom rules in file configuration `.eslintrc`.
 
+## Watching
+
+After run `gulp` by default gulp watching for your files in `src` and `assets` folders.
+For `js`, `scss`, `html` and `vendors_entries` folders after change in included files, watcher run they tasks for compiling. For `images` and other folders (and files in `src` root) watcher run tasks for copy files.
+
+## Images copy and minify
+
+In our WSK by default in [development and production mode](#commands), task `build-images` only copy images.  
+For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in production mode, please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
+
 ## Tasks
 
 | Task | Description |
@@ -301,11 +317,11 @@ For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a
 | build-styles-vendors | Compiles all vendor styles from `src/vendor_entries` to `assets/css`   folder. |
 | clean-build | Cleaning `assets` folder. |
 | clean-production | Cleaning `production` folder. |
-| copy-folders-production | Copy all folders & files from `assets` to `production`. |
-| copy-folders | Copy all not compiling files & folders from `src` to `assets`. |
+| copy-files | Copy all not compiling files & folders from `src` to `assets`. |
+| copy-files-production | Copy all files & folders from `assets` to `production`. |
 | lint-html | Need to lint html files. |
 | lint-js | Need to lint & fix js files. |
-| image-min | We use this to minify images. |
+| build-images | We use this to copy images & minify for production. |
 | watch | Task for watching all the changes. |
 
 ## Troubleshooting

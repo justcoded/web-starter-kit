@@ -93,6 +93,16 @@
   requireTask(`${cfg.task.buildHtml}`, `./${cfg.folder.tasks}/`, {
     templates: cfg.buildHtml.templates,
     dest: cfg.buildHtml.dest,
+    mainJs: cfg.file.mainJs,
+    mainJsMin: cfg.file.mainJsMin,
+    vendorJs: cfg.file.vendorJs,
+    vendorJsMin: cfg.file.vendorJsMin,
+    mainStyles: cfg.file.mainStyles,
+    mainStylesMin: cfg.file.mainStylesMin,
+    vendorStyles: cfg.file.vendorStyles,
+    vendorStylesMin: cfg.file.vendorStylesMin,
+    error: cfg.error,
+    checkProduction: true,
   });
 
   /**
@@ -100,6 +110,7 @@
    */
   requireTask(`${cfg.task.lintHtml}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.buildHtml.dest,
+    error: cfg.error,
   });
 
   /**
@@ -118,6 +129,7 @@
     dest: cfg.folder.build,
     mainJs: cfg.file.mainJs,
     mainJsMin: cfg.file.mainJsMin,
+    error: cfg.error,
     checkProduction: true,
   });
 
@@ -131,6 +143,7 @@
     vendorJs: cfg.file.vendorJs,
     vendorJsMin: cfg.file.vendorJsMin,
     vendorJsTemp: cfg.file.vendorJsTemp,
+    error: cfg.error,
     checkProduction: true,
   });
 
@@ -140,9 +153,10 @@
   requireTask(`${cfg.task.buildStyles}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
-    mainScss: cfg.file.mainScss,
-    mainScssMin: cfg.file.mainScssMin,
+    mainStyles: cfg.file.mainStyles,
+    mainStylesMin: cfg.file.mainStylesMin,
     sortType: cfg.buildStyles.sortType,
+    error: cfg.error,
     checkProduction: true,
   });
 
@@ -150,9 +164,10 @@
    * Build styles custom files listed in the config
    */
   requireTask(`${cfg.task.buildStylesCustom}`, `./${cfg.folder.tasks}/`, {
-    stylesCustomInfo: cfg.getPathesForStylesCustom(),
+    stylesCustomInfo: cfg.getFilesForStylesCustom(),
     dest: cfg.folder.build,
     sortType: cfg.buildStyles.sortType,
+    error: cfg.error,
     checkProduction: true,
   });
 
@@ -162,17 +177,21 @@
   requireTask(`${cfg.task.buildStylesVendors}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
-    vendorScss: cfg.file.vendorScss,
-    vendorScssMin: cfg.file.vendorScssMin,
+    vendorStyles: cfg.file.vendorStyles,
+    vendorStylesMin: cfg.file.vendorStylesMin,
+    error: cfg.error,
     checkProduction: true,
   });
 
   /**
-   * Minify images
+   * Copy & minify images
    */
-  requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.buildImages}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    imageExtensions: cfg.buildImages.imageExtensions,
+    isImageMin: cfg.buildImages.isImageMin,
+    checkProduction: true,
   });
 
   /**
@@ -193,17 +212,17 @@
   /**
    * Copy folders to the build folder
    */
-  requireTask(`${cfg.task.copyFolders}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.copyFiles}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.build,
-    foldersToCopy: cfg.getPathesToCopy(),
+    filesToCopy: cfg.getFilesToCopy(),
   });
 
   /**
    * Copy folders to the production folder
    */
-  requireTask(`${cfg.task.copyFoldersProd}`, `./${cfg.folder.tasks}/`, {
+  requireTask(`${cfg.task.copyFilesProd}`, `./${cfg.folder.tasks}/`, {
     dest: cfg.folder.prod,
-    foldersToCopy: cfg.getPathesToCopyForProduction(),
+    filesToCopyProd: cfg.getFilesToCopyProd(),
   });
 
   /**
@@ -221,17 +240,20 @@
   requireTask(`${cfg.task.watch}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.src,
     dest: cfg.folder.build,
-    imageExtensions: cfg.imageExtensions,
+    filesToCopy: cfg.getFilesToCopy(),
     browserSync,
     deleteFile,
     tasks: {
       lintJs: cfg.task.lintJs,
       buildJs: cfg.task.buildJs,
+      buildJsVendors: cfg.task.buildJsVendors,
       buildStyles: cfg.task.buildStyles,
       buildStylesCustom: cfg.task.buildStylesCustom,
+      buildStylesVendors: cfg.task.buildStylesVendors,
       buildHtml: cfg.task.buildHtml,
       lintHtml: cfg.task.lintHtml,
-      imageMin: cfg.task.imageMin,
+      buildImages: cfg.task.buildImages,
+      copyFiles: cfg.task.copyFiles,
     },
   }, false);
 
@@ -256,13 +278,14 @@
         cfg.task.buildJsVendors,
       ),
     ),
-    cfg.task.imageMin,
-    cfg.task.copyFolders,
+    cfg.task.buildImages,
+    cfg.task.copyFiles,
     gulp.parallel(
       cfg.task.browserSync,
       cfg.task.watch,
     ),
-  ));
+  )
+  );
 
   /**
    * Creating production folder without unnecessary files
@@ -270,7 +293,7 @@
   gulp.task('build', gulp.series(
     gulp.parallel(
       cfg.task.cleanProd,
-      cfg.task.cleanBuild
+      cfg.task.cleanBuild,
     ),
     cfg.task.lintJs,
     gulp.parallel(
@@ -288,9 +311,9 @@
         cfg.task.buildJsVendors,
       ),
     ),
-    cfg.task.imageMin,
-    cfg.task.copyFolders,
-    cfg.task.copyFoldersProd,
+    cfg.task.buildImages,
+    cfg.task.copyFiles,
+    cfg.task.copyFilesProd,
   ), true);
 
   /**
