@@ -7,9 +7,7 @@ const del = require('del');
 
 module.exports = function (options) {
   const dir = [
-    `${options.src}/**/*`,
-    `!${options.src}/images/`,
-    `!${options.src}/images/**`,
+    `./${options.src}/`,
   ];
   const config = {
     force: true,

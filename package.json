@@ -1,6 +1,6 @@
 {
   "name": "web-starter-jc",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "Starter kit for markup projects",
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "gulp-file-include": "^2.1.1",
     "gulp-htmlhint": "^3.0.0",
     "gulp-if": "^3.0.0",
-    "gulp-imagemin": "^6.2.0",
+    "gulp-imagemin": "^7.1.0",
     "gulp-newer": "^1.4.0",
     "gulp-notify": "^3.2.0",
     "gulp-postcss": "^8.0.0",
@@ -49,7 +49,7 @@
     "path": "^0.12.7",
     "postcss-import": "^12.0.1",
     "postcss-sort-media-queries": "^1.0.15",
-    "sass": "^1.24.4",
+    "sass": "^1.25.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },

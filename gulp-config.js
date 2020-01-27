@@ -13,10 +13,10 @@ module.exports = {
     vendorJs: 'vendor.js',
     vendorJsMin: 'vendor.min.js',
     vendorJsTemp: 'vendor.temp.js',
-    mainScss: 'styles.scss',
-    mainScssMin: 'styles.min.css',
-    vendorScss: 'vendor.scss',
-    vendorScssMin: 'vendor.min.css',
+    mainStyles: 'styles.css',
+    mainStylesMin: 'styles.min.css',
+    vendorStyles: 'vendor.css',
+    vendorStylesMin: 'vendor.min.css',
   },
   buildHtml: {
     templates: 'src/html/templates',
@@ -25,6 +25,10 @@ module.exports = {
   buildStyles: {
     // Sorting type css media queries: 'desktop-first' || 'mobile-first'
     sortType: 'desktop-first',
+  },
+  buildImages: {
+    imageExtensions: 'jpg,jpeg,png,svg,gif,ico',
+    isImageMin: false,
   },
   task: {
     lintHtml: 'lint-html',
@@ -35,28 +39,31 @@ module.exports = {
     buildStyles: 'build-styles',
     buildStylesCustom: 'build-styles-custom',
     buildStylesVendors: 'build-styles-vendors',
-    imageMin: 'image-min',
+    buildImages: 'build-images',
     cleanProd: 'clean-production',
     cleanBuild: 'clean-build',
-    copyFolders: 'copy-folders',
-    copyFoldersProd: 'copy-folders-production',
+    copyFiles: 'copy-files',
+    copyFilesProd: 'copy-files-production',
     browserSync: 'browser-sync-server',
     watch: 'watch',
   },
-  imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
-  getPathesForStylesCustom: function () {
+  error: {
+    icon: './sys_icon/error_icon.png',
+    wait: true,
+  },
+  getFilesForStylesCustom: function() {
     return {
       files: [],
       isGcmq: false,
     };
   },
-  getPathesToCopyForProduction: function () {
+  getFilesToCopyProd: function() {
     return [
       `./${this.folder.build}/**`,
       '.htaccess',
     ];
   },
-  getPathesToCopy: function () {
+  getFilesToCopy: function() {
     return [
       `./${this.folder.src}/**`,
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
