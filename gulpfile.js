@@ -275,7 +275,7 @@
       ),
       gulp.series(
         cfg.task.buildJs,
-        cfg.task.buildJsVendors,
+        // cfg.task.buildJsVendors,
       ),
     ),
     cfg.task.buildImages,
@@ -308,7 +308,7 @@
       ),
       gulp.series(
         cfg.task.buildJs,
-        cfg.task.buildJsVendors,
+        // cfg.task.buildJsVendors,
       ),
     ),
     cfg.task.buildImages,
