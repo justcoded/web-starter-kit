@@ -8,6 +8,6 @@ import dotsEffect from './modules/dots';
 (($) => {
   // When DOM is ready
   $(() => {
-    dotsEffect.init();
+    dotsEffect();
   });
 })(jQuery);
