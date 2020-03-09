@@ -3,44 +3,29 @@
  */
 'use strict';
 
-const rollup = require('rollup');
+const { rollup } = require('rollup');
+const resolve = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
+const { terser } = require('rollup-plugin-terser');
 
 module.exports = function (options) {
+  const mainFileName = options.isProduction ? options.mainJsMin : options.mainJs;
 
   return async () => {
-    const bundle = await rollup.rollup({
+    const bundle = await rollup({
       input: `./${options.src}/js/${options.mainJs}`,
       plugins: [
+        resolve(),
         babel(),
+        options.isProduction ? terser() : null,
       ],
     });
 
     await bundle.write({
-      file: './assets/js/main.js',
+      file: `./${options.dest}/js/${mainFileName}`,
       format: 'iife',
       name: 'main',
       sourcemap: false,
     });
   };
 };
-
-// module.exports = function (options) {
-//   const babelConfig = {
-//     presets: ['@babel/preset-env'],
-//   };
-
-//   options.error.title = 'JS compiling error';
-
-//   return () => {
-//     return browserify({
-//       entries: `./${options.src}/js/${options.mainJs}`,
-//     })
-//       .transform('babelify', babelConfig)
-//       .bundle().on('error', notify.onError(options.error))
-//       .pipe(source(options.isProduction ? options.mainJsMin : options.mainJs))
-//       .pipe(gulpif(options.isProduction, buffer()))
-//       .pipe(gulpif(options.isProduction, uglify()))
-//       .pipe(gulp.dest(`./${options.dest}/js`));
-//   };
-// };
