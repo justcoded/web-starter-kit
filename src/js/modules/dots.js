@@ -2,7 +2,7 @@
 //
 // You can remove or add your own function in this file.
 
-const createCells = () => {
+const _createCells = () => {
   const width = 10;
   const height = 10;
   const size = width * height;
@@ -17,10 +17,10 @@ const createCells = () => {
   return html;
 };
 
-const init = () => {
+const dots = () => {
   const $cnt = $('.entry-section');
-  const cells = createCells();
+  const cells = _createCells();
   $cnt.html(cells);
 };
 
-export default init;
+export default dots;
