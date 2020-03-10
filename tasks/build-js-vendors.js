@@ -26,13 +26,15 @@ module.exports = function (options) {
       ],
     });
 
-    await bundle.write({
+    const tempJs = await bundle.write({
       file: `./${options.temp}/js/${options.vendorJsTemp}`,
       format: 'iife',
       name: 'vendor',
       sourcemap: false,
-    }).then(gulp.src(filesExist([...vendorFiles, `./${options.temp}/js/${options.vendorJsTemp}`]))
+    });
+
+    await gulp.src(filesExist([...vendorFiles, `./${options.temp}/js/${tempJs}`]))
       .pipe(concat(vendorFileName))
-      .pipe(gulp.dest(`./${options.dest}/js`)));
+      .pipe(gulp.dest(`./${options.dest}/js`));
   };
 };
