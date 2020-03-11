@@ -8,6 +8,7 @@ const del = require('del');
 module.exports = function (options) {
   const dir = [
     `./${options.src}/`,
+    `./${options.temp}`,
   ];
   const config = {
     force: true,

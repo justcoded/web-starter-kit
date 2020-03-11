@@ -199,6 +199,7 @@
    */
   requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.build,
+    temp: cfg.folder.temp,
   });
 
   /**
