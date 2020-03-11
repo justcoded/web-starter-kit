@@ -19,16 +19,16 @@
   },
   "homepage": "https://github.com/justcoded/web-starter-kit",
   "devDependencies": {
-    "@babel/core": "^7.8.0",
-    "@babel/preset-env": "^7.8.0",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "@rollup/plugin-node-resolve": "^7.1.1",
-    "autoprefixer": "^9.7.3",
+    "autoprefixer": "^9.7.4",
     "browser-sync": "^2.26.7",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-import": "^2.20.1",
     "files-exist": "^1.1.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
@@ -47,13 +47,13 @@
     "path": "^0.12.7",
     "postcss-import": "^12.0.1",
     "postcss-sort-media-queries": "^1.31.21",
-    "rollup": "^2.0.2",
+    "rollup": "^2.0.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-terser": "^5.3.0",
     "sass": "^1.26.2"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "scripts": {
     "start": "gulp",
