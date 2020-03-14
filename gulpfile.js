@@ -28,77 +28,134 @@
 const gulp = require('gulp');
 const browserSyncInstance = require('browser-sync').create();
 
-const cleanBuild = require('./tasks/clean-build');
-const lintHtml = require('./tasks/lint-html');
-const buildHtml = require('./tasks/build-html');
-const buildStyles = require('./tasks/build-styles');
-const buildStylesCustom = require('./tasks/build-styles-custom');
-const buildStylesVendors = require('./tasks/build-styles-vendors');
-const lintJs = require('./tasks/lint-js');
-const buildJs = require('./tasks/build-js');
-const buildJsVendors = require('./tasks/build-js-vendors');
-const buildImages = require('./tasks/build-images');
-const copyFiles = require('./tasks/copy-files');
-const copyFilesProd = require('./tasks/copy-files-production');
-const browserSync = require('./tasks/browser-sync-server');
-const watch = require('./tasks/watch');
+const { task } = require('./gulp-config.js');
 
 /**
- * Default Gulp task
+ * Clean build folders
  */
-exports['default'] = gulp.series(
-  cleanBuild(),
-  lintJs(),
-  gulp.parallel(
-    gulp.series(
-      buildHtml(),
-      lintHtml(),
-    ),
-    gulp.series(
-      buildStyles(),
-      buildStylesCustom(),
-      buildStylesVendors(),
-    ),
-    gulp.series(
-      buildJs(),
-      buildJsVendors(),
-    ),
-  ),
-  buildImages(),
-  copyFiles(),
-  gulp.parallel(
-    browserSync({ browserSyncInstance }),
-    watch({ browserSyncInstance }),
-  ),
-);
+gulp.task(task.cleanBuild, require('./tasks/clean-build')());
 
 /**
- * Creating production folder without unnecessary files
+ * Lint HTML
  */
-exports['build'] = gulp.series(
-  cleanBuild(),
-  lintJs(),
-  gulp.parallel(
-    gulp.series(
-      buildHtml(),
-      lintHtml(),
-    ),
-    gulp.series(
-      buildStyles(),
-      buildStylesCustom(),
-      buildStylesVendors(),
-    ),
-    gulp.series(
-      buildJs(),
-      buildJsVendors(),
-    ),
-  ),
-  buildImages(),
-  copyFiles(),
-  copyFilesProd(),
-);
+gulp.task(task.lintHtml, require('./tasks/lint-html')());
 
 /**
-* Fix JS files
-*/
-exports['fix-js'] = lintJs();
+ * Template HTML
+ */
+gulp.task(task.buildHtml, require('./tasks/build-html')());
+
+/**
+ * Build styles for application
+ */
+gulp.task(task.buildStyles, require('./tasks/build-styles')());
+
+/**
+ * Build styles custom files listed in the config
+ */
+gulp.task(task.buildStylesCustom, require('./tasks/build-styles-custom')());
+
+/**
+ * Build styles for vendor
+ */
+gulp.task(task.buildStylesVendors, require('./tasks/build-styles-vendors')());
+
+/**
+ * Lint JS
+ */
+gulp.task(task.lintJs, require('./tasks/lint-js')());
+
+/**
+ * Fix JS files
+ */
+gulp.task(task.fixJs, require('./tasks/lint-js')());
+
+/**
+ * Build JS
+ */
+gulp.task(task.buildJs, require('./tasks/build-js')());
+
+/**
+ * Build JS vendor (concatenate vendors array)
+ */
+gulp.task(task.buildJsVendors, require('./tasks/build-js-vendors')());
+
+/**
+ * Copy & minify images
+ */
+gulp.task(task.buildImages, require('./tasks/build-images')());
+
+/**
+ * Copy folders to the build folder
+ */
+gulp.task(task.copyFiles, require('./tasks/copy-files')());
+
+/**
+ * Copy folders to the production folder
+ */
+gulp.task(task.copyFilesProd, require('./tasks/copy-files-production')());
+
+/**
+ * Start browserSync server
+ */
+gulp.task(task.browserSync, require('./tasks/browser-sync-server')({ browserSyncInstance }));
+
+/**
+ * Watch for file changes
+ */
+gulp.task(task.watch, require('./tasks/watch')({ browserSyncInstance }));
+
+/**
+ * Develop mode - with browser sync, file watch & live reload
+ */
+gulp.task('default', gulp.series(
+  task.cleanBuild,
+  task.lintJs,
+  gulp.parallel(
+    gulp.series(
+      task.buildHtml,
+      task.lintHtml,
+    ),
+    gulp.series(
+      task.buildStyles,
+      task.buildStylesCustom,
+      task.buildStylesVendors,
+    ),
+    gulp.series(
+      task.buildJs,
+      task.buildJsVendors,
+    ),
+  ),
+  task.buildImages,
+  task.copyFiles,
+  gulp.parallel(
+    task.browserSync,
+    task.watch,
+  ),
+));
+
+/**
+ * Production mode - creating production folder without unnecessary files
+ */
+gulp.task('build', gulp.series(
+  task.cleanBuild,
+  task.lintJs,
+  gulp.parallel(
+    gulp.series(
+      task.buildHtml,
+      task.lintHtml,
+    ),
+    gulp.series(
+      task.buildStyles,
+      task.buildStylesCustom,
+      task.buildStylesVendors,
+    ),
+    gulp.series(
+      task.buildJs,
+      task.buildJsVendors,
+    ),
+  ),
+  task.buildImages,
+  task.copyFiles,
+  task.copyFilesProd,
+));

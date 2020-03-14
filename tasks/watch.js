@@ -7,18 +7,7 @@ const gulp = require('gulp');
 const del = require('del');
 const path = require('path');
 
-const lintHtml = require('./lint-html.js');
-const buildHtml = require('./build-html.js');
-const buildStyles = require('./build-styles.js');
-const buildStylesCustom = require('./build-styles-custom.js');
-const buildStylesVendors = require('./build-styles-vendors.js');
-const lintJs = require('./lint-js.js');
-const buildJs = require('./build-js.js');
-const buildJsVendors = require('./build-js-vendors.js');
-const buildImages = require('./build-images.js');
-const copyFiles = require('./copy-files.js');
-
-const { folder, getFilesToCopy } = require('../gulp-config.js');
+const { task, folder, getFilesToCopy } = require('../gulp-config.js');
 
 module.exports = function (options) {
   const filesList = getFilesToCopy();
@@ -46,15 +35,15 @@ module.exports = function (options) {
   }
 
   return () => {
-    gulp.watch(`./${folder.src}/html/**/*.html`, gulp.series(buildHtml, lintHtml));
+    gulp.watch(`./${folder.src}/html/**/*.html`, gulp.series(task.buildHtml, task.lintHtml));
 
-    gulp.watch(`./${folder.src}/scss/**/*.scss`, gulp.series(buildStyles, buildStylesCustom));
+    gulp.watch(`./${folder.src}/scss/**/*.scss`, gulp.series(task.buildStyles, task.buildStylesCustom));
 
-    gulp.watch(`./${folder.src}/js/**/*.js`, gulp.series(lintJs, buildJs));
+    gulp.watch(`./${folder.src}/js/**/*.js`, gulp.series(task.lintJs, task.buildJs));
 
-    gulp.watch(`./${folder.src}/vendor_entries/**/*.js`, gulp.series(buildJsVendors));
+    gulp.watch(`./${folder.src}/vendor_entries/**/*.js`, gulp.series(task.buildJsVendors));
 
-    gulp.watch(`./${folder.src}/vendor_entries/**/*.scss`, gulp.series(buildStylesVendors));
+    gulp.watch(`./${folder.src}/vendor_entries/**/*.scss`, gulp.series(task.buildStylesVendors));
 
     gulp.watch(filesList)
       .on('unlink', (path) => {
@@ -63,7 +52,7 @@ module.exports = function (options) {
           event: 'unlink'
         }, folder.src, folder.build);
       })
-      .on('add', gulp.series(copyFiles));
+      .on('add', gulp.series(task.copyFiles));
 
     gulp.watch(`${folder.src}/images/**/*`)
       .on('unlink', (path) => {
@@ -72,7 +61,7 @@ module.exports = function (options) {
           event: 'unlink'
         }, folder.src, folder.build);
       })
-      .on('add', gulp.series(buildImages));
+      .on('add', gulp.series(task.buildImages));
 
     gulp.watch([`./${folder.build}/**/*`, `!./${folder.build}/**/*.map`])
       .on('change', options.browserSyncInstance.reload)

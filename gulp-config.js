@@ -1,4 +1,21 @@
 module.exports = {
+  task: {
+    lintHtml: 'lint-html',
+    lintJs: 'lint-js',
+    fixJs: 'fix-js',
+    buildHtml: 'build-html',
+    buildJs: 'build-js',
+    buildJsVendors: 'build-js-vendors',
+    buildStyles: 'build-styles',
+    buildStylesCustom: 'build-styles-custom',
+    buildStylesVendors: 'build-styles-vendors',
+    buildImages: 'build-images',
+    cleanBuild: 'clean-build',
+    copyFiles: 'copy-files',
+    copyFilesProd: 'copy-files-production',
+    browserSync: 'browser-sync',
+    watch: 'watch',
+  },
   folder: {
     tasks: 'tasks',
     src: 'src',

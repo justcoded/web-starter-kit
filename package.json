@@ -57,7 +57,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "gulp build",
+    "test": "gulp build --log-level -LLLL",
     "production": "gulp build",
     "fix-js": "gulp fix-js"
   },
