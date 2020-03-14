@@ -5,10 +5,13 @@
 
 const gulp = require('gulp');
 
-module.exports = function(options) {
+const { folder, getFilesToCopyProd } = require('../gulp-config.js');
+
+module.exports = function () {
+  const filesList = getFilesToCopyProd(folder.src);
 
   return () => {
-    return gulp.src(options.filesToCopyProd, { dot: true })
-      .pipe(gulp.dest(`./${options.dest}`));
+    return gulp.src(filesList, { dot: true })
+      .pipe(gulp.dest(`./${folder.prod}`));
   };
 };

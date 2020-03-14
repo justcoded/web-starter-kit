@@ -5,14 +5,17 @@
 
 const CLIEngine = require('eslint').CLIEngine;
 
-module.exports = function (options) {
+const { folder, isFixJs } = require('../gulp-config.js');
+
+module.exports = function () {
+  const fixJs = isFixJs();
   const cli = new CLIEngine({
-    fix: options.isFix,
+    fix: fixJs,
     useEslintrc: true,
   });
 
-  return done => {
-    const report = cli.executeOnFiles([`./${options.src}/js/**/*.js`]);
+  return (done) => {
+    const report = cli.executeOnFiles([`./${folder.src}/js/**/*.js`]);
     const formatter = cli.getFormatter();
 
     if (formatter(report.results) !== '') console.log(formatter(report.results));

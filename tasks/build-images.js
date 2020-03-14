@@ -8,8 +8,10 @@ const gulpif = require('gulp-if');
 const newer = require('gulp-newer');
 const imagemin = require('gulp-imagemin');
 
-module.exports = function (options) {
-  const runMinify = options.isProduction && options.isImageMin;
+const { folder, isProduction, buildImages } = require('../gulp-config.js');
+
+module.exports = function () {
+  const runMinify = isProduction() && buildImages.isImageMin;
   const plugins = [
     imagemin.gifsicle({ interlaced: true }),
     imagemin.mozjpeg({ quality: 90, progressive: true }),
@@ -20,11 +22,11 @@ module.exports = function (options) {
       ]
     })
   ];
-  
+
   return () => {
-    return gulp.src(`./${options.src}/images/**/*`)
-      .pipe(newer(`./${options.dest}/images`))
+    return gulp.src(`./${folder.src}/images/**/*`)
+      .pipe(newer(`./${folder.build}/images`))
       .pipe(gulpif(runMinify, imagemin(plugins)))
-      .pipe(gulp.dest(`./${options.dest}/images`));
+      .pipe(gulp.dest(`./${folder.build}/images`));
   };
 };

@@ -14,26 +14,29 @@ const cssnano = require('cssnano');
 const rename = require('gulp-rename');
 const notify = require('gulp-notify');
 
+const { file, folder, error, isProduction, buildStyles } = require('../gulp-config.js');
+
 sass.compiler = require('sass');
 
-module.exports = function (options) {
+module.exports = function () {
+  const production = isProduction();
   const plugins = [
     autoprefixer(),
   ];
-  
-  options.error.title = 'Sass compiling error';
 
-  options.isProduction ? plugins.push(gcmq({ sort: options.sortType, })) : false;
-  options.isProduction ? plugins.push(cssnano()) : false;
+  error.title = 'Sass compiling error';
+
+  production ? plugins.push(gcmq({ sort: buildStyles.sortType, })) : null;
+  production ? plugins.push(cssnano()) : null;
 
   return () => {
-    return gulp.src(`./${options.src}/scss/styles.scss`)
-      .pipe(rename(options.isProduction ? options.mainStylesMin : options.mainStyles))
-      .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true, })))
-      .pipe(sass.sync({ sourceMap: !options.isProduction, }))
-      .on('error', notify.onError(options.error))
+    return gulp.src(`./${folder.src}/scss/styles.scss`)
+      .pipe(rename(production ? file.mainStylesMin : file.mainStyles))
+      .pipe(gulpif(!production, sourcemaps.init({ loadMaps: true, })))
+      .pipe(sass.sync({ sourceMap: !production, }))
+      .on('error', notify.onError(error))
       .pipe(postcss(plugins))
-      .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))
-      .pipe(gulp.dest(`./${options.dest}/css`));
+      .pipe(gulpif(!production, sourcemaps.write('./')))
+      .pipe(gulp.dest(`./${folder.build}/css`));
   };
 };

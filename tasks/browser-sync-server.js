@@ -5,17 +5,19 @@
 
 const fs = require('fs');
 
+const { folder, file } = require('../gulp-config.js');
+
 module.exports = function (options) {
   // If index.html exist - open it, else show folder
-  const listDirectory = !fs.existsSync(`${options.dest}/${options.mainHtml}`);
+  const listDirectory = !fs.existsSync(`./${folder.build}/${file.mainHtml}`);
 
   return () => {
-    options.browserSync.init({
+    options.browserSyncInstance.init({
       notify: false,
       injectChanges: true,
       minify: false,
       server: {
-        baseDir: options.dest,
+        baseDir: folder.build,
         directory: listDirectory,
       },
       snippetOptions: {

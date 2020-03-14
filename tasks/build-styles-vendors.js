@@ -11,24 +11,27 @@ const cssnano = require('cssnano');
 const rename = require('gulp-rename');
 const notify = require('gulp-notify');
 
+const { folder, file, error, isProduction } = require('../gulp-config.js');
+
 sass.compiler = require('sass');
 
-module.exports = function (options) {
+module.exports = function () {
+  const production = isProduction();
   const plugins = [
     cssimport(),
   ];
 
-  options.error.title = 'Sass compiling error';
+  error.title = 'Sass compiling error';
 
-  options.isProduction ? plugins.push(cssnano()) : false;
+  production ? plugins.push(cssnano()) : null;
 
   return () => {
     return gulp
-      .src(`./${options.src}/vendor_entries/vendor.scss`)
-      .pipe(rename(options.isProduction ? options.vendorStylesMin : options.vendorStyles))
+      .src(`./${folder.src}/vendor_entries/${file.vendorStylesSrc}`)
+      .pipe(rename(production ? file.vendorStylesMin : file.vendorStyles))
       .pipe(sass.sync())
-      .on('error', notify.onError(options.error))
+      .on('error', notify.onError(error))
       .pipe(postcss(plugins))
-      .pipe(gulp.dest(`./${options.dest}/css`));
+      .pipe(gulp.dest(`./${folder.build}/css`));
   };
 };

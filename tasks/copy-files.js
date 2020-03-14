@@ -6,11 +6,14 @@
 const gulp = require('gulp');
 const newer = require('gulp-newer');
 
-module.exports = function(options) {
+const { folder, getFilesToCopy } = require('../gulp-config.js');
+
+module.exports = function() {
+  const filesList = getFilesToCopy(folder.src);
 
   return () => {
-    return gulp.src(options.filesToCopy, { dot: true })
-      .pipe(newer(`./${options.dest}`))
-      .pipe(gulp.dest(`./${options.dest}`));
+    return gulp.src(filesList, { dot: true })
+      .pipe(newer(`./${folder.build}`))
+      .pipe(gulp.dest(`./${folder.build}`));
   };
 };

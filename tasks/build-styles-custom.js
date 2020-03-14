@@ -13,28 +13,31 @@ const gcmq = require('postcss-sort-media-queries');
 const cssnano = require('cssnano');
 const notify = require('gulp-notify');
 
+const { folder, error, isProduction, buildStyles, getFilesForStylesCustom } = require('../gulp-config.js');
+
 sass.compiler = require('sass');
 
-module.exports = function (options) {
-  const { files, isGcmq } = options.stylesCustomInfo;
+module.exports = function () {
+  const production = isProduction();
+  const { files, isGcmq } = getFilesForStylesCustom();
   const plugins = [
     autoprefixer(),
   ];
-  
-  options.error.title = 'Sass compiling error';
 
-  isGcmq ? plugins.push(gcmq({ sort: options.sortType, })) : false;
-  options.isProduction ? plugins.push(cssnano()) : false;
+  error.title = 'Sass compiling error';
+
+  isGcmq ? plugins.push(gcmq({ sort: buildStyles.sortType, })) : null;
+  production ? plugins.push(cssnano()) : null;
 
   return (done) => {
     if (files.length > 0) {
       return gulp.src(files)
-        .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true, })))
-        .pipe(sass.sync({ sourceMap: !options.isProduction, }))
-        .on('error', notify.onError(options.error))
+        .pipe(gulpif(!production, sourcemaps.init({ loadMaps: true, })))
+        .pipe(sass.sync({ sourceMap: !production, }))
+        .on('error', notify.onError(error))
         .pipe(postcss(plugins))
-        .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))
-        .pipe(gulp.dest(`./${options.dest}/css`));
+        .pipe(gulpif(!production, sourcemaps.write('./')))
+        .pipe(gulp.dest(`./${folder.build}/css`));
     }
 
     return done();
