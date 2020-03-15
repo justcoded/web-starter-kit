@@ -11,16 +11,16 @@ const resolve = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 const { terser } = require('rollup-plugin-terser');
 
-const { folder, file, isProduction } = require('../gulp-config.js');
-const vendorFiles = require(`../${folder.src}/vendor_entries/${file.vendorJs}`);
+const global = require('../gulp-config.js');
+const vendorFiles = require(`../${global.folder.src}/vendor_entries/${global.file.vendorJs}`);
 
 module.exports = function () {
-  const production = isProduction();
-  const vendorFileName = production ? file.vendorJsMin : file.vendorJs;
+  const production = global.isProduction();
+  const vendorFileName = production ? global.file.vendorJsMin : global.file.vendorJs;
 
   return async () => {
     const bundle = await rollup({
-      input: './src/vendor_entries/vendor-compile.js',
+      input: `./${global.folder.src}/vendor_entries/${global.file.vendorJsComp}`,
       treeshake: false,
       plugins: [
         resolve(),
@@ -30,14 +30,14 @@ module.exports = function () {
     });
 
     const tempJs = await bundle.write({
-      file: `./${folder.temp}/js/${file.vendorJsTemp}`,
+      file: `./${global.folder.temp}/js/${global.file.vendorJsTemp}`,
       format: 'iife',
       name: 'vendor',
       sourcemap: false,
     });
 
-    await gulp.src(filesExist([...vendorFiles, `./${folder.temp}/js/${tempJs}`]))
+    await gulp.src(filesExist([...vendorFiles, `./${global.folder.temp}/js/${tempJs}`]))
       .pipe(concat(vendorFileName))
-      .pipe(gulp.dest(`./${folder.build}/js`));
+      .pipe(gulp.dest(`./${global.folder.build}/js`));
   };
 };

@@ -7,10 +7,10 @@ const gulp = require('gulp');
 const del = require('del');
 const path = require('path');
 
-const { task, folder, getFilesToCopy } = require('../gulp-config.js');
+const global = require('../gulp-config.js');
 
 module.exports = function (options) {
-  const filesList = getFilesToCopy();
+  const filesList = global.getFilesToCopy();
 
   /**
  * Remove file(s) from build folder if corresponding
@@ -35,35 +35,35 @@ module.exports = function (options) {
   }
 
   return () => {
-    gulp.watch(`./${folder.src}/html/**/*.html`, gulp.series(task.buildHtml, task.lintHtml));
+    gulp.watch(`./${global.folder.src}/html/**/*.html`, gulp.series(global.task.buildHtml, global.task.lintHtml));
 
-    gulp.watch(`./${folder.src}/scss/**/*.scss`, gulp.series(task.buildStyles, task.buildStylesCustom));
+    gulp.watch(`./${global.folder.src}/scss/**/*.scss`, gulp.series(global.task.buildStyles, global.task.buildStylesCustom));
 
-    gulp.watch(`./${folder.src}/js/**/*.js`, gulp.series(task.lintJs, task.buildJs));
+    gulp.watch(`./${global.folder.src}/js/**/*.js`, gulp.series(global.task.lintJs, global.task.buildJs));
 
-    gulp.watch(`./${folder.src}/vendor_entries/**/*.js`, gulp.series(task.buildJsVendors));
+    gulp.watch(`./${global.folder.src}/vendor_entries/**/*.js`, gulp.series(global.task.buildJsVendors));
 
-    gulp.watch(`./${folder.src}/vendor_entries/**/*.scss`, gulp.series(task.buildStylesVendors));
+    gulp.watch(`./${global.folder.src}/vendor_entries/**/*.scss`, gulp.series(global.task.buildStylesVendors));
 
     gulp.watch(filesList)
       .on('unlink', (path) => {
         deleteFile({
           path,
           event: 'unlink'
-        }, folder.src, folder.build);
+        }, global.folder.src, global.folder.build);
       })
-      .on('add', gulp.series(task.copyFiles));
+      .on('add', gulp.series(global.task.copyFiles));
 
-    gulp.watch(`${folder.src}/images/**/*`)
+    gulp.watch(`${global.folder.src}/images/**/*`)
       .on('unlink', (path) => {
         deleteFile({
           path,
           event: 'unlink'
-        }, folder.src, folder.build);
+        }, global.folder.src, global.folder.build);
       })
-      .on('add', gulp.series(task.buildImages));
+      .on('add', gulp.series(global.task.buildImages));
 
-    gulp.watch([`./${folder.build}/**/*`, `!./${folder.build}/**/*.map`])
+    gulp.watch([`./${global.folder.build}/**/*`, `!./${global.folder.build}/**/*.map`])
       .on('change', options.browserSyncInstance.reload)
       .on('unlink', options.browserSyncInstance.reload)
       .on('add', options.browserSyncInstance.reload);

@@ -5,11 +5,11 @@
 
 const fs = require('fs');
 
-const { folder, file } = require('../gulp-config.js');
+const global = require('../gulp-config.js');
 
 module.exports = function (options) {
   // If index.html exist - open it, else show folder
-  const listDirectory = !fs.existsSync(`./${folder.build}/${file.mainHtml}`);
+  const listDirectory = !fs.existsSync(`./${global.folder.build}/${global.file.mainHtml}`);
 
   return () => {
     options.browserSyncInstance.init({
@@ -17,7 +17,7 @@ module.exports = function (options) {
       injectChanges: true,
       minify: false,
       server: {
-        baseDir: folder.build,
+        baseDir: global.folder.build,
         directory: listDirectory,
       },
       snippetOptions: {

@@ -8,15 +8,15 @@ const resolve = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 const { terser } = require('rollup-plugin-terser');
 
-const { folder, file, isProduction } = require('../gulp-config.js');
+const global = require('../gulp-config.js');
 
 module.exports = function () {
-  const production = isProduction();
-  const mainFileName = production ? file.mainJsMin : file.mainJs;
+  const production = global.isProduction();
+  const mainFileName = production ? global.file.mainJsMin : global.file.mainJs;
 
   return async () => {
     const bundle = await rollup({
-      input: `./${folder.src}/js/${file.mainJs}`,
+      input: `./${global.folder.src}/js/${global.file.mainJs}`,
       plugins: [
         resolve(),
         babel(),
@@ -25,7 +25,7 @@ module.exports = function () {
     });
 
     await bundle.write({
-      file: `./${folder.build}/js/${mainFileName}`,
+      file: `./${global.folder.build}/js/${mainFileName}`,
       format: 'iife',
       name: 'main',
       sourcemap: false,

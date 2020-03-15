@@ -7,28 +7,28 @@ const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');
 const notify = require('gulp-notify');
 
-const { folder, file, error, isProduction, buildHtml } = require('../gulp-config.js');
+const global = require('../gulp-config.js');
 
 module.exports = function () {
-  const production = isProduction();
+  const production = global.isProduction();
   const config = {
     prefix: '@@',
-    basepath: `./${buildHtml.templates}`,
+    basepath: `./${global.buildHtml.templates}`,
     indent: true,
     context: {
-      mainJs: production ? file.mainJsMin : file.mainJs,
-      vendorJs: production ? file.vendorJsMin : file.vendorJs,
-      mainStyles: production ? file.mainStylesMin : file.mainStyles,
-      vendorStyles: production ? file.vendorStylesMin : file.vendorStyles,
+      mainJs: production ? global.file.mainJsMin : global.file.mainJs,
+      vendorJs: production ? global.file.vendorJsMin : global.file.vendorJs,
+      mainStyles: production ? global.file.mainStylesMin : global.file.mainStyles,
+      vendorStyles: production ? global.file.vendorStylesMin : global.file.vendorStyles,
     },
   };
 
-  error.title = 'HTML compiling error';
+  global.error.title = 'HTML compiling error';
 
   return () => {
-    return gulp.src(`./${buildHtml.templates}/**/*.html`)
+    return gulp.src(`./${global.buildHtml.templates}/**/*.html`)
       .pipe(fileInclude(config))
-      .on('error', notify.onError(error))
-      .pipe(gulp.dest(`./${folder.build}`));
+      .on('error', notify.onError(global.error))
+      .pipe(gulp.dest(`./${global.folder.build}`));
   };
 };

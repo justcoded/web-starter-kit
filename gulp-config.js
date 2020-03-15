@@ -15,6 +15,7 @@ module.exports = {
     copyFilesProd: 'copy-files-production',
     browserSync: 'browser-sync',
     watch: 'watch',
+    prod: 'build',
   },
   folder: {
     tasks: 'tasks',
@@ -29,7 +30,9 @@ module.exports = {
     mainJsMin: 'app.min.js',
     vendorJs: 'vendor.js',
     vendorJsMin: 'vendor.min.js',
+    vendorJsComp: 'vendor-compile.js',
     vendorJsTemp: 'vendor.temp.js',
+    mainStylesSrc: 'styles.scss',
     mainStyles: 'styles.css',
     mainStylesMin: 'styles.min.css',
     vendorStylesSrc: 'vendor.scss',
@@ -57,26 +60,28 @@ module.exports = {
       isGcmq: false,
     };
   },
-  getFilesToCopyProd(folder) {
+  getFilesToCopy() {
     return [
-      `./${folder}/**`,
+      `./${this.folder.src}/**`,
+      `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
+      `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
+      `!{${this.folder.src}/html,${this.folder.src}/html/**}`,
+      `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
+      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`,
+    ];
+  },
+  getFilesToCopyProd() {
+    return [
+      `./${this.folder.build}/**`,
       '.htaccess',
     ];
   },
-  getFilesToCopy(folder) {
-    return [
-      `./${folder}/**`,
-      `!{${folder}/images,${folder}/images/**}`,
-      `!{${folder}/js,${folder}/js/**}`,
-      `!{${folder}/html,${folder}/html/**}`,
-      `!{${folder}/scss,${folder}/scss/**}`,
-      `!{${folder}/vendor_entries,${folder}/vendor_entries/**}`,
-    ];
-  },
-  isProduction() {
-    return process.argv[process.argv.length - 1] === 'build';
+  isProduction: function () {
+
+    return process.argv[process.argv.length - 1] === this.task.prod;
   },
   isFixJs() {
-    return process.argv[process.argv.length - 1] === 'fix-js';
+
+    return process.argv[process.argv.length - 1] === this.task.fixJs;
   }
 };

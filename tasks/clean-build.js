@@ -5,16 +5,16 @@
 
 const del = require('del');
 
-const { folder, isProduction } = require('../gulp-config.js');
+const global = require('../gulp-config.js');
 
 module.exports = function () {
-  const production = isProduction();
+  const production = global.isProduction();
   const devFolders = [
-    `./${folder.build}`,
-    `./${folder.temp}`,
+    `./${global.folder.build}`,
+    `./${global.folder.temp}`,
   ];
   const prodFolders = production ? [
-    `./${folder.prod}`,
+    `./${global.folder.prod}`,
   ] : [];
   const delFolders = [
     ...devFolders,
