@@ -22,18 +22,6 @@ $media-expressions: (
   'theme-dark': 'prefers-color-scheme: dark',
 );
 
-// Base font styles for headings
-$headings: (
-  'sizes': (
-    'h1-font-size': 3rem,
-    'h2-font-size': 2.7rem,
-    'h3-font-size': 2.4rem,
-    'h4-font-size': 2.1rem,
-    'h5-font-size': 1.7rem,
-    'h6-font-size': 1.5rem,
-  ),
-);
-
 :root {
   // Breakpoints
   --phone: #{map-get($breakpoints, 'phone')};
@@ -79,4 +67,12 @@ $headings: (
   // Headings base
   --headings-font-family: inherit;
   --headings-color: inherit;
+
+  // Base font styles for headings
+  --headings-sizes-h1: 3rem;
+  --headings-sizes-h2: 2.7rem;
+  --headings-sizes-h3: 2.4rem;
+  --headings-sizes-h4: 2.1rem;
+  --headings-sizes-h5: 1.7rem;
+  --headings-sizes-h6: 1.5rem;
 }
