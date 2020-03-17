@@ -76,12 +76,10 @@ module.exports = {
       '.htaccess',
     ];
   },
-  isProduction: function () {
-
+  isProduction() {
     return process.argv[process.argv.length - 1] === this.task.prod;
   },
   isFixJs() {
-
     return process.argv[process.argv.length - 1] === this.task.fixJs;
   }
 };
