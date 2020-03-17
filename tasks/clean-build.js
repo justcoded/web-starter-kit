@@ -8,6 +8,10 @@ const del = require('del');
 const global = require('../gulp-config.js');
 
 module.exports = function () {
+  const config = {
+    force: true,
+  };
+
   const production = global.isProduction();
   const devFolders = [
     `./${global.folder.build}`,
@@ -20,9 +24,6 @@ module.exports = function () {
     ...devFolders,
     ...prodFolders,
   ];
-  const config = {
-    force: true,
-  };
 
   return async () => {
     const deletedPaths = await del(delFolders, config);

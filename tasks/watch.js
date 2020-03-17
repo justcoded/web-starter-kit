@@ -12,26 +12,15 @@ const global = require('../gulp-config.js');
 module.exports = function (options) {
   const filesList = global.getFilesToCopy();
 
-  /**
- * Remove file(s) from build folder if corresponding
- * file(s) were deleted from source folder
- * @param  {Object} event    Event object
- * @param  {String} src      Name of the source folder
- * @param  {String} dest     Name of the destination folder
- */
-  function deleteFile(file, src, dest) {
-    let fileName = file.path.toString().split('/').pop();
-    let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
+  async function clean(file) {
+    const config = {
+      force: true,
+    };
 
-    let filePathFromSrc = path.relative(path.resolve(src), file.path);
-    let destFilePath = path.resolve(dest, filePathFromSrc);
+    const filePathSrc = path.relative(path.resolve(global.folder.src), file);
+    const filePathBuild = `./${global.folder.build}/${filePathSrc}`;
 
-    try {
-      del.sync(destFilePath);
-      console.log(` \u{1b}[32m${fileEventWord}: ${fileName}\u{1b}[0m`);
-    } catch (error) {
-      console.log(` \u{1b}[31mFile has already deleted\u{1b}[0m`);
-    }
+    return await del(filePathBuild, config);
   }
 
   return () => {
@@ -46,21 +35,11 @@ module.exports = function (options) {
     gulp.watch(`./${global.folder.src}/vendor_entries/**/*.scss`, gulp.series(global.task.buildStylesVendors));
 
     gulp.watch(filesList)
-      .on('unlink', (path) => {
-        deleteFile({
-          path,
-          event: 'unlink'
-        }, global.folder.src, global.folder.build);
-      })
+      .on('unlink', (file) => clean(file))
       .on('add', gulp.series(global.task.copyFiles));
 
     gulp.watch(`${global.folder.src}/images/**/*`)
-      .on('unlink', (path) => {
-        deleteFile({
-          path,
-          event: 'unlink'
-        }, global.folder.src, global.folder.build);
-      })
+      .on('unlink', (file) => clean(file))
       .on('add', gulp.series(global.task.buildImages));
 
     gulp.watch([`./${global.folder.build}/**/*`, `!./${global.folder.build}/**/*.map`])
