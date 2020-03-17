@@ -2,10 +2,10 @@
 
 // Breakpoints for include media mixin
 $breakpoints: (
-  'phone': 48rem,
-  'tablet': 76.8rem,
-  'desktop': 98rem,
-  'widescreen': 120rem
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 980px,
+  'widescreen': 1200px,
 );
 
 // Keywords for include media mixin
@@ -17,7 +17,9 @@ $media-expressions: (
   'portrait': '(orientation: portrait)',
   'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
   'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)',
-  'hover': '(hover: hover) and (pointer: fine)'
+  'hover': '(hover: hover) and (pointer: fine)',
+  'theme-light': 'prefers-color-scheme: light',
+  'theme-dark': 'prefers-color-scheme: dark',
 );
 
 // Base font styles for headings
@@ -28,8 +30,8 @@ $headings: (
     'h3-font-size': 2.4rem,
     'h4-font-size': 2.1rem,
     'h5-font-size': 1.7rem,
-    'h6-font-size': 1.5rem
-  )
+    'h6-font-size': 1.5rem,
+  ),
 );
 
 :root {
