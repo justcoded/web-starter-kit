@@ -15,12 +15,12 @@ input[type='email'],
 input[type='search'],
 input[type='password'],
 textarea {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
+  appearance: none;
   box-sizing: border-box;
+  font-family: var(--form-font-family);
+  border-radius: 0;
   border: 0.1rem solid var(--form-element-border-color);
   padding: var(--form-element-padding);
-  font-family: var(--form-font-family);
 
   &:focus {
     border-color: var(--form-element-focus-border-color);
@@ -32,7 +32,7 @@ textarea {
 }
 
 select {
-  -webkit-border-radius: 0;
+  border-radius: 0;
 }
 
 textarea {
@@ -45,8 +45,8 @@ input[type='button'],
 input[type='reset'],
 input[type='file'],
 input[type='submit'] {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
+  appearance: none;
+  border-radius: 0;
   cursor: pointer;
   font-family: var(--form-font-family);
 }

@@ -4,35 +4,31 @@
 
 
 /// Mixin helping with long string of the url
-/// https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
-/// Usage 
-/// @include word-wrap;
+/// @link https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+/// @example @include word-wrap;
+
 @mixin word-wrap() {
   overflow-wrap: break-word;
   word-wrap: break-word;
-  -ms-word-break: break-all;
   word-break: break-all;
   word-break: break-word;
-  -ms-hyphens: auto;
+  hyphens: auto;
 }
 
-// Preventing Overflow with Ellipsis
-// Usage 
-// @include ellipsis;
-//
+/// Preventing Overflow with Ellipsis
+/// @example @include ellipsis;
+
 @mixin ellipsis() {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-// vertical align el inside parent with fixed height/min-height
-// usage 
-// html - .parent>.child
-// scss - @include v-align;
-//     or @include v-align(250px);
-//     or @include v-align(250px, bottom, before);
-//
+/// Vertical align el inside parent with fixed height/min-height
+/// @example @include v-align;
+/// or @include v-align(250px);
+/// or @include v-align(250px, bottom, before);
+
 @mixin v-align($va-height: 100%, $va-direction: middle, $va-pseudo: after) {
   white-space: nowrap;
   text-align: center;
@@ -53,13 +49,11 @@
   }
 }
 
-// vertical align a pair of child el inside parent
-// usage 
-// html - .post>.image+.text
-// scss - @include v-align-pair(image, text);
-//     or @include v-align-pair(image, text, bottom);
-//     or @include v-align-pair(image, text, middle, 200px);
-//
+/// Vertical align a pair of child el inside parent
+/// @example @include v-align-pair(image, text);
+/// or @include v-align-pair(image, text, bottom);
+/// or @include v-align-pair(image, text, middle, 200px);
+
 @mixin v-align-pair($child-name1, $child-name2, $valign: middle, $width1: auto, $width2: auto ) {
   display: table;
   .#{$child-name1}{
@@ -75,9 +69,9 @@
 }
 
 
-// vertical align el
-// usage: @include vertical-align-el;
-//
+/// Vertical align el
+/// @example @include vertical-align-el;
+
 @mixin vertical-align-el {
   position: relative;
   top: 50%;
@@ -85,41 +79,20 @@
 }
 
 /// Mixin helping defining both `width` and `height` simultaneously.
-///
 /// @author Hugo Giraudel
-///
 /// @access public
-///
 /// @param {Length} $width - Element’s `width`
-/// @param {Length} $height ($width) - Element’s `height`
-///
-/// @example scss - Usage
-///   .foo {
-///     @include size(10em);
-///   }
-///
-///   .bar {
-///     @include size(100%, 10em);
-///   }
-///
-/// @example css - CSS output
-///   .foo {
-///     width: 10em;
-///     height: 10em;
-///   }
-///
-///   .bar {
-///     width: 100%;
-///     height: 10em;
-///   }
-///
+/// @param {Length} $height - Element’s `height`
+/// @example @include size(20px);
+/// @include size(20px, 30px);
+
 @mixin size($width, $height: $width) {
   width: $width;
   height: $height;
 }
 
-/// font-smothing
-/// @include font-smoothing(on);
+/// Font-smothing
+/// @example @include font-smoothing(on);
 /// @include font-smoothing(off);
 @mixin font-smoothing($value: on){
   @if $value == on{
@@ -134,21 +107,9 @@
 
 
 /// Hides the text in an element, commonly used to show an image. Some elements will need block-level styles applied.
-///
 /// @link http://zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement
-///
-/// @example scss - Usage
-///   .element {
-///     @include hide-text;
-///   }
-///
-/// @example css - CSS Output
-///   .element {
-///     overflow: hidden;
-///     text-indent: 101%;
-///     white-space: nowrap;
-///   }
-///
+/// @example @include hide-text;
+
 @mixin hide-text {
   overflow: hidden;
   text-indent: 101%;
@@ -156,20 +117,15 @@
 }
 
 
-/// Creates a visual triangle. 
-/// Mixin takes ($size, $color, $direction)
-/// The $size argument can take one or two values—width height.
-/// The $color argument can take one or two 
+/// Creates a visual triangle
 /// values—foreground-color background-color.
-/// 
-/// @author http://bourbon.io/docs/#triangle
-///
-/// $direction: 
-/// up, down, left, right, up-right, up-left, down-right, down-left
-/// @example scss - Usage
-///   @include triangle(12px, gray, down);
-///   @include triangle(12px 6px, gray blue, up-left);
-///
+/// @link http://bourbon.io/docs/#triangle
+/// @param $size - argument can take one or two values—width height
+/// @param $color - argument can take one or two 
+/// @param $direction - value: up, down, left, right, up-right, up-left, down-right, down-left
+/// @example @include triangle(12px, gray, down);
+/// @include triangle(12px 6px, gray blue, up-left);
+
 @mixin triangle($size, $color, $direction) {
   $width: nth($size, 1);
   $height: nth($size, length($size));
@@ -236,12 +192,11 @@
 
 
 /// Animate css properties
-// usage 
-// scss - @include animate(color);
-//     or @include animate(color width);
-//     or @include animate(color width, 1s, linear);
-//     or @include animate(color width, 1s, ease-in, 0.5s); - defining delay ALL params should be passed!
-//
+/// @example @include animate(color);
+/// or @include animate(color width);
+/// or @include animate(color width, 1s, linear);
+/// or @include animate(color width, 1s, ease-in, 0.5s); - defining delay ALL params should be passed!
+
 $animation-speed: 0.3s !default;
 
 @mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out, $delay: false) {
@@ -264,18 +219,7 @@ $animation-speed: 0.3s !default;
 
 
 /// Mixin for styling form-placeholders
-/// @example scss - Usage
-///   @include placeholder {
-///    color: #333;
-///   }
-///
-///   input[type='text'],
-///   input[type='tel'],
-///   input[type='email'] {
-///     @include placeholder {
-///      color: red;
-///     }
-///   }
+/// @example @include placeholder { color: red; }
 
 @mixin placeholder {
   &::-webkit-input-placeholder {@content;}
@@ -285,11 +229,8 @@ $animation-speed: 0.3s !default;
   &.placeholder {@content;}
 }
 
-/// Font-size px to rem calc
-/// @example scss - Usage
-/// selector {
-///    @include rem-font-size(16px);
-/// }
+// Font-size px to rem calc
+/// @example @include rem-font-size(16px);
 
 @mixin rem-font-size($pxSize) {
   font-size: $pxSize;

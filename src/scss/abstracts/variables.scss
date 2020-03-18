@@ -1,5 +1,8 @@
 // Global variables
 
+// 'rem' base value
+$rem: 10px;
+
 // Breakpoints for include media mixin
 $breakpoints: (
   'phone': 480px,
