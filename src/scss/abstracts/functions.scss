@@ -2,11 +2,21 @@
 //
 // You can remove or add your own function in this file.
 
-/// Calculate 'px' to 'rem'
-/// @example font-size: rem(20px);
+/// Convert px to rem
+/// @access public
+/// @param {Number} $px - Value of type in pixels
+/// @returns {Number} In rem
+/// @example rem(48px);
+/// @group global-typography
+/// @deprecated (For v10) Use `carbon--rem()`
 
-@function rem($px){
-  @return $px / $rem;
+@function rem($px) {
+  @if unit($px) != 'px' {
+    // TODO: update to @error in v11
+    @warn "Expected argument $px to be of type `px`, instead received: `#{unit($px)}`";
+  }
+
+  @return ($px / $base-font-size) * 1rem;
 }
 
 /// Colors black & white
