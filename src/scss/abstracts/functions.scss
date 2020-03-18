@@ -13,7 +13,7 @@
     @warn "Expected argument $px to be of type `px`, instead received: `#{unit($px)}`";
   }
 
-  @return ($px / $base-font-size) * 1rem;
+  @return ($px / $rem) * 1rem;
 }
 
 /// Colors black & white
