@@ -51,6 +51,8 @@ module.exports = {
     isImageMin: false,
   },
   error: {
+    sound: true,
+    title: '< SYSTEM ERROR >',
     icon: './sys_icon/error_icon.png',
     wait: true,
   },

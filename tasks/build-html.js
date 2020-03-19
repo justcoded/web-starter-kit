@@ -5,8 +5,8 @@
 
 const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');
-const notify = require('gulp-notify');
 
+const notifier = require('../helpers/notifier');
 const global = require('../gulp-config.js');
 
 module.exports = function () {
@@ -23,12 +23,10 @@ module.exports = function () {
     },
   };
 
-  global.error.title = 'HTML compiling error';
-
-  return () => {
+  return (done) => {
     return gulp.src(`./${global.buildHtml.templates}/**/*.html`)
       .pipe(fileInclude(config))
-      .on('error', notify.onError(global.error))
+      .on('error', (error) => notifier.error(error.message, 'HTML compiling error', done))
       .pipe(gulp.dest(`./${global.folder.build}`));
   };
 };

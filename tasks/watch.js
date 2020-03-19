@@ -12,7 +12,7 @@ const global = require('../gulp-config.js');
 module.exports = function (options) {
   const filesList = global.getFilesToCopy();
 
-  async function clean(file) {
+  async function cleaning(file) {
     const config = {
       force: true,
     };
@@ -20,7 +20,7 @@ module.exports = function (options) {
     const filePathSrc = path.relative(path.resolve(global.folder.src), file);
     const filePathBuild = `./${global.folder.build}/${filePathSrc}`;
 
-    return await del(filePathBuild, config);
+    await del(filePathBuild, config);
   }
 
   return () => {
@@ -35,11 +35,11 @@ module.exports = function (options) {
     gulp.watch(`./${global.folder.src}/vendor_entries/**/*.scss`, gulp.series(global.task.buildStylesVendors));
 
     gulp.watch(filesList)
-      .on('unlink', (file) => clean(file))
+      .on('unlink', (file) => cleaning(file))
       .on('add', gulp.series(global.task.copyFiles));
 
     gulp.watch(`${global.folder.src}/images/**/*`)
-      .on('unlink', (file) => clean(file))
+      .on('unlink', (file) => cleaning(file))
       .on('add', gulp.series(global.task.buildImages));
 
     gulp.watch([`./${global.folder.build}/**/*`, `!./${global.folder.build}/**/*.map`])

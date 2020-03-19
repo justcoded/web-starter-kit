@@ -8,6 +8,7 @@ const gulpif = require('gulp-if');
 const newer = require('gulp-newer');
 const imagemin = require('gulp-imagemin');
 
+const notifier = require('../helpers/notifier');
 const global = require('../gulp-config.js');
 
 module.exports = function () {
@@ -23,10 +24,11 @@ module.exports = function () {
     })
   ];
 
-  return () => {
+  return (done) => {
     return gulp.src(`./${global.folder.src}/images/**/*`)
       .pipe(newer(`./${global.folder.build}/images`))
       .pipe(gulpif(runMinify, imagemin(plugins)))
+      .on('error', (error) => notifier.error(error.message, 'Image Min error', done))
       .pipe(gulp.dest(`./${global.folder.build}/images`));
   };
 };
