@@ -8,8 +8,6 @@ const fs = require('fs');
 const global = require('../gulp-config.js');
 
 module.exports = function (options) {
-  // If index.html exist - open it, else show folder
-  const listDirectory = !fs.existsSync(`./${global.folder.build}/${global.file.mainHtml}`);
 
   return () => {
     options.browserSyncInstance.init({
@@ -18,7 +16,8 @@ module.exports = function (options) {
       minify: false,
       server: {
         baseDir: global.folder.build,
-        directory: listDirectory,
+        // If index.html exist - open it, else show folder
+        directory: !fs.existsSync(`./${global.folder.build}/${global.file.mainHtml}`),
       },
       snippetOptions: {
         // Provide a custom Regex for inserting the snippet
