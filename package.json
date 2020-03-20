@@ -55,9 +55,9 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "gulp",
+    "dev": "gulp",
     "test": "gulp build --log-level -LLLL",
-    "production": "gulp build",
+    "build": "gulp build",
     "fix-js": "gulp fix-js"
   },
   "dependencies": {
