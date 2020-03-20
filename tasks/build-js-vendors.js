@@ -11,6 +11,7 @@ const resolve = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 const { terser } = require('rollup-plugin-terser');
 
+const notifier = require('../helpers/notifier');
 const global = require('../gulp-config.js');
 const vendorFiles = require(`../${global.folder.src}/vendor_entries/${global.file.vendorJs}`);
 
@@ -18,26 +19,33 @@ module.exports = function () {
   const production = global.isProduction();
   const vendorFileName = production ? global.file.vendorJsMin : global.file.vendorJs;
 
-  return async () => {
-    const bundle = await rollup({
-      input: `./${global.folder.src}/vendor_entries/${global.file.vendorJsComp}`,
-      treeshake: false,
-      plugins: [
-        resolve(),
-        babel(),
-        production ? terser() : null,
-      ],
-    });
+  return async (done) => {
+    try {
+      const bundle = await rollup({
+        input: `./${global.folder.src}/vendor_entries/${global.file.vendorJsComp}`,
+        treeshake: false,
+        plugins: [
+          resolve(),
+          babel(),
+          production ? terser() : null,
+        ],
+        onwarn(warning, warn) {
+          throw new Error(warning.message);
+        },
+      });
 
-    const tempJs = await bundle.write({
-      file: `./${global.folder.temp}/js/${global.file.vendorJsTemp}`,
-      format: 'iife',
-      name: 'vendor',
-      sourcemap: false,
-    });
+      const tempJs = await bundle.write({
+        file: `./${global.folder.temp}/js/${global.file.vendorJsTemp}`,
+        format: 'iife',
+        name: 'vendor',
+        sourcemap: false,
+      });
 
-    await gulp.src(filesExist([...vendorFiles, `./${global.folder.temp}/js/${tempJs}`]))
-      .pipe(concat(vendorFileName))
-      .pipe(gulp.dest(`./${global.folder.build}/js`));
+      await gulp.src(filesExist([...vendorFiles, `./${global.folder.temp}/js/${tempJs}`]))
+        .pipe(concat(vendorFileName))
+        .pipe(gulp.dest(`./${global.folder.build}/js`));
+    } catch (error) {
+      notifier.error(error, 'Vendor JS compiling error', done);
+    }
   };
 };
