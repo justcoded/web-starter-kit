@@ -53,7 +53,7 @@ module.exports = {
   error: {
     sound: true,
     title: '< SYSTEM ERROR >',
-    icon: './sys_icon/error_icon.png',
+    icon: './system_files/icons/error_icon.png',
     wait: true,
   },
   getFilesForStylesCustom() {
