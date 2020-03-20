@@ -36,7 +36,7 @@ module.exports = function () {
         sourcemap: false,
       });
     } catch (error) {
-      notifier.error(error, 'Main JS bundling error', done);
+      notifier.error(error, 'Main JS compiling error', done);
     }
   };
 };

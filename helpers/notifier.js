@@ -10,8 +10,8 @@ module.exports = {
 
     nodeNotifier.notify(errorNote);
 
-    console.log(`\u{1b}[31m[${title}]\u{1b}[0m`);
-    console.log(`\u{1b}[31m${error}\u{1b}[0m`);
+    console.log(`\u{1b}[31m[ ${title} ]\u{1b}[0m`);
+    console.log(`\u{1b}[33m${error}\u{1b}[0m`);
 
     return callback ? callback() : null;
   },

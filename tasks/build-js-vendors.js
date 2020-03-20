@@ -45,7 +45,7 @@ module.exports = function () {
         .pipe(concat(vendorFileName))
         .pipe(gulp.dest(`./${global.folder.build}/js`));
     } catch (error) {
-      notifier.error(error, 'Vendor JS bundling error', done);
+      notifier.error(error, 'Vendor JS compiling error', done);
     }
   };
 };
