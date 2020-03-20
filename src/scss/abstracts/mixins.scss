@@ -228,11 +228,3 @@ $animation-speed: 0.3s !default;
   &:-ms-input-placeholder {@content;}
   &.placeholder {@content;}
 }
-
-// Font-size px to rem calc
-/// @example @include rem-font-size(16px);
-
-@mixin rem-font-size($pxSize) {
-  font-size: $pxSize;
-  font-size: ($pxSize / 10px) + rem;
-}
