@@ -2,13 +2,24 @@
 //
 // You can remove or add your own function in this file.
 
+/// Convert px to rem
+/// @access public
+/// @param {Number} $px - Value of type in pixels
+/// @returns {Number} In rem
+/// @example rem(48px);
 
-/// colors black & white
-/// @example scss - Usage
-///   .my-class {
-///     background: black(0.15);
-///     color: white(0.9);
-///   }
+@function rem($px) {
+  @if unit($px) != 'px' {
+    @warn "Expected argument $px to be of type `px`, instead received: `#{unit($px)}`";
+  }
+
+  @return ($px / $rem) * 1rem;
+}
+
+/// Colors black & white
+/// @example background: black(0.15); 
+/// color: white(0.9);
+
 @function black($opacity){
   @return rgba(black, $opacity);
 }
@@ -23,6 +34,7 @@
 /// @param {Map} $map - Map
 /// @param {Arglist} $keys - Key chain
 /// @return {*} - Desired value
+
 @function map-deep-get($map, $keys...) {
     @each $key in $keys {
         $map: map-get($map, $key);
@@ -36,6 +48,7 @@
 /// @param {Arglist} $keys - Keys to access to value to update
 /// @param {*} $value - New value (last member of `$keys`)
 /// @return {Map} - Updated map
+
 @function map-deep-set($map, $keys.../*, $value */) {
   $map-list: ($map,);
   $result: null;
@@ -55,24 +68,18 @@
   @return $result;
 }
 
-// a map-set function (not included with Sass)
+/// A map-set function (not included with Sass)
 @function map-set($map, $key, $value) {
   $new: ($key: $value);
   @return map-merge($map, $new);
 }
 
-//  Function to create an optimized svg url
-//
-//  Version: 1.0.6
-// @example scss - Usage
-//
-// .btn{
-//   @include background-svg('
-//   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" xml:space="preserve"  preserveAspectRatio="none">
-//         <polygon fill="#0068f2" points="0,0 81,0 100,50 80,100 0,100 20,50" />
-//   </svg>');
-// }
-//
+/// Function to create an optimized svg url
+/// Version: 1.0.6
+/// @example url-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" xml:space="preserve"  preserveAspectRatio="none">
+///                     <polygon fill="#0068f2" points="0,0 81,0 100,50 80,100 0,100 20,50" />
+///                   </svg>');
+
 @function svg-url($svg){
     //
     //  Add missing namespace
@@ -125,12 +132,7 @@
     @return url("data:image/svg+xml,#{$encoded}");
 }
 
-//  Background svg mixin
-@mixin background-svg($svg){
-    background-image: svg-url($svg);
-}
-
-//  Helper function to replace characters in a string
+///  Helper function to replace characters in a string
 @function str-replace($string, $search, $replace: '') {
     $index: str-index($string, $search);
     @return if($index,

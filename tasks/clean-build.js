@@ -5,16 +5,28 @@
 
 const del = require('del');
 
-module.exports = function (options) {
-  const dir = [
-    `./${options.src}/`,
-  ];
+const global = require('../gulp-config.js');
+
+module.exports = function () {
   const config = {
     force: true,
   };
 
+  const production = global.isProduction();
+  const devFolders = [
+    `./${global.folder.build}`,
+    `./${global.folder.temp}`,
+  ];
+  const prodFolders = production ? [
+    `./${global.folder.prod}`,
+  ] : [];
+  const delFolders = [
+    ...devFolders,
+    ...prodFolders,
+  ];
+
   return async () => {
-    const deletedPaths = await del(dir, config);
+    const deletedPaths = await del(delFolders, config);
 
     // log paths for deleted files & directories
     // console.log('Deleted files and directories:\n', deletedPaths.join('\n'));

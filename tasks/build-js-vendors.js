@@ -6,51 +6,46 @@
 const gulp = require('gulp');
 const filesExist = require('files-exist');
 const concat = require('gulp-concat');
-const browserify = require('browserify');
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-const uglify = require('gulp-uglify');
-const gulpif = require('gulp-if');
-const notify = require('gulp-notify');
+const { rollup } = require('rollup');
+const resolve = require('@rollup/plugin-node-resolve');
+const babel = require('rollup-plugin-babel');
+const { terser } = require('rollup-plugin-terser');
 
-module.exports = function (options) {
-  const jsVendors = require(`../${options.src}/vendor_entries/${options.vendorJs}`);
-  const noneES5 = jsVendors.es5.length === 0 ? true : false;
-  const noneES6 = jsVendors.es6.length === 0 ? true : false;
-  const babelConfig = {
-    presets: ['@babel/preset-env'],
-  };
-  
-  options.error.title = 'JS compiling error';
+const notifier = require('../helpers/notifier');
+const global = require('../gulp-config.js');
+const vendorFiles = require(`../${global.folder.src}/vendor_entries/${global.file.vendorJs}`);
 
-  return (done) => {
-    if (noneES5 && noneES6) {
-      return done();
-    } else if (noneES6) {
-      return gulp.src(filesExist(jsVendors.es5))
-        .pipe(concat(options.isProduction ? options.vendorJsMin : options.vendorJs))
-        .pipe(gulpif(options.isProduction, uglify()))
-        .pipe(gulp.dest(`./${options.dest}/js`));
-    } else if (noneES5) {
-      return browserify({ entries: jsVendors.es6 })
-        .transform('babelify', babelConfig)
-        .bundle().on('error', notify.onError(options.error))
-        .pipe(source(options.isProduction ? options.vendorJsMin : options.vendorJs))
-        .pipe(gulpif(options.isProduction, buffer()))
-        .pipe(gulpif(options.isProduction, uglify()))
-        .pipe(gulp.dest(`./${options.dest}/js`));
-    } else {
-      return browserify({ entries: jsVendors.es6 })
-        .transform('babelify', babelConfig)
-        .bundle().on('error', notify.onError(options.error))
-        .pipe(source(options.vendorJsTemp))
-        .pipe(gulp.dest(`./${options.temp}/js`))
-        .on('end', () => {
-          gulp.src(filesExist([...jsVendors.es5, `./${options.temp}/js/${options.vendorJsTemp}`]))
-            .pipe(concat(options.isProduction ? options.vendorJsMin : options.vendorJs))
-            .pipe(gulpif(options.isProduction, uglify()))
-            .pipe(gulp.dest(`./${options.dest}/js`))
-        });
+module.exports = function () {
+  const production = global.isProduction();
+  const vendorFileName = production ? global.file.vendorJsMin : global.file.vendorJs;
+
+  return async (done) => {
+    try {
+      const bundle = await rollup({
+        input: `./${global.folder.src}/vendor_entries/${global.file.vendorJsComp}`,
+        treeshake: false,
+        plugins: [
+          resolve(),
+          babel(),
+          production ? terser() : null,
+        ],
+        onwarn(warning, warn) {
+          throw new Error(warning.message);
+        },
+      });
+
+      const tempJs = await bundle.write({
+        file: `./${global.folder.temp}/js/${global.file.vendorJsTemp}`,
+        format: 'iife',
+        name: 'vendor',
+        sourcemap: false,
+      });
+
+      await gulp.src(filesExist([...vendorFiles, `./${global.folder.temp}/js/${tempJs}`]))
+        .pipe(concat(vendorFileName))
+        .pipe(gulp.dest(`./${global.folder.build}/js`));
+    } catch (error) {
+      notifier.error(error, 'Vendor JS compiling error', done);
     }
   };
 };

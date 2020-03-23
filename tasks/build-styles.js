@@ -12,28 +12,30 @@ const autoprefixer = require('autoprefixer');
 const gcmq = require('postcss-sort-media-queries');
 const cssnano = require('cssnano');
 const rename = require('gulp-rename');
-const notify = require('gulp-notify');
+
+const notifier = require('../helpers/notifier');
+const global = require('../gulp-config.js');
 
 sass.compiler = require('sass');
 
-module.exports = function (options) {
+module.exports = function () {
+  const production = global.isProduction();
+  const mainFileName = production ? global.file.mainStylesMin : global.file.mainStyles;
   const plugins = [
     autoprefixer(),
   ];
-  
-  options.error.title = 'Sass compiling error';
 
-  options.isProduction ? plugins.push(gcmq({ sort: options.sortType, })) : false;
-  options.isProduction ? plugins.push(cssnano()) : false;
+  production ? plugins.push(gcmq({ sort: global.buildStyles.sortType, })) : null;
+  production ? plugins.push(cssnano()) : null;
 
-  return () => {
-    return gulp.src(`./${options.src}/scss/styles.scss`)
-      .pipe(rename(options.isProduction ? options.mainStylesMin : options.mainStyles))
-      .pipe(gulpif(!options.isProduction, sourcemaps.init({ loadMaps: true, })))
-      .pipe(sass.sync({ sourceMap: !options.isProduction, }))
-      .on('error', notify.onError(options.error))
+  return (done) => {
+    return gulp.src(`./${global.folder.src}/scss/${global.file.mainStylesSrc}`)
+      .pipe(rename(mainFileName))
+      .pipe(gulpif(!production, sourcemaps.init({ loadMaps: true, })))
+      .pipe(sass.sync({ sourceMap: !production, }))
+      .on('error', (error) => notifier.error(error.message, 'Main Sass compiling error', done))
       .pipe(postcss(plugins))
-      .pipe(gulpif(!options.isProduction, sourcemaps.write('./')))
-      .pipe(gulp.dest(`./${options.dest}/css`));
+      .pipe(gulpif(!production, sourcemaps.write('./')))
+      .pipe(gulp.dest(`./${global.folder.build}/css`));
   };
 };

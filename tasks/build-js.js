@@ -3,30 +3,40 @@
  */
 'use strict';
 
-const gulp = require('gulp');
-const browserify = require('browserify');
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-const uglify = require('gulp-uglify');
-const gulpif = require('gulp-if');
-const notify = require('gulp-notify');
+const { rollup } = require('rollup');
+const resolve = require('@rollup/plugin-node-resolve');
+const babel = require('rollup-plugin-babel');
+const { terser } = require('rollup-plugin-terser');
 
-module.exports = function (options) {
-  const babelConfig = {
-    presets: ['@babel/preset-env'],
-  };
-  
-  options.error.title = 'JS compiling error';
+const notifier = require('../helpers/notifier');
+const global = require('../gulp-config.js');
 
-  return () => {
-    return browserify({
-      entries: `./${options.src}/js/${options.mainJs}`,
-    })
-      .transform('babelify', babelConfig)
-      .bundle().on('error', notify.onError(options.error))
-      .pipe(source(options.isProduction ? options.mainJsMin : options.mainJs))
-      .pipe(gulpif(options.isProduction, buffer()))
-      .pipe(gulpif(options.isProduction, uglify()))
-      .pipe(gulp.dest(`./${options.dest}/js`));
+module.exports = function () {
+  const production = global.isProduction();
+  const mainFileName = production ? global.file.mainJsMin : global.file.mainJs;
+
+  return async (done) => {
+    try {
+      const bundle = await rollup({
+        input: `./${global.folder.src}/js/${global.file.mainJs}`,
+        plugins: [
+          resolve(),
+          babel(),
+          production ? terser() : null,
+        ],
+        onwarn(warning, warn) {
+          throw new Error(warning.message);
+        },
+      });
+
+      await bundle.write({
+        file: `./${global.folder.build}/js/${mainFileName}`,
+        format: 'iife',
+        name: 'main',
+        sourcemap: false,
+      });
+    } catch (error) {
+      notifier.error(error, 'Main JS compiling error', done);
+    }
   };
 };

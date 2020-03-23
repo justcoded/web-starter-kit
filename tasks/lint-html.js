@@ -4,14 +4,15 @@
 'use strict';
 
 const gulp = require('gulp');
-const notify = require('gulp-notify');
 const htmlhint = require('gulp-htmlhint');
 
-module.exports = function (options) {
-  options.error.title = 'HTML linting error';
+const notifier = require('../helpers/notifier');
+const global = require('../gulp-config.js');
+
+module.exports = function () {
 
   return (done) => {
-    gulp.src(`${options.dest}/*.html`)
+    gulp.src(`${global.buildHtml.templates}/*.html`)
       .pipe(htmlhint({
         'attr-lowercase': false,
       }))
@@ -19,7 +20,7 @@ module.exports = function (options) {
       .pipe(htmlhint.failOnError({
         suppress: true,
       }))
-      .on('error', notify.onError(options.error));
+      .on('error', (error) => notifier.error(error.message, 'HTML linting error'));
 
     return done();
   };
