@@ -41,7 +41,7 @@ module.exports = function () {
         sourcemap: false,
       });
 
-      await gulp.src(filesExist([...vendorFiles, `./${global.folder.temp}/js/${tempJs}`]))
+      await gulp.src(filesExist([...vendorFiles, `./${global.folder.temp}/js/${tempJs.output[0].fileName}`]))
         .pipe(concat(vendorFileName))
         .pipe(gulp.dest(`./${global.folder.build}/js`));
     } catch (error) {
