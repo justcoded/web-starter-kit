@@ -14,16 +14,16 @@ module.exports = function () {
 
   const production = global.isProduction();
   const devFolders = [
-    `./${global.folder.build}/**`,
+    `./${global.folder.dev}/**`,
     `./${global.folder.temp}/**`,
     
   ];
-  const prodFolders = production ? [
-    `./${global.folder.prod}/**`,
+  const buildFolders = production ? [
+    `./${global.folder.build}/**`,
   ] : [];
   const delFolders = [
     ...devFolders,
-    ...prodFolders,
+    ...buildFolders,
   ];
 
   return async () => {

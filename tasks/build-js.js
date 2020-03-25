@@ -30,7 +30,7 @@ module.exports = function () {
       });
 
       await bundle.write({
-        file: `./${global.folder.build}/js/${mainFileName}`,
+        file: `./${global.folder.dev}/js/${mainFileName}`,
         format: 'iife',
         name: 'main',
         sourcemap: false,

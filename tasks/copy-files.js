@@ -13,7 +13,7 @@ module.exports = function() {
 
   return () => {
     return gulp.src(filesList, { dot: true })
-      .pipe(newer(`./${global.folder.build}`))
-      .pipe(gulp.dest(`./${global.folder.build}`));
+      .pipe(newer(`./${global.folder.dev}`))
+      .pipe(gulp.dest(`./${global.folder.dev}`));
   };
 };

@@ -27,6 +27,6 @@ module.exports = function () {
     return gulp.src(`./${global.buildHtml.templates}/**/*.html`)
       .pipe(fileInclude(config))
       .on('error', (error) => notifier.error(error.message, 'HTML compiling error', done))
-      .pipe(gulp.dest(`./${global.folder.build}`));
+      .pipe(gulp.dest(`./${global.folder.dev}`));
   };
 };

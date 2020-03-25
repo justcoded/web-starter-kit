@@ -137,7 +137,7 @@ gulp.task('default', gulp.series(
 /**
  * Production mode - creating production folder without unnecessary files
  */
-gulp.task('build', gulp.series(
+gulp.task(global.task.build, gulp.series(
   global.task.cleanBuild,
   global.task.lintJs,
   gulp.parallel(

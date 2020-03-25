@@ -15,13 +15,13 @@ module.exports = {
     copyFilesProd: 'copy-files-production',
     browserSync: 'browser-sync',
     watch: 'watch',
-    prod: 'build',
+    build: 'build',
   },
   folder: {
     tasks: 'tasks',
     src: 'src',
-    build: 'assets',
-    prod: 'production',
+    dev: 'assets',
+    build: 'production',
     temp: '.temp',
   },
   file: {
@@ -74,12 +74,12 @@ module.exports = {
   },
   getFilesToCopyProd() {
     return [
-      `./${this.folder.build}/**`,
+      `./${this.folder.dev}/**`,
       '.htaccess',
     ];
   },
   isProduction() {
-    return process.argv[process.argv.length - 1] === this.task.prod;
+    return process.argv[process.argv.length - 1] === this.task.build;
   },
   isFixJs() {
     return process.argv[process.argv.length - 1] === this.task.fixJs;

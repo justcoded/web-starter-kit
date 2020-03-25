@@ -36,6 +36,6 @@ module.exports = function () {
       .on('error', (error) => notifier.error(error.message, 'Main Sass compiling error', done))
       .pipe(postcss(plugins))
       .pipe(gulpif(!production, sourcemaps.write('./')))
-      .pipe(gulp.dest(`./${global.folder.build}/css`));
+      .pipe(gulp.dest(`./${global.folder.dev}/css`));
   };
 };

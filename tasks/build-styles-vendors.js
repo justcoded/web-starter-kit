@@ -30,6 +30,6 @@ module.exports = function () {
       .pipe(sass.sync())
       .on('error', (error) => notifier.error(error.message, 'Vendor Sass compiling error', done))
       .pipe(postcss(plugins))
-      .pipe(gulp.dest(`./${global.folder.build}/css`));
+      .pipe(gulp.dest(`./${global.folder.dev}/css`));
   };
 };

@@ -12,6 +12,6 @@ module.exports = function () {
 
   return () => {
     return gulp.src(filesList, { dot: true })
-      .pipe(gulp.dest(`./${global.folder.prod}`));
+      .pipe(gulp.dest(`./${global.folder.build}`));
   };
 };

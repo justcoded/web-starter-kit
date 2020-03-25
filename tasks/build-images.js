@@ -26,9 +26,9 @@ module.exports = function () {
 
   return (done) => {
     return gulp.src(`./${global.folder.src}/images/**/*`)
-      .pipe(newer(`./${global.folder.build}/images`))
+      .pipe(newer(`./${global.folder.dev}/images`))
       .pipe(gulpif(runMinify, imagemin(plugins)))
       .on('error', (error) => notifier.error(error.message, 'Image Min error', done))
-      .pipe(gulp.dest(`./${global.folder.build}/images`));
+      .pipe(gulp.dest(`./${global.folder.dev}/images`));
   };
 };

@@ -44,7 +44,7 @@ module.exports = function () {
 
       gulp.src(filesExist([...vendorFiles, `./${global.folder.temp}/js/${tempJsFileName}`]))
         .pipe(concat(vendorFileName))
-        .pipe(gulp.dest(`./${global.folder.build}/js`));
+        .pipe(gulp.dest(`./${global.folder.dev}/js`));
     } catch (error) {
       notifier.error(error, 'Vendor JS compiling error', done);
     }
