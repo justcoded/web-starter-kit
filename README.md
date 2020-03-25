@@ -167,7 +167,7 @@ Included in `gulp` and `gulp build` tasks.
 $ gulp fix-js
 ```
 
-`gulp fix-js` task run auto-fix (eslint fix method) and lint for JS files.  
+`gulp fix-js` task run lint and auto-fix (eslint method) for JS files.  
 **Not included in any tasks**.
 
 ## Structure
@@ -270,7 +270,7 @@ In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for tr
 
 * You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the [autoprefixer](https://github.com/postcss/autoprefixer).
 
-In **production** mode we use:
+In **build (production)** mode we use:
 
 * **Group and sort CSS media queries** by [postcss-sort-media-queries](https://github.com/solversgroup/postcss-sort-media-queries). By **default** we use `desktop-first` sorting type, but you can change it in `gulp-config.js` to `mobile-first`.
 * **Minifying** `.css` files by [cssnano](https://github.com/cssnano/cssnano).
@@ -292,7 +292,7 @@ In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By de
 * After installing the extension you must **include** its **javascript** files in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
 * If you using ES modules or any types of modules, please import your modules in `vendor-compile.js`.
 
-In **production** mode we use:
+In **build (production)** mode we use:
 
 * **Minify** `.js` files by [terser](https://github.com/terser/terser).
 
@@ -306,7 +306,7 @@ For `js`, `scss`, `html` and `vendors_entries` folders after change in included 
 ## Images copy and minify
 
 In our WSK by default in [development and build (production) mode](#commands), task `build-images` only copy images.  
-For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in production mode, please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
+For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in build (production) mode, please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
 
 ## Tasks
 
