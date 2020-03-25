@@ -143,7 +143,7 @@ This includes linting as well as image, script, stylesheet and HTML optimization
 Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites resources.
 
 
-### Production mode
+### Build (production) mode
 
 Serve the Fully Built & Optimized Site
 
@@ -290,6 +290,7 @@ In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By de
 * All **javascript** is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include** its **javascript** files in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
+* If you using ES modules or any types of modules, please import your modules in `vendor-compile.js`.
 
 In **production** mode we use:
 
@@ -300,11 +301,11 @@ For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a
 ## Watching
 
 After run `gulp` by default gulp watching for your files in `src` and `assets` folders.
-For `js`, `scss`, `html` and `vendors_entries` folders after change in included files, watcher run they tasks for compiling. For `images` and other folders (and files in `src` root) watcher run tasks for copy files.
+For `js`, `scss`, `html` and `vendors_entries` folders after change in included files, watcher run they tasks for compiling. For `images` and other folders (and files in `src` root) watcher run tasks for copy files & reload browser.
 
 ## Images copy and minify
 
-In our WSK by default in [development and production mode](#commands), task `build-images` only copy images.  
+In our WSK by default in [development and build (production) mode](#commands), task `build-images` only copy images.  
 For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in production mode, please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
 
 ## Tasks
