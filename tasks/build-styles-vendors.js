@@ -25,8 +25,7 @@ module.exports = function () {
   production ? plugins.push(cssnano()) : null;
 
   return (done) => {
-    return gulp
-      .src(`./${global.folder.src}/vendor_entries/${global.file.vendorStylesSrc}`)
+    return gulp.src(`./${global.folder.src}/vendor_entries/${global.file.vendorStylesSrc}`)
       .pipe(rename(vendorFileName))
       .pipe(sass.sync())
       .on('error', (error) => notifier.error(error.message, 'Vendor Sass compiling error', done))

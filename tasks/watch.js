@@ -38,11 +38,11 @@ module.exports = function (options) {
       .on('unlink', (file) => cleaning(file))
       .on('add', gulp.series(global.task.copyFiles));
 
-    gulp.watch(`${global.folder.src}/images/**/*`)
+    gulp.watch(`${global.folder.src}/images/**`)
       .on('unlink', (file) => cleaning(file))
       .on('add', gulp.series(global.task.buildImages));
 
-    gulp.watch([`./${global.folder.build}/**/*`, `!./${global.folder.build}/**/*.map`])
+    gulp.watch([`./${global.folder.build}/**`, `!./${global.folder.build}/**/*.map`])
       .on('change', options.browserSyncInstance.reload)
       .on('unlink', options.browserSyncInstance.reload)
       .on('add', options.browserSyncInstance.reload);
