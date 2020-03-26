@@ -2,7 +2,7 @@
 
 >  A modern Web starter kit for projects
 
-![node](http://img.shields.io/badge/node-8.0.x-blue.svg) ![npm](https://img.shields.io/badge/npm-5.0.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
+![node](http://img.shields.io/badge/node-10.0.x-blue.svg) ![npm](https://img.shields.io/badge/npm-5.6.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
 
 
 ## Overview
@@ -50,8 +50,8 @@ This is not to say that WSK cannot be used in browsers older than those reflecte
 | Easy start | We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html` from `src/html`. |
 | HTML templating | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
 | Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we use [Dart-Sass](https://sass-lang.com/dart-sass) version compiler and follow [Sass guidelines](https://sass-guidelin.es/#architecture). |
-| PostCSS support | PostCSS connecting most usable plugins library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries), etc. |
-| JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. For bundling and transpiling used [Browserify](http://browserify.org/) and [Babel](https://babeljs.io/). |
+| PostCSS support | PostCSS connecting most usable plugins library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [postcss-sort-media-queries](https://github.com/solversgroup/postcss-sort-media-queries), etc. |
+| JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. For bundling and transpiling used [Rollup](https://rollupjs.org/) and [Babel](https://babeljs.io/). |
 | Code Linting | JavaScript code linting is done using [esLint](https://eslint.org/) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [HTMLHint](https://github.com/htmlhint/HTMLHint). |
 | Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `assets`). |
 | Built-in HTTP Server | A built-in server for previewing your site locally while you develop and iterate. |
@@ -98,7 +98,7 @@ Once you have verified that your system can run WSK, check out the [commands](#c
 ### [Node.js](https://nodejs.org)
 
 Bring up a terminal and type `node --version`.
-Node should respond with a version at or above 8.0.x.
+Node should respond with a version at or above 10.0.x.
 If you need to install Node, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
 
 ### [Gulp](http://gulpjs.com)
@@ -143,7 +143,7 @@ This includes linting as well as image, script, stylesheet and HTML optimization
 Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites resources.
 
 
-### Production mode
+### Build (production) mode
 
 Serve the Fully Built & Optimized Site
 
@@ -167,7 +167,7 @@ Included in `gulp` and `gulp build` tasks.
 $ gulp fix-js
 ```
 
-`gulp fix-js` task run auto-fix (eslint fix method) and lint for JS files.  
+`gulp fix-js` task run lint and auto-fix (eslint method) for JS files.  
 **Not included in any tasks**.
 
 ## Structure
@@ -177,9 +177,11 @@ Your folder structure for WSK:
 
 ```
 ├── assets              #Folder with files after compiling
+├── helpers             #Folder with helpers function for tasks
 ├── src                 #Folder with sources
-├── sys_icon            #Folder with system icons for notification
+├── system_files        #Folder with system files
 ├── tasks               #Folder with tasks for gulpfile
+├── .babelrc            #Config for Babel
 ├── .browserslistrc     #Config for autoprefixer
 ├── .editorconfig       #Config for IDE
 ├── .eslintignore       #Eslint ignore list
@@ -226,10 +228,11 @@ In `package.json` you can find all the dependencies. Folder `tasks` - for gulpfi
    ├── styles.scss             #Main file to import project styles (used for importing another files)
 ├── vendor_entries             #Folder for vendor entries (plugins)
    ├── vendor.js               #File for plugins js
+   ├── vendor-compile.js       #File for compiling (bunling) plugins js
    ├── vendor.scss             #File for plugins styles
 ```
 
-Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `scss/styles.scss` file .
+Use `images` folder to add your graphic files, `modules` to add your javascript modules (don't forget to include it in app.js), `scss` folder to add your styles for the project. You can create, delete files and folders in `scss`, but don't forget to include them in `scss/styles.scss` file.
 
 Use `vendor_entries` to include plugins into your project.
 
@@ -252,7 +255,7 @@ So while normal CSS doesn’t yet allow things like variables, mixins (reusable 
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include** its **css** or **sass** files in `src/vendor_entries/vendor.scss` using `@import`.
 
-You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
+You are able to add your own **custom sass files** and optionally **disable/enable** [postcss-sort-media-queries](https://github.com/solversgroup/postcss-sort-media-queries).
 You can see this property `getFilesForStylesCustom` in the `gulp-config.js` file:
 
 ![image](https://user-images.githubusercontent.com/38295556/72877232-2c8e3400-3d01-11ea-9653-ffd6fec69b28.png)
@@ -267,9 +270,9 @@ In our WSK you can use [PostCSS](https://postcss.org/). PostCSS is a tool for tr
 
 * You **don't need** to write **prefixes** for different browsers like `-webkit` it will be done by the [autoprefixer](https://github.com/postcss/autoprefixer).
 
-In **production** mode we use:
+In **build (production)** mode we use:
 
-* **Group and sort CSS media queries** by [sort-css-media-queries](https://github.com/solversgroup/postcss-sort-media-queries). By **default** we use `desktop-first` sorting type, but you can change it in `gulp-config.js` to `mobile-first`.
+* **Group and sort CSS media queries** by [postcss-sort-media-queries](https://github.com/solversgroup/postcss-sort-media-queries). By **default** we use `desktop-first` sorting type, but you can change it in `gulp-config.js` to `mobile-first`.
 * **Minifying** `.css` files by [cssnano](https://github.com/cssnano/cssnano).
 
 In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By default `1rem = 10px`.
@@ -280,29 +283,30 @@ In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By de
 
  It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language.
 
- For bundling and transpiling `.js` files in our WSK we used [Browserify](http://browserify.org/) and [Babel](https://babeljs.io/).
+ For bundling and transpiling `.js` files in our WSK we used [Rollup](https://rollupjs.org/) and [Babel](https://babeljs.io/).
 
 * All custom **javascript** files are located in `js` folder;
 * Entry point for javascript is `src/js/app.js` you can **import** all your **javascript** files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
 * All **javascript** is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
 * After installing the extension you must **include** its **javascript** files in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
+* If you using ES modules or any types of modules, please import your modules in `src/vendor_entries/vendor-compile.js`.
 
-In **production** mode we use:
+In **build (production)** mode we use:
 
-* **Uglifying** `.js` files by [uglifyJS](https://github.com/mishoo/UglifyJS2).
+* **Minify** `.js` files by [terser](https://github.com/terser/terser).
 
 For linting javascript files in WSK used [esLint](https://eslint.org/). esLint a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)) and some custom rules in file configuration `.eslintrc`.
 
 ## Watching
 
 After run `gulp` by default gulp watching for your files in `src` and `assets` folders.
-For `js`, `scss`, `html` and `vendors_entries` folders after change in included files, watcher run they tasks for compiling. For `images` and other folders (and files in `src` root) watcher run tasks for copy files.
+For `js`, `scss`, `html` and `vendors_entries` folders after change in included files, watcher run they tasks for compiling. For `images` and other folders (and files in `src` root) watcher run tasks for copy files & reload browser.
 
 ## Images copy and minify
 
-In our WSK by default in [development and production mode](#commands), task `build-images` only copy images.  
-For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in production mode, please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
+In our WSK by default in [development and build (production) mode](#commands), task `build-images` only copy images.  
+For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin).  If you want to minify your images in build (production) mode, please switch option `buildImages.isImageMin = true` in `gulp-config.js`.
 
 ## Tasks
 
@@ -315,8 +319,7 @@ For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imag
 | build-styles | Compiles all scss from `src/scss` to `assets/css`   folder. |
 | build-styles-custom | Compiles all custom scss files listed in the `gulp-config.js` to `assets/css` folder |
 | build-styles-vendors | Compiles all vendor styles from `src/vendor_entries` to `assets/css`   folder. |
-| clean-build | Cleaning `assets` folder. |
-| clean-production | Cleaning `production` folder. |
+| clean-build | Cleaning folders for output files. |
 | copy-files | Copy all not compiling files & folders from `src` to `assets`. |
 | copy-files-production | Copy all files & folders from `assets` to `production`. |
 | lint-html | Need to lint html files. |
