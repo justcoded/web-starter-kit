@@ -21,9 +21,8 @@
   @extend %clearfix;
 }
 
-// Only display content to screen readers
-//
-// See: http://a11yproject.com/posts/how-to-hide-content/
+/// Only display content to screen readers
+/// @link http://a11yproject.com/posts/how-to-hide-content/
 
 .sr-only {
   position: absolute;
@@ -36,9 +35,9 @@
   border: 0;
 }
 
-// Use in conjunction with .sr-only to only display content when it's focused.
-// Useful for "Skip to main content" links; see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
-// Credit: HTML5 Boilerplate
+/// Use in conjunction with .sr-only to only display content when it's focused.
+/// Useful for "Skip to main content"
+/// @link http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
 
 .sr-only-focusable {
   &:active,

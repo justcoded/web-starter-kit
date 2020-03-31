@@ -4,41 +4,47 @@
 'use strict';
 
 const gulp = require('gulp');
+const del = require('del');
+const path = require('path');
+
+const global = require('../gulp-config.js');
 
 module.exports = function (options) {
+  const filesList = global.getFilesToCopy();
+
+  async function cleaning(file) {
+    const config = {
+      force: true,
+    };
+
+    const filePathSrc = path.relative(path.resolve(global.folder.src), file);
+    const filePathBuild = `./${global.folder.dev}/${filePathSrc}`;
+
+    await del(filePathBuild, config);
+  }
 
   return () => {
-    gulp.watch(`./${options.src}/js/**/*`, gulp.series(options.tasks.lintJs, options.tasks.buildJs));
+    gulp.watch(`./${global.folder.src}/html/**/*.html`, gulp.series(global.task.buildHtml, global.task.lintHtml));
 
-    gulp.watch(`./${options.src}/scss/**/*`, gulp.series(options.tasks.buildStyles, options.tasks.buildStylesCustom));
+    gulp.watch(`./${global.folder.src}/scss/**/*.scss`, gulp.series(global.task.buildStyles, global.task.buildStylesCustom));
 
-    gulp.watch(`./${options.src}/html/**/*`, gulp.series(options.tasks.buildHtml, options.tasks.lintHtml));
+    gulp.watch(`./${global.folder.src}/js/**/*.js`, gulp.series(global.task.lintJs, global.task.buildJs));
 
-    gulp.watch(`./${options.src}/vendor_entries/vendor.js`, gulp.series(options.tasks.buildJsVendors));
+    gulp.watch(`./${global.folder.src}/vendor_entries/**/*.js`, gulp.series(global.task.buildJsVendors));
 
-    gulp.watch(`./${options.src}/vendor_entries/vendor.scss`, gulp.series(options.tasks.buildStylesVendors));
+    gulp.watch(`./${global.folder.src}/vendor_entries/**/*.scss`, gulp.series(global.task.buildStylesVendors));
 
-    gulp.watch(options.filesToCopy)
-      .on('unlink', (path) => {
-        options.deleteFile({
-          path,
-          event: 'unlink'
-        }, options.src, options.dest);
-      })
-      .on('add', gulp.series(options.tasks.copyFiles));
+    gulp.watch(filesList)
+      .on('unlink', (file) => cleaning(file))
+      .on('add', gulp.series(global.task.copyFiles));
 
-    gulp.watch(`${options.src}/images/**/*`)
-      .on('unlink', (path) => {
-        options.deleteFile({
-          path,
-          event: 'unlink'
-        }, options.src, options.dest);
-      })
-      .on('add', gulp.series(options.tasks.buildImages));
+    gulp.watch(`${global.folder.src}/images/**`)
+      .on('unlink', (file) => cleaning(file))
+      .on('add', gulp.series(global.task.buildImages));
 
-    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`])
-      .on('change', options.browserSync.reload)
-      .on('unlink', options.browserSync.reload)
-      .on('add', options.browserSync.reload);
+    gulp.watch([`./${global.folder.dev}/**`, `!./${global.folder.dev}/**/*.map`])
+      .on('change', options.browserSyncInstance.reload)
+      .on('unlink', options.browserSyncInstance.reload)
+      .on('add', options.browserSyncInstance.reload);
   };
 };

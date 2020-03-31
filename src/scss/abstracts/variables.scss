@@ -1,11 +1,14 @@
 // Global variables
 
+// 'rem' base value
+$rem: 10px;
+
 // Breakpoints for include media mixin
 $breakpoints: (
-  'phone': 48rem,
-  'tablet': 76.8rem,
-  'desktop': 98rem,
-  'widescreen': 120rem
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 980px,
+  'widescreen': 1200px,
 );
 
 // Keywords for include media mixin
@@ -17,19 +20,9 @@ $media-expressions: (
   'portrait': '(orientation: portrait)',
   'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
   'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)',
-  'hover': '(hover: hover) and (pointer: fine)'
-);
-
-// Base font styles for headings
-$headings: (
-  'sizes': (
-    'h1-font-size': 3rem,
-    'h2-font-size': 2.7rem,
-    'h3-font-size': 2.4rem,
-    'h4-font-size': 2.1rem,
-    'h5-font-size': 1.7rem,
-    'h6-font-size': 1.5rem
-  )
+  'hover': '(hover: hover) and (pointer: fine)',
+  'theme-light': 'prefers-color-scheme: light',
+  'theme-dark': 'prefers-color-scheme: dark',
 );
 
 :root {
@@ -77,4 +70,12 @@ $headings: (
   // Headings base
   --headings-font-family: inherit;
   --headings-color: inherit;
+
+  // Base font styles for headings
+  --headings-sizes-h1: 3rem;
+  --headings-sizes-h2: 2.7rem;
+  --headings-sizes-h3: 2.4rem;
+  --headings-sizes-h4: 2.1rem;
+  --headings-sizes-h5: 1.7rem;
+  --headings-sizes-h6: 1.5rem;
 }
