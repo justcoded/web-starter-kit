@@ -25,6 +25,14 @@ module.exports = function () {
           production ? terser() : null,
         ],
         onwarn(warning, warn) {
+          // skip certain warnings
+          if (
+            warning.code === 'UNUSED_EXTERNAL_IMPORT' 
+            || warning.code === 'THIS_IS_UNDEFINED' 
+            || warning.code === 'NON_EXISTENT_EXPORT'
+          )
+            return;
+
           throw new Error(warning.message);
         },
       });
@@ -36,6 +44,8 @@ module.exports = function () {
         sourcemap: false,
       });
     } catch (error) {
+      // for more details of error
+      // console.log(error);
       notifier.error(error, 'Main JS compiling error', done);
     }
   };
