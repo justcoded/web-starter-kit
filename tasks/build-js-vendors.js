@@ -59,8 +59,6 @@ module.exports = function () {
         .pipe(concat(vendorFileName))
         .pipe(gulp.dest(`./${global.folder.dev}/js`));
     } catch (error) {
-      // for more details of error
-      // console.log(error);
       notifier.error(error, 'Vendor JS compiling error', done);
     }
   };

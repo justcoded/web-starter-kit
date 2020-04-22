@@ -44,8 +44,6 @@ module.exports = function () {
         sourcemap: false,
       });
     } catch (error) {
-      // for more details of error
-      // console.log(error);
       notifier.error(error, 'Main JS compiling error', done);
     }
   };
