@@ -25,6 +25,14 @@ module.exports = function () {
           production ? terser() : null,
         ],
         onwarn(warning, warn) {
+          // skip certain warnings
+          if (
+            warning.code === 'UNUSED_EXTERNAL_IMPORT' 
+            || warning.code === 'THIS_IS_UNDEFINED' 
+            || warning.code === 'NON_EXISTENT_EXPORT'
+          )
+            return;
+
           throw new Error(warning.message);
         },
       });
