@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "include-media": "1.4.9",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "normalize.css": "8.0.1"
   }
 }
