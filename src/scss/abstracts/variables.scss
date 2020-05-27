@@ -1,3 +1,5 @@
+@import 'functions';
+
 // Global variables
 
 // 'rem' base value
@@ -57,19 +59,19 @@ $media-expressions: (
   --btn-color: var(--color-white);
   --btn-background: var(--color-blue);
   --btn-padding: 0.4em 0.7em;
-  --btn-font-size: inherit;
-  --btn-font-family: inherit;
+  --btn-font-size: 1.6rem;
+  --btn-font-family: var(--font-sans-serif);
 
   // Forms base
-  --form-font-family: inherit;
+  --form-font-family: var(--font-sans-serif);
   --form-element-padding: var(--btn-padding);
   --form-element-border-color: var(--color-grey);
   --form-element-focus-border-color: var(--color-black);
   --placeholder-color: var(--color-grey);
 
   // Headings base
-  --headings-font-family: inherit;
-  --headings-color: inherit;
+  --headings-font-family: var(--font-sans-serif);
+  --headings-color: var(--base-text-color);
 
   // Base font styles for headings
   --headings-sizes-h1: 3rem;
