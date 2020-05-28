@@ -121,10 +121,7 @@ gulp.task('default', gulp.series(
       global.task.buildStylesCustom,
       global.task.buildStylesVendors,
     ),
-    gulp.series(
-      global.task.buildJs,
-      global.task.buildJsVendors,
-    ),
+    global.task.buildJs,
   ),
   global.task.buildImages,
   global.task.copyFiles,
@@ -150,10 +147,7 @@ gulp.task(global.task.build, gulp.series(
       global.task.buildStylesCustom,
       global.task.buildStylesVendors,
     ),
-    gulp.series(
-      global.task.buildJs,
-      global.task.buildJsVendors,
-    ),
+    global.task.buildJs,
   ),
   global.task.buildImages,
   global.task.copyFiles,
