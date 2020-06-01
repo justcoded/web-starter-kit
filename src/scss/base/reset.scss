@@ -2,14 +2,14 @@
 //
 // Note: If you use a framework that includes base styling then you need to remove this file.
 
-html {
-  box-sizing: border-box;
-  font-size: 62.5%;
-}
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 body {
@@ -29,14 +29,4 @@ img {
 // google map fix
 .gm-style img {
   max-width: none;
-}
-
-// hide tel links on desktop
-@include media('screen', '>desktop') {
-  a[href^='tel'],
-  a[href^='skype'],
-  a[href^='sms'] {
-    cursor: default;
-    pointer-events: none;
-  }
 }
