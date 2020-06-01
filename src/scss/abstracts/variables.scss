@@ -22,9 +22,10 @@ $media-expressions: (
   'portrait': '(orientation: portrait)',
   'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
   'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)',
-  'hover': '(hover: hover) and (pointer: fine)',
+  'hover': '(hover: hover) and (pointer: fine), (-ms-high-contrast: none), (-ms-high-contrast: active)',
   'theme-light': 'prefers-color-scheme: light',
   'theme-dark': 'prefers-color-scheme: dark',
+  'ie': '(-ms-high-contrast: none), (-ms-high-contrast: active)',
 );
 
 :root {
