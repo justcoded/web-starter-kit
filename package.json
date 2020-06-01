@@ -46,6 +46,7 @@
     "postcss-import": "12.0.1",
     "postcss-sort-media-queries": "1.4.23",
     "sass": "1.26.3",
+    "terser-webpack-plugin": "3.0.2",
     "webpack": "4.43.0"
   },
   "engines": {

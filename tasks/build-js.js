@@ -5,6 +5,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const notifier = require('../helpers/notifier');
 const global = require('../gulp-config.js');
@@ -22,10 +23,7 @@ module.exports = function () {
         mode: 'none',
         entry: `./${global.folder.src}/js/${global.file.mainJs}`,
         output: {
-          path: path.resolve(
-            __dirname.split('task')[0],
-            `${global.folder.dev}/js/`
-          ),
+          path: path.resolve(global.folder.dev, `js/`),
           filename: `${mainFileName}`,
         },
         optimization: {
@@ -40,6 +38,8 @@ module.exports = function () {
               },
             },
           },
+          minimize: production,
+          minimizer: [new TerserPlugin()],
         },
         module: {
           rules: [
