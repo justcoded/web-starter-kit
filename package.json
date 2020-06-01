@@ -22,13 +22,13 @@
     "@babel/core": "7.9.0",
     "@babel/preset-env": "7.9.0",
     "autoprefixer": "9.7.5",
+    "babel-loader": "8.1.0",
     "browser-sync": "2.26.7",
     "cssnano": "4.1.10",
     "del": "5.1.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.1.0",
     "eslint-plugin-import": "2.20.1",
-    "files-exist": "1.1.0",
     "gulp": "4.0.2",
     "gulp-concat": "2.6.1",
     "gulp-debug": "4.0.0",
@@ -46,7 +46,7 @@
     "postcss-import": "12.0.1",
     "postcss-sort-media-queries": "1.4.23",
     "sass": "1.26.3",
-    "webpack": "^4.43.0"
+    "webpack": "4.43.0"
   },
   "engines": {
     "node": ">=10.0.0"

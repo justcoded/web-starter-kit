@@ -76,11 +76,6 @@ gulp.task(global.task.fixJs, require('./tasks/lint-js')());
 gulp.task(global.task.buildJs, require('./tasks/build-js')());
 
 /**
- * Build JS vendor (concatenate vendors array)
- */
-gulp.task(global.task.buildJsVendors, require('./tasks/build-js-vendors')());
-
-/**
  * Copy & minify images
  */
 gulp.task(global.task.buildImages, require('./tasks/build-images')());

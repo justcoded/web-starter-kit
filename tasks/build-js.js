@@ -41,6 +41,17 @@ module.exports = function () {
             },
           },
         },
+        module: {
+          rules: [
+            {
+              test: /\.m?js$/,
+              exclude: /(node_modules)/,
+              use: {
+                loader: 'babel-loader',
+              }
+            }
+          ]
+        },
       };
 
       const bundler = webpack(config);
