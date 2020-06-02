@@ -5,7 +5,6 @@ module.exports = {
     fixJs: 'fix-js',
     buildHtml: 'build-html',
     buildJs: 'build-js',
-    buildJsVendors: 'build-js-vendors',
     buildStyles: 'build-styles',
     buildStylesCustom: 'build-styles-custom',
     buildStylesVendors: 'build-styles-vendors',
@@ -30,8 +29,6 @@ module.exports = {
     mainJsMin: 'app.min.js',
     vendorJs: 'vendor.js',
     vendorJsMin: 'vendor.min.js',
-    vendorJsComp: 'vendor-compile.js',
-    vendorJsTemp: 'vendor.temp.js',
     mainStylesSrc: 'styles.scss',
     mainStyles: 'styles.css',
     mainStylesMin: 'styles.min.css',
@@ -59,6 +56,7 @@ module.exports = {
   getFilesForStylesCustom() {
     return {
       files: [],
+      // gcmq - group css media queries
       isGcmq: false,
     };
   },

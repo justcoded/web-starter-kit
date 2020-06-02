@@ -54,9 +54,11 @@ module.exports = function () {
         },
       };
 
-      const bundler = webpack(config);
+      webpack(config, (error, stats) => {
+        if (stats) {
+          return done();
+        }
 
-      bundler.run((error, stats) => {
         if (error) {
           throw new Error(error);
         }
@@ -72,10 +74,8 @@ module.exports = function () {
           );
         }
       });
-
-      return done();
     } catch (error) {
-      notifier.error(error, 'Main JS compiling error', done);
+      notifier.error(error, 'JS compiling error', done);
     }
   };
 };
