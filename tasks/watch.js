@@ -15,6 +15,7 @@ module.exports = function (options) {
   async function cleaning(file) {
     const config = {
       force: true,
+      dot: true,
     };
 
     const filePathSrc = path.relative(path.resolve(global.folder.src), file);
