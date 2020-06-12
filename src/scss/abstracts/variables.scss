@@ -1,3 +1,5 @@
+@import 'functions';
+
 // Global variables
 
 // 'rem' base value
@@ -20,9 +22,10 @@ $media-expressions: (
   'portrait': '(orientation: portrait)',
   'retina2x': ('(-webkit-min-device-pixel-ratio: 1.5)', '(min-resolution: 144dpi)'),
   'retina3x': ('(-webkit-min-device-pixel-ratio: 2.5)', '(min-resolution: 240dpi)'),
-  'hover': ('(hover: hover)' '(pointer: fine)'),
+  'hover': ('(hover: hover)' '(pointer: fine)', '(-ms-high-contrast: none)', '(-ms-high-contrast: active)'),
   'theme-light': 'prefers-color-scheme: light',
   'theme-dark': 'prefers-color-scheme: dark',
+  'ie': ('(-ms-high-contrast: none)', '(-ms-high-contrast: active)'),
 );
 
 :root {
@@ -57,19 +60,19 @@ $media-expressions: (
   --btn-color: var(--color-white);
   --btn-background: var(--color-blue);
   --btn-padding: 0.4em 0.7em;
-  --btn-font-size: inherit;
-  --btn-font-family: inherit;
+  --btn-font-size: 1.6rem;
+  --btn-font-family: var(--font-sans-serif);
 
   // Forms base
-  --form-font-family: inherit;
+  --form-font-family: var(--font-sans-serif);
   --form-element-padding: var(--btn-padding);
   --form-element-border-color: var(--color-grey);
   --form-element-focus-border-color: var(--color-black);
   --placeholder-color: var(--color-grey);
 
   // Headings base
-  --headings-font-family: inherit;
-  --headings-color: inherit;
+  --headings-font-family: var(--font-sans-serif);
+  --headings-color: var(--base-text-color);
 
   // Base font styles for headings
   --headings-sizes-h1: 3rem;
