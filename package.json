@@ -62,7 +62,7 @@
     "fix-js": "gulp fix-js"
   },
   "dependencies": {
-    "include-media": "1.4.9",
+    "include-media-or": "1.0.3",
     "jquery": "3.5.1",
     "normalize.css": "8.0.1"
   }
