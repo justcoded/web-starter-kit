@@ -24,7 +24,7 @@ module.exports = function () {
         entry: `./${global.folder.src}/js/${global.file.mainJs}`,
         output: {
           path: path.resolve(global.folder.dev, `js/`),
-          filename: `${mainFileName}`,
+          filename: mainFileName,
         },
         optimization: {
           splitChunks: {
@@ -34,7 +34,7 @@ module.exports = function () {
             cacheGroups: {
               vendor: {
                 test: /[\\/](node_modules|vendor_entries)[\\/]/,
-                filename: `${vendorFileName}`,
+                filename: vendorFileName,
               },
             },
           },

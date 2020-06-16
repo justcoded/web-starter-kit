@@ -19,6 +19,7 @@
   h1 {
     @include animate(text-shadow);
     font-size: rem(48px);
+    color: var(--color-white);
     @include media('hover') {
       &:hover {
         text-shadow: 0.1rem 0.5rem 0.5rem rgba(#fff, 0.5);
