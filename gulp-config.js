@@ -43,6 +43,9 @@ module.exports = {
     // Sorting type css media queries: 'desktop-first' || 'mobile-first'
     sortType: 'desktop-first',
   },
+  buildJs: {
+    externalLibs: {},
+  },
   buildImages: {
     imageExtensions: 'jpg,jpeg,png,svg,gif,ico',
     isImageMin: false,

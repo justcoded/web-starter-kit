@@ -52,6 +52,7 @@ module.exports = function () {
             }
           ]
         },
+        externals: global.buildJs.externalLibs,
       };
 
       webpack(config, (error, stats) => {
