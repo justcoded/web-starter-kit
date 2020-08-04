@@ -12,7 +12,7 @@ module.exports = function (options) {
   return () => {
     options.browserSyncInstance.init({
       notify: false,
-      injectChanges: true,
+      injectChanges: false,
       minify: false,
       server: {
         baseDir: global.folder.dev,
