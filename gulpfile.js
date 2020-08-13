@@ -30,75 +30,89 @@ const browserSyncInstance = require('browser-sync').create();
 
 const global = require('./gulp-config.js');
 
+const cleanBuild = require('./tasks/clean-build');
+const lintHtml = require('./tasks/lint-html');
+const buildHtml = require('./tasks/build-html');
+const buildStyles = require('./tasks/build-styles');
+const buildStylesCustom = require('./tasks/build-styles-custom');
+const buildStylesVendors = require('./tasks/build-styles-vendors');
+const lintJs = require('./tasks/lint-js');
+const buildJs = require('./tasks/build-js');
+const buildImages = require('./tasks/build-images');
+const copyFiles = require('./tasks/copy-files');
+const copyFilesProd = require('./tasks/copy-files-production');
+const browserSync = require('./tasks/browser-sync-server');
+const watch = require('./tasks/watch');
+
 /**
  * Clean build folders
  */
-gulp.task(global.task.cleanBuild, require('./tasks/clean-build')());
+gulp.task(global.task.cleanBuild, cleanBuild());
 
 /**
  * Lint HTML
  */
-gulp.task(global.task.lintHtml, require('./tasks/lint-html')());
+gulp.task(global.task.lintHtml, lintHtml());
 
 /**
  * Template HTML
  */
-gulp.task(global.task.buildHtml, require('./tasks/build-html')());
+gulp.task(global.task.buildHtml, buildHtml());
 
 /**
  * Build styles for application
  */
-gulp.task(global.task.buildStyles, require('./tasks/build-styles')());
+gulp.task(global.task.buildStyles, buildStyles());
 
 /**
  * Build styles custom files listed in the config
  */
-gulp.task(global.task.buildStylesCustom, require('./tasks/build-styles-custom')());
+gulp.task(global.task.buildStylesCustom, buildStylesCustom());
 
 /**
  * Build styles for vendor
  */
-gulp.task(global.task.buildStylesVendors, require('./tasks/build-styles-vendors')());
+gulp.task(global.task.buildStylesVendors, buildStylesVendors());
 
 /**
  * Lint JS
  */
-gulp.task(global.task.lintJs, require('./tasks/lint-js')());
+gulp.task(global.task.lintJs, lintJs());
 
 /**
  * Fix JS files
  */
-gulp.task(global.task.fixJs, require('./tasks/lint-js')());
+gulp.task(global.task.fixJs, lintJs());
 
 /**
  * Build JS
  */
-gulp.task(global.task.buildJs, require('./tasks/build-js')());
+gulp.task(global.task.buildJs, buildJs());
 
 /**
  * Copy & minify images
  */
-gulp.task(global.task.buildImages, require('./tasks/build-images')());
+gulp.task(global.task.buildImages, buildImages());
 
 /**
  * Copy folders to the build folder
  */
-gulp.task(global.task.copyFiles, require('./tasks/copy-files')());
+gulp.task(global.task.copyFiles, copyFiles());
 
 /**
  * Copy folders to the production folder
  */
-gulp.task(global.task.copyFilesProd, require('./tasks/copy-files-production')());
+gulp.task(global.task.copyFilesProd, copyFilesProd());
 
 /**
  * Start browserSync server
  */
-gulp.task(global.task.browserSync, require('./tasks/browser-sync-server')({ browserSyncInstance }));
+gulp.task(global.task.browserSync, browserSync({ browserSyncInstance }));
 
 /**
  * Watch for file changes
  */
-gulp.task(global.task.watch, require('./tasks/watch')({ browserSyncInstance }));
+gulp.task(global.task.watch, watch({ browserSyncInstance }));
 
 /**
  * Develop mode - with browser sync, file watch & live reload

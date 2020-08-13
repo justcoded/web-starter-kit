@@ -45,7 +45,7 @@
     "gulp-sass": "4.1.0",
     "gulp-sourcemaps": "2.6.5",
     "htmlhint-stylish": "1.0.3",
-    "node-notifier": "7.0.2",
+    "node-notifier": "8.0.0",
     "postcss-import": "12.0.1",
     "postcss-sort-media-queries": "1.7.26",
     "sass": "1.26.10",

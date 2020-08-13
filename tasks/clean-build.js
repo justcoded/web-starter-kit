@@ -16,8 +16,6 @@ module.exports = function () {
   const production = global.isProduction();
   const devFolders = [
     `./${global.folder.dev}/**`,
-    `./${global.folder.temp}/**`,
-    
   ];
   const buildFolders = production ? [
     `./${global.folder.build}/**`,

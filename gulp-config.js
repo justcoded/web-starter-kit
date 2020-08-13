@@ -21,7 +21,6 @@ module.exports = {
     src: 'src',
     dev: 'assets',
     build: 'production',
-    temp: '.temp',
   },
   file: {
     mainHtml: 'index.html',

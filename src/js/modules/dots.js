@@ -21,7 +21,7 @@ const _createCells = () => {
 const dots = () => {
   const $cnt = $('.entry-section');
   const cells = _createCells();
-  
+
   $cnt.html(cells);
 };
 

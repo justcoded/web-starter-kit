@@ -4,6 +4,7 @@ branches:
   only:
     - master
 node_js:
+  - '14'
   - '13'
   - '12'
   - '11'
