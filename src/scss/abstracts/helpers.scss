@@ -57,8 +57,5 @@
 /// * 2. Add ellipsis at the end of the line.
 
 .ellipsis {
-  white-space: nowrap; // 1
-  text-overflow: ellipsis; // 2 
-  overflow: hidden;
+  @include ellipsis;
 }
-
