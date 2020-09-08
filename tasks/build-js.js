@@ -56,14 +56,10 @@ module.exports = function () {
       };
 
       webpack(config, (error, stats) => {
-        if (stats) {
-          return done();
-        }
-
         if (error) {
           throw new Error(error);
         }
-
+        
         if (production) {
           console.log(
             stats.toString({
@@ -74,6 +70,8 @@ module.exports = function () {
             })
           );
         }
+
+        return done();
       });
     } catch (error) {
       notifier.error(error, 'JS compiling error', done);
