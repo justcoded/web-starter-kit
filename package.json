@@ -1,6 +1,6 @@
 {
   "name": "web-starter-jc",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Starter kit for markup projects",
   "repository": {
     "type": "git",
@@ -19,37 +19,38 @@
   },
   "homepage": "https://github.com/justcoded/web-starter-kit",
   "devDependencies": {
-    "@babel/core": "7.9.0",
-    "@babel/preset-env": "7.9.0",
-    "@rollup/plugin-node-resolve": "7.1.1",
-    "autoprefixer": "9.7.5",
-    "browser-sync": "2.26.7",
+    "@babel/core": "7.11.1",
+    "@babel/plugin-proposal-object-rest-spread": "7.11.0",
+    "@babel/plugin-syntax-dynamic-import": "7.8.3",
+    "@babel/plugin-transform-runtime": "7.11.0",
+    "@babel/preset-env": "7.11.0",
+    "@babel/runtime": "7.11.2",
+    "autoprefixer": "9.8.6",
+    "babel-loader": "8.1.0",
+    "browser-sync": "2.26.12",
     "cssnano": "4.1.10",
     "del": "5.1.0",
-    "eslint": "6.8.0",
-    "eslint-config-airbnb-base": "14.1.0",
-    "eslint-plugin-import": "2.20.1",
-    "files-exist": "1.1.0",
+    "eslint": "7.8.1",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "2.22.0",
     "gulp": "4.0.2",
-    "gulp-concat": "2.6.1",
     "gulp-debug": "4.0.0",
-    "gulp-file-include": "2.1.1",
-    "gulp-htmlhint": "3.0.0",
+    "gulp-file-include": "2.2.2",
+    "gulp-htmlhint": "3.0.1",
     "gulp-if": "3.0.0",
     "gulp-imagemin": "7.1.0",
     "gulp-newer": "1.4.0",
     "gulp-postcss": "8.0.0",
     "gulp-rename": "2.0.0",
-    "gulp-sass": "4.0.2",
+    "gulp-sass": "4.1.0",
     "gulp-sourcemaps": "2.6.5",
     "htmlhint-stylish": "1.0.3",
-    "node-notifier": "7.0.0",
+    "node-notifier": "8.0.0",
     "postcss-import": "12.0.1",
-    "postcss-sort-media-queries": "1.4.23",
-    "rollup": "2.7.1",
-    "rollup-plugin-babel": "4.4.0",
-    "rollup-plugin-terser": "5.3.0",
-    "sass": "1.26.3"
+    "postcss-sort-media-queries": "1.7.26",
+    "sass": "1.26.10",
+    "terser-webpack-plugin": "4.1.0",
+    "webpack": "4.44.1"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -61,8 +62,7 @@
     "fix-js": "gulp fix-js"
   },
   "dependencies": {
-    "include-media": "1.4.9",
-    "jquery": "3.5.0",
+    "jquery": "3.5.1",
     "normalize.css": "8.0.1"
   }
 }

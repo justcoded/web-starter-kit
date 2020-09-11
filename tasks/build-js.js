@@ -3,10 +3,9 @@
  */
 'use strict';
 
-const { rollup } = require('rollup');
-const resolve = require('@rollup/plugin-node-resolve');
-const babel = require('rollup-plugin-babel');
-const { terser } = require('rollup-plugin-terser');
+const webpack = require('webpack');
+const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const notifier = require('../helpers/notifier');
 const global = require('../gulp-config.js');
@@ -14,37 +13,68 @@ const global = require('../gulp-config.js');
 module.exports = function () {
   const production = global.isProduction();
   const mainFileName = production ? global.file.mainJsMin : global.file.mainJs;
+  const vendorFileName = production
+    ? global.file.vendorJsMin
+    : global.file.vendorJs;
 
-  return async (done) => {
+  return (done) => {
     try {
-      const bundle = await rollup({
-        input: `./${global.folder.src}/js/${global.file.mainJs}`,
-        plugins: [
-          resolve(),
-          babel(),
-          production ? terser() : null,
-        ],
-        onwarn(warning, warn) {
-          // skip certain warnings
-          if (
-            warning.code === 'UNUSED_EXTERNAL_IMPORT' 
-            || warning.code === 'THIS_IS_UNDEFINED' 
-            || warning.code === 'NON_EXISTENT_EXPORT'
-          )
-            return;
-
-          throw new Error(warning.message);
+      const config = {
+        mode: 'none',
+        entry: `./${global.folder.src}/js/${global.file.mainJs}`,
+        output: {
+          path: path.resolve(global.folder.dev, `js/`),
+          filename: mainFileName,
         },
-      });
+        optimization: {
+          splitChunks: {
+            chunks: 'all',
+            maxInitialRequests: Infinity,
+            minSize: 0,
+            cacheGroups: {
+              vendor: {
+                test: /[\\/](node_modules|vendor_entries)[\\/]/,
+                filename: vendorFileName,
+              },
+            },
+          },
+          minimize: production,
+          minimizer: [new TerserPlugin()],
+        },
+        module: {
+          rules: [
+            {
+              test: /\.m?js$/,
+              exclude: /(node_modules)/,
+              use: {
+                loader: 'babel-loader',
+              }
+            }
+          ]
+        },
+        externals: global.buildJs.externalLibs,
+      };
 
-      await bundle.write({
-        file: `./${global.folder.dev}/js/${mainFileName}`,
-        format: 'iife',
-        name: 'main',
-        sourcemap: false,
+      webpack(config, (error, stats) => {
+        if (error) {
+          throw new Error(error);
+        }
+        
+        if (production) {
+          console.log(
+            stats.toString({
+              version: false,
+              hash: false,
+              chunks: false,
+              colors: true,
+            })
+          );
+        }
+
+        return done();
       });
     } catch (error) {
-      notifier.error(error, 'Main JS compiling error', done);
+      notifier.error(error, 'JS compiling error', done);
     }
   };
 };

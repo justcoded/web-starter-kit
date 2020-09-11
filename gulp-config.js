@@ -5,7 +5,6 @@ module.exports = {
     fixJs: 'fix-js',
     buildHtml: 'build-html',
     buildJs: 'build-js',
-    buildJsVendors: 'build-js-vendors',
     buildStyles: 'build-styles',
     buildStylesCustom: 'build-styles-custom',
     buildStylesVendors: 'build-styles-vendors',
@@ -22,7 +21,6 @@ module.exports = {
     src: 'src',
     dev: 'assets',
     build: 'production',
-    temp: '.temp',
   },
   file: {
     mainHtml: 'index.html',
@@ -30,8 +28,6 @@ module.exports = {
     mainJsMin: 'app.min.js',
     vendorJs: 'vendor.js',
     vendorJsMin: 'vendor.min.js',
-    vendorJsComp: 'vendor-compile.js',
-    vendorJsTemp: 'vendor.temp.js',
     mainStylesSrc: 'styles.scss',
     mainStyles: 'styles.css',
     mainStylesMin: 'styles.min.css',
@@ -46,6 +42,9 @@ module.exports = {
     // Sorting type css media queries: 'desktop-first' || 'mobile-first'
     sortType: 'desktop-first',
   },
+  buildJs: {
+    externalLibs: {},
+  },
   buildImages: {
     imageExtensions: 'jpg,jpeg,png,svg,gif,ico',
     isImageMin: false,
@@ -59,6 +58,7 @@ module.exports = {
   getFilesForStylesCustom() {
     return {
       files: [],
+      // gcmq - group css media queries
       isGcmq: false,
     };
   },

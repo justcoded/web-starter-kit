@@ -51,7 +51,7 @@ This is not to say that WSK cannot be used in browsers older than those reflecte
 | HTML templating | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
 | Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we use [Dart-Sass](https://sass-lang.com/dart-sass) version compiler and follow [Sass guidelines](https://sass-guidelin.es/#architecture). |
 | PostCSS support | PostCSS connecting most usable plugins library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [postcss-sort-media-queries](https://github.com/solversgroup/postcss-sort-media-queries), etc. |
-| JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. For bundling and transpiling used [Rollup](https://rollupjs.org/) and [Babel](https://babeljs.io/). |
+| JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. For bundling and transpiling used [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io/). |
 | Code Linting | JavaScript code linting is done using [esLint](https://eslint.org/) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [HTMLHint](https://github.com/htmlhint/HTMLHint). |
 | Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `assets`). |
 | Built-in HTTP Server | A built-in server for previewing your site locally while you develop and iterate. |
@@ -227,8 +227,6 @@ In `package.json` you can find all the dependencies. Folder `tasks` - for gulpfi
    ├── pages                   #Global styles for pages
    ├── styles.scss             #Main file to import project styles (used for importing another files)
 ├── vendor_entries             #Folder for vendor entries (plugins)
-   ├── vendor.js               #File for plugins js
-   ├── vendor-compile.js       #File for compiling (bunling) plugins js
    ├── vendor.scss             #File for plugins styles
 ```
 
@@ -283,14 +281,13 @@ In our WSK we use **CSS3 custom properties** and **relative units** `rem`. By de
 
  It is not an alternative syntax or language like CoffeeScript or TypeScript. It's good ol' fashioned JavaScript. The reason so many people are excited is that this version introduces a lot of much-needed improvements to the language.
 
- For bundling and transpiling `.js` files in our WSK we used [Rollup](https://rollupjs.org/) and [Babel](https://babeljs.io/).
+ For bundling and transpiling `.js` files in our WSK we used [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io/).
 
 * All custom **javascript** files are located in `js` folder;
 * Entry point for javascript is `src/js/app.js` you can **import** all your **javascript** files from here using [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) feature;
 * All **javascript** is **babelified** so yes! You can use all kind of [ES6 features](https://babeljs.io/docs/learn-es2015/) here.
 * All **extensions** must be installed by the [npm](https://docs.npmjs.com/cli/install);
-* After installing the extension you must **include** its **javascript** files in `src/vendor_entries/vendor.js` by adding new elements to the **array**.
-* If you using ES modules or any types of modules, please import your modules in `src/vendor_entries/vendor-compile.js`.
+* All third party libraries from `node_modules` and `src/vendor_entries`, are automatically separate in `vendor.js`.
 
 In **build (production)** mode we use:
 
@@ -314,8 +311,7 @@ For minify images used [gulp-imagemin](https://github.com/sindresorhus/gulp-imag
 | --- | --- |
 | browser-sync-server | Browsersync can watch your files as you work. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh. |
 | build-html | Compiles all html templates into html files. |
-| build-js | Compiles all js from `src/js` to `assets/js` folder. |
-| build-js-vendors | Compiles all vendor js from `src/vendor_entries` to `assets/js` folder. |
+| build-js | Compiles all js from `src/js` to `assets/js` folder. Automatically separate your code and vendors. |
 | build-styles | Compiles all scss from `src/scss` to `assets/css`   folder. |
 | build-styles-custom | Compiles all custom scss files listed in the `gulp-config.js` to `assets/css` folder |
 | build-styles-vendors | Compiles all vendor styles from `src/vendor_entries` to `assets/css`   folder. |
