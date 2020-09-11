@@ -10,13 +10,12 @@ const global = require('../gulp-config.js');
 module.exports = function () {
   const config = {
     force: true,
+    dot: true,
   };
 
   const production = global.isProduction();
   const devFolders = [
     `./${global.folder.dev}/**`,
-    `./${global.folder.temp}/**`,
-    
   ];
   const buildFolders = production ? [
     `./${global.folder.build}/**`,

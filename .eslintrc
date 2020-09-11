@@ -1,9 +1,6 @@
 {
   "root": true,
-  "globals": {
-    "jQuery": true,
-    "$": true
-  },
+  "globals": {},
   "env": {
     "browser": true,
     "node": true
