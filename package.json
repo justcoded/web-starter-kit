@@ -1,6 +1,6 @@
 {
   "name": "web-starter-jc",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Starter kit for markup projects",
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "browser-sync": "2.26.12",
     "cssnano": "4.1.10",
     "del": "5.1.0",
-    "eslint": "7.8.1",
+    "eslint": "7.9.0",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-plugin-import": "2.22.0",
     "gulp": "4.0.2",
@@ -43,23 +43,25 @@
     "gulp-postcss": "8.0.0",
     "gulp-rename": "2.0.0",
     "gulp-sass": "4.1.0",
-    "gulp-sourcemaps": "2.6.5",
     "htmlhint-stylish": "1.0.3",
     "node-notifier": "8.0.0",
     "postcss-import": "12.0.1",
     "postcss-sort-media-queries": "1.7.26",
     "sass": "1.26.10",
-    "terser-webpack-plugin": "4.1.0",
+    "terser-webpack-plugin": "4.2.1",
     "webpack": "4.44.1"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "scripts": {
-    "dev": "gulp",
-    "test": "gulp build --log-level -LLLL",
-    "build": "gulp build",
-    "fix-js": "gulp fix-js"
+    "dev": "npx gulp",
+    "test": "npx gulp build --log-level -LLLL",
+    "build": "npx gulp build",
+    "lint-html": "npx gulp lint-html",
+    "lint-js": "npx gulp lint-js",
+    "fix-js": "npx gulp fix-js",
+    "lint": "npm run lint-html lint-js"
   },
   "dependencies": {
     "jquery": "3.5.1",
