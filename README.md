@@ -139,6 +139,15 @@ You may also want to get used to some of the [commands](#commands) available.
 
 There are few commands available to help you build and test sites:
 
+
+### Test
+
+Test run with logs
+
+```sh
+$ npm run test
+```
+
 ### Development mode
 
 Watch For Changes & Automatically Refresh Across Devices
@@ -162,6 +171,12 @@ $ npm run build
 
 `build` creates the `production` folder in the root of the project with **minifying** files from `assets`. It will help you to create clear instances of code for the **production** or **further implementation**.
 
+
+### Lint for HTML
+
+```sh
+$ npm run lint-html
+```
 
 ### Lint & fix for JS
 
