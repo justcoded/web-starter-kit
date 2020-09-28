@@ -6,8 +6,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
-const gulpif = require('gulp-if');
-const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('autoprefixer');
 const gcmq = require('postcss-sort-media-queries');
 const cssnano = require('cssnano');
@@ -24,18 +22,20 @@ module.exports = function () {
     autoprefixer(),
   ];
 
-  isGcmq ? plugins.push(gcmq({ sort: global.buildStyles.sortType, })) : null;
-  production ? plugins.push(cssnano()) : null;
+  if (isGcmq) {
+    plugins.push(gcmq({ sort: global.buildStyles.sortType, }));
+  }
+  if (production) {
+    plugins.push(cssnano());
+  }
 
   return (done) => {
     if (files.length > 0) {
-      return gulp.src(files)
-        .pipe(gulpif(!production, sourcemaps.init({ loadMaps: true, })))
+      return gulp.src(files, { sourcemaps: !production })
         .pipe(sass.sync({ sourceMap: !production, }))
         .on('error', (error) => notifier.error(error.message, 'Custom Sass compiling error', done))
         .pipe(postcss(plugins))
-        .pipe(gulpif(!production, sourcemaps.write('./')))
-        .pipe(gulp.dest(`./${global.folder.dev}/css`));
+        .pipe(gulp.dest(`./${global.folder.dev}/css`, { sourcemaps: './' }));
     }
 
     return done();

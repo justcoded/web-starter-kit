@@ -49,19 +49,28 @@ This is not to say that WSK cannot be used in browsers older than those reflecte
 | --- | --- |
 | Easy start | We don't use responsive boilerplate. You are free to make your own decision in what way to make responsive for the site. Just start with `index.html` from `src/html`. |
 | HTML templating | Used [gulp-file-include](https://github.com/haoxins/gulp-file-include) for templating html files. |
-| Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `gulp` for project compiling). In our WSK we use [Dart-Sass](https://sass-lang.com/dart-sass) version compiler and follow [Sass guidelines](https://sass-guidelin.es/#architecture). |
+| Sass support | Compile [Sass](http://sass-lang.com/) into CSS with ease, bringing support for variables, mixins and more (run `npm run dev` or `gulp` for project compiling). In our WSK we use [Dart-Sass](https://sass-lang.com/dart-sass) version compiler and follow [Sass guidelines](https://sass-guidelin.es/#architecture). |
 | PostCSS support | PostCSS connecting most usable plugins library for CSS optimisation. In our WSK we use [autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://github.com/cssnano/cssnano), [postcss-sort-media-queries](https://github.com/solversgroup/postcss-sort-media-queries), etc. |
 | JavaScript ES6+ Support | Optional JavaScript ES6+ support .You can use all kind of ES6+ features here. ES6+ source code will be automatically transpiled to ES5 for wide browser support. For bundling and transpiling used [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io/). |
 | Code Linting | JavaScript code linting is done using [esLint](https://eslint.org/) - a linter tool for identifying and reporting on patterns in JavaScript (used [airbnb-base rules](https://www.npmjs.com/package/eslint-config-airbnb-base)). HTML code linting is done using [HTMLHint](https://github.com/htmlhint/HTMLHint). |
-| Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `gulp` to create an optimised version of your project to `assets`). |
+| Performance optimization | Minify and concatenate JavaScript, CSS, HTML and images to help keep your pages lean (run `npm run dev` or `gulp` to create an optimised version of your project to `assets`). |
 | Built-in HTTP Server | A built-in server for previewing your site locally while you develop and iterate. |
-| Live Browser Reloading | Reload the browser in real-time anytime an edit is made without the need for an extension (run `gulp` and edit your files). |
-| Cross-device Synchronization | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (run `gulp` and open up the IP provided on other devices on your network). |
+| Live Browser Reloading | Reload the browser in real-time anytime an edit is made without the need for an extension (run `npm run dev` or `gulp` and edit your files). |
+| Cross-device Synchronization | Synchronize clicks, scrolls, forms and live-reload across multiple devices as you edit your project. Powered by [BrowserSync](http://browsersync.io) (run `npm run dev` or `gulp` and open up the IP provided on other devices on your network). |
 
 
 ## Install
 
-Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [download WSK](https://github.com/justcoded/web-starter-kit/releases/latest) and run `$ npm install --global gulp && npm install` in that directory to get started.
+Init your project using [jcn](https://github.com/justcoded/npm-jcn) or directly [download WSK](https://github.com/justcoded/web-starter-kit/releases/latest).
+
+To get started please run
+```sh
+$ npm install
+```
+if you want use Gulp in global context please run
+```sh
+$ npm install --global gulp && npm install
+```
 
 
 To take advantage of WSK you need to:
@@ -130,15 +139,24 @@ You may also want to get used to some of the [commands](#commands) available.
 
 There are few commands available to help you build and test sites:
 
+
+### Test
+
+Test run with logs
+
+```sh
+$ npm run test
+```
+
 ### Development mode
 
 Watch For Changes & Automatically Refresh Across Devices
 
 ```sh
-$ gulp
+$ npm run dev
 ```
 
-`gulp` task creates the `assets` folder in the root of the project.
+`dev` creates the `assets` folder in the root of the project.
 This includes linting as well as image, script, stylesheet and HTML optimization.
 Also, a [browsersync](https://browsersync.io/) script will be automatically generated, which will take care of precaching your sites resources.
 
@@ -148,27 +166,40 @@ Also, a [browsersync](https://browsersync.io/) script will be automatically gene
 Serve the Fully Built & Optimized Site
 
 ```sh
-$ gulp build
+$ npm run build
 ```
 
-`gulp build` task creates the `production` folder in the root of the project with **minifying** files from `assets`. It will help you to create clear instances of code for the **production** or **further implementation**.
+`build` creates the `production` folder in the root of the project with **minifying** files from `assets`. It will help you to create clear instances of code for the **production** or **further implementation**.
 
 
-### Linter - only for JS
+### Lint for HTML
 
 ```sh
-$ gulp lint-js
+$ npm run lint-html
 ```
 
-`gulp lint-js` task run the separate lint for JS files.  
-Included in `gulp` and `gulp build` tasks.
+### Lint & fix for JS
 
 ```sh
-$ gulp fix-js
+$ npm run lint-js
 ```
 
-`gulp fix-js` task run lint and auto-fix (eslint method) for JS files.  
-**Not included in any tasks**.
+`lint-js` run the separate lint for JS files.  
+Included in `dev` and `build`.
+
+```sh
+$ npm run fix-js
+```
+
+`fix-js` run lint and auto-fix (eslint method) for JS files.  
+**Not included in any mode**.
+
+
+### Lint for HTML & JS
+
+```sh
+$ npm run lint
+```
 
 ## Structure
 

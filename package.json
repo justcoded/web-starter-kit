@@ -1,6 +1,6 @@
 {
   "name": "web-starter-jc",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Starter kit for markup projects",
   "repository": {
     "type": "git",
@@ -19,18 +19,18 @@
   },
   "homepage": "https://github.com/justcoded/web-starter-kit",
   "devDependencies": {
-    "@babel/core": "7.11.1",
+    "@babel/core": "7.11.6",
     "@babel/plugin-proposal-object-rest-spread": "7.11.0",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/plugin-transform-runtime": "7.11.0",
-    "@babel/preset-env": "7.11.0",
+    "@babel/plugin-transform-runtime": "7.11.5",
+    "@babel/preset-env": "7.11.5",
     "@babel/runtime": "7.11.2",
-    "autoprefixer": "9.8.6",
+    "autoprefixer": "10.0.0",
     "babel-loader": "8.1.0",
     "browser-sync": "2.26.12",
     "cssnano": "4.1.10",
     "del": "5.1.0",
-    "eslint": "7.8.1",
+    "eslint": "7.9.0",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-plugin-import": "2.22.0",
     "gulp": "4.0.2",
@@ -40,26 +40,29 @@
     "gulp-if": "3.0.0",
     "gulp-imagemin": "7.1.0",
     "gulp-newer": "1.4.0",
-    "gulp-postcss": "8.0.0",
+    "gulp-postcss": "9.0.0",
     "gulp-rename": "2.0.0",
     "gulp-sass": "4.1.0",
-    "gulp-sourcemaps": "2.6.5",
     "htmlhint-stylish": "1.0.3",
     "node-notifier": "8.0.0",
+    "postcss": "8.0.9",
     "postcss-import": "12.0.1",
-    "postcss-sort-media-queries": "1.7.26",
-    "sass": "1.26.10",
-    "terser-webpack-plugin": "4.1.0",
-    "webpack": "4.44.1"
+    "postcss-sort-media-queries": "2.0.3",
+    "sass": "1.26.11",
+    "terser-webpack-plugin": "4.2.2",
+    "webpack": "4.44.2"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "scripts": {
-    "dev": "gulp",
-    "test": "gulp build --log-level -LLLL",
-    "build": "gulp build",
-    "fix-js": "gulp fix-js"
+    "dev": "npx gulp",
+    "test": "npx gulp build --log-level -LLLL",
+    "build": "npx gulp build",
+    "lint-html": "npx gulp lint-html",
+    "lint-js": "npx gulp lint-js",
+    "fix-js": "npx gulp fix-js",
+    "lint": "npm run lint-html lint-js"
   },
   "dependencies": {
     "jquery": "3.5.1",
