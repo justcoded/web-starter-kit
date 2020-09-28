@@ -191,7 +191,7 @@ Included in `dev` and `build`.
 $ npm run fix-js
 ```
 
-`npm run fix-js` run lint and auto-fix (eslint method) for JS files.  
+`fix-js` run lint and auto-fix (eslint method) for JS files.  
 **Not included in any mode**.
 
 
