@@ -1,6 +1,6 @@
 {
   "name": "web-starter-jc",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "Starter kit for markup projects",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "@babel/runtime": "7.11.2",
     "autoprefixer": "10.0.0",
     "babel-loader": "8.1.0",
-    "browser-sync": "2.26.12",
+    "browser-sync": "2.27.10",
     "cssnano": "4.1.10",
     "del": "5.1.0",
     "eslint": "7.9.0",
