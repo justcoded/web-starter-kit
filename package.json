@@ -45,7 +45,7 @@
     "gulp-sass": "4.1.0",
     "htmlhint-stylish": "1.0.3",
     "node-notifier": "8.0.0",
-    "postcss": "8.0.9",
+    "postcss": "8.4.31",
     "postcss-import": "12.0.1",
     "postcss-sort-media-queries": "2.0.3",
     "sass": "1.26.11",
