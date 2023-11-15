@@ -1,6 +1,6 @@
 {
   "name": "web-starter-jc",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "description": "Starter kit for markup projects",
   "repository": {
     "type": "git",
@@ -53,7 +53,7 @@
     "webpack": "4.44.2"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=10.0.0 <=14.0.0"
   },
   "scripts": {
     "dev": "npx gulp",
