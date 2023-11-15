@@ -2,7 +2,7 @@
 
 >  A modern Web starter kit for projects
 
-![node](http://img.shields.io/badge/node-10.0.x-blue.svg) ![npm](https://img.shields.io/badge/npm-5.6.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![travis](https://img.shields.io/travis/justcoded/web-starter-kit.svg)](https://travis-ci.org) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
+![node](http://img.shields.io/badge/node-14.x.x-blue.svg) ![npm](https://img.shields.io/badge/npm-6.x.x-blue.svg)  [![release](https://img.shields.io/github/release/justcoded/web-starter-kit.svg)](/releases) ![SCSS](http://img.shields.io/badge/SCSS-3.x.x-c6538c.svg) [![license](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![license](http://img.shields.io/badge/autoprefixer-included-blue.svg)](https://www.npmjs.com/package/autoprefixer) [![readme](http://img.shields.io/badge/readme-md-blue.svg)](/README.md) [![requests](http://img.shields.io/badge/PRs-welcome-green.svg)](/pulls)
 
 
 ## Overview
@@ -220,7 +220,6 @@ Your folder structure for WSK:
 ├── .gitattributes      #Git config for defining attributes per path
 ├── .gitignore          #Git ignore list
 ├── .htaccess           #Config file of Apache web service
-├── .travis.yml         #Config file of service for building and testing projects hosted at GitHub
 ├── CONTRIBUTING.md
 ├── gulp-config.js      #Config for gulp
 ├── gulpfile.js         #File with gulp tasks
